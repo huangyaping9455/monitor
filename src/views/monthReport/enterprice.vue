@@ -308,7 +308,7 @@ export default {
         },
       }).then((res) => {
         window.location.href =
-          "http://www.zkgt-safety.com:8204/" + res.data.data.path;
+          this.$store.getters.userinfo.urlPrefix + res.data.data.path;
       });
     },
     // 退出

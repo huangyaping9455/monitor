@@ -769,6 +769,12 @@ export default {
         type: this.form.type,
         ...row,
       };
+      for(let i in this.$children){
+        if(this.$children[i].QKclick){
+          this.$children[i].QKclick();
+          this.$children[i].CarMsg();
+        }
+      }
     },
     changeSearch() {
       this.searchshow

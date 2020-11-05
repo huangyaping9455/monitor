@@ -87,10 +87,14 @@ export default {
     });
   },
   // 点击凭证
-  selectBJDetail(data) {
-    return $axios.post('/blade-alarm/alarm/alarminfo/selectBJDetail',
-      data
-    );
+  // selectBJDetail(params) {
+  //   return $axios.post(`/blade-alarm/alarm/alarminfo/selectBJDetail`,{params:params},{headers:{"content-type":"application/x-www-form-urlencoded"}});
+  // },
+   // 获取报警数据
+  getAlarmGuIdList(params) {
+    return $axios.get('/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getAlarmGuIdList', {
+      params: params
+    });
   },
   awaitWrap
 };

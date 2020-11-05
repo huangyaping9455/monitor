@@ -44,15 +44,18 @@
           justify-content: center;
           p {
             text-align: center;
-            color: #01f8ff;
+            // color: #01f8ff;
+            color: #fff;
             font-size: 16px;
             font-weight: bold;
-            padding:  0.1rem 2rem;
+            padding: 3px 2rem;
             cursor: pointer;
           }
           p:hover{
-            background-color: #0080de;
+            background-color: #0a3774;
             color: white;
+            box-shadow: 2px 3px 10px black;
+            border-radius:10px;
           }
         }
       }
@@ -123,66 +126,147 @@
         }
       }
     }
-    .bottom-item {
-      display: flex;
-      background-color: #0f1f40;
-      border: solid 1px #0a3774;
-      color: #ffffff;
-      &:first-of-type {
-        text-align: center;
-        border-bottom: none;
-        div {
+    .main-bottom{
+      // display: flex;
+      .bottom-item-head{
+        display: flex;
+        background-color: #0f1f40;
+        border: solid 1px #0a3774;
+        color: #ffffff;
+        // div{
+        //   padding: 7px 0;
+        //   box-sizing: border-box;
+        //   flex: 0 0 50%;
+        //   display: flex;
+        //   justify-content: center;
+        //   border-right: solid 1px #0a3774;
+        // }
+        div:first-of-type {
+          box-sizing: border-box;
+          display: flex;
+          justify-content: center;
+          border-right: solid 1px #0a3774;
+          flex: 0 0 60%;
+          padding: 5px;
+          span{
+            padding: 7px 0px;
+            margin: 0 4px;
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            border-radius: 10px;
+            box-shadow: 2px 3px 10px black;
+            border-right: solid 1px #0a3774;
+            background-color: #0a3774;
+          }
+          span:hover{
+            background-color:#0f1f40;
+            cursor: pointer;
+          }
+        }
+        div:last-of-type {
           padding: 7px 0;
           box-sizing: border-box;
+          display: flex;
+          justify-content: center;
+          border-right: solid 1px #0a3774;
+          flex: 0 0 40%;
         }
       }
-      &:last-of-type {
-        height: 200px;
-        div {
-          padding: 10px;
-          box-sizing: border-box;
-          overflow-y: auto;
+      .bottom-item {
+        display: flex;
+        background-color: #0f1f40;
+        border: solid 1px #0a3774;
+        color: #ffffff;
+        &:first-of-type {
+          text-align: center;
+          border-bottom: none;
+          div {
+            padding: 7px 0;
+            box-sizing: border-box;
+          }
         }
-      }
-      div:first-of-type {
-        flex: 0 0 45%;
-        border-right: solid 1px #0a3774;
-      }
-      div:last-of-type {
-        flex: 0 0 55%;
+        &:last-of-type {
+          height: 200px;
+          div {
+            padding: 10px;
+            box-sizing: border-box;
+            overflow-y: auto;
+          }
+        }
+        // div{
+        //   flex: 0 0 50%;
+        //   border-right: solid 1px #0a3774;
+        // }
+        div:first-of-type {
+          flex: 0 0 60%;
+        }
+        div:last-of-type {
+          flex: 0 0 40%;
+        }
       }
     }
     .item-txt {
       display: flex;
-      // flex-wrap: wrap;
-      flex-direction: column;
+      flex-wrap: wrap;
+      flex-grow: 1;
+      // flex-direction: column;
+      justify-content: flex-start;
+      border-right: solid 1px #0a3774;
       overflow-y: scroll;
       p {
         // display: flex;
         // flex: 0 0 4%;
-        margin: 8px 0;
-        .pingzheng {
-          cursor: pointer;
-          width: 30px;
-          height: 30px;
-          margin: -10px 0;
-        }
-        .fujian {
-          height: 180px;
-        }
-      }
+        margin:8px;
+      //   .pingzheng {
+      //     cursor: pointer;
+      //     width: 30px;
+      //     height: 30px;
+      //     margin: -10px 0;
+      //   }
+      //   .fujian {
+      //     height: 180px;
+      //   }
+      // }
       p:nth-of-type(6),
       p:nth-of-type(7) {
-        flex: 0 0 12%;
+        // flex: 0 0 12%;
         display: flex;
         span:first-of-type {
-          flex: 0 0 70px;
+          // flex: 0 0 70px;
         }
       }
       span:first-of-type {
         color: #395da8;
       }
     }
+    }
+    .item-list{
+      background-color: #0f1f40;
+      border-right: solid 1px #0a3774;
+    }
+    .item-msg{
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      align-content: space-between;
+      border-right: solid 1px #0a3774;
+        p{
+          margin: 8px;
+          .pingzheng {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            margin: -10px 0;
+          }
+          // .fujian {
+          //   height: 180px;
+          // }
+        }
+        // .fujian{
+        //   height: 100px;
+        // }
+      }
   }
 }
 </style>
@@ -268,8 +352,8 @@
         </baidu-map>
         <div class="top-r means">
           <div class="title">
-            <p @click="CarMsg">车辆资料</p>
-            <p @click="getImageData">实时视频</p>
+            <p @click="CarMsg" ref="ziliao" style="background-color:#0080de;border-radius:10px;">车辆资料</p>
+            <p @click="getImageData" ref="shipin">实时视频</p>
           </div>
           <div class="means-top" v-if="ziliao">
             <div class="img">
@@ -285,24 +369,23 @@
             <div>
               <p class="means-name">{{ vehicleoption.plate }}</p>
               <p class="means-txt">车牌颜色：{{ cheliang.chepaiyanse }}</p>
-              <p class="means-txt">车辆类型：{{ jiashiyuan.donglileixing}}</p>
-              <p class="means-txt">使用性质：{{ cheliang.shiyongxingzhi }}</p>
+              <p class="means-txt">运营类型：{{ cheliang.shiyongxingzhi}}</p>
+              <!-- <p class="means-txt">使用性质：{{ cheliang.shiyongxingzhi }}</p>
               <p class="means-txt">核定载客：{{ cheliang.hedingzaike }}</p>
-              <p class="means-txt">车辆状态：{{ cheliang.cheliangzhuangtai }}</p>
+              <p class="means-txt">车辆状态：{{ cheliang.cheliangzhuangtai }}</p> -->
             </div>
           </div>
           <div class="means-bottom" v-if="ziliao">
-            <p>终端id：{{ cheliang.zongduanid }}</p>
-            <p>终端型号：{{ cheliang.zongduanxinghao }}</p>
-            <p>车架号：{{ cheliang.chejiahao }}</p>
-            <p>运输介质：{{ cheliang.yunshujiezhi }}</p>
-            <p>档案号：{{ cheliang.danganhao }}</p>
-            <p>车身颜色：{{ cheliang.cheshenyanse }}</p>
-            <p>总质量：{{ cheliang.zongzhiliang }}</p> 
-            <p>强制报废时间：{{ cheliang.qiangzhibaofeishijian }}</p>
-            <p>接驳运输证号：{{ cheliang.jieboyunshuzhenghao }}</p>
-            <p>运营商：{{ cheliang.yunyingshangmingcheng }}</p> 
-            <p>GPS安装时间：{{ cheliang.gpsanzhuangshijian }}</p>   
+            <p>驾&nbsp;&nbsp;驶&nbsp;&nbsp;员：{{ cheliang.jiashiyuanxingming }}</p>
+            <p>驾驶员电话：{{ cheliang.jiashiyuandianhua }}</p>
+            <p>押&nbsp; 运&nbsp; 员：{{ cheliang.yayunyuanxingming }}</p>
+            <p>押运员电话：{{ cheliang.yayunyuandianhua }}</p>
+            <p>车&emsp;&emsp;主：{{ cheliang.chezhu }}</p>
+            <p>车 主 电 话：{{ cheliang.chezhudianhua }}</p>
+            <p>终端型号：{{ cheliang.zongduanxinghao }}</p> 
+            <p>车 &nbsp;&nbsp;架 &nbsp;&nbsp;号：{{ cheliang.chejiahao }}</p>
+            <p>厂&emsp;&emsp;牌：{{ cheliang.changpai }}</p>
+            <p>运 &nbsp;&nbsp;营 &nbsp;&nbsp;商：{{ cheliang.yunyingshangmingcheng }}</p>
           </div>
           <div class="video" v-if="showVideo" v-loading="videoLoading">
             <video :src="video" controls="controls"></video>
@@ -314,16 +397,20 @@
         </div>
       </div>
       <div class="main-bottom">
-        <div class="bottom-item">
-          <div>情况分析</div>
+        <div class="bottom-item-head">
+          <div>
+            <span @click="QKclick" ref="fenxi" style="background-color:#0080de;">情况分析</span>
+            <span @click="TXclick" ref="xiaoxi">提醒消息</span>
+            <span @click="dealMsg" v-if="vehicleoption.chulizhuangtai=='已处理'||vehicleoption.shensuzhuangtai=='已申诉'" ref="dealmsg">处理信息</span>
+          </div>
           <div>{{ vehicleoption.alarmType }}-标准判断</div>
         </div>
         <div class="bottom-item">
-          <div class="item-txt">
-            <p>
+          <div v-if="QKFX" class="item-txt">
+            <!-- <p>
               <span>依据：</span>
               <span>《{{ vehicleoption.company }}驾驶员违规处理办法》</span>
-            </p>
+            </p> -->
             <p>
               <span>违规内容：</span>
               <span>{{ vehicleoption.alarmType }}</span>
@@ -332,17 +419,21 @@
               <span>行驶速度：</span>
               <span>{{ vehicleoption.velocity }}(km/h)</span>
             </p>
-            <p v-if="false">
+            <!-- <p v-if="false">
               <span>超速等级：</span>
               <span>{{ vehicleoption.alarmlevel }}</span>
-            </p>
-            <p v-if="false">
+            </p> -->
+            <p v-if="vehicleoption.alarmType =='超速报警'">
               <span>超速百分比：</span>
               <span>14%</span>
             </p>
             <p v-if="vehicleoption.alarmType =='超速报警'">
               <span>限速数值：</span>
-              <span>{{ vehicleoption.limited }}(km/h)</span>
+              <span>{{ vehicleoption.roadLimited }}(km/h)</span>
+            </p>
+            <p>
+              <span>移动距离：</span>
+              <span>{{ vehicleoption.distance }}km</span>
             </p>
             <p v-if="vehicleoption.alarmType =='疲劳驾驶报警'">
               <span>开始行驶时间：</span>
@@ -357,32 +448,169 @@
               >
             </p>
             <p>
+              <span>驾驶员IC卡登签信息：</span>
+              <span>{{ vehicleoption.icardsign }}</span>
+            </p>
+            <!-- <p>
+              <span>处理凭证：</span>
+              <span>
+                <el-popover placement="top" trigger="click">
+                  <img
+                    src="../../assets/img/ping.png"
+                    slot="reference"
+                    class="pingzheng"
+                    alt
+                  />
+                  <div slot="content">
+                    <img class="fujian" :src="vehicleoption.fujian" alt />
+                  </div>
+                </el-popover>
+              </span>
+            </p> -->
+            <p>
               <span>违规地点：</span>
               <span>{{ vehicleoption.roadName }}</span>
             </p>
+            <!-- <p>
+              <span>处理方式：</span>
+              <span>{{ vehicleoption.chulixingshi }}</span>
+            </p> -->
+            <!-- <p>
+              <span>处理描述：</span>
+              <span>{{ vehicleoption.chulimiaoshu }}</span>
+            </p> -->
+          </div>
+          <div v-if="TXXX" class="item-list">
+            <el-table
+              :data="tableData"
+              class="mainTable"
+              style="background-color: #0f1f40;border: 0.0714rem solid #0a3774;padding:0;position:inherit;">
+              <el-table-column
+                align="center"
+                label="序号"
+                type="index"
+                width="50">
+              </el-table-column>
+              <el-table-column
+                prop="time"
+                align="center"
+                :show-overflow-tooltip="showOverflowTooltip=true"
+                width="180"
+                label="时间">
+              </el-table-column>
+              <el-table-column
+                prop="lastSpeed"
+                align="center"
+                width="100"
+                label="速度(km/h)">
+              </el-table-column>
+              <el-table-column
+                prop="messageType"
+                 align="center"
+                label="类型">
+              </el-table-column>
+              <el-table-column
+                prop="message"
+                align="center"
+                :show-overflow-tooltip="showOverflowTooltip=true"
+                label="内容">
+              </el-table-column>
+            </el-table>
+          </div>
+          <div v-if="CLXX" class="item-msg">
             <p>
               <span>处理方式：</span>
               <span>{{ vehicleoption.chulixingshi }}</span>
             </p>
             <p>
+              <span>处理内容：</span>
+              <span>{{ vehicleoption.chulimiaoshu }}</span>
+            </p>
+            <p>
+              <span>处理人：</span>
+              <span>{{ vehicleoption.chuliren }}</span>
+            </p>
+            <p>
+              <span>处理时间：</span>
+              <span>{{ vehicleoption.chulishijian }}</span>
+            </p>
+            <p>
               <span>处理凭证：</span>
-              <span>
-                <el-popover placement="top" trigger="click">
-                  <div slot="content">
-                    <img class="fujian" :src="imgList" alt />
-                  </div>
+              <span v-if="vehicleoption.fujian!==''">
+                <el-popover placement="top-start" trigger="click">
                   <img
                     src="../../assets/img/ping.png"
                     slot="reference"
                     class="pingzheng"
-                    @click="getAlarmDetail"
+                    alt
                   />
+                  <div class="fujian">
+                    <!-- <img :src="vehicleoption.fujian" style="max-height:180px;" alt /> -->
+                      <img
+                        v-for="(item, index) in arryImg"
+                        :key="index"
+                        class="fujian"
+                        :src="arryImg[index]"
+                        style="max-height:180px;"
+                        alt
+                      />
+                  </div>
+                </el-popover>
+              </span>
+            </p>
+          </div>
+          <div v-if="CLXXX" class="item-msg">
+            <p>
+              <span>处理方式：</span>
+              <span>{{ vehicleoption.chulixingshi }}</span>
+            </p>
+            <p>
+              <span>处理内容：</span>
+              <span>{{ vehicleoption.chulimiaoshu }}</span>
+            </p>
+            <p>
+              <span>处理人：</span>
+              <span>{{ vehicleoption.chuliren }}</span>
+            </p>
+            <p>
+              <span>处理时间：</span>
+              <span>{{ vehicleoption.chulishijian }}</span>
+            </p>
+            <p>
+              <span>处理凭证：</span>
+              <span v-if="vehicleoption.fujian!==''">
+                <el-popover placement="top-start" trigger="click">
+                  <img
+                    src="../../assets/img/ping.png"
+                    slot="reference"
+                    class="pingzheng"
+                    alt
+                  />
+                  <div class="fujian">
+                    <!-- <img :src="vehicleoption.fujian" style="max-height:180px;" alt /> -->
+                    <img
+                        v-for="(item, index) in arryImg"
+                        :key="index"
+                        class="fujian"
+                        :src="arryImg[index]"
+                        style="max-height:180px;"
+                        alt
+                      />
+                  </div>
                 </el-popover>
               </span>
             </p>
             <p>
-              <span>处理描述：</span>
-              <span>{{ vehicleoption.chulimiaoshu }}</span>
+              <span>申诉审核人：</span>
+              <span>{{ vehicleoption.chulishijian }}</span>
+            </p>
+            <p>
+              <span>申诉审核时间：</span>
+              <span>{{ vehicleoption.chulishijian }}</span>
+            </p>
+            <p>
+              <span>申诉审核意见：</span>
+              <span>{{ vehicleoption.shensumiaoshu }}</span>
             </p>
           </div>
           <div style="white-space: pre-wrap">{{ destandard }}</div>
@@ -443,6 +671,12 @@ export default {
       noVideo: false,
       src: [],
       videoLoading: false,
+      tableData:[],
+      QKFX:true,
+      TXXX:false,
+      CLXX:false,
+      CLXXX:false,
+      arryImg:"",
     };
   },
   computed: {
@@ -475,6 +709,7 @@ export default {
   methods: {
     getData() {
       this.selectByCPYS();
+      this.getAlarmGuIdList();
       //
       // console.log(this.vehicleoption);
       // console.log(this);
@@ -488,6 +723,13 @@ export default {
         })
       );
       if (data) {
+        if(data.cheliang.jiashiyuandianhua ==-1||data.cheliang.yayunyuandianhua ==-1||data.cheliang.chezhudianhua ==-1||data.cheliang.changpai =="null"||data.cheliang.chejiahao =="null"){
+          data.cheliang.jiashiyuandianhua =""
+          data.cheliang.yayunyuandianhua =""
+          data.cheliang.chezhudianhua =""
+          data.cheliang.changpai =""
+          data.cheliang.chejiahao =""
+        }
         this.cheliang = data.cheliang;
         this.jiashiyuan = data.jiashiyuan;
         this.getPointDataNew();
@@ -498,7 +740,6 @@ export default {
     },
     //获取点位数据
     async getPointDataNew() {
-      // console.log(this.vehicleoption);
      if(this.vehicleoption.alarmType =="疲劳驾驶报警"){
         // 开始行驶时间
       let [err2, data2] = await dataAnalysisApi.awaitWrap(
@@ -538,7 +779,6 @@ export default {
         this.$message.error(err2);
       }
      }
-     //  console.log(this.vehicleoption);
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getPointDataNew({
           beginTime: this.vehicleoption.beginTime,
@@ -586,7 +826,92 @@ export default {
         this.$message.error(err);
       }
     },
+    //获取 报警详情
+    async getAlarmGuIdList() {
+      let [err, data] = await dataAnalysisApi.awaitWrap(
+        dataAnalysisApi.getAlarmGuIdList({
+          alarmGuId:this.vehicleoption.alarmGuid
+        })
+      );
+      if(data){
+        let tabledatas =data.map(el=>{
+          el.time=el.time.replace(/\.0$/g,'')
+          return el
+        })
+        this.tableData =tabledatas;
+      }
+    },
+    // 情况分析 点击
+    QKclick(){
+      if(this.$refs.fenxi){
+        this.$refs.fenxi.style.backgroundColor ="#0080de";
+      }
+      if(this.$refs.xiaoxi){
+        this.$refs.xiaoxi.style.backgroundColor="";
+      }
+      if(this.$refs.dealmsg){
+        this.$refs.dealmsg.style.backgroundColor ="";
+      }
+     this.QKFX =true;
+     this.TXXX =false;
+     this.CLXX =false;
+     this.CLXXX =false;
+    },
+    // 提醒消息 点击
+    TXclick(){
+      if(this.$refs.fenxi){
+        this.$refs.fenxi.style.backgroundColor ="";
+      }
+      if(this.$refs.xiaoxi){
+        this.$refs.xiaoxi.style.backgroundColor="#0080de";
+      }
+      if(this.$refs.dealmsg){
+        this.$refs.dealmsg.style.backgroundColor ="";
+      }
+      this.QKFX =false;
+      this.TXXX =true;
+      this.CLXX =false;
+      this.CLXXX=false;
+    },
+    // 处理信息
+    dealMsg(){
+      let arry = this.vehicleoption.fujian.replace(/\,$/g,"").split(",");
+      this.arryImg =arry;
+      if(this.$refs.fenxi||this.$refs.xiaoxi||this.$refs.dealmsg){
+        this.$refs.fenxi.style.backgroundColor ="";
+        this.$refs.xiaoxi.style.backgroundColor="";
+        this.$refs.dealmsg.style.backgroundColor ="#0080de";
+      }
+      this.QKFX =false;
+      this.TXXX =false;
+      if(this.vehicleoption.chulizhuangtai =="已处理"){
+        this.CLXX =true;
+        this.CLXXX =false
+      }else{
+        this.CLXX =false;
+        this.CLXXX =true;
+      }
+      // this.selectBJDetail();
+    },
+    // 获取报警详情
+    // async selectBJDetail(){
+    //   let [err, data] = await dataAnalysisApi.awaitWrap(
+    //     dataAnalysisApi.selectBJDetail({
+    //       baojingid:this.vehicleoption.alarmReportID,
+    //     })
+    //   );
+    //   if(data){
+    //     console.log(this);
+    //     console.log(data);
+    //   }
+    // },
+    // 车辆资料
     CarMsg() {
+      if(this.$refs.ziliao||this.$refs.shipin){
+         this.$refs.ziliao.style.backgroundColor ='#0080de';
+         this.$refs.ziliao.style.color='#fff'
+         this.$refs.shipin.style.backgroundColor ='';
+      }
       this.ziliao = true;
       this.showVideo = false;
       this.noVideo = false;
@@ -595,6 +920,10 @@ export default {
     async getImageData() {
       this.ziliao = false;
       this.videoLoading = true;
+      this.$refs.shipin.style.backgroundColor ='#0080de';
+      this.$refs.shipin.style.color='#fff';
+      this.$refs.shipin.style.borderRadius=10+"px";
+      this.$refs.ziliao.style.backgroundColor='';
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getImageData({
           alarmNumber: this.vehicleoption.alarmReportID,
@@ -618,9 +947,9 @@ export default {
       }
     },
     // 附件 点击
-    getAlarmDetail() {
-      this.imgList = this.vehicleoption.fujian;
-    },
+    // getAlarmDetail() {
+    //   this.imgList = this.vehicleoption.fujian;
+    // },
   },
 };
 </script>
@@ -644,5 +973,12 @@ export default {
   path:nth-of-type(2){
   stroke-opacity:0.7;
   }
+}
+.mainTable th.is-leaf {
+    border-bottom: 1px solid #0a3774;
+}
+.mainTable th{
+    border-right: 1px solid #0a3774;
+    padding: 6px 0;
 }
 </style>

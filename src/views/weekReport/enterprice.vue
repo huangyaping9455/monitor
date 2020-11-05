@@ -202,7 +202,7 @@ export default {
       pagesizeactive: 20, //当前每页显示
       enterpriseListH: "calc(100vh - 14.5828rem)",
       form: {
-        begintime: format(new Date().getTime(), "YYYY-MM-DD"),
+        begintime: "",
       },
       enterpriseList: [],
       Preimg: [],
@@ -242,12 +242,26 @@ export default {
     },
   },
   methods: {
+    getMonday() {
+      let day = new Date().getDay();
+      let deltaday;
+      if (day == 0) {
+        deltaday = 6;
+      } else {
+        deltaday = day - 1;
+      }
+      let monday = new Date(
+        new Date().getTime() - deltaday * 24 * 60 * 60 * 1000
+      );
+      return monday;
+    },
     //报警统计结算
     async getZFBJTJJS(current = 1) {
       current = Number(current);
       this.loading = true;
-      if (this.form.begintime == null) {
-        this.form.begintime = format(new Date().getTime(), "YYYY-MM-DD");
+      if (this.form.begintime == "") {
+        // this.form.begintime = format(new Date().getTime(), "YYYY-MM-DD");
+        this.form.begintime = this.getMonday();
       }
       let yunguanid;
       if (this.zhuzzhiId == this.$store.state.userinfo.deptId) {
@@ -307,6 +321,7 @@ export default {
     },
     // 下载 文件
     downwenjian() {
+      console.log(this.$store.getters.userinfo.urlPrefix);
       axios({
         url: "/api/blade-anbiao/anbiao/baobiaowenjian/preview",
         method: "post",
@@ -317,7 +332,7 @@ export default {
       }).then((res) => {
         if (res.data.success == true) {
           window.location.href =
-            "http://www.zkgt-safety.com:8204/" + res.data.data.path;
+            this.$store.getters.userinfo.urlPrefix + res.data.data.path;
         } else {
           this.$message.error(res.data.msg);
         }
