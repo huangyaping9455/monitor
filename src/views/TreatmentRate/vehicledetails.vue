@@ -441,8 +441,13 @@
             </p>
             <p>
               <span>违规时间：</span>
-              <span
-                >{{ begintime }}--{{ endtime }}({{
+              <span v-if="vehicleoption.alarmType =='抽烟报警'||vehicleoption.alarmType =='分神驾驶报警'||vehicleoption.alarmType =='接打电话报警'||vehicleoption.alarmType =='驾驶员异常报警'"
+                >{{ begintime }}--{{ endtime }}(
+                  3分钟
+                )</span
+              >
+              <span v-else-if="vehicleoption.alarmType !='抽烟报警'||vehicleoption.alarmType !='分神驾驶报警'||vehicleoption.alarmType !='接打电话报警'||vehicleoption.alarmType !='驾驶员异常报警'"
+                >{{ vehicleoption.beginTime }}--{{ vehicleoption.endTime }}({{
                   vehicleoption.keeptimeShow
                 }})</span
               >
@@ -712,7 +717,6 @@ export default {
       this.getAlarmGuIdList();
       //
       // console.log(this.vehicleoption);
-      // console.log(this);
     },
     //获取数据明细
     async selectByCPYS() {
@@ -778,6 +782,10 @@ export default {
       } else {
         this.$message.error(err2);
       }
+     }
+     if(this.vehicleoption.alarmType =="抽烟报警"||this.vehicleoption.alarmType =="分神驾驶报警"||this.vehicleoption.alarmType =="接打电话报警"||this.vehicleoption.alarmType =="驾驶员异常报警"){
+        this.vehicleoption.endTime = this.endtime;
+        this.vehicleoption.beginTime=this.begintime;
      }
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getPointDataNew({

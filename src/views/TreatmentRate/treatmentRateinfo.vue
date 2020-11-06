@@ -748,7 +748,6 @@ export default {
       }
     },
     returnGo() {
-      console.log(this);
       this.$router.push({
         path: this.form.returnUrl,
         query: {
