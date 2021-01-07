@@ -176,7 +176,6 @@
 }
 </style>
 
-
 <template>
   <div class="enterprise">
     <all-header></all-header>
@@ -267,7 +266,12 @@
               }}</span>
             </template>
           </el-table-column>
-          <el-table-column label="企业名称" min-width="200" align="center">
+          <el-table-column
+            label="企业名称"
+            min-width="200"
+            align="center"
+            :show-overflow-tooltip="true"
+          >
             <template slot-scope="{ row }">
               <span class="businessName">{{ row.deptName }}</span>
             </template>
@@ -347,7 +351,7 @@
             <el-table-column
               prop="dmspilao"
               sortable="custom"
-              label="疲劳驾驶"
+              label="生理疲劳"
               align="center"
               min-width="100"
             ></el-table-column>

@@ -194,7 +194,6 @@
 }
 </style>
 
-
 <template>
   <div class="enterprise">
     <all-header></all-header>
@@ -324,7 +323,7 @@
           >
             <template slot-scope="{ row }">
               <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
-                <span @click="goCheliang(1, '超速报警', '已处理', row)">{{
+                <span @click="goCheliang(1, '超速报警', '', '已处理', row)">{{
                   row.cheliangshu
                 }}</span>
               </p>
@@ -341,11 +340,12 @@
             <el-table-column label="处理/超速" align="center" min-width="140">
               <template slot-scope="{ row }">
                 <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
-                  <span @click="goinfo(1, '超速报警', '已处理', row)">{{
-                    row.chaosucl
-                  }}</span>
+                  <span
+                    @click="goinfo(1, '超速报警', '北斗报警', '已处理', row)"
+                    >{{ row.chaosucl }}</span
+                  >
                   /
-                  <span @click="goinfo(1, '超速报警', '', row)">{{
+                  <span @click="goinfo(1, '超速报警', '北斗报警', '', row)">{{
                     row.gpschaosu
                   }}</span>
                   / {{ row.gpschaosucllv }}
@@ -359,13 +359,17 @@
             >
               <template slot-scope="{ row }">
                 <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
-                  <span @click="goinfo(1, '疲劳驾驶报警', '已处理', row)">{{
-                    row.pilaocl
-                  }}</span>
+                  <span
+                    @click="
+                      goinfo(1, '疲劳驾驶报警', '北斗报警', '已处理', row)
+                    "
+                    >{{ row.pilaocl }}</span
+                  >
                   /
-                  <span @click="goinfo(1, '疲劳驾驶报警', '', row)">{{
-                    row.gpspilao
-                  }}</span>
+                  <span
+                    @click="goinfo(1, '疲劳驾驶报警', '北斗报警', '', row)"
+                    >{{ row.gpspilao }}</span
+                  >
                   / {{ row.gpspilaocllv }}
                 </p>
               </template>
@@ -377,13 +381,17 @@
             >
               <template slot-scope="{ row }">
                 <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
-                  <span @click="goinfo(1, '夜间行驶报警', '已处理', row)">{{
-                    row.yejiancl
-                  }}</span>
+                  <span
+                    @click="
+                      goinfo(1, '夜间行驶报警', '北斗报警', '已处理', row)
+                    "
+                    >{{ row.yejiancl }}</span
+                  >
                   /
-                  <span @click="goinfo(1, '夜间行驶报警', '', row)">{{
-                    row.gpsyejian
-                  }}</span>
+                  <span
+                    @click="goinfo(1, '夜间行驶报警', '北斗报警', '', row)"
+                    >{{ row.gpsyejian }}</span
+                  >
                   / {{ row.gpsyejiancllv }}
                 </p>
               </template>
@@ -395,13 +403,17 @@
             >
               <template slot-scope="{ row }">
                 <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
-                  <span @click="goinfo(1, '异常车辆报警', '已处理', row)">{{
-                    row.yichangcl
-                  }}</span>
+                  <span
+                    @click="
+                      goinfo(1, '异常车辆报警', '北斗报警', '已处理', row)
+                    "
+                    >{{ row.yichangcl }}</span
+                  >
                   /
-                  <span @click="goinfo(1, '异常车辆报警', '', row)">{{
-                    row.gpsyichang
-                  }}</span>
+                  <span
+                    @click="goinfo(1, '异常车辆报警', '北斗报警', '', row)"
+                    >{{ row.gpsyichang }}</span
+                  >
                   / {{ row.gpsyichangcllv }}
                 </p>
               </template>
@@ -415,13 +427,26 @@
             >
               <template slot-scope="{ row }">
                 <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
-                  <span @click="goinfo(2, '接打电话报警', '已处理', row)">{{
-                    row.dadianhuacl
-                  }}</span>
+                  <span
+                    @click="
+                      goinfo(2, '接打电话报警', '主动安全报警', '已处理', row)
+                    "
+                    >{{ row.dadianhuacl }}</span
+                  >
                   /
-                  <span @click="goinfo(2, '接打电话报警', '', row)">{{
-                    row.dmsjiedadianhua
-                  }}</span>
+                  <span
+                    @click="
+                      goinfo(
+                        2,
+                        '接打电话报警',
+                        '北斗报警',
+                        '主动安全报警',
+                        '',
+                        row
+                      )
+                    "
+                    >{{ row.dmsjiedadianhua }}</span
+                  >
                   / {{ row.dmsjiedadianhuacllv }}
                 </p>
               </template>
@@ -429,13 +454,17 @@
             <el-table-column label="处理/抽烟" align="center" min-width="140">
               <template slot-scope="{ row }">
                 <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
-                  <span @click="goinfo(2, '抽烟报警', '已处理', row)">{{
-                    row.chouyancl
-                  }}</span>
+                  <span
+                    @click="
+                      goinfo(2, '抽烟报警', '主动安全报警', '已处理', row)
+                    "
+                    >{{ row.chouyancl }}</span
+                  >
                   /
-                  <span @click="goinfo(2, '抽烟报警', '', row)">{{
-                    row.dmschouyan
-                  }}</span>
+                  <span
+                    @click="goinfo(2, '抽烟报警', '主动安全报警', '', row)"
+                    >{{ row.dmschouyan }}</span
+                  >
                   / {{ row.dmschouyancllv }}
                 </p>
               </template>
@@ -447,31 +476,39 @@
             >
               <template slot-scope="{ row }">
                 <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
-                  <span @click="goinfo(2, '分神驾驶报警', '已处理', row)">{{
-                    row.fenshencl
-                  }}</span>
+                  <span
+                    @click="
+                      goinfo(2, '分神驾驶报警', '主动安全报警', '已处理', row)
+                    "
+                    >{{ row.fenshencl }}</span
+                  >
                   /
-                  <span @click="goinfo(2, '分神驾驶报警', '', row)">{{
-                    row.dmsfenshen
-                  }}</span>
+                  <span
+                    @click="goinfo(2, '分神驾驶报警', '主动安全报警', '', row)"
+                    >{{ row.dmsfenshen }}</span
+                  >
                   / {{ row.dmsfenshencllv }}
                 </p>
               </template>
             </el-table-column>
             <el-table-column
-              label="处理/疲劳驾驶"
+              label="处理/生理疲劳"
               align="center"
               min-width="140"
             >
               <template slot-scope="{ row }">
                 <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
-                  <span @click="goinfo(2, '疲劳驾驶报警', '已处理', row)">{{
-                    row.pilaoshipincl
-                  }}</span>
+                  <span
+                    @click="
+                      goinfo(2, '疲劳驾驶报警', '主动安全报警', '已处理', row)
+                    "
+                    >{{ row.pilaoshipincl }}</span
+                  >
                   /
-                  <span @click="goinfo(2, '疲劳驾驶报警', '', row)">{{
-                    row.dmspilao
-                  }}</span>
+                  <span
+                    @click="goinfo(2, '疲劳驾驶报警', '主动安全报警', '', row)"
+                    >{{ row.dmspilao }}</span
+                  >
                   / {{ row.dmspilaocllv }}
                 </p>
               </template>
@@ -670,7 +707,7 @@ export default {
       }
     },
     // 跳转详情页面
-    goinfo(type, alarmtype, shifouchuli, row) {
+    goinfo(type, alarmtype, Allalarmtype, shifouchuli, row) {
       if (this.hierarchy == 1) return false;
       this.$router.push({
         path: "/treatmentRateinfo",
@@ -681,12 +718,13 @@ export default {
           deptName: row.deptName,
           shifouchuli: shifouchuli,
           alarmtype: alarmtype,
+          Allalarmtype: Allalarmtype,
           zhengfuId: this.zhengfuId,
-          returnUrl: "/treatmentRate"
+          returnUrl: "/treatmentRate",
         },
       });
     },
-    goCheliang(type, alarmtype, shifouchuli, row) {
+    goCheliang(type, alarmtype, Allalarmtype, shifouchuli, row) {
       if (this.hierarchy == 1) return false;
       this.$router.push({
         path: "/vehicleinfo",
@@ -844,7 +882,7 @@ export default {
             "处理/接打电话",
             "处理/抽烟",
             "处理/分神驾驶",
-            "处理/疲劳驾驶",
+            "处理/生理疲劳",
             "",
           ];
           filterVal = [
@@ -902,7 +940,7 @@ export default {
             "处理/接打电话",
             "处理/抽烟",
             "处理/分神驾驶",
-            "处理/疲劳驾驶",
+            "处理/生理疲劳",
             "",
           ];
           filterVal = [

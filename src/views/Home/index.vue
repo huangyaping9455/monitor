@@ -82,10 +82,10 @@
         font-size: 20px;
         font-weight: bold;
       }
-      .chaosufocu:hover{
-       font-size:20px;
-       color:white;
-       background-color:#0a3774;
+      .chaosufocu:hover {
+        font-size: 20px;
+        color: white;
+        background-color: #0a3774;
       }
     }
     .content-center {
@@ -238,19 +238,19 @@
             <span>{{ statistics.chaosu }}</span>
             <span>超速次数</span>
           </div>
-          <div class="chaosufocu" @click="gopinao">
+          <div class="chaosufocu" @click="gochaosu">
             <span>{{ statistics.pilao }}</span>
             <span>疲劳次数</span>
           </div>
-          <div class="chaosufocu" @click="goyejian">
+          <div class="chaosufocu" @click="gochaosu">
             <span>{{ statistics.yejian }}</span>
             <span>夜间行驶</span>
           </div>
-          <div class="chaosufocu" @click="goyichang">
+          <div class="chaosufocu" @click="gochaosu">
             <span>{{ statistics.yichang }}</span>
             <span>异常次数</span>
           </div>
-          <div class="chaosufocu" @click="gozhudong">
+          <div class="chaosufocu" @click="gochaosu">
             <span>{{ statistics.zdbaojingcishu }}</span>
             <span>主动安全次数</span>
           </div>
@@ -349,7 +349,7 @@
               <span
                 @click="changeCar('carousel1', 'zhudongbj')"
                 :class="isbtn1 == 3 ? 'active' : ''"
-                >疲劳驾驶</span
+                >生理疲劳</span
               >
             </div>
             <el-carousel
@@ -485,6 +485,7 @@
                   prop="zhengfuname"
                   label="政府运管局名称"
                   align="center"
+                  :show-overflow-tooltip="true"
                 ></el-table-column>
                 <el-table-column
                   prop="cheliangshu"
@@ -545,8 +546,8 @@ export default {
       isbtn1: 0, //按钮判断
       tableData: [],
       cengji: 0,
-      begintime:format(new Date().setDate(1), "YYYY-MM-DD"),
-      endtime:format(new Date().getTime() - 3600 * 1000 * 24, "YYYY-MM-DD"),
+      begintime: format(new Date().setDate(1), "YYYY-MM-DD"),
+      endtime: format(new Date().getTime() - 3600 * 1000 * 24, "YYYY-MM-DD"),
       chartOption: {
         option1: {},
         option2: {},
@@ -562,6 +563,7 @@ export default {
       g_TimeFn: "",
       mapData: [],
       areaName: "",
+      zhengfuindex: "",
     };
   },
   components: {
@@ -574,7 +576,17 @@ export default {
   },
   mounted() {
     const timer1 = setInterval(() => {
-      this.init();
+      if (this.zhengfuindex != "") {
+        this.getOne(this.zhengfuindex);
+        this.getTwo(this.zhengfuindex, 1, this.areaName);
+        this.getThree(this.zhengfuindex, 1);
+        this.getFour(this.zhengfuindex);
+      } else {
+        this.getOne(this.userinfo.deptId);
+        this.getTwo(this.userinfo.deptId, 0);
+        this.getThree(this.userinfo.deptId, 0);
+        this.getFour(this.userinfo.deptId);
+      }
     }, 180000);
     // 通过$once来监听定时器，在beforeDestroy钩子可以被清除。
     this.$once("hook:beforeDestroy", () => {
@@ -604,19 +616,19 @@ export default {
     // 初始化
     init() {
       // 政府-企业总数、个体总数、车辆总数、在线车辆数
-      this.getOne();
+      this.getOne(this.userinfo.deptId);
       // 政府-超速报警次数、疲劳报警总数、夜间行驶报警次数、异常报警次数
       this.getTwo(this.userinfo.deptId, 0, "");
       //政府-注册、监控企业数据
       this.getThree(this.userinfo.deptId, 0);
       //政府-各地区详细报警数据表
-      this.getFour();
+      this.getFour(this.userinfo.deptId);
     },
     // 政府-企业总数、个体总数、车辆总数、在线车辆数
-    async getOne() {
+    async getOne(deptId) {
       let [err, data] = await homeApi.awaitWrap(
         homeApi.getOne({
-          deptId: this.userinfo.deptId,
+          deptId: deptId,
         })
       );
       if (err) {
@@ -645,7 +657,7 @@ export default {
           this.cengji--;
           return false;
         }
-        // 判断是否下钻
+        // 判断是否下钻  单击
         if (!isxiazhuan) {
           this.statistics = data;
           this.cengji--;
@@ -712,11 +724,11 @@ export default {
       }
     },
     // 各地区详细报警数据表
-    async getFour() {
+    async getFour(deptId) {
       this.load.load2 = true;
       let [err, data] = await homeApi.awaitWrap(
         homeApi.getFour({
-          deptId: this.userinfo.deptId,
+          deptId: deptId,
         })
       );
       this.load.load2 = false;
@@ -738,10 +750,13 @@ export default {
     /**操作 */
     // 地图返回
     returnMap() {
+      this.zhengfuindex = "";
       // 政府-超速报警次数、疲劳报警总数、夜间行驶报警次数、异常报警次数
       this.getTwo(this.userinfo.deptId, 0, "");
       //政府-注册、监控企业数据
       this.getThree(this.userinfo.deptId, 0);
+      this.getOne(this.userinfo.deptId);
+      this.getFour(this.userinfo.deptId);
     },
     linkto(url, req = {}) {
       this.$router.push({
@@ -752,8 +767,11 @@ export default {
     // 地图下钻
     echartdblclick(el, isxiazhuan) {
       this.cengji++;
+      this.zhengfuindex = el.data.zhengfuid;
       this.getTwo(el.data.zhengfuid, 1, el.name, isxiazhuan);
       this.getThree(el.data.zhengfuid, 1);
+      this.getOne(el.data.zhengfuid);
+      this.getFour(el.data.zhengfuid);
     },
     echartclick(el) {
       if (!el.value) return false;
@@ -796,94 +814,95 @@ export default {
       });
     },
     //跳转详情页 超速
-    gochaosu(){
+    gochaosu() {
       this.$router.push({
-        path:"/treatmentRateinfo",
-        query:{
-          type:1,
-          begintime:this.begintime,
-          endtime:this.endtime,
-          deptName:"",
-          shifouchuli:"",
-          alarmtype:"超速报警",
-          zhengfuId:this.$store.state.userinfo.deptId,
-          cheliangpaizhao:"",
-          returnUrl:"/treatmentRate",
-          Allalarmtype:""
-        }
-      })
+        path: "/treatmentRate",
+        query: {
+          // type: 1,
+          begintime: this.begintime,
+          endtime: this.endtime,
+          // deptName: "",
+          // shifouchuli: "",
+          // alarmtype: "超速报警",
+          isinfo: true,
+          zhengfuId: this.$store.state.userinfo.deptId,
+          // cheliangpaizhao: "",
+          // returnUrl: "/treatmentRate",
+          // Allalarmtype: "",
+        },
+      });
     },
     // 跳转详情页 疲劳
-    gopinao(){
-       this.$router.push({
-        path:"/treatmentRateinfo",
-        query:{
-          type:1,
-          begintime:this.begintime,
-          endtime:this.endtime,
-          deptName:"",
-          shifouchuli:"",
-          alarmtype:"疲劳驾驶报警",
-          zhengfuId:this.$store.state.userinfo.deptId,
-          cheliangpaizhao:"",
-          returnUrl:"/treatmentRate",
-          Allalarmtype:""
-        }
-      })
+    gopinao() {
+      this.$router.push({
+        path: "/treatmentRateinfo",
+        query: {
+          type: 1,
+          begintime: this.begintime,
+          endtime: this.endtime,
+          deptName: "",
+          shifouchuli: "",
+          alarmtype: "疲劳驾驶报警",
+          zhengfuId: this.$store.state.userinfo.deptId,
+          cheliangpaizhao: "",
+          returnUrl: "/treatmentRate",
+          Allalarmtype: "",
+        },
+      });
     },
-     // 跳转详情页 夜间
-    goyejian(){
-       this.$router.push({
-        path:"/treatmentRateinfo",
-        query:{
-          type:1,
-          begintime:this.begintime,
-          endtime:this.endtime,
-          deptName:"",
-          shifouchuli:"",
-          alarmtype:"夜间行驶报警",
-          zhengfuId:this.$store.state.userinfo.deptId,
-          cheliangpaizhao:"",
-          returnUrl:"/treatmentRate",
-          Allalarmtype:""
-        }
-      })
+    // 跳转详情页 夜间
+    goyejian() {
+      this.$router.push({
+        path: "/treatmentRateinfo",
+        query: {
+          type: 1,
+          begintime: this.begintime,
+          endtime: this.endtime,
+          deptName: "",
+          shifouchuli: "",
+          alarmtype: "夜间行驶报警",
+          zhengfuId: this.$store.state.userinfo.deptId,
+          cheliangpaizhao: "",
+          returnUrl: "/treatmentRate",
+          Allalarmtype: "",
+        },
+      });
     },
-     // 跳转详情页 异常
-    goyichang(){
-       this.$router.push({
-        path:"/treatmentRateinfo",
-        query:{
-          type:1,
-          begintime:this.begintime,
-          endtime:this.endtime,
-          deptName:"",
-          shifouchuli:"",
-          alarmtype:"异常车辆报警",
-          zhengfuId:this.$store.state.userinfo.deptId,
-          cheliangpaizhao:"",
-          returnUrl:"/treatmentRate",
-          Allalarmtype:""
-        }
-      })
+    // 跳转详情页 异常
+    goyichang() {
+      this.$router.push({
+        path: "/treatmentRateinfo",
+        query: {
+          type: 1,
+          begintime: this.begintime,
+          endtime: this.endtime,
+          deptName: "",
+          shifouchuli: "",
+          alarmtype: "异常车辆报警",
+          zhengfuId: this.$store.state.userinfo.deptId,
+          cheliangpaizhao: "",
+          returnUrl: "/treatmentRate",
+          Allalarmtype: "",
+        },
+      });
     },
-     // 跳转详情页 主动安全
-    gozhudong(){
-       this.$router.push({
-        path:"/treatmentRateinfo",
-        query:{
-          type:0,
-          begintime:this.begintime,
-          endtime:this.endtime,
-          deptName:"",
-          shifouchuli:"",
-          alarmtype:"",
-          zhengfuId:this.$store.state.userinfo.deptId,
-          cheliangpaizhao:"",
-          returnUrl:"/treatmentRate",
-          Allalarmtype:"主动安全报警"
-        }
-      })
+    // 跳转详情页 主动安全
+    gozhudong() {
+      this.$router.push({
+        path: "/treatmentRateinfo",
+        query: {
+          type: 0,
+          begintime: this.begintime,
+          endtime: this.endtime,
+          deptName: "",
+          shifouchuli: "",
+          alarmtype: "",
+          zhengfuId: this.$store.state.userinfo.deptId,
+          cheliangpaizhao: "",
+          returnUrl: "/treatmentRate",
+          Allalarmtype: "主动安全报警",
+        },
+      });
     },
     /**渲染图表 */
     setEchart(name, type) {

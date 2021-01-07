@@ -176,7 +176,6 @@
 }
 </style>
 
-
 <template>
   <div class="enterprise">
     <all-header></all-header>
@@ -377,7 +376,7 @@
             <el-table-column
               prop="dmspilao"
               sortable="custom"
-              label="疲劳驾驶"
+              label="生理疲劳"
               align="center"
               min-width="100"
             ></el-table-column>

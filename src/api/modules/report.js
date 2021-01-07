@@ -2,6 +2,7 @@ import {
   $axios,
   awaitWrap
 } from '../api';
+import qs from 'qs';
 /** 数据分析模块 */
 export default {
   //政府报警统计-报警统计结算
@@ -17,6 +18,16 @@ export default {
   },
   getZFCLBJTJPM(data) {
     return $axios.post('/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getZFCLBJTJPM', data);
+  },
+  // 周报下载
+  getZBdown(data) {
+    data = qs.stringify(data)
+    return $axios.post('/blade-anbiao/anbiao/baobiaowenjian/preview', data);
+  },
+  // 月报下载
+  getYBdown(data) {
+    data = qs.stringify(data)
+    return $axios.post('/blade-anbiao/anbiao/baobiaowenjian/preview', data);
   },
   awaitWrap
 };

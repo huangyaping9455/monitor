@@ -1,4 +1,5 @@
 import China from "./china.json";
+import 中华人民共和国 from "./中华人民共和国.json";
 import 北京 from "./beijing.json";
 import 广东 from "./guangdong.json";
 import 河南 from "./henan.json";
@@ -7,6 +8,9 @@ import 江苏 from "./江苏省.json";
 import 上海 from "./上海市.json";
 import 新疆 from "./新疆维吾尔自治区.json";
 import 广西 from "./广西/广西壮族自治区.json"
+import 福建 from "./福建省/福建省.json"
+import 云南 from "./云南/云南省.json"
+
 // 河南
 import 三门峡市 from "./sanmenxia.json";
 import 洛阳市 from "./luoyang.json";
@@ -346,58 +350,151 @@ import 平桂区 from "./广西/贺州市/平桂区.json";
 import 昭平县 from "./广西/贺州市/昭平县.json";
 import 钟山县 from "./广西/贺州市/钟山县.json";
 import 富川瑶族自治县 from "./广西/贺州市/富川瑶族自治县.json";
-import 玉林市 from "./广西/玉林市/玉林市.json";
-import 玉州区 from "./广西/玉林市/玉州区.json";
-import 福绵区 from "./广西/玉林市/福绵区.json";
-import 北流市 from "./广西/玉林市/北流市.json";
-import 容县 from "./广西/玉林市/容县.json";
-import 陆川县 from "./广西/玉林市/陆川县.json";
-import 博白县 from "./广西/玉林市/博白县.json";
+import 玉林市 from "./广西/玉林市/玉林市.json";
+import 玉州区 from "./广西/玉林市/玉州区.json";
+import 福绵区 from "./广西/玉林市/福绵区.json";
+import 北流市 from "./广西/玉林市/北流市.json";
+import 容县 from "./广西/玉林市/容县.json";
+import 陆川县 from "./广西/玉林市/陆川县.json";
+import 博白县 from "./广西/玉林市/博白县.json";
 import 兴业县 from "./广西/玉林市/兴业县.json";
-import 梧州市 from "./广西/梧州市/梧州市.json";
-import 万秀区 from "./广西/梧州市/万秀区.json";
-import 长洲区 from "./广西/梧州市/长洲区.json";
-import 龙圩区 from "./广西/梧州市/龙圩区.json";
-import 苍梧县 from "./广西/梧州市/苍梧县.json";
-import 藤县 from "./广西/梧州市/藤县.json";
-import 蒙山县 from "./广西/梧州市/蒙山县.json";
+import 梧州市 from "./广西/梧州市/梧州市.json";
+import 万秀区 from "./广西/梧州市/万秀区.json";
+import 长洲区 from "./广西/梧州市/长洲区.json";
+import 龙圩区 from "./广西/梧州市/龙圩区.json";
+import 苍梧县 from "./广西/梧州市/苍梧县.json";
+import 藤县 from "./广西/梧州市/藤县.json";
+import 蒙山县 from "./广西/梧州市/蒙山县.json";
 import 岑溪市 from "./广西/梧州市/岑溪市.json";
-import 钦州市 from "./广西/钦州市/钦州市.json";
-import 钦南区 from "./广西/钦州市/钦南区.json";
-import 钦北区 from "./广西/钦州市/钦北区.json";
-import 灵山县 from "./广西/钦州市/灵山县.json";
-import 浦北县 from "./广西/钦州市/浦北县.json";
-import 南宁市 from "./广西/南宁市/南宁市.json";
-import 青秀区 from "./广西/南宁市/青秀区.json";
-import 兴宁区 from "./广西/南宁市/兴宁区.json";
-import 江南区 from "./广西/南宁市/江南区.json";
-import 良庆区 from "./广西/南宁市/良庆区.json";
-import 邕宁区 from "./广西/南宁市/邕宁区.json";
-import 西乡塘区 from "./广西/南宁市/西乡塘区.json";
-import 武鸣区 from "./广西/南宁市/武鸣区.json";
-import 横县 from "./广西/南宁市/横县.json";
-import 隆安县 from "./广西/南宁市/隆安县.json";
-import 马山县 from "./广西/南宁市/马山县.json";
-import 上林县 from "./广西/南宁市/上林县.json";
+import 钦州市 from "./广西/钦州市/钦州市.json";
+import 钦南区 from "./广西/钦州市/钦南区.json";
+import 钦北区 from "./广西/钦州市/钦北区.json";
+import 灵山县 from "./广西/钦州市/灵山县.json";
+import 浦北县 from "./广西/钦州市/浦北县.json";
+import 南宁市 from "./广西/南宁市/南宁市.json";
+import 青秀区 from "./广西/南宁市/青秀区.json";
+import 兴宁区 from "./广西/南宁市/兴宁区.json";
+import 江南区 from "./广西/南宁市/江南区.json";
+import 良庆区 from "./广西/南宁市/良庆区.json";
+import 邕宁区 from "./广西/南宁市/邕宁区.json";
+import 西乡塘区 from "./广西/南宁市/西乡塘区.json";
+import 武鸣区 from "./广西/南宁市/武鸣区.json";
+import 横县 from "./广西/南宁市/横县.json";
+import 隆安县 from "./广西/南宁市/隆安县.json";
+import 马山县 from "./广西/南宁市/马山县.json";
+import 上林县 from "./广西/南宁市/上林县.json";
 import 宾阳县 from "./广西/南宁市/宾阳县.json";
-import 柳州市 from "./广西/柳州市/柳州市.json";
-import 城中区 from "./广西/柳州市/城中区.json";
-import 鱼峰区 from "./广西/柳州市/鱼峰区.json";
-import 柳南区 from "./广西/柳州市/柳南区.json";
-import 柳北区 from "./广西/柳州市/柳北区.json";
-import 柳江区 from "./广西/柳州市/柳江区.json";
-import 柳城县 from "./广西/柳州市/柳城县.json";
-import 鹿寨县 from "./广西/柳州市/鹿寨县.json";
-import 融安县 from "./广西/柳州市/融安县.json";
-import 融水苗族自治县 from "./广西/柳州市/融水苗族自治县.json";
-import 三江侗族自治县 from "./广西/柳州市/三江侗族自治县.json";
-import 来宾市 from "./广西/来宾市/来宾市.json";
-import 兴宾区 from "./广西/来宾市/兴宾区.json";
+import 柳州市 from "./广西/柳州市/柳州市.json";
+import 城中区 from "./广西/柳州市/城中区.json";
+import 鱼峰区 from "./广西/柳州市/鱼峰区.json";
+import 柳南区 from "./广西/柳州市/柳南区.json";
+import 柳北区 from "./广西/柳州市/柳北区.json";
+import 柳江区 from "./广西/柳州市/柳江区.json";
+import 柳城县 from "./广西/柳州市/柳城县.json";
+import 鹿寨县 from "./广西/柳州市/鹿寨县.json";
+import 融安县 from "./广西/柳州市/融安县.json";
+import 融水苗族自治县 from "./广西/柳州市/融水苗族自治县.json";
+import 三江侗族自治县 from "./广西/柳州市/三江侗族自治县.json";
+import 来宾市 from "./广西/来宾市/来宾市.json";
+import 兴宾区 from "./广西/来宾市/兴宾区.json";
 import 象州县 from "./广西/来宾市/象州县.json";
 import 武宣县 from "./广西/来宾市/武宣县.json";
-import 忻城县 from "./广西/来宾市/忻城县.json";
+import 忻城县 from "./广西/来宾市/忻城县.json";
 import 金秀瑶族自治县 from "./广西/来宾市/金秀瑶族自治县.json";
 import 合山市 from "./广西/来宾市/合山市.json";
+// 福建省
+import 仓山区 from "./福建省/福州市/仓山区.json";
+import 福清市 from "./福建省/福州市/福清市.json";
+import 福州市 from "./福建省/福州市/福州市.json";
+import 晋安区 from "./福建省/福州市/晋安区.json";
+import 连江县 from "./福建省/福州市/连江县.json";
+import 罗源县 from "./福建省/福州市/罗源县.json";
+import 马尾区 from "./福建省/福州市/马尾区.json";
+import 闽侯县 from "./福建省/福州市/闽侯县.json";
+import 闽清县 from "./福建省/福州市/闽清县.json";
+import 平潭县 from "./福建省/福州市/平潭县.json";
+import 台江区 from "./福建省/福州市/台江区.json";
+import 永泰县 from "./福建省/福州市/永泰县.json";
+import 长乐区 from "./福建省/福州市/长乐区.json";
+import 连城县 from "./福建省/龙岩市/连城县.json";
+import 龙岩市 from "./福建省/龙岩市/龙岩市.json";
+import 上杭县 from "./福建省/龙岩市/上杭县.json";
+import 武平县 from "./福建省/龙岩市/武平县.json";
+import 新罗区 from "./福建省/龙岩市/新罗区.json";
+import 永定区 from "./福建省/龙岩市/永定区.json";
+import 漳平市 from "./福建省/龙岩市/漳平市.json";
+import 长汀县 from "./福建省/龙岩市/长汀县.json";
+import 光泽县 from "./福建省/南平市/光泽县.json";
+import 建瓯市 from "./福建省/南平市/建瓯市.json";
+import 建阳区 from "./福建省/南平市/建阳区.json";
+import 南平市 from "./福建省/南平市/南平市.json";
+import 浦城县 from "./福建省/南平市/浦城县.json";
+import 邵武市 from "./福建省/南平市/邵武市.json";
+import 顺昌县 from "./福建省/南平市/顺昌县.json";
+import 松溪县 from "./福建省/南平市/松溪县.json";
+import 延平区 from "./福建省/南平市/延平区.json";
+import 政和县 from "./福建省/南平市/政和县.json";
+import 武夷山市 from "./福建省/南平市/武夷山市.json";
+import 福安市 from "./福建省/宁德市/福安市.json";
+import 福鼎市 from "./福建省/宁德市/福鼎市.json";
+import 古田县 from "./福建省/宁德市/古田县.json";
+import 蕉城区 from "./福建省/宁德市/蕉城区.json";
+import 宁德市 from "./福建省/宁德市/宁德市.json";
+import 屏南县 from "./福建省/宁德市/屏南县.json";
+import 寿宁县 from "./福建省/宁德市/寿宁县.json";
+import 霞浦县 from "./福建省/宁德市/霞浦县.json";
+import 柘荣县 from "./福建省/宁德市/柘荣县.json";
+import 周宁县 from "./福建省/宁德市/周宁县.json";
+import 城厢区 from "./福建省/莆田市/城厢区.json";
+import 涵江区 from "./福建省/莆田市/涵江区.json";
+import 荔城区 from "./福建省/莆田市/荔城区.json";
+import 莆田市 from "./福建省/莆田市/莆田市.json";
+import 仙游县 from "./福建省/莆田市/仙游县.json";
+import 秀屿区 from "./福建省/莆田市/秀屿区.json";
+import 安溪县 from "./福建省/泉州市/安溪县.json";
+import 德化县 from "./福建省/泉州市/德化县.json";
+import 丰泽区 from "./福建省/泉州市/丰泽区.json";
+import 惠安县 from "./福建省/泉州市/惠安县.json";
+import 金门县 from "./福建省/泉州市/金门县.json";
+import 晋江市 from "./福建省/泉州市/晋江市.json";
+import 鲤城区 from "./福建省/泉州市/鲤城区.json";
+import 洛江区 from "./福建省/泉州市/洛江区.json";
+import 南安市 from "./福建省/泉州市/南安市.json";
+import 泉港区 from "./福建省/泉州市/泉港区.json";
+import 泉州市 from "./福建省/泉州市/泉州市.json";
+import 石狮市 from "./福建省/泉州市/石狮市.json";
+import 永春县 from "./福建省/泉州市/永春县.json";
+import 大田县 from "./福建省/三明市/大田县.json";
+import 建宁县 from "./福建省/三明市/建宁县.json";
+import 将乐县 from "./福建省/三明市/将乐县.json";
+import 梅列区 from "./福建省/三明市/梅列区.json";
+import 明溪县 from "./福建省/三明市/明溪县.json";
+import 宁化县 from "./福建省/三明市/宁化县.json";
+import 清流县 from "./福建省/三明市/清流县.json";
+import 三明市 from "./福建省/三明市/三明市.json";
+import 沙县 from "./福建省/三明市/沙县.json";
+import 泰宁县 from "./福建省/三明市/泰宁县.json";
+import 永安市 from "./福建省/三明市/永安市.json";
+import 尤溪县 from "./福建省/三明市/尤溪县.json";
+import 海沧区 from "./福建省/厦门市/海沧区.json";
+import 湖里区 from "./福建省/厦门市/湖里区.json";
+import 集美区 from "./福建省/厦门市/集美区.json";
+import 厦门市 from "./福建省/厦门市/厦门市.json";
+import 思明区 from "./福建省/厦门市/思明区.json";
+import 同安区 from "./福建省/厦门市/同安区.json";
+import 翔安区 from "./福建省/厦门市/翔安区.json";
+import 东山县 from "./福建省/漳州市/东山县.json";
+import 华安县 from "./福建省/漳州市/华安县.json";
+import 龙海市 from "./福建省/漳州市/龙海市.json";
+import 龙文区 from "./福建省/漳州市/龙文区.json";
+import 南靖县 from "./福建省/漳州市/南靖县.json";
+import 平和县 from "./福建省/漳州市/平和县.json";
+import 芗城区 from "./福建省/漳州市/芗城区.json";
+import 云霄县 from "./福建省/漳州市/云霄县.json";
+import 漳浦县 from "./福建省/漳州市/漳浦县.json";
+import 漳州市 from "./福建省/漳州市/漳州市.json";
+import 长泰县 from "./福建省/漳州市/长泰县.json";
+import 诏安县 from "./福建省/漳州市/诏安县.json";
 // 新疆
 import 阿拉尔市 from "./阿拉尔市.json";
 import 北屯市 from "./北屯市.json";
@@ -517,9 +614,153 @@ import 伊犁哈萨克自治州 from "./伊犁哈萨克自治州.json";
 import 伊宁市 from "./伊宁市.json";
 import 伊宁县 from "./伊宁县.json";
 import 昭苏县 from "./昭苏县.json";
-
+// 云南
+import 昆明市 from "./云南/昆明市/昆明市.json";
+import 呈贡区 from "./云南/昆明市/呈贡区.json";
+import 盘龙区 from "./云南/昆明市/盘龙区.json";
+import 五华区 from "./云南/昆明市/五华区.json";
+import 官渡区 from "./云南/昆明市/官渡区.json";
+import 西山区 from "./云南/昆明市/西山区.json";
+import 晋宁区 from "./云南/昆明市/晋宁区.json";
+import 东川区 from "./云南/昆明市/东川区.json";
+import 安宁市 from "./云南/昆明市/安宁市.json";
+import 富民县 from "./云南/昆明市/富民县.json";
+import 宜良县 from "./云南/昆明市/宜良县.json";
+import 嵩明县 from "./云南/昆明市/嵩明县.json";
+import 石林彝族自治县 from "./云南/昆明市/石林彝族自治县.json";
+import 曲靖市 from "./云南/曲靖市/曲靖市.json";
+import 麒麟区 from "./云南/曲靖市/麒麟区.json";
+import 沾益区 from "./云南/曲靖市/沾益区.json";
+import 马龙区 from "./云南/曲靖市/马龙区.json";
+import 宣威市 from "./云南/曲靖市/宣威市.json";
+import 富源县 from "./云南/曲靖市/富源县.json";
+import 罗平县 from "./云南/曲靖市/罗平县.json";
+import 师宗县 from "./云南/曲靖市/师宗县.json";
+import 陆良县 from "./云南/曲靖市/陆良县.json";
+import 会泽县 from "./云南/曲靖市/会泽县.json";
+import 玉溪市 from "./云南/玉溪市/玉溪市.json";
+import 红塔区 from "./云南/玉溪市/红塔区.json";
+import 江川区 from "./云南/玉溪市/江川区.json";
+import 澄江市 from "./云南/玉溪市/澄江市.json";
+import 通海县 from "./云南/玉溪市/通海县.json";
+import 华宁县 from "./云南/玉溪市/华宁县.json";
+import 易门县 from "./云南/玉溪市/易门县.json";
+import 峨山彝族自治县 from "./云南/玉溪市/峨山彝族自治县.json";
+import 新平彝族傣族自治县 from "./云南/玉溪市/新平彝族傣族自治县.json";
+import 元江哈尼族彝族傣族自治县 from "./云南/玉溪市/元江哈尼族彝族傣族自治县.json";
+import 昭通市 from "./云南/昭通市/昭通市.json";
+import 昭阳区 from "./云南/昭通市/昭阳区.json";
+import 水富市 from "./云南/昭通市/水富市.json";
+import 鲁甸县 from "./云南/昭通市/鲁甸县.json";
+import 巧家县 from "./云南/昭通市/巧家县.json";
+import 盐津县 from "./云南/昭通市/盐津县.json";
+import 大关县 from "./云南/昭通市/大关县.json";
+import 永善县 from "./云南/昭通市/永善县.json";
+import 绥江县 from "./云南/昭通市/绥江县.json";
+import 镇雄县 from "./云南/昭通市/镇雄县.json";
+import 彝良县 from "./云南/昭通市/彝良县.json";
+import 威信县 from "./云南/昭通市/威信县.json";
+import 保山市 from "./云南/保山市/保山市.json";
+import 隆阳区 from "./云南/保山市/隆阳区.json";
+import 腾冲市 from "./云南/保山市/腾冲市.json";
+import 施甸县 from "./云南/保山市/施甸县.json";
+import 龙陵县 from "./云南/保山市/龙陵县.json";
+import 昌宁县 from "./云南/保山市/昌宁县.json";
+import 丽江市 from "./云南/丽江市/丽江市.json";
+import 古城区 from "./云南/丽江市/古城区.json";
+import 永胜县 from "./云南/丽江市/永胜县.json";
+import 华坪县 from "./云南/丽江市/华坪县.json";
+import 玉龙纳西族自治县 from "./云南/丽江市/玉龙纳西族自治县.json";
+import 宁蒗彝族自治县 from "./云南/丽江市/宁蒗彝族自治县.json";
+import 普洱市 from "./云南/普洱市/普洱市.json";
+import 思茅区 from "./云南/普洱市/思茅区.json";
+import 宁洱哈尼族彝族自治县 from "./云南/普洱市/宁洱哈尼族彝族自治县.json";
+import 墨江哈尼族自治县 from "./云南/普洱市/墨江哈尼族自治县.json";
+import 景东彝族自治县 from "./云南/普洱市/景东彝族自治县.json";
+import 景谷傣族彝族自治县 from "./云南/普洱市/景谷傣族彝族自治县.json";
+import 镇沅彝族哈尼族拉祜族自治县 from "./云南/普洱市/镇沅彝族哈尼族拉祜族自治县.json";
+import 江城哈尼族彝族自治县 from "./云南/普洱市/江城哈尼族彝族自治县.json";
+import 孟连傣族拉祜族佤族自治县 from "./云南/普洱市/孟连傣族拉祜族佤族自治县.json";
+import 澜沧拉祜族自治县 from "./云南/普洱市/澜沧拉祜族自治县.json";
+import 西盟佤族自治县 from "./云南/普洱市/西盟佤族自治县.json";
+import 临沧市 from "./云南/临沧市/临沧市.json";
+import 临翔区 from "./云南/临沧市/临翔区.json";
+import 凤庆县 from "./云南/临沧市/凤庆县.json";
+import 云县 from "./云南/临沧市/云县.json";
+import 永德县 from "./云南/临沧市/永德县.json";
+import 镇康县 from "./云南/临沧市/镇康县.json";
+import 双江拉祜族佤族布朗族傣族自治县 from "./云南/临沧市/双江拉祜族佤族布朗族傣族自治县.json";
+import 耿马傣族佤族自治县 from "./云南/临沧市/耿马傣族佤族自治县.json";
+import 沧源佤族自治县 from "./云南/临沧市/沧源佤族自治县.json";
+import 怒江傈僳族自治州 from "./云南/怒江傈僳族自治州/怒江傈僳族自治州.json";
+import 泸水市 from "./云南/怒江傈僳族自治州/泸水市.json";
+import 兰坪白族普米族自治县 from "./云南/怒江傈僳族自治州/兰坪白族普米族自治县.json";
+import 福贡县 from "./云南/怒江傈僳族自治州/福贡县.json";
+import 贡山独龙族怒族自治县 from "./云南/怒江傈僳族自治州/贡山独龙族怒族自治县.json";
+import 德宏傣族景颇族自治州 from "./云南/德宏傣族景颇族自治州/德宏傣族景颇族自治州.json";
+import 芒市 from "./云南/德宏傣族景颇族自治州/芒市.json";
+import 瑞丽市 from "./云南/德宏傣族景颇族自治州/瑞丽市.json";
+import 梁河县 from "./云南/德宏傣族景颇族自治州/梁河县.json";
+import 盈江县 from "./云南/德宏傣族景颇族自治州/盈江县.json";
+import 陇川县 from "./云南/德宏傣族景颇族自治州/陇川县.json";
+import 迪庆藏族自治州 from "./云南/迪庆藏族自治州/迪庆藏族自治州.json";
+import 香格里拉市 from "./云南/迪庆藏族自治州/香格里拉市.json";
+import 德钦县 from "./云南/迪庆藏族自治州/德钦县.json";
+import 维西傈僳族自治县 from "./云南/迪庆藏族自治州/维西傈僳族自治县.json";
+import 大理白族自治州 from "./云南/大理白族自治州/大理白族自治州.json";
+import 大理市 from "./云南/大理白族自治州/大理市.json";
+import 祥云县 from "./云南/大理白族自治州/祥云县.json";
+import 宾川县 from "./云南/大理白族自治州/宾川县.json";
+import 弥渡县 from "./云南/大理白族自治州/弥渡县.json";
+import 永平县 from "./云南/大理白族自治州/永平县.json";
+import 云龙县 from "./云南/大理白族自治州/云龙县.json";
+import 洱源县 from "./云南/大理白族自治州/洱源县.json";
+import 剑川县 from "./云南/大理白族自治州/剑川县.json";
+import 鹤庆县 from "./云南/大理白族自治州/鹤庆县.json";
+import 漾濞彝族自治县 from "./云南/大理白族自治州/漾濞彝族自治县.json";
+import 南涧彝族自治县 from "./云南/大理白族自治州/南涧彝族自治县.json";
+import 巍山彝族回族自治县 from "./云南/大理白族自治州/巍山彝族回族自治县.json";
+import 楚雄彝族自治州 from "./云南/楚雄彝族自治州/楚雄彝族自治州.json";
+import 楚雄市 from "./云南/楚雄彝族自治州/楚雄市.json";
+import 双柏县 from "./云南/楚雄彝族自治州/双柏县.json";
+import 牟定县 from "./云南/楚雄彝族自治州/牟定县.json";
+import 南华县 from "./云南/楚雄彝族自治州/南华县.json";
+import 姚安县 from "./云南/楚雄彝族自治州/姚安县.json";
+import 大姚县 from "./云南/楚雄彝族自治州/大姚县.json";
+import 永仁县 from "./云南/楚雄彝族自治州/永仁县.json";
+import 元谋县 from "./云南/楚雄彝族自治州/元谋县.json";
+import 武定县 from "./云南/楚雄彝族自治州/武定县.json";
+import 禄丰县 from "./云南/楚雄彝族自治州/禄丰县.json";
+import 红河哈尼族彝族自治州 from "./云南/红河哈尼族彝族自治州/红河哈尼族彝族自治州.json";
+import 屏边苗族自治县 from "./云南/红河哈尼族彝族自治州/屏边苗族自治县.json";
+import 蒙自市 from "./云南/红河哈尼族彝族自治州/蒙自市.json";
+import 个旧市 from "./云南/红河哈尼族彝族自治州/个旧市.json";
+import 开远市 from "./云南/红河哈尼族彝族自治州/开远市.json";
+import 弥勒市 from "./云南/红河哈尼族彝族自治州/弥勒市.json";
+import 建水县 from "./云南/红河哈尼族彝族自治州/建水县.json";
+import 石屏县 from "./云南/红河哈尼族彝族自治州/石屏县.json";
+import 泸西县 from "./云南/红河哈尼族彝族自治州/泸西县.json";
+import 绿春县 from "./云南/红河哈尼族彝族自治州/绿春县.json";
+import 元阳县 from "./云南/红河哈尼族彝族自治州/元阳县.json";
+import 红河县 from "./云南/红河哈尼族彝族自治州/红河县.json";
+import 金平苗族瑶族傣族自治县 from "./云南/红河哈尼族彝族自治州/金平苗族瑶族傣族自治县.json";
+import 河口瑶族自治县 from "./云南/红河哈尼族彝族自治州/河口瑶族自治县.json";
+import 文山壮族苗族自治州 from "./云南/文山壮族苗族自治州/文山壮族苗族自治州.json";
+import 文山市 from "./云南/文山壮族苗族自治州/文山市.json";
+import 砚山县 from "./云南/文山壮族苗族自治州/砚山县.json";
+import 西畴县 from "./云南/文山壮族苗族自治州/西畴县.json";
+import 麻栗坡县 from "./云南/文山壮族苗族自治州/麻栗坡县.json";
+import 马关县 from "./云南/文山壮族苗族自治州/马关县.json";
+import 丘北县 from "./云南/文山壮族苗族自治州/丘北县.json";
+import 广南县 from "./云南/文山壮族苗族自治州/广南县.json";
+import 富宁县 from "./云南/文山壮族苗族自治州/富宁县.json";
+import 西双版纳傣族自治州 from "./云南/西双版纳傣族自治州/西双版纳傣族自治州.json";
+import 景洪市 from "./云南/西双版纳傣族自治州/景洪市.json";
+import 勐海县 from "./云南/西双版纳傣族自治州/勐海县.json";
+import 勐腊县 from "./云南/西双版纳傣族自治州/勐腊县.json";
 export {
   China,
+  中华人民共和国,
   北京,
   广东,
   河南,
@@ -1031,4 +1272,241 @@ export {
   伊宁市,
   伊宁县,
   昭苏县,
+  福建,
+  仓山区,
+  福清市,
+  福州市,
+  晋安区,
+  连江县,
+  罗源县,
+  马尾区,
+  闽侯县,
+  闽清县,
+  平潭县,
+  台江区,
+  永泰县,
+  长乐区,
+  连城县,
+  龙岩市,
+  上杭县,
+  武平县,
+  新罗区,
+  永定区,
+  漳平市,
+  长汀县,
+  光泽县,
+  建瓯市,
+  建阳区,
+  南平市,
+  浦城县,
+  邵武市,
+  顺昌县,
+  松溪县,
+  延平区,
+  政和县,
+  武夷山市,
+  福安市,
+  福鼎市,
+  古田县,
+  蕉城区,
+  宁德市,
+  屏南县,
+  寿宁县,
+  霞浦县,
+  柘荣县,
+  周宁县,
+  城厢区,
+  涵江区,
+  荔城区,
+  莆田市,
+  仙游县,
+  秀屿区,
+  安溪县,
+  德化县,
+  丰泽区,
+  惠安县,
+  金门县,
+  晋江市,
+  鲤城区,
+  洛江区,
+  南安市,
+  泉港区,
+  泉州市,
+  石狮市,
+  永春县,
+  大田县,
+  建宁县,
+  将乐县,
+  梅列区,
+  明溪县,
+  宁化县,
+  清流县,
+  三明市,
+  沙县,
+  泰宁县,
+  永安市,
+  尤溪县,
+  海沧区,
+  湖里区,
+  集美区,
+  厦门市,
+  思明区,
+  同安区,
+  翔安区,
+  东山县,
+  华安县,
+  龙海市,
+  龙文区,
+  南靖县,
+  平和县,
+  芗城区,
+  云霄县,
+  漳浦县,
+  漳州市,
+  长泰县,
+  诏安县,
+  云南,
+  昆明市,
+  呈贡区,
+  盘龙区,
+  五华区,
+  官渡区,
+  西山区,
+  晋宁区,
+  东川区,
+  安宁市,
+  富民县,
+  宜良县,
+  嵩明县,
+  石林彝族自治县,
+  曲靖市,
+  麒麟区,
+  沾益区,
+  马龙区,
+  宣威市,
+  富源县,
+  罗平县,
+  师宗县,
+  陆良县,
+  会泽县,
+  玉溪市,
+  红塔区,
+  江川区,
+  澄江市,
+  通海县,
+  华宁县,
+  易门县,
+  峨山彝族自治县,
+  新平彝族傣族自治县,
+  元江哈尼族彝族傣族自治县,
+  昭通市,
+  昭阳区,
+  水富市,
+  鲁甸县,
+  巧家县,
+  盐津县,
+  大关县,
+  永善县,
+  绥江县,
+  镇雄县,
+  彝良县,
+  威信县,
+  保山市,
+  隆阳区,
+  腾冲市,
+  施甸县,
+  龙陵县,
+  昌宁县,
+  丽江市,
+  古城区,
+  永胜县,
+  华坪县,
+  玉龙纳西族自治县,
+  宁蒗彝族自治县,
+  普洱市,
+  思茅区,
+  宁洱哈尼族彝族自治县,
+  墨江哈尼族自治县,
+  景东彝族自治县,
+  景谷傣族彝族自治县,
+  镇沅彝族哈尼族拉祜族自治县,
+  江城哈尼族彝族自治县,
+  孟连傣族拉祜族佤族自治县,
+  澜沧拉祜族自治县,
+  西盟佤族自治县,
+  临沧市,
+  临翔区,
+  凤庆县,
+  云县,
+  永德县,
+  镇康县,
+  双江拉祜族佤族布朗族傣族自治县,
+  耿马傣族佤族自治县,
+  沧源佤族自治县,
+  怒江傈僳族自治州,
+  德宏傣族景颇族自治州,
+  芒市,
+  瑞丽市,
+  梁河县,
+  盈江县,
+  陇川县,
+  迪庆藏族自治州,
+  香格里拉市,
+  德钦县,
+  维西傈僳族自治县,
+  大理白族自治州,
+  大理市,
+  祥云县,
+  宾川县,
+  弥渡县,
+  永平县,
+  云龙县,
+  洱源县,
+  剑川县,
+  鹤庆县,
+  漾濞彝族自治县,
+  南涧彝族自治县,
+  巍山彝族回族自治县,
+  楚雄彝族自治州,
+  楚雄市,
+  双柏县,
+  牟定县,
+  南华县,
+  姚安县,
+  大姚县,
+  永仁县,
+  元谋县,
+  武定县,
+  禄丰县,
+  红河哈尼族彝族自治州,
+  蒙自市,
+  屏边苗族自治县,
+  个旧市,
+  开远市,
+  弥勒市,
+  建水县,
+  石屏县,
+  泸西县,
+  绿春县,
+  元阳县,
+  红河县,
+  金平苗族瑶族傣族自治县,
+  河口瑶族自治县,
+  文山壮族苗族自治州,
+  文山市,
+  砚山县,
+  西畴县,
+  麻栗坡县,
+  马关县,
+  丘北县,
+  广南县,
+  富宁县,
+  西双版纳傣族自治州,
+  景洪市,
+  勐海县,
+  勐腊县,
+  泸水市,
+  兰坪白族普米族自治县,
+  福贡县,
+  贡山独龙族怒族自治县,
 }
