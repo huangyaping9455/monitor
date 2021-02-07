@@ -122,6 +122,24 @@ export const constantRouterMap = [{
     },
     component: () => import('@/views/QYvehicle/index')
   },
+  // 日运行情况统计
+  {
+    path: '/DayStatistics',
+    name: 'DayStatistics',
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import('@/views/DayStatistics/index')
+  },
+  // 企业日运行情况统计
+  {
+    path: '/QYDayStatistics',
+    name: 'QYDayStatistics',
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import('@/views/QYDayStatistics/index')
+  },
   // 地区报警排名
   {
     path: '/ZFDQ',

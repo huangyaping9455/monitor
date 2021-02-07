@@ -12,6 +12,14 @@ export default {
   getZFDQBJCLLVTJ(data) {
     return $axios.post('/blade-anbiao/anbiao/organization/getList', data);
   },
+  // 车辆日运行情况统计
+  getZFCLRYXTJ(data) {
+    return $axios.post('/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getZFCLRYXTJ', data);
+  },
+  // 企业日运行情况统计
+  getQYRYXTJ(data) {
+    return $axios.post('/blade-anbiao/anbiao/zhengFuBaoJingTongJi/GetQYRYXTJ', data);
+  },
   //政府报警统计-报警统计结算
   getZFDQBJTJJS(data) {
     return $axios.post('/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getZFDQBJTJPM', data);

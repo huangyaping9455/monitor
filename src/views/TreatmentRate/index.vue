@@ -500,13 +500,13 @@
                 <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
                   <span
                     @click="
-                      goinfo(2, '疲劳驾驶报警', '主动安全报警', '已处理', row)
+                      goinfo(2, '生理疲劳报警', '主动安全报警', '已处理', row)
                     "
                     >{{ row.pilaoshipincl }}</span
                   >
                   /
                   <span
-                    @click="goinfo(2, '疲劳驾驶报警', '主动安全报警', '', row)"
+                    @click="goinfo(2, '生理疲劳报警', '主动安全报警', '', row)"
                     >{{ row.dmspilao }}</span
                   >
                   / {{ row.dmspilaocllv }}

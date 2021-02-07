@@ -666,32 +666,28 @@ export default {
   methods: {
     // 请求数据判断
     getData(page) {
-      // this.getZFALLBJMX(page);
-      if (this.form.type == 1) {
-        // this.getZFgpsBJMX(page)
-        // this.getZFALLBJMX(page);
-        if (
-          this.form.Allalarmtype == "主动安全报警" &&
-          this.form.alarmtype == ""
-        ) {
-          this.getZFDMSBJMX(page);
-        } else {
-          this.getZFALLBJMX(page);
-        }
-      } else {
-        // this.getZFDMSBJMX(page)
-        if (this.form.Allalarmtype === "主动安全报警") {
-          this.getZFDMSBJMX(page);
-        } else {
-          this.getZFALLBJMX(page);
-        }
-      }
+      this.getZFALLBJMX(page);
+      // if (this.form.type == 1) {
+      //   if (
+      //     this.form.Allalarmtype == "主动安全报警" &&
+      //     this.form.alarmtype == ""
+      //   ) {
+      //     this.getZFDMSBJMX(page);
+      //   } else {
+      //     this.getZFALLBJMX(page);
+      //   }
+      // } else {
+      //   if (this.form.Allalarmtype === "主动安全报警") {
+      //     this.getZFDMSBJMX(page);
+      //   } else {
+      //     this.getZFALLBJMX(page);
+      //   }
+      // }
     },
     //所有报警详情明细
     async getZFALLBJMX(current = 1) {
       current = Number(current);
       this.loading = true;
-      console.log(this);
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getZFALLBJMX({
           current: current,
@@ -702,12 +698,7 @@ export default {
           cheliangpaizhao: this.form.cheliangpaizhao,
           shifouchuli: this.form.shifouchuli,
           shifoushenshu: this.form.shifoushenshu,
-          alarmtype:
-            this.form.Allalarmtype == "主动安全报警"
-              ? this.form.alarmtype == "生理疲劳报警"
-                ? "疲劳驾驶报警"
-                : this.form.alarmtype
-              : this.form.alarmtype,
+          alarmtype: this.form.alarmtype,
         })
       );
       this.loading = false;
@@ -735,12 +726,7 @@ export default {
           cheliangpaizhao: this.form.cheliangpaizhao,
           shifouchuli: this.form.shifouchuli,
           shifoushenshu: this.form.shifoushenshu,
-          alarmtype:
-            this.form.Allalarmtype == "主动安全报警"
-              ? this.form.alarmtype == "生理疲劳报警"
-                ? "疲劳驾驶报警"
-                : this.form.alarmtype
-              : this.form.alarmtype,
+          alarmtype: this.form.alarmtype,
         })
       );
       this.loading = false;
@@ -766,12 +752,7 @@ export default {
           endtime: this.form.endtime,
           deptName: this.form.deptName,
           shifouchuli: this.form.shifouchuli,
-          alarmtype:
-            this.form.Allalarmtype == "主动安全报警"
-              ? this.form.alarmtype == "生理疲劳报警"
-                ? "疲劳驾驶报警"
-                : this.form.alarmtype
-              : this.form.alarmtype,
+          alarmtype: this.form.alarmtype,
         })
       );
       this.loading = false;
@@ -821,6 +802,7 @@ export default {
     },
     // 报警类型选择
     Alltype(data) {
+      this.form.alarmtype = "";
       if (data === "北斗报警") {
         this.zhudong = false;
         this.GPS = true;
@@ -845,12 +827,7 @@ export default {
           cheliangpaizhao: this.form.cheliangpaizhao,
           shifouchuli: this.form.shifouchuli,
           shifoushenshu: this.form.shifoushenshu,
-          alarmtype:
-            this.form.Allalarmtype == "主动安全报警"
-              ? this.form.alarmtype == "生理疲劳报警"
-                ? "疲劳驾驶报警"
-                : this.form.alarmtype
-              : this.form.alarmtype,
+          alarmtype: this.form.alarmtype,
         })
       );
       this.downloading = false;
