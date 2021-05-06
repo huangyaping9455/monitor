@@ -312,7 +312,7 @@
           element-loading-background="rgba(0, 0, 0, 0.4)"
         >
           <div class="title">
-            <span>地区报警排名</span>
+            <span>地区单车报警比排名</span>
             <span class="more" @click="linkto('/ZFDQ')">更多>></span>
           </div>
           <div class="tablebox">
@@ -345,7 +345,7 @@
           element-loading-background="rgba(0, 0, 0, 0.4)"
         >
           <div class="title">
-            <span>企业报警排名</span>
+            <span>企业单车报警比排名</span>
             <span class="more" @click="linkto('/enterprise')">更多>></span>
           </div>
           <div class="tablebox">

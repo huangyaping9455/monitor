@@ -440,7 +440,6 @@
                         2,
                         '接打电话报警',
                         '北斗报警',
-                        '主动安全报警',
                         '',
                         row
                       )
@@ -782,7 +781,6 @@ export default {
       );
       this.loading = false;
       if (data) {
-        console.log(data);
         this.enterpriseList = data.records;
         //分页处理
         this.current = data.current;
