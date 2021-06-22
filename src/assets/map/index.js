@@ -11,6 +11,7 @@ import 新疆 from "./新疆/新疆维吾尔自治区.json";
 import 广西 from "./广西/广西壮族自治区.json"
 import 福建 from "./福建省/福建省.json"
 import 云南 from "./云南/云南省.json"
+import 山东 from "./山东/山东省.json"
 
 // 河南
 import 三门峡市 from "./河南/sanmenxia.json";
@@ -496,6 +497,156 @@ import 漳浦县 from "./福建省/漳州市/漳浦县.json";
 import 漳州市 from "./福建省/漳州市/漳州市.json";
 import 长泰县 from "./福建省/漳州市/长泰县.json";
 import 诏安县 from "./福建省/漳州市/诏安县.json";
+// 山东
+import 滨州市 from "./山东/滨州市/滨州市.json";
+import 滨城区 from "./山东/滨州市/滨城区.json";
+import 博兴县 from "./山东/滨州市/博兴县.json";
+import 惠民县 from "./山东/滨州市/惠民县.json";
+import 无棣县 from "./山东/滨州市/无棣县.json";
+import 阳信县 from "./山东/滨州市/阳信县.json";
+import 沾化区 from "./山东/滨州市/沾化区.json";
+import 邹平市 from "./山东/滨州市/邹平市.json";
+import 德州市 from "./山东/德州市/德州市.json";
+import 德城区 from "./山东/德州市/德城区.json";
+import 乐陵市 from "./山东/德州市/乐陵市.json";
+import 临邑县 from "./山东/德州市/临邑县.json";
+import 陵城区 from "./山东/德州市/陵城区.json";
+import 宁津县 from "./山东/德州市/宁津县.json";
+import 平原县 from "./山东/德州市/平原县.json";
+import 齐河县 from "./山东/德州市/齐河县.json";
+import 庆云县 from "./山东/德州市/庆云县.json";
+import 武城县 from "./山东/德州市/武城县.json";
+import 夏津县 from "./山东/德州市/夏津县.json";
+import 禹城市 from "./山东/德州市/禹城市.json";
+import 东营区 from "./山东/东营市/东营区.json";
+import 东营市 from "./山东/东营市/东营市.json";
+import 广饶县 from "./山东/东营市/广饶县.json";
+import 河口区 from "./山东/东营市/河口区.json";
+import 垦利区 from "./山东/东营市/垦利区.json";
+import 利津县 from "./山东/东营市/利津县.json";
+import 菏泽市 from "./山东/菏泽市/菏泽市.json";
+import 成武县 from "./山东/菏泽市/成武县.json";
+import 定陶区 from "./山东/菏泽市/定陶区.json";
+import 东明县 from "./山东/菏泽市/东明县.json";
+import 巨野县 from "./山东/菏泽市/巨野县.json";
+import 鄄城县 from "./山东/菏泽市/鄄城县.json";
+import 牡丹区 from "./山东/菏泽市/牡丹区.json";
+import 郓城县 from "./山东/菏泽市/郓城县.json";
+import 曹县 from "./山东/菏泽市/曹县.json";
+import 单县 from "./山东/菏泽市/单县.json";
+import 钢城区 from "./山东/济南市/钢城区.json";
+import 槐荫区 from "./山东/济南市/槐荫区.json";
+import 济南市 from "./山东/济南市/济南市.json";
+import 济阳区 from "./山东/济南市/济阳区.json";
+import 莱芜区 from "./山东/济南市/莱芜区.json";
+import 历城区 from "./山东/济南市/历城区.json";
+import 历下区 from "./山东/济南市/历下区.json";
+import 平阴县 from "./山东/济南市/平阴县.json";
+import 商河县 from "./山东/济南市/商河县.json";
+import 市中区 from "./山东/济南市/市中区.json";
+import 天桥区 from "./山东/济南市/天桥区.json";
+import 章丘区 from "./山东/济南市/章丘区.json";
+import 长清区 from "./山东/济南市/长清区.json";
+import 济宁市 from "./山东/济宁市/济宁市.json";
+import 嘉祥县 from "./山东/济宁市/嘉祥县.json";
+import 金乡县 from "./山东/济宁市/金乡县.json";
+import 梁山县 from "./山东/济宁市/梁山县.json";
+import 曲阜市 from "./山东/济宁市/曲阜市.json";
+import 任城区 from "./山东/济宁市/任城区.json";
+import 泗水县 from "./山东/济宁市/泗水县.json";
+import 微山县 from "./山东/济宁市/微山县.json";
+import 汶上县 from "./山东/济宁市/汶上县.json";
+import 兖州区 from "./山东/济宁市/兖州区.json";
+import 鱼台县 from "./山东/济宁市/鱼台县.json";
+import 邹城市 from "./山东/济宁市/邹城市.json";
+import 茌平区 from "./山东/聊城市/茌平区.json";
+import 东阿县 from "./山东/聊城市/东阿县.json";
+import 高唐县 from "./山东/聊城市/高唐县.json";
+import 聊城市 from "./山东/聊城市/聊城市.json";
+import 临清市 from "./山东/聊城市/临清市.json";
+import 阳谷县 from "./山东/聊城市/阳谷县.json";
+import 冠县 from "./山东/聊城市/冠县.json";
+import 莘县 from "./山东/聊城市/莘县.json";
+import 东昌府区 from "./山东/聊城市/东昌府区.json";
+import 河东区 from "./山东/临沂市/河东区.json";
+import 莒南县 from "./山东/临沂市/莒南县.json";
+import 兰陵县 from "./山东/临沂市/兰陵县.json";
+import 兰山区 from "./山东/临沂市/兰山区.json";
+import 临沂市 from "./山东/临沂市/临沂市.json";
+import 临沭县 from "./山东/临沂市/临沭县.json";
+import 罗庄区 from "./山东/临沂市/罗庄区.json";
+import 蒙阴县 from "./山东/临沂市/蒙阴县.json";
+import 平邑县 from "./山东/临沂市/平邑县.json";
+import 郯城县 from "./山东/临沂市/郯城县.json";
+import 沂南县 from "./山东/临沂市/沂南县.json";
+import 沂水县 from "./山东/临沂市/沂水县.json";
+import 费县 from "./山东/临沂市/费县.json";
+import 城阳区 from "./山东/青岛市/城阳区.json";
+import 黄岛区 from "./山东/青岛市/黄岛区.json";
+import 即墨区 from "./山东/青岛市/即墨区.json";
+import 胶州市 from "./山东/青岛市/胶州市.json";
+import 莱西市 from "./山东/青岛市/莱西市.json";
+import 崂山区 from "./山东/青岛市/崂山区.json";
+import 李沧区 from "./山东/青岛市/李沧区.json";
+import 平度市 from "./山东/青岛市/平度市.json";
+import 青岛市 from "./山东/青岛市/青岛市.json";
+import 市北区 from "./山东/青岛市/市北区.json";
+import 日照市 from "./山东/日照市/日照市.json";
+import 东港区 from "./山东/日照市/东港区.json";
+import 岚山区 from "./山东/日照市/岚山区.json";
+import 五莲县 from "./山东/日照市/五莲县.json";
+import 莒县 from "./山东/日照市/莒县.json";
+import 泰安市 from "./山东/泰安市/泰安市.json";
+import 泰山区 from "./山东/泰安市/泰山区.json";
+import 岱岳区 from "./山东/泰安市/岱岳区.json";
+import 宁阳县 from "./山东/泰安市/宁阳县.json";
+import 东平县 from "./山东/泰安市/东平县.json";
+import 新泰市 from "./山东/泰安市/新泰市.json";
+import 肥城市 from "./山东/泰安市/肥城市.json";
+import 威海市 from "./山东/威海市/威海市.json";
+import 环翠区 from "./山东/威海市/环翠区.json";
+import 文登区 from "./山东/威海市/文登区.json";
+import 荣成市 from "./山东/威海市/荣成市.json";
+import 乳山市 from "./山东/威海市/乳山市.json";
+import 潍坊市 from "./山东/潍坊市/潍坊市.json";
+import 潍城区 from "./山东/潍坊市/潍城区.json";
+import 寒亭区 from "./山东/潍坊市/寒亭区.json";
+import 坊子区 from "./山东/潍坊市/坊子区.json";
+import 奎文区 from "./山东/潍坊市/奎文区.json";
+import 临朐县 from "./山东/潍坊市/临朐县.json";
+import 昌乐县 from "./山东/潍坊市/昌乐县.json";
+import 青州市 from "./山东/潍坊市/青州市.json";
+import 诸城市 from "./山东/潍坊市/诸城市.json";
+import 寿光市 from "./山东/潍坊市/寿光市.json";
+import 安丘市 from "./山东/潍坊市/安丘市.json";
+import 高密市 from "./山东/潍坊市/高密市.json";
+import 昌邑市 from "./山东/潍坊市/昌邑市.json";
+import 烟台市 from "./山东/烟台市/烟台市.json";
+import 芝罘区 from "./山东/烟台市/芝罘区.json";
+import 福山区 from "./山东/烟台市/福山区.json";
+import 牟平区 from "./山东/烟台市/牟平区.json";
+import 蓬莱区 from "./山东/烟台市/蓬莱区.json";
+import 龙口市 from "./山东/烟台市/龙口市.json";
+import 莱阳市 from "./山东/烟台市/莱阳市.json";
+import 莱州市 from "./山东/烟台市/莱州市.json";
+import 招远市 from "./山东/烟台市/招远市.json";
+import 栖霞市 from "./山东/烟台市/栖霞市.json";
+import 海阳市 from "./山东/烟台市/海阳市.json";
+import 枣庄市 from "./山东/枣庄市/枣庄市.json";
+import 薛城区 from "./山东/枣庄市/薛城区.json";
+import 峄城区 from "./山东/枣庄市/峄城区.json";
+import 山亭区 from "./山东/枣庄市/山亭区.json";
+import 滕州市 from "./山东/枣庄市/滕州市.json";
+import 台儿庄区 from "./山东/枣庄市/台儿庄区.json";
+import 淄博市 from "./山东/淄博市/淄博市.json";
+import 淄川区 from "./山东/淄博市/淄川区.json";
+import 张店区 from "./山东/淄博市/张店区.json";
+import 博山区 from "./山东/淄博市/博山区.json";
+import 临淄区 from "./山东/淄博市/临淄区.json";
+import 周村区 from "./山东/淄博市/周村区.json";
+import 桓台县 from "./山东/淄博市/桓台县.json";
+import 高青县 from "./山东/淄博市/高青县.json";
+import 沂源县 from "./山东/淄博市/沂源县.json";
 // 新疆
 import 阿拉尔市 from "./新疆/阿拉尔市.json";
 import 北屯市 from "./新疆/北屯市.json";
@@ -1534,4 +1685,154 @@ export {
   张家口市,
   石家庄市,
   秦皇岛市,
+  山东,
+  滨州市,
+  滨城区,
+  博兴县,
+  惠民县,
+  无棣县,
+  阳信县,
+  沾化区,
+  邹平市,
+  德州市,
+  德城区,
+  乐陵市,
+  临邑县,
+  陵城区,
+  宁津县,
+  平原县,
+  齐河县,
+  庆云县,
+  武城县,
+  夏津县,
+  禹城市,
+  东营区,
+  东营市,
+  广饶县,
+  河口区,
+  垦利区,
+  利津县,
+  菏泽市,
+  成武县,
+  定陶区,
+  东明县,
+  巨野县,
+  鄄城县,
+  牡丹区,
+  郓城县,
+  曹县,
+  单县,
+  钢城区,
+  槐荫区,
+  济南市,
+  济阳区,
+  莱芜区,
+  历城区,
+  历下区,
+  平阴县,
+  商河县,
+  市中区,
+  天桥区,
+  章丘区,
+  长清区,
+  济宁市,
+  嘉祥县,
+  金乡县,
+  梁山县,
+  曲阜市,
+  任城区,
+  泗水县,
+  微山县,
+  汶上县,
+  兖州区,
+  鱼台县,
+  邹城市,
+  茌平区,
+  东阿县,
+  高唐县,
+  聊城市,
+  临清市,
+  阳谷县,
+  冠县,
+  莘县,
+  东昌府区,
+  河东区,
+  莒南县,
+  兰陵县,
+  兰山区,
+  临沂市,
+  临沭县,
+  罗庄区,
+  蒙阴县,
+  平邑县,
+  郯城县,
+  沂南县,
+  沂水县,
+  费县,
+  城阳区,
+  黄岛区,
+  即墨区,
+  胶州市,
+  莱西市,
+  崂山区,
+  李沧区,
+  平度市,
+  青岛市,
+  市北区,
+  日照市,
+  东港区,
+  岚山区,
+  五莲县,
+  莒县,
+  泰安市,
+  泰山区,
+  岱岳区,
+  宁阳县,
+  东平县,
+  新泰市,
+  肥城市,
+  威海市,
+  环翠区,
+  文登区,
+  荣成市,
+  乳山市,
+  潍坊市,
+  潍城区,
+  寒亭区,
+  坊子区,
+  奎文区,
+  临朐县,
+  昌乐县,
+  青州市,
+  诸城市,
+  寿光市,
+  安丘市,
+  高密市,
+  昌邑市,
+  烟台市,
+  芝罘区,
+  福山区,
+  牟平区,
+  蓬莱区,
+  龙口市,
+  莱阳市,
+  莱州市,
+  招远市,
+  栖霞市,
+  海阳市,
+  枣庄市,
+  薛城区,
+  峄城区,
+  山亭区,
+  滕州市,
+  台儿庄区,
+  淄博市,
+  淄川区,
+  张店区,
+  博山区,
+  临淄区,
+  周村区,
+  桓台县,
+  高青县,
+  沂源县,
 }

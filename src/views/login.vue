@@ -11,8 +11,10 @@
   align-self: flex-start;
   margin-top: 5.5rem;
   margin-left: 9.0714rem;
-  width: 59.1429rem;
+  // width: 59.1429rem;
   height: 4.7857rem;
+  width: 54.1429rem;
+  // height: 7.7857rem;
   img {
     width: 100%;
     height: 100%;
@@ -98,9 +100,10 @@
 <template>
   <div class="login">
     <div class="logo">
-      <img src="@/assets/img/zkgt.png" />
+      <!-- <img src="@/assets/img/zkgt.png" /> -->
+      <img src="@/assets/img/logo-22.png" />
       <!-- <img src="@/assets/img/logo3.png" /> -->
-      <!-- <img src="@/assets/img/logo5.png" /> -->
+      <!-- <img src="@/assets/img/logo66.png" /> -->
     </div>
     <!-- <div class="yamei">
       <span>广州亚美信息科技有限公司</span>
