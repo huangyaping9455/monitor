@@ -303,19 +303,19 @@
             min-width="80"
           ></el-table-column>
           <el-table-column
-            label="今日上线车辆数"
+            label="上线车辆数"
             prop="onlineCount"
             width="120"
             align="center"
           ></el-table-column>
           <el-table-column
-            label="今日离线车辆数"
+            label="离线车辆数"
             prop="offlineCount"
             align="center"
             min-width="120"
           ></el-table-column>
           <el-table-column
-            label="今日上线率"
+            label="上线率"
             prop="onlineRate"
             align="center"
             min-width="100"
@@ -579,9 +579,9 @@ export default {
           "企业名称",
           "统计日期",
           "车辆总数",
-          "今日上线车辆数",
-          "今日离线车辆数",
-          "今日上线率",
+          "上线车辆数",
+          "离线车辆数",
+          "上线率",
           "定位车辆数",
           "定位率",
           "轨迹漂移率",
