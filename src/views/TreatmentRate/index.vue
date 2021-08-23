@@ -253,6 +253,7 @@
                   placeholder="选择日期"
                   v-model="form.begintime"
                   value-format="yyyy-MM-dd"
+                  :picker-options="pickerBegin"
                 ></el-date-picker>
               </el-form-item>
             </el-col>
@@ -265,6 +266,7 @@
                   placeholder="选择日期"
                   value-format="yyyy-MM-dd"
                   v-model="form.endtime"
+                  :picker-options="pickerEnd"
                 ></el-date-picker>
               </el-form-item>
             </el-col>
@@ -435,15 +437,7 @@
                   >
                   /
                   <span
-                    @click="
-                      goinfo(
-                        2,
-                        '接打电话报警',
-                        '北斗报警',
-                        '',
-                        row
-                      )
-                    "
+                    @click="goinfo(2, '接打电话报警', '北斗报警', '', row)"
                     >{{ row.dmsjiedadianhua }}</span
                   >
                   / {{ row.dmsjiedadianhuacllv }}
@@ -639,6 +633,16 @@ export default {
       enterpriseList: [],
       hierarchy: 1,
       zhengfuId: "", //地区id
+      pickerBegin: {
+        disabledDate() {
+          return;
+        },
+      },
+      pickerEnd: {
+        disabledDate() {
+          return;
+        },
+      },
     };
   },
   mounted() {
@@ -671,6 +675,22 @@ export default {
         }
         this.getDate(1);
       }
+    },
+    "form.begintime"(val) {
+      this.pickerEnd.disabledDate = function(time) {
+        let over = new Date(val).getTime() + 1000 * 60 * 60 * 24 * 5;
+        return (
+          time.getTime() > over || time.getTime() < new Date(val).getTime()
+        );
+      };
+    },
+    "form.endtime"(val) {
+      this.pickerBegin.disabledDate = function(time) {
+        let over = new Date(val).getTime() - 1000 * 60 * 60 * 24 * 5;
+        return (
+          time.getTime() < over || time.getTime() > new Date(val).getTime()
+        );
+      };
     },
   },
   methods: {

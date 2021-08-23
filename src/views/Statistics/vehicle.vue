@@ -276,7 +276,24 @@
         label="所属企业"
         width="270"
       ></el-table-column>
-      <el-table-column prop="vehicleNo" label="车辆牌照"></el-table-column>
+      <el-table-column label="车辆牌照">
+        <template slot-scope="scope">
+          <span>{{ scope.row.vehicleNo }}</span>
+          <el-tooltip
+            class="item"
+            content="轨迹"
+            placement="top"
+            effect="light"
+          >
+            <img
+              src="@/assets/img/huifang.png"
+              @click="getTraject(scope.row)"
+              alt=""
+              style="width:20px;height:17px;cursor: pointer;"
+            />
+          </el-tooltip>
+        </template>
+      </el-table-column>
       <el-table-column prop="vehicleColor" label="车牌颜色"></el-table-column>
       <el-table-column prop="zhuangtai" label="车辆状态"></el-table-column>
       <el-table-column prop="zaixian" label="在线状态"></el-table-column>
@@ -354,6 +371,13 @@
         </div>
       </div>
     </div>
+    <trajectory
+      :visible="visible"
+      key="index"
+      :vehicleoption="vehicleoption"
+      @close="visible = false"
+      @changeclose="changeTwo"
+    ></trajectory>
   </div>
 </template>
 
@@ -361,7 +385,9 @@
 import governmentApi from "@/api/modules/government";
 import { mapGetters } from "vuex";
 import { export_json_to_excel } from "@/config/Export2Excel";
+import trajectory from "./trajectory.vue";
 export default {
+  components: { trajectory },
   data() {
     return {
       loading: false,
@@ -375,6 +401,7 @@ export default {
       jumpNum: 1, //跳转页面
       vehicleList: [],
       downloading: false,
+      index: 0,
       from: {
         zaixian: 1,
         zhuangtai: 1,
@@ -384,6 +411,8 @@ export default {
         shiyongxingzhi: "",
       },
       options: [],
+      visible: false,
+      vehicleoption: {},
     };
   },
   mounted() {
@@ -412,6 +441,9 @@ export default {
     },
   },
   methods: {
+    changeTwo() {
+      this.index++;
+    },
     async getVehicleList(current = 1) {
       current = Number(current);
       this.loading = true;
@@ -502,6 +534,14 @@ export default {
         ? (this.mainTableH = "calc(100% - 6.0714rem)")
         : (this.mainTableH = "calc(100% - 8.7857rem)");
       this.searchshow = !this.searchshow;
+    },
+    // 轨迹
+    getTraject(row) {
+      this.index++;
+      this.visible = true;
+      this.vehicleoption = {
+        ...row,
+      };
     },
     //处理下载数据
     formatJson(filterVal, jsonData) {

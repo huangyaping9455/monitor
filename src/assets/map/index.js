@@ -2,8 +2,7 @@ import China from "./china.json";
 import 中华人民共和国 from "./中华人民共和国.json";
 import 北京 from "./beijing.json";
 import 广东 from "./guangdong.json";
-import 河南 from "./河南/henan.json";
-import 河北 from "./河北/河北省.json";
+import 河南 from "./henan.json";
 import 安徽 from "./安徽/anhui.json";
 import 江苏 from "./江苏省.json";
 import 上海 from "./上海市.json";
@@ -14,24 +13,180 @@ import 云南 from "./云南/云南省.json"
 import 山东 from "./山东/山东省.json"
 
 // 河南
-import 三门峡市 from "./河南/sanmenxia.json";
-import 洛阳市 from "./河南/luoyang.json";
-import 济源市 from "./河南/jiyuan.json";
-import 濮阳市 from "./河南/puyang.json";
-import 安阳市 from "./河南/anyang.json";
-import 鹤壁市 from "./河南/hebi.json";
-import 新乡市 from "./河南/xinxiang.json";
-import 焦作市 from "./河南/jiaozuo.json";
-import 郑州市 from "./河南/zhengzhou.json";
-import 开封市 from "./河南/kaifeng.json";
-import 许昌市 from "./河南/xuchang.json";
-import 平顶山市 from "./河南/pingdingsan.json";
-import 南阳市 from "./河南/nanyang.json";
-import 漯河市 from "./河南/luohe.json";
-import 商丘市 from "./河南/shangqiu.json";
-import 周口市 from "./河南/zhoukou.json";
-import 驻马店市 from "./河南/zhumadian.json";
-import 信阳市 from "./河南/xinyang.json";
+import 三门峡市 from "./河南/三门峡市.json";
+import 洛阳市 from "./河南/洛阳市.json";
+import 济源市 from "./河南/济源市.json";
+import 濮阳市 from "./河南/濮阳市.json";
+import 安阳市 from "./河南/安阳市.json";
+import 鹤壁市 from "./河南/鹤壁市.json";
+import 新乡市 from "./河南/新乡市.json";
+import 焦作市 from "./河南/焦作市.json";
+import 郑州市 from "./河南/郑州市.json";
+import 开封市 from "./河南/开封市.json";
+import 许昌市 from "./河南/许昌市.json";
+import 平顶山市 from "./河南/平顶山市.json";
+import 南阳市 from "./河南/南阳市.json";
+import 漯河市 from "./河南/漯河市.json";
+import 商丘市 from "./河南/商丘市.json";
+import 周口市 from "./河南/周口市.json";
+import 驻马店市 from "./河南/驻马店市.json";
+import 信阳市 from "./河南/信阳市.json";
+import 安阳县 from "./河南/安阳市/安阳县.json";
+import 北关区 from "./河南/安阳市/北关区.json";
+import 滑县 from "./河南/安阳市/滑县.json";
+import 林州市 from "./河南/安阳市/林州市.json";
+import 龙安区 from "./河南/安阳市/龙安区.json";
+import 内黄县 from "./河南/安阳市/内黄县.json";
+import 汤阴县 from "./河南/安阳市/汤阴县.json";
+import 文峰区 from "./河南/安阳市/文峰区.json";
+import 殷都区 from "./河南/安阳市/殷都区.json";
+import 鹤山区 from "./河南/鹤壁市/鹤山区.json";
+import 浚县 from "./河南/鹤壁市/浚县.json";
+import 淇滨区 from "./河南/鹤壁市/淇滨区.json";
+import 淇县 from "./河南/鹤壁市/淇县.json";
+import 山城区 from "./河南/鹤壁市/山城区.json";
+import 博爱县 from "./河南/焦作市/博爱县.json";
+import 解放区 from "./河南/焦作市/解放区.json";
+import 马村区 from "./河南/焦作市/马村区.json";
+import 孟州市 from "./河南/焦作市/孟州市.json";
+import 沁阳市 from "./河南/焦作市/沁阳市.json";
+import 山阳区 from "./河南/焦作市/山阳区.json";
+import 温县 from "./河南/焦作市/温县.json";
+import 武陟县 from "./河南/焦作市/武陟县.json";
+import 修武县 from "./河南/焦作市/修武县.json";
+import 中站区 from "./河南/焦作市/中站区.json";
+import 鼓楼区 from "./河南/开封市/鼓楼区.json";
+import 兰考县 from "./河南/开封市/兰考县.json";
+import 龙亭区 from "./河南/开封市/龙亭区.json";
+import 杞县 from "./河南/开封市/杞县.json";
+import 顺河回族区 from "./河南/开封市/顺河回族区.json";
+import 通许县 from "./河南/开封市/通许县.json";
+import 尉氏县 from "./河南/开封市/尉氏县.json";
+import 祥符区 from "./河南/开封市/祥符区.json";
+import 禹王台区 from "./河南/开封市/禹王台区.json";
+import 瀍河回族区 from "./河南/洛阳市/瀍河回族区.json";
+import 老城区 from "./河南/洛阳市/老城区.json";
+import 涧西区 from "./河南/洛阳市/涧西区.json";
+import 栾川县 from "./河南/洛阳市/栾川县.json";
+import 洛龙区 from "./河南/洛阳市/洛龙区.json";
+import 洛宁县 from "./河南/洛阳市/洛宁县.json";
+import 孟津区 from "./河南/洛阳市/孟津区.json";
+import 汝阳县 from "./河南/洛阳市/汝阳县.json";
+import 嵩县 from "./河南/洛阳市/嵩县.json";
+import 西工区 from "./河南/洛阳市/西工区.json";
+import 新安县 from "./河南/洛阳市/新安县.json";
+import 偃师区 from "./河南/洛阳市/偃师区.json";
+import 伊川县 from "./河南/洛阳市/伊川县.json";
+import 宜阳县 from "./河南/洛阳市/宜阳县.json";
+import 临颍县 from "./河南/漯河市/临颍县.json";
+import 舞阳县 from "./河南/漯河市/舞阳县.json";
+import 郾城区 from "./河南/漯河市/郾城区.json";
+import 源汇区 from "./河南/漯河市/源汇区.json";
+import 召陵区 from "./河南/漯河市/召陵区.json";
+import 邓州市 from "./河南/南阳市/邓州市.json";
+import 方城县 from "./河南/南阳市/方城县.json";
+import 南召县 from "./河南/南阳市/南召县.json";
+import 内乡县 from "./河南/南阳市/内乡县.json";
+import 社旗县 from "./河南/南阳市/社旗县.json";
+import 唐河县 from "./河南/南阳市/唐河县.json";
+import 桐柏县 from "./河南/南阳市/桐柏县.json";
+import 宛城区 from "./河南/南阳市/宛城区.json";
+import 卧龙区 from "./河南/南阳市/卧龙区.json";
+import 西峡县 from "./河南/南阳市/西峡县.json";
+import 淅川县 from "./河南/南阳市/淅川县.json";
+import 新野县 from "./河南/南阳市/新野县.json";
+import 镇平县 from "./河南/南阳市/镇平县.json";
+import 宝丰县 from "./河南/平顶山市/宝丰县.json";
+import 郏县 from "./河南/平顶山市/郏县.json";
+import 鲁山县 from "./河南/平顶山市/鲁山县.json";
+import 汝州市 from "./河南/平顶山市/汝州市.json";
+import 石龙区 from "./河南/平顶山市/石龙区.json";
+import 卫东区 from "./河南/平顶山市/卫东区.json";
+import 舞钢市 from "./河南/平顶山市/舞钢市.json";
+import 新华区 from "./河南/平顶山市/新华区.json";
+import 叶县 from "./河南/平顶山市/叶县.json";
+import 湛河区 from "./河南/平顶山市/湛河区.json";
+import 范县 from "./河南/濮阳市/范县.json";
+import 华龙区 from "./河南/濮阳市/华龙区.json";
+import 南乐县 from "./河南/濮阳市/南乐县.json";
+import 濮阳县 from "./河南/濮阳市/濮阳县.json";
+import 清丰县 from "./河南/濮阳市/清丰县.json";
+import 台前县 from "./河南/濮阳市/台前县.json";
+import 湖滨区 from "./河南/三门峡市/湖滨区.json";
+import 灵宝市 from "./河南/三门峡市/灵宝市.json";
+import 卢氏县 from "./河南/三门峡市/卢氏县.json";
+import 渑池县 from "./河南/三门峡市/渑池县.json";
+import 陕州区 from "./河南/三门峡市/陕州区.json";
+import 义马市 from "./河南/三门峡市/义马市.json";
+import 梁园区 from "./河南/商丘市/梁园区.json";
+import 民权县 from "./河南/商丘市/民权县.json";
+import 宁陵县 from "./河南/商丘市/宁陵县.json";
+import 睢县 from "./河南/商丘市/睢县.json";
+import 睢阳区 from "./河南/商丘市/睢阳区.json";
+import 夏邑县 from "./河南/商丘市/夏邑县.json";
+import 永城市 from "./河南/商丘市/永城市.json";
+import 虞城县 from "./河南/商丘市/虞城县.json";
+import 柘城县 from "./河南/商丘市/柘城县.json";
+import 封丘县 from "./河南/新乡市/封丘县.json";
+import 凤泉区 from "./河南/新乡市/凤泉区.json";
+import 红旗区 from "./河南/新乡市/红旗区.json";
+import 辉县市 from "./河南/新乡市/辉县市.json";
+import 获嘉县 from "./河南/新乡市/获嘉县.json";
+import 牧野区 from "./河南/新乡市/牧野区.json";
+import 卫滨区 from "./河南/新乡市/卫滨区.json";
+import 卫辉市 from "./河南/新乡市/卫辉市.json";
+import 新乡县 from "./河南/新乡市/新乡县.json";
+import 延津县 from "./河南/新乡市/延津县.json";
+import 原阳县 from "./河南/新乡市/原阳县.json";
+import 长垣市 from "./河南/新乡市/长垣市.json";
+import 固始县 from "./河南/信阳市/固始县.json";
+import 光山县 from "./河南/信阳市/光山县.json";
+import 淮滨县 from "./河南/信阳市/淮滨县.json";
+import 潢川县 from "./河南/信阳市/潢川县.json";
+import 罗山县 from "./河南/信阳市/罗山县.json";
+import 平桥区 from "./河南/信阳市/平桥区.json";
+import 商城县 from "./河南/信阳市/商城县.json";
+import 浉河区 from "./河南/信阳市/浉河区.json";
+import 息县 from "./河南/信阳市/息县.json";
+import 新县 from "./河南/信阳市/新县.json";
+import 建安区 from "./河南/许昌市/建安区.json";
+import 魏都区 from "./河南/许昌市/魏都区.json";
+import 襄城县 from "./河南/许昌市/襄城县.json";
+import 鄢陵县 from "./河南/许昌市/鄢陵县.json";
+import 禹州市 from "./河南/许昌市/禹州市.json";
+import 长葛市 from "./河南/许昌市/长葛市.json";
+import 登封市 from "./河南/郑州市/登封市.json";
+import 二七区 from "./河南/郑州市/二七区.json";
+import 巩义市 from "./河南/郑州市/巩义市.json";
+import 管城回族区 from "./河南/郑州市/管城回族区.json";
+import 惠济区 from "./河南/郑州市/惠济区.json";
+import 金水区 from "./河南/郑州市/金水区.json";
+import 上街区 from "./河南/郑州市/上街区.json";
+import 新密市 from "./河南/郑州市/新密市.json";
+import 新郑市 from "./河南/郑州市/新郑市.json";
+import 荥阳市 from "./河南/郑州市/荥阳市.json";
+import 中牟县 from "./河南/郑州市/中牟县.json";
+import 中原区 from "./河南/郑州市/中原区.json";
+import 川汇区 from "./河南/周口市/川汇区.json";
+import 郸城县 from "./河南/周口市/郸城县.json";
+import 扶沟县 from "./河南/周口市/扶沟县.json";
+import 淮阳区 from "./河南/周口市/淮阳区.json";
+import 鹿邑县 from "./河南/周口市/鹿邑县.json";
+import 商水县 from "./河南/周口市/商水县.json";
+import 沈丘县 from "./河南/周口市/沈丘县.json";
+import 太康县 from "./河南/周口市/太康县.json";
+import 西华县 from "./河南/周口市/西华县.json";
+import 项城市 from "./河南/周口市/项城市.json";
+import 泌阳县 from "./河南/驻马店市/泌阳县.json";
+import 平舆县 from "./河南/驻马店市/平舆县.json";
+import 确山县 from "./河南/驻马店市/确山县.json";
+import 汝南县 from "./河南/驻马店市/汝南县.json";
+import 上蔡县 from "./河南/驻马店市/上蔡县.json";
+import 遂平县 from "./河南/驻马店市/遂平县.json";
+import 西平县 from "./河南/驻马店市/西平县.json";
+import 新蔡县 from "./河南/驻马店市/新蔡县.json";
+import 驿城区 from "./河南/驻马店市/驿城区.json";
+import 正阳县 from "./河南/驻马店市/正阳县.json";
 // 安徽
 import 安庆市 from "./安徽/anqing.json";
 import 怀宁县 from "./安徽/怀宁县.json";
@@ -50,7 +205,7 @@ import 怀远县 from "./安徽/怀远县.json";
 import 淮上区 from "./安徽/淮上区.json";
 import 龙子湖区 from "./安徽/龙子湖区.json";
 import 五河县 from "./安徽/五河县.json";
-import 毫州市 from "./安徽/亳州市.json";
+import 亳州市 from "./安徽/亳州市.json";
 import 利辛县 from "./安徽/利辛县.json";
 import 蒙城县 from "./安徽/蒙城县.json";
 import 谯城区 from "./安徽/谯城区.json";
@@ -153,113 +308,113 @@ import 宁国市 from "./安徽/宁国市.json";
 import 宣城市 from "./安徽/宣城市.json";
 import 宣州区 from "./安徽/宣州区.json";
 //江苏
-import 常州市 from "./常州市.json";
-import 金坛区 from "./金坛区.json";
-import 溧阳市 from "./溧阳市.json";
-import 天宁区 from "./天宁区.json";
-import 武进区 from "./武进区.json";
-import 新北区 from "./新北区.json";
-import 钟楼区 from "./钟楼区.json";
-import 洪泽区 from "./洪泽区.json";
-import 淮安区 from "./淮安区.json";
-import 淮安市 from "./淮安市.json";
-import 淮阴区 from "./淮阴区.json";
-import 金湖县 from "./金湖县.json";
-import 涟水县 from "./涟水县.json";
-import 清江浦区 from "./清江浦区.json";
-import 盱眙县 from "./盱眙县.json";
-import 东海县 from "./东海县.json";
-import 赣榆区 from "./赣榆区.json";
-import 灌南县 from "./灌南县.json";
-import 灌云县 from "./灌云县.json";
-import 海州区 from "./海州区.json";
-import 连云区 from "./连云区.json";
-import 连云港市 from "./连云港市.json";
-import 高淳区 from "./高淳区.json";
-import 建邺区 from "./建邺区.json";
-import 江宁区 from "./江宁区.json";
-import 六合区 from "./六合区.json";
-import 南京市 from "./南京市.json";
-import 浦口区 from "./浦口区.json";
-import 栖霞区 from "./栖霞区.json";
-import 秦淮区 from "./秦淮区.json";
-import 玄武区 from "./玄武区.json";
-import 雨花台区 from "./雨花台区.json";
-import 崇川区 from "./崇川区.json";
-import 港闸区 from "./港闸区.json";
-import 海安市 from "./海安市.json";
-import 海门区 from "./海门区.json";
-import 南通市 from "./南通市.json";
-import 启东市 from "./启东市.json";
-import 如东县 from "./如东县.json";
-import 如皋市 from "./如皋市.json";
-import 通州区 from "./通州区.json";
-import 常熟市 from "./常熟市.json";
-import 姑苏区 from "./姑苏区.json";
-import 虎丘区 from "./虎丘区.json";
-import 昆山市 from "./昆山市.json";
-import 苏州市 from "./苏州市.json";
-import 太仓市 from "./太仓市.json";
-import 吴江区 from "./吴江区.json";
-import 吴中区 from "./吴中区.json";
-import 相城区 from "./相城区.json";
-import 张家港市 from "./张家港市.json";
-import 苏州工业园区 from "./苏州工业园区.json";
-import 高港区 from "./高港区.json";
-import 海陵区 from "./海陵区.json";
-import 姜堰区 from "./姜堰区.json";
-import 靖江市 from "./靖江市.json";
-import 泰兴市 from "./泰兴市.json";
-import 泰州市 from "./泰州市.json";
-import 兴化市 from "./兴化市.json";
-import 滨湖区 from "./滨湖区.json";
-import 惠山区 from "./惠山区.json";
-import 江阴市 from "./江阴市.json";
-import 梁溪区 from "./梁溪区.json";
-import 无锡市 from "./无锡市.json";
-import 锡山区 from "./锡山区.json";
-import 新吴区 from "./新吴区.json";
-import 宜兴市 from "./宜兴市.json";
-import 沭阳县 from "./沭阳县.json";
-import 泗洪县 from "./泗洪县.json";
-import 泗阳县 from "./泗阳县.json";
-import 宿城区 from "./宿城区.json";
-import 宿迁市 from "./宿迁市.json";
-import 宿豫区 from "./宿豫区.json";
-import 丰县 from "./丰县.json";
-import 鼓楼区 from "./鼓楼区.json";
-import 贾汪区 from "./贾汪区.json";
-import 沛县 from "./沛县.json";
-import 邳州市 from "./邳州市.json";
-import 泉山区 from "./泉山区.json";
-import 睢宁县 from "./睢宁县.json";
-import 铜山区 from "./铜山区.json";
-import 徐州市 from "./徐州市.json";
-import 云龙区 from "./云龙区.json";
-import 滨海县 from "./滨海县.json";
-import 大丰区 from "./大丰区.json";
-import 东台市 from "./东台市.json";
-import 阜宁县 from "./阜宁县.json";
-import 建湖县 from "./建湖县.json";
-import 射阳县 from "./射阳县.json";
-import 亭湖区 from "./亭湖区.json";
-import 响水县 from "./响水县.json";
-import 盐城市 from "./盐城市.json";
-import 盐都区 from "./盐都区.json";
-import 宝应县 from "./宝应县.json";
-import 高邮市 from "./高邮市.json";
-import 广陵区 from "./广陵区.json";
-import 邗江区 from "./邗江区.json";
-import 江都区 from "./江都区.json";
-import 扬州市 from "./扬州市.json";
-import 仪征市 from "./仪征市.json";
-import 丹徒区 from "./丹徒区.json";
-import 丹阳市 from "./丹阳市.json";
-import 京口区 from "./京口区.json";
-import 句容市 from "./句容市.json";
-import 润州区 from "./润州区.json";
-import 扬中市 from "./扬中市.json";
-import 镇江市 from "./镇江市.json";
+import 常州市 from "./江苏/常州市.json";
+import 金坛区 from "./江苏/金坛区.json";
+import 溧阳市 from "./江苏/溧阳市.json";
+import 天宁区 from "./江苏/天宁区.json";
+import 武进区 from "./江苏/武进区.json";
+import 新北区 from "./江苏/新北区.json";
+import 钟楼区 from "./江苏/钟楼区.json";
+import 洪泽区 from "./江苏/洪泽区.json";
+import 淮安区 from "./江苏/淮安区.json";
+import 淮安市 from "./江苏/淮安市.json";
+import 淮阴区 from "./江苏/淮阴区.json";
+import 金湖县 from "./江苏/金湖县.json";
+import 涟水县 from "./江苏/涟水县.json";
+import 清江浦区 from "./江苏/清江浦区.json";
+import 盱眙县 from "./江苏/盱眙县.json";
+import 东海县 from "./江苏/东海县.json";
+import 赣榆区 from "./江苏/赣榆区.json";
+import 灌南县 from "./江苏/灌南县.json";
+import 灌云县 from "./江苏/灌云县.json";
+import 海州区 from "./江苏/海州区.json";
+import 连云区 from "./江苏/连云区.json";
+import 连云港市 from "./江苏/连云港市.json";
+import 高淳区 from "./江苏/高淳区.json";
+import 建邺区 from "./江苏/建邺区.json";
+import 江宁区 from "./江苏/江宁区.json";
+import 六合区 from "./江苏/六合区.json";
+import 南京市 from "./江苏/南京市.json";
+import 浦口区 from "./江苏/浦口区.json";
+import 栖霞区 from "./江苏/栖霞区.json";
+import 秦淮区 from "./江苏/秦淮区.json";
+import 玄武区 from "./江苏/玄武区.json";
+import 雨花台区 from "./江苏/雨花台区.json";
+import 崇川区 from "./江苏/崇川区.json";
+import 港闸区 from "./江苏/港闸区.json";
+import 海安市 from "./江苏/海安市.json";
+import 海门区 from "./江苏/海门区.json";
+import 南通市 from "./江苏/南通市.json";
+import 启东市 from "./江苏/启东市.json";
+import 如东县 from "./江苏/如东县.json";
+import 如皋市 from "./江苏/如皋市.json";
+import 通州区 from "./江苏/通州区.json";
+import 常熟市 from "./江苏/常熟市.json";
+import 姑苏区 from "./江苏/姑苏区.json";
+import 虎丘区 from "./江苏/虎丘区.json";
+import 昆山市 from "./江苏/昆山市.json";
+import 苏州市 from "./江苏/苏州市.json";
+import 太仓市 from "./江苏/太仓市.json";
+import 吴江区 from "./江苏/吴江区.json";
+import 吴中区 from "./江苏/吴中区.json";
+import 相城区 from "./江苏/相城区.json";
+import 张家港市 from "./江苏/张家港市.json";
+import 苏州工业园区 from "./江苏/苏州工业园区.json";
+import 高港区 from "./江苏/高港区.json";
+import 海陵区 from "./江苏/海陵区.json";
+import 姜堰区 from "./江苏/姜堰区.json";
+import 靖江市 from "./江苏/靖江市.json";
+import 泰兴市 from "./江苏/泰兴市.json";
+import 泰州市 from "./江苏/泰州市.json";
+import 兴化市 from "./江苏/兴化市.json";
+import 滨湖区 from "./江苏/滨湖区.json";
+import 惠山区 from "./江苏/惠山区.json";
+import 江阴市 from "./江苏/江阴市.json";
+import 梁溪区 from "./江苏/梁溪区.json";
+import 无锡市 from "./江苏/无锡市.json";
+import 锡山区 from "./江苏/锡山区.json";
+import 新吴区 from "./江苏/新吴区.json";
+import 宜兴市 from "./江苏/宜兴市.json";
+import 沭阳县 from "./江苏/沭阳县.json";
+import 泗洪县 from "./江苏/泗洪县.json";
+import 泗阳县 from "./江苏/泗阳县.json";
+import 宿城区 from "./江苏/宿城区.json";
+import 宿迁市 from "./江苏/宿迁市.json";
+import 宿豫区 from "./江苏/宿豫区.json";
+import 丰县 from "./江苏/丰县.json";
+// import 鼓楼区 from "./江苏/鼓楼区.json";
+import 贾汪区 from "./江苏/贾汪区.json";
+import 沛县 from "./江苏/沛县.json";
+import 邳州市 from "./江苏/邳州市.json";
+import 泉山区 from "./江苏/泉山区.json";
+import 睢宁县 from "./江苏/睢宁县.json";
+import 铜山区 from "./江苏/铜山区.json";
+import 徐州市 from "./江苏/徐州市.json";
+import 云龙区 from "./江苏/云龙区.json";
+import 滨海县 from "./江苏/滨海县.json";
+import 大丰区 from "./江苏/大丰区.json";
+import 东台市 from "./江苏/东台市.json";
+import 阜宁县 from "./江苏/阜宁县.json";
+import 建湖县 from "./江苏/建湖县.json";
+import 射阳县 from "./江苏/射阳县.json";
+import 亭湖区 from "./江苏/亭湖区.json";
+import 响水县 from "./江苏/响水县.json";
+import 盐城市 from "./江苏/盐城市.json";
+import 盐都区 from "./江苏/盐都区.json";
+import 宝应县 from "./江苏/宝应县.json";
+import 高邮市 from "./江苏/高邮市.json";
+import 广陵区 from "./江苏/广陵区.json";
+import 邗江区 from "./江苏/邗江区.json";
+import 江都区 from "./江苏/江都区.json";
+import 扬州市 from "./江苏/扬州市.json";
+import 仪征市 from "./江苏/仪征市.json";
+import 丹徒区 from "./江苏/丹徒区.json";
+import 丹阳市 from "./江苏/丹阳市.json";
+import 京口区 from "./江苏/京口区.json";
+import 句容市 from "./江苏/句容市.json";
+import 润州区 from "./江苏/润州区.json";
+import 扬中市 from "./江苏/扬中市.json";
+import 镇江市 from "./江苏/镇江市.json";
 // 上海
 import 宝山区 from "./上海/宝山区.json";
 import 崇明区 from "./上海/崇明区.json";
@@ -946,6 +1101,162 @@ export {
   周口市,
   驻马店市,
   信阳市,
+  安阳县,
+北关区,
+滑县,
+林州市,
+龙安区,
+内黄县,
+汤阴县,
+文峰区,
+殷都区,
+鹤山区,
+浚县,
+淇滨区,
+淇县,
+山城区,
+博爱县,
+解放区,
+马村区,
+孟州市,
+沁阳市,
+山阳区,
+温县,
+武陟县,
+修武县,
+中站区,
+// 河南鼓楼区,
+兰考县,
+龙亭区,
+杞县,
+  顺河回族区,
+  通许县,
+尉氏县,
+祥符区,
+  禹王台区,
+瀍河回族区,
+老城区,
+涧西区,
+栾川县,
+洛龙区,
+洛宁县,
+孟津区,
+汝阳县,
+嵩县,
+西工区,
+新安县,
+偃师区,
+伊川县,
+宜阳县,
+临颍县,
+舞阳县,
+郾城区,
+源汇区,
+召陵区,
+邓州市,
+方城县,
+南召县,
+内乡县,
+社旗县,
+唐河县,
+桐柏县,
+宛城区,
+卧龙区,
+西峡县,
+淅川县,
+新野县,
+镇平县,
+宝丰县,
+郏县,
+鲁山县,
+汝州市,
+石龙区,
+卫东区,
+舞钢市,
+新华区,
+叶县,
+湛河区,
+范县,
+华龙区,
+南乐县,
+濮阳县,
+清丰县,
+台前县,
+湖滨区,
+灵宝市,
+卢氏县,
+渑池县,
+陕州区,
+义马市,
+梁园区,
+民权县,
+宁陵县,
+睢县,
+睢阳区,
+夏邑县,
+永城市,
+虞城县,
+柘城县,
+封丘县,
+凤泉区,
+红旗区,
+辉县市,
+获嘉县,
+牧野区,
+卫滨区,
+卫辉市,
+新乡县,
+延津县,
+原阳县,
+长垣市,
+固始县,
+光山县,
+淮滨县,
+潢川县,
+罗山县,
+平桥区,
+商城县,
+浉河区,
+息县,
+新县,
+建安区,
+魏都区,
+襄城县,
+鄢陵县,
+禹州市,
+长葛市,
+登封市,
+二七区,
+巩义市,
+管城回族区,
+惠济区,
+金水区,
+上街区,
+新密市,
+新郑市,
+荥阳市,
+中牟县,
+中原区,
+川汇区,
+郸城县,
+扶沟县,
+淮阳区,
+鹿邑县,
+商水县,
+沈丘县,
+太康县,
+西华县,
+项城市,
+泌阳县,
+平舆县,
+确山县,
+汝南县,
+上蔡县,
+遂平县,
+西平县,
+新蔡县,
+驿城区,
+正阳县,
   安徽,
   安庆市,
   怀宁县,
@@ -964,7 +1275,7 @@ export {
   淮上区,
   龙子湖区,
   五河县,
-  毫州市,
+  亳州市,
   利辛县,
   蒙城县,
   谯城区,
@@ -1673,7 +1984,7 @@ export {
   兰坪白族普米族自治县,
   福贡县,
   贡山独龙族怒族自治县,
-  河北,
+  // 河北,
   保定市,
   沧州市,
   承德市,

@@ -156,6 +156,7 @@ import Cookies from "js-cookie";
 import loginApi from "@/api/modules/login";
 import { mapMutations } from "vuex";
 import { SET_USERINFO, SET_FASONGDANWEI } from "@/store/mutation-types";
+import { config } from "@/config/config.js";
 export default {
   data() {
     return {
@@ -200,9 +201,11 @@ export default {
       this.loading = true;
       let [err, data] = await loginApi.awaitWrap(
         loginApi.ZFtoken({
-          name: this.form.name,
-          password: this.form.pass,
-          clientVerifyCode: this.form.code,
+          name: config.aesEncrypt(this.form.name),
+          password: config.aesEncrypt(this.form.pass),
+          // verificationCode: config.aesEncrypt(this.form.code),
+          clientVerifyCode: config.aesEncrypt(this.form.code),
+          type: config.aesEncrypt(0),
         })
       );
       this.loading = false;
