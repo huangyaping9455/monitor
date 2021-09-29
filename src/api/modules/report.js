@@ -37,5 +37,13 @@ export default {
     data = qs.stringify(data)
     return $axios.post('/blade-anbiao/anbiao/baobiaowenjian/preview', data);
   },
+  // 标准化弹出列表
+  getTreeTable(params) {
+    return $axios.get('/blade-doc/doc/biaozhunhuamuban/listTree',{ params: params });
+  },
+  // 安全达标统计列表
+  getSafetyStandardsQiYeList(data) {
+    return $axios.post('/blade-anbiao/anbiao/zhengFuShouYeNew/getSafetyStandardsQiYeList', data);
+  },
   awaitWrap
 };

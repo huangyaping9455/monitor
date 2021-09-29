@@ -44,5 +44,11 @@ export default {
       params: params
     });
   },
+  // 回复企业
+  getHFQY(params) {
+    return $axios.get('/blade-anbiao/anbiao/xinxijiaohuzhuti/getHFQY', {
+      params: params
+    });
+  },
   awaitWrap
 };

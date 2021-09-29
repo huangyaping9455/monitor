@@ -451,6 +451,7 @@ export default {
           type: type,
           id: row.id,
           returnUrl: "/SafetyInspection",
+          fasongdanweiid: row.fasongdanweiid,
         },
       });
     },

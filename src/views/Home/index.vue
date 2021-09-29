@@ -11,7 +11,7 @@
   padding-left: 20px;
   padding-right: 20px;
   .car-item {
-    width: 23%;
+    width: 19%;
     height: 10.7143rem;
     border-radius: 0.7143rem;
     box-sizing: border-box;
@@ -36,6 +36,10 @@
     }
     &:nth-of-type(4) {
       background-image: url("~@/assets/img/bg_19.jpg");
+      cursor: pointer;
+    }
+    &:nth-of-type(5) {
+      background-image: url("~@/assets/img/bg_20.png");
       cursor: pointer;
     }
   }
@@ -209,6 +213,10 @@
       <div class="car-item" @click="linkto('/vehicle', { zaixian: '上线' })">
         <span>在线车辆数</span>
         <span>{{ overview.sxvehnum }}</span>
+      </div>
+      <div class="car-item" @click="linkto('/safeStandard')">
+        <span>安全达标率</span>
+        <span>{{ overview.dabiaolv }}</span>
       </div>
     </div>
     <div class="home-bottom">
