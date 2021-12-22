@@ -1,5 +1,8 @@
 import echarts from 'echarts'
 import * as maps from '@/assets/map/index'
+import {
+  Array
+} from 'core-js/es7'
 //柱状图颜色
 export const barcolor = [{
     type: 'linear',

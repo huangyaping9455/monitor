@@ -55,6 +55,15 @@ export const constantRouterMap = [{
       requiresAuth: true
     },
     component: () => import('@/views/DataAnalysis/index')
+    // component: () => import('@/views/DataAnalysis/index_new')
+  },
+  {
+    path: '/OBDDataAnalysis',
+    meta: {
+      title: 'OBD数据分析',
+      requiresAuth: true
+    },
+    component: () => import('@/views/DataAnalysis/index_new')
   },
   {
     path: '/enterprise',
@@ -269,6 +278,24 @@ export const constantRouterMap = [{
           requiresAuth: true
         },
         component: () => import('@/views/safeStandard/index'),
+      },
+      {
+        path: '/learningPlatform',
+        name: 'learningPlatform',
+        meta: {
+          title: '学习情况统计',
+          requiresAuth: true
+        },
+        component: () => import('@/views/learningPlatform/index'),
+      },
+      {
+        path: '/hidDanger',
+        name: 'hidDanger',
+        meta: {
+          title: '隐患排查',
+          requiresAuth: true
+        },
+        component: () => import('@/views/hidDanger/index'),
       },
     ]
   },

@@ -262,7 +262,7 @@ export default {
       eye: false, //查看模式
       expireTimeOption: {
         disabledDate(date) {
-          return date.getTime() <= Date.now();
+          return date.getTime() <= Date.now() - 1000 * 60 * 60 * 24;
         },
       }, //时间范围限制
       errmsg: "",

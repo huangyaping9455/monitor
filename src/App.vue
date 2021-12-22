@@ -21,19 +21,19 @@ export default {
       this.SET_FASONGDANWEI(userinfo.deptId);
     }
   },
-  data(){
-    return{
-      ismenu:true
-    }
+  data() {
+    return {
+      ismenu: true,
+    };
   },
-  watch:{
-    $route(to,from){
-      if(to.path=='/login'){
-        this.ismenu = false
-      }else{
-        this.ismenu = true
+  watch: {
+    $route(to, from) {
+      if (to.path == "/login") {
+        this.ismenu = false;
+      } else {
+        this.ismenu = true;
       }
-    }
+    },
   },
   methods: {
     linkto(url) {

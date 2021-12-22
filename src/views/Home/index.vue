@@ -11,7 +11,8 @@
   padding-left: 20px;
   padding-right: 20px;
   .car-item {
-    width: 19%;
+    width: 23%;
+    // width: 19%;
     height: 10.7143rem;
     border-radius: 0.7143rem;
     box-sizing: border-box;
@@ -214,10 +215,14 @@
         <span>在线车辆数</span>
         <span>{{ overview.sxvehnum }}</span>
       </div>
-      <div class="car-item" @click="linkto('/safeStandard')">
+      <!-- <div class="car-item" @click="linkto('/safeStandard')">
         <span>安全达标率</span>
         <span>{{ overview.dabiaolv }}</span>
       </div>
+      <div class="car-item" @click="linkto('/hidDanger')">
+        <span>隐患因子</span>
+        <span>{{ troubleNum.zhenggai }}</span>
+      </div> -->
     </div>
     <div class="home-bottom">
       <div
@@ -539,6 +544,7 @@
 import echartBase from "@/components/EChart/index";
 import allHeader from "@/components/Header/index";
 import homeApi from "@/api/modules/home";
+import dataAnalysisApi from "@/api/modules/report";
 import { lineoption, lineName, geooption } from "@/config/echartoption";
 import { mapGetters } from "vuex";
 import { format } from "@/config/date";
@@ -572,6 +578,7 @@ export default {
       mapData: [],
       areaName: "",
       zhengfuindex: "",
+      troubleNum: "",
     };
   },
   components: {
@@ -596,6 +603,7 @@ export default {
         this.getFour(this.userinfo.deptId);
       }
     }, 180000);
+    // this.getTroubleCountNum();
     // 通过$once来监听定时器，在beforeDestroy钩子可以被清除。
     this.$once("hook:beforeDestroy", () => {
       clearInterval(timer1);
@@ -685,7 +693,7 @@ export default {
         if (type == 0) {
           mapData = [
             {
-              name: data.areaname,
+              name: data.areaname === "重庆市" ? "重庆" : data.areaname,
               value: data.baojingcishu,
               zhengfuid: data.zhengfuid,
             },
@@ -702,7 +710,13 @@ export default {
         this.mapData = mapData;
         this.areaName = areaName ? areaName : this.userinfo.diqu;
         this.chartOption.option9 = geooption(
-          areaName ? areaName : this.userinfo.diqu,
+          areaName
+            ? areaName === "重庆"
+              ? "重庆市"
+              : areaName
+            : this.userinfo.diqu === "重庆市"
+            ? "China"
+            : this.userinfo.diqu,
           mapData
         );
       }
@@ -932,6 +946,17 @@ export default {
           },
         ],
       };
+    },
+    //获取隐患排查数
+    async getTroubleCountNum() {
+      let [err, data] = await dataAnalysisApi.awaitWrap(
+        dataAnalysisApi.getTroubleCountNum(this.userinfo.deptId)
+      );
+      if (data) {
+        this.troubleNum = data;
+      } else {
+        this.$message.error(err);
+      }
     },
   },
 };

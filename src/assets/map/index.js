@@ -12,6 +12,9 @@ import 福建 from "./福建省/福建省.json"
 import 云南 from "./云南/云南省.json"
 import 山东 from "./山东/山东省.json"
 import 山西 from "./山西省/山西省.json"
+import 青海 from "./青海省/青海省.json"
+import 重庆市 from "./重庆/重庆市.json"
+import 四川 from "./四川省/四川省.json";
 
 // 河南
 import 三门峡市 from "./河南/三门峡市.json";
@@ -1079,276 +1082,400 @@ import 张家口市 from "./河北/张家口市.json";
 import 石家庄市 from "./河北/石家庄市.json";
 import 秦皇岛市 from "./河北/秦皇岛市.json";
 // 广东
-import 潮州市 from"./广州省/潮州市.json";
-import 湘桥区 from"./广州省/潮州市/湘桥区.json";
-import 潮安区 from"./广州省/潮州市/潮安区.json";
+import 潮州市 from "./广州省/潮州市.json";
+import 湘桥区 from "./广州省/潮州市/湘桥区.json";
+import 潮安区 from "./广州省/潮州市/潮安区.json";
 import 饶平县 from "./广州省/潮州市/饶平县.json";
 import 东莞市 from "./广州省/东莞市.json";
-import 佛山市 from"./广州省/佛山市.json";
-import 禅城区 from"./广州省/佛山市/禅城区.json";
-import 南海区 from"./广州省/佛山市/南海区.json";
-import 顺德区 from"./广州省/佛山市/顺德区.json";
-import 三水区 from"./广州省/佛山市/三水区.json";
+import 佛山市 from "./广州省/佛山市.json";
+import 禅城区 from "./广州省/佛山市/禅城区.json";
+import 南海区 from "./广州省/佛山市/南海区.json";
+import 顺德区 from "./广州省/佛山市/顺德区.json";
+import 三水区 from "./广州省/佛山市/三水区.json";
 import 高明区 from "./广州省/佛山市/高明区.json";
-import 广州市 from"./广州省/广州市.json";
-import 荔湾区 from"./广州省/广州市/荔湾区.json";
-import 越秀区 from"./广州省/广州市/越秀区.json";
-import 海珠区 from"./广州省/广州市/海珠区.json";
-import 天河区 from"./广州省/广州市/天河区.json";
-import 白云区 from"./广州省/广州市/白云区.json";
-import 黄埔区 from"./广州省/广州市/黄埔区.json";
-import 番禺区 from"./广州省/广州市/番禺区.json";
-import 花都区 from"./广州省/广州市/花都区.json";
-import 南沙区 from"./广州省/广州市/南沙区.json";
-import 从化区 from"./广州省/广州市/从化区.json";
+import 广州市 from "./广州省/广州市.json";
+import 荔湾区 from "./广州省/广州市/荔湾区.json";
+import 越秀区 from "./广州省/广州市/越秀区.json";
+import 海珠区 from "./广州省/广州市/海珠区.json";
+import 天河区 from "./广州省/广州市/天河区.json";
+import 白云区 from "./广州省/广州市/白云区.json";
+import 黄埔区 from "./广州省/广州市/黄埔区.json";
+import 番禺区 from "./广州省/广州市/番禺区.json";
+import 花都区 from "./广州省/广州市/花都区.json";
+import 南沙区 from "./广州省/广州市/南沙区.json";
+import 从化区 from "./广州省/广州市/从化区.json";
 import 增城区 from "./广州省/广州市/增城区.json";
-import 河源市 from"./广州省/河源市.json";
-import 源城区 from"./广州省/河源市/源城区.json";
-import 紫金县 from"./广州省/河源市/紫金县.json";
-import 龙川县 from"./广州省/河源市/龙川县.json";
-import 连平县 from"./广州省/河源市/连平县.json";
-import 和平县 from"./广州省/河源市/和平县.json";
+import 河源市 from "./广州省/河源市.json";
+import 源城区 from "./广州省/河源市/源城区.json";
+import 紫金县 from "./广州省/河源市/紫金县.json";
+import 龙川县 from "./广州省/河源市/龙川县.json";
+import 连平县 from "./广州省/河源市/连平县.json";
+import 和平县 from "./广州省/河源市/和平县.json";
 import 东源县 from "./广州省/河源市/东源县.json";
-import 惠州市 from"./广州省/惠州市.json";
-import 惠城区 from"./广州省/惠州市/惠城区.json";
-import 惠阳区 from"./广州省/惠州市/惠阳区.json";
-import 博罗县 from"./广州省/惠州市/博罗县.json";
-import 惠东县 from"./广州省/惠州市/惠东县.json";
+import 惠州市 from "./广州省/惠州市.json";
+import 惠城区 from "./广州省/惠州市/惠城区.json";
+import 惠阳区 from "./广州省/惠州市/惠阳区.json";
+import 博罗县 from "./广州省/惠州市/博罗县.json";
+import 惠东县 from "./广州省/惠州市/惠东县.json";
 import 龙门县 from "./广州省/惠州市/龙门县.json";
-import 蓬江区 from"./广州省/江门市/蓬江区.json";
-import 江海区 from"./广州省/江门市/江海区.json";
-import 新会区 from"./广州省/江门市/新会区.json";
-import 台山市 from"./广州省/江门市/台山市.json";
-import 开平市 from"./广州省/江门市/开平市.json";
-import 鹤山市 from"./广州省/江门市/鹤山市.json";
+import 蓬江区 from "./广州省/江门市/蓬江区.json";
+import 江海区 from "./广州省/江门市/江海区.json";
+import 新会区 from "./广州省/江门市/新会区.json";
+import 台山市 from "./广州省/江门市/台山市.json";
+import 开平市 from "./广州省/江门市/开平市.json";
+import 鹤山市 from "./广州省/江门市/鹤山市.json";
 import 恩平市 from "./广州省/江门市/恩平市.json";
-import 揭阳市 from"./广州省/揭阳市.json";
-import 榕城区 from"./广州省/揭阳市/榕城区.json";
-import 揭东区 from"./广州省/揭阳市/揭东区.json";
-import 揭西县 from"./广州省/揭阳市/揭西县.json";
-import 惠来县 from"./广州省/揭阳市/惠来县.json";
+import 揭阳市 from "./广州省/揭阳市.json";
+import 榕城区 from "./广州省/揭阳市/榕城区.json";
+import 揭东区 from "./广州省/揭阳市/揭东区.json";
+import 揭西县 from "./广州省/揭阳市/揭西县.json";
+import 惠来县 from "./广州省/揭阳市/惠来县.json";
 import 普宁市 from "./广州省/揭阳市/普宁市.json";
-import 茂名市 from"./广州省/茂名市.json";
-import 茂南区 from"./广州省/茂名市/茂南区.json";
-import 电白区 from"./广州省/茂名市/电白区.json";
-import 高州市 from"./广州省/茂名市/高州市.json";
-import 化州市 from"./广州省/茂名市/化州市.json";
+import 茂名市 from "./广州省/茂名市.json";
+import 茂南区 from "./广州省/茂名市/茂南区.json";
+import 电白区 from "./广州省/茂名市/电白区.json";
+import 高州市 from "./广州省/茂名市/高州市.json";
+import 化州市 from "./广州省/茂名市/化州市.json";
 import 信宜市 from "./广州省/茂名市/信宜市.json";
-import 梅州市 from"./广州省/梅州市.json";
-import 梅江区 from"./广州省/梅州市/梅江区.json";
-import 梅县区 from"./广州省/梅州市/梅县区.json";
-import 大埔县 from"./广州省/梅州市/大埔县.json";
-import 丰顺县 from"./广州省/梅州市/丰顺县.json";
-import 五华县 from"./广州省/梅州市/五华县.json";
-import 平远县 from"./广州省/梅州市/平远县.json";
-import 蕉岭县 from"./广州省/梅州市/蕉岭县.json";
+import 梅州市 from "./广州省/梅州市.json";
+import 梅江区 from "./广州省/梅州市/梅江区.json";
+import 梅县区 from "./广州省/梅州市/梅县区.json";
+import 大埔县 from "./广州省/梅州市/大埔县.json";
+import 丰顺县 from "./广州省/梅州市/丰顺县.json";
+import 五华县 from "./广州省/梅州市/五华县.json";
+import 平远县 from "./广州省/梅州市/平远县.json";
+import 蕉岭县 from "./广州省/梅州市/蕉岭县.json";
 import 兴宁市 from "./广州省/梅州市/兴宁市.json";
-import 清远市 from"./广州省/清远市.json";
-import 清城区 from"./广州省/清远市/清城区.json";
-import 清新区 from"./广州省/清远市/清新区.json";
-import 佛冈县 from"./广州省/清远市/佛冈县.json";
-import 阳山县 from"./广州省/清远市/阳山县.json";
-import 连山壮族瑶族自治县 from"./广州省/清远市/连山壮族瑶族自治县.json";
-import 连南瑶族自治县 from"./广州省/清远市/连南瑶族自治县.json";
-import 英德市 from"./广州省/清远市/英德市.json";
+import 清远市 from "./广州省/清远市.json";
+import 清城区 from "./广州省/清远市/清城区.json";
+import 清新区 from "./广州省/清远市/清新区.json";
+import 佛冈县 from "./广州省/清远市/佛冈县.json";
+import 阳山县 from "./广州省/清远市/阳山县.json";
+import 连山壮族瑶族自治县 from "./广州省/清远市/连山壮族瑶族自治县.json";
+import 连南瑶族自治县 from "./广州省/清远市/连南瑶族自治县.json";
+import 英德市 from "./广州省/清远市/英德市.json";
 import 连州市 from "./广州省/清远市/连州市.json";
-import 汕头市 from"./广州省/汕头市.json";
-import 龙湖区 from"./广州省/汕头市/龙湖区.json";
-import 金平区 from"./广州省/汕头市/金平区.json";
-import 濠江区 from"./广州省/汕头市/濠江区.json";
-import 潮阳区 from"./广州省/汕头市/潮阳区.json";
-import 潮南区 from"./广州省/汕头市/潮南区.json";
-import 澄海区 from"./广州省/汕头市/澄海区.json";
+import 汕头市 from "./广州省/汕头市.json";
+import 龙湖区 from "./广州省/汕头市/龙湖区.json";
+import 金平区 from "./广州省/汕头市/金平区.json";
+import 濠江区 from "./广州省/汕头市/濠江区.json";
+import 潮阳区 from "./广州省/汕头市/潮阳区.json";
+import 潮南区 from "./广州省/汕头市/潮南区.json";
+import 澄海区 from "./广州省/汕头市/澄海区.json";
 import 南澳县 from "./广州省/汕头市/南澳县.json";
-import 汕尾市 from"./广州省/汕尾市.json";
-import 城区 from"./广州省/汕尾市/城区.json";
-import 海丰县 from"./广州省/汕尾市/海丰县.json";
-import 陆河县 from"./广州省/汕尾市/陆河县.json";
+import 汕尾市 from "./广州省/汕尾市.json";
+import 城区 from "./广州省/汕尾市/城区.json";
+import 海丰县 from "./广州省/汕尾市/海丰县.json";
+import 陆河县 from "./广州省/汕尾市/陆河县.json";
 import 陆丰市 from "./广州省/汕尾市/陆丰市.json";
-import 韶关市 from"./广州省/韶关市.json";
-import 武江区 from"./广州省/韶关市/武江区.json";
-import 浈江区 from"./广州省/韶关市/浈江区.json";
-import 曲江区 from"./广州省/韶关市/曲江区.json";
-import 始兴县 from"./广州省/韶关市/始兴县.json";
-import 仁化县 from"./广州省/韶关市/仁化县.json";
-import 翁源县 from"./广州省/韶关市/翁源县.json";
-import 乳源瑶族自治县 from"./广州省/韶关市/乳源瑶族自治县.json";
-import 新丰县 from"./广州省/韶关市/新丰县.json";
-import 乐昌市 from"./广州省/韶关市/乐昌市.json";
+import 韶关市 from "./广州省/韶关市.json";
+import 武江区 from "./广州省/韶关市/武江区.json";
+import 浈江区 from "./广州省/韶关市/浈江区.json";
+import 曲江区 from "./广州省/韶关市/曲江区.json";
+import 始兴县 from "./广州省/韶关市/始兴县.json";
+import 仁化县 from "./广州省/韶关市/仁化县.json";
+import 翁源县 from "./广州省/韶关市/翁源县.json";
+import 乳源瑶族自治县 from "./广州省/韶关市/乳源瑶族自治县.json";
+import 新丰县 from "./广州省/韶关市/新丰县.json";
+import 乐昌市 from "./广州省/韶关市/乐昌市.json";
 import 南雄市 from "./广州省/韶关市/南雄市.json";
-import 深圳市 from"./广州省/深圳市.json";
-import 罗湖区 from"./广州省/深圳市/罗湖区.json";
-import 福田区 from"./广州省/深圳市/福田区.json";
-import 南山区 from"./广州省/深圳市/南山区.json";
-import 宝安区 from"./广州省/深圳市/宝安区.json";
-import 龙岗区 from"./广州省/深圳市/龙岗区.json";
-import 盐田区 from"./广州省/深圳市/盐田区.json";
-import 龙华区 from"./广州省/深圳市/龙华区.json";
-import 坪山区 from"./广州省/深圳市/坪山区.json";
+import 深圳市 from "./广州省/深圳市.json";
+import 罗湖区 from "./广州省/深圳市/罗湖区.json";
+import 福田区 from "./广州省/深圳市/福田区.json";
+import 南山区 from "./广州省/深圳市/南山区.json";
+import 宝安区 from "./广州省/深圳市/宝安区.json";
+import 龙岗区 from "./广州省/深圳市/龙岗区.json";
+import 盐田区 from "./广州省/深圳市/盐田区.json";
+import 龙华区 from "./广州省/深圳市/龙华区.json";
+import 坪山区 from "./广州省/深圳市/坪山区.json";
 import 光明区 from "./广州省/深圳市/光明区.json";
-import 阳江市 from"./广州省/阳江市.json";
-import 江城区 from"./广州省/阳江市/江城区.json";
-import 阳东区 from"./广州省/阳江市/阳东区.json";
-import 阳西县 from"./广州省/阳江市/阳西县.json";
+import 阳江市 from "./广州省/阳江市.json";
+import 江城区 from "./广州省/阳江市/江城区.json";
+import 阳东区 from "./广州省/阳江市/阳东区.json";
+import 阳西县 from "./广州省/阳江市/阳西县.json";
 import 阳春市 from "./广州省/阳江市/阳春市.json";
-import 云浮市 from"./广州省/云浮市.json";
-import 云城区 from"./广州省/云浮市/云城区.json";
-import 云安区 from"./广州省/云浮市/云安区.json";
-import 新兴县 from"./广州省/云浮市/新兴县.json";
-import 郁南县 from"./广州省/云浮市/郁南县.json";
+import 云浮市 from "./广州省/云浮市.json";
+import 云城区 from "./广州省/云浮市/云城区.json";
+import 云安区 from "./广州省/云浮市/云安区.json";
+import 新兴县 from "./广州省/云浮市/新兴县.json";
+import 郁南县 from "./广州省/云浮市/郁南县.json";
 import 罗定市 from "./广州省/云浮市/罗定市.json";
-import 湛江市 from"./广州省/湛江市.json";
-import 赤坎区 from"./广州省/湛江市/赤坎区.json";
-import 霞山区 from"./广州省/湛江市/霞山区.json";
-import 坡头区 from"./广州省/湛江市/坡头区.json";
-import 麻章区 from"./广州省/湛江市/麻章区.json";
-import 遂溪县 from"./广州省/湛江市/遂溪县.json";
-import 徐闻县 from"./广州省/湛江市/徐闻县.json";
-import 廉江市 from"./广州省/湛江市/廉江市.json";
+import 湛江市 from "./广州省/湛江市.json";
+import 赤坎区 from "./广州省/湛江市/赤坎区.json";
+import 霞山区 from "./广州省/湛江市/霞山区.json";
+import 坡头区 from "./广州省/湛江市/坡头区.json";
+import 麻章区 from "./广州省/湛江市/麻章区.json";
+import 遂溪县 from "./广州省/湛江市/遂溪县.json";
+import 徐闻县 from "./广州省/湛江市/徐闻县.json";
+import 廉江市 from "./广州省/湛江市/廉江市.json";
 import 雷州市 from "./广州省/湛江市/雷州市.json";
-import 肇庆市 from"./广州省/肇庆市.json";
-import 端州区 from"./广州省/肇庆市/端州区.json";
-import 鼎湖区 from"./广州省/肇庆市/鼎湖区.json";
-import 高要区 from"./广州省/肇庆市/高要区.json";
-import 广宁县 from"./广州省/肇庆市/广宁县.json";
-import 怀集县 from"./广州省/肇庆市/怀集县.json";
-import 封开县 from"./广州省/肇庆市/封开县.json";
-import 德庆县 from"./广州省/肇庆市/德庆县.json";
+import 肇庆市 from "./广州省/肇庆市.json";
+import 端州区 from "./广州省/肇庆市/端州区.json";
+import 鼎湖区 from "./广州省/肇庆市/鼎湖区.json";
+import 高要区 from "./广州省/肇庆市/高要区.json";
+import 广宁县 from "./广州省/肇庆市/广宁县.json";
+import 怀集县 from "./广州省/肇庆市/怀集县.json";
+import 封开县 from "./广州省/肇庆市/封开县.json";
+import 德庆县 from "./广州省/肇庆市/德庆县.json";
 import 四会市 from "./广州省/肇庆市/四会市.json";
 import 中山市 from "./广州省/中山市.json";
-import 珠海市 from"./广州省/珠海市.json";
-import 香洲区 from"./广州省/珠海市/香洲区.json";
-import 斗门区 from"./广州省/珠海市/斗门区.json";
+import 珠海市 from "./广州省/珠海市.json";
+import 香洲区 from "./广州省/珠海市/香洲区.json";
+import 斗门区 from "./广州省/珠海市/斗门区.json";
 import 金湾区 from "./广州省/珠海市/金湾区.json";
 // 山西
-import 大同市 from"./山西省/大同市/大同市.json";
-import 新荣区 from"./山西省/大同市/新荣区.json";
-import 平城区 from"./山西省/大同市/平城区.json";
-import 云冈区 from"./山西省/大同市/云冈区.json";
-import 云州区 from"./山西省/大同市/云州区.json";
-import 阳高县 from"./山西省/大同市/阳高县.json";
-import 天镇县 from"./山西省/大同市/天镇县.json";
-import 广灵县 from"./山西省/大同市/广灵县.json";
-import 灵丘县 from"./山西省/大同市/灵丘县.json";
-import 浑源县 from"./山西省/大同市/浑源县.json";
+import 大同市 from "./山西省/大同市/大同市.json";
+import 新荣区 from "./山西省/大同市/新荣区.json";
+import 平城区 from "./山西省/大同市/平城区.json";
+import 云冈区 from "./山西省/大同市/云冈区.json";
+import 云州区 from "./山西省/大同市/云州区.json";
+import 阳高县 from "./山西省/大同市/阳高县.json";
+import 天镇县 from "./山西省/大同市/天镇县.json";
+import 广灵县 from "./山西省/大同市/广灵县.json";
+import 灵丘县 from "./山西省/大同市/灵丘县.json";
+import 浑源县 from "./山西省/大同市/浑源县.json";
 import 左云县 from "./山西省/大同市/左云县.json";
-import 晋城市 from"./山西省/晋城市/晋城市.json";
-import 晋城市城区 from"./山西省/晋城市/城区.json";
-import 沁水县 from"./山西省/晋城市/沁水县.json";
-import 阳城县 from"./山西省/晋城市/阳城县.json";
-import 陵川县 from"./山西省/晋城市/陵川县.json";
-import 泽州县 from"./山西省/晋城市/泽州县.json";
-import 高平市 from  "./山西省/晋城市/高平市.json";
-import 晋中市 from"./山西省/晋中市/晋中市.json";
-import 榆次区 from"./山西省/晋中市/榆次区.json";
-import 太谷区 from"./山西省/晋中市/太谷区.json";
-import 榆社县 from"./山西省/晋中市/榆社县.json";
-import 左权县 from"./山西省/晋中市/左权县.json";
-import 和顺县 from"./山西省/晋中市/和顺县.json";
-import 昔阳县 from"./山西省/晋中市/昔阳县.json";
-import 寿阳县 from"./山西省/晋中市/寿阳县.json";
-import 祁县 from"./山西省/晋中市/祁县.json";
-import 平遥县 from"./山西省/晋中市/平遥县.json";
-import 灵石县 from"./山西省/晋中市/灵石县.json";
-import 介休市 from  "./山西省/晋中市/介休市.json";
-import 临汾市 from"./山西省/临汾市/临汾市.json";
-import 尧都区 from"./山西省/临汾市/尧都区.json";
-import 曲沃县 from"./山西省/临汾市/曲沃县.json";
-import 翼城县 from"./山西省/临汾市/翼城县.json";
-import 襄汾县 from"./山西省/临汾市/襄汾县.json";
-import 洪洞县 from"./山西省/临汾市/洪洞县.json";
-import 古县 from"./山西省/临汾市/古县.json";
-import 安泽县 from"./山西省/临汾市/安泽县.json";
-import 浮山县 from"./山西省/临汾市/浮山县.json";
-import 吉县 from"./山西省/临汾市/吉县.json";
-import 乡宁县 from"./山西省/临汾市/乡宁县.json";
-import 大宁县 from"./山西省/临汾市/大宁县.json";
-import 隰县 from"./山西省/临汾市/隰县.json";
-import 永和县 from"./山西省/临汾市/永和县.json";
-import 蒲县 from"./山西省/临汾市/蒲县.json";
-import 汾西县 from"./山西省/临汾市/汾西县.json";
-import 侯马市 from"./山西省/临汾市/侯马市.json";
-import 霍州市 from  "./山西省/临汾市/霍州市.json";
-import 吕梁市 from"./山西省/吕梁市/吕梁市.json";
-import 离石区 from"./山西省/吕梁市/离石区.json";
-import 文水县 from"./山西省/吕梁市/文水县.json";
-import 交城县 from"./山西省/吕梁市/交城县.json";
-import 兴县 from"./山西省/吕梁市/兴县.json";
-import 临县 from"./山西省/吕梁市/临县.json";
-import 柳林县 from"./山西省/吕梁市/柳林县.json";
-import 石楼县 from"./山西省/吕梁市/石楼县.json";
-import 岚县 from"./山西省/吕梁市/岚县.json";
-import 方山县 from"./山西省/吕梁市/方山县.json";
-import 中阳县 from"./山西省/吕梁市/中阳县.json";
-import 交口县 from"./山西省/吕梁市/交口县.json";
-import 孝义市 from"./山西省/吕梁市/孝义市.json";
-import 汾阳市 from  "./山西省/吕梁市/汾阳市.json";
-import 朔州市 from"./山西省/朔州市/朔州市.json";
-import 朔城区 from"./山西省/朔州市/朔城区.json";
-import 平鲁区 from"./山西省/朔州市/平鲁区.json";
-import 山阴县 from"./山西省/朔州市/山阴县.json";
-import 应县 from"./山西省/朔州市/应县.json";
-import 右玉县 from"./山西省/朔州市/右玉县.json";
-import 怀仁市 from  "./山西省/朔州市/怀仁市.json";
-import 太原市 from"./山西省/太原市/太原市.json";
-import 小店区 from"./山西省/太原市/小店区.json";
-import 迎泽区 from"./山西省/太原市/迎泽区.json";
-import 杏花岭区 from"./山西省/太原市/杏花岭区.json";
-import 尖草坪区 from"./山西省/太原市/尖草坪区.json";
-import 万柏林区 from"./山西省/太原市/万柏林区.json";
-import 晋源区 from"./山西省/太原市/晋源区.json";
-import 清徐县 from"./山西省/太原市/清徐县.json";
-import 阳曲县 from"./山西省/太原市/阳曲县.json";
-import 娄烦县 from"./山西省/太原市/娄烦县.json";
-import 古交市 from  "./山西省/太原市/古交市.json";
-import 忻州市 from"./山西省/忻州市/忻州市.json";
-import 忻府区 from"./山西省/忻州市/忻府区.json";
-import 定襄县 from"./山西省/忻州市/定襄县.json";
-import 五台县 from"./山西省/忻州市/五台县.json";
-import 代县 from"./山西省/忻州市/代县.json";
-import 繁峙县 from"./山西省/忻州市/繁峙县.json";
-import 宁武县 from"./山西省/忻州市/宁武县.json";
-import 静乐县 from"./山西省/忻州市/静乐县.json";
-import 神池县 from"./山西省/忻州市/神池县.json";
-import 五寨县 from"./山西省/忻州市/五寨县.json";
-import 岢岚县 from"./山西省/忻州市/岢岚县.json";
-import 河曲县 from"./山西省/忻州市/河曲县.json";
-import 保德县 from"./山西省/忻州市/保德县.json";
-import 偏关县 from"./山西省/忻州市/偏关县.json";
-import 原平市 from  "./山西省/忻州市/原平市.json";
-import 阳泉市 from"./山西省/阳泉市/阳泉市.json";
-import 阳泉市城区 from"./山西省/阳泉市/城区.json";
-import 矿区 from"./山西省/阳泉市/矿区.json";
-import 阳泉市郊区 from"./山西省/阳泉市/郊区.json";
-import 平定县 from"./山西省/阳泉市/平定县.json";
-import 盂县 from  "./山西省/阳泉市/盂县.json";
-import 运城市 from"./山西省/运城市/运城市.json";
-import 盐湖区 from"./山西省/运城市/盐湖区.json";
-import 临猗县 from"./山西省/运城市/临猗县.json";
-import 万荣县 from"./山西省/运城市/万荣县.json";
-import 闻喜县 from"./山西省/运城市/闻喜县.json";
-import 稷山县 from"./山西省/运城市/稷山县.json";
-import 新绛县 from"./山西省/运城市/新绛县.json";
-import 绛县 from"./山西省/运城市/绛县.json";
-import 垣曲县 from"./山西省/运城市/垣曲县.json";
-import 夏县 from"./山西省/运城市/夏县.json";
-import 平陆县 from"./山西省/运城市/平陆县.json";
-import 芮城县 from"./山西省/运城市/芮城县.json";
-import 永济市 from"./山西省/运城市/永济市.json";
-import 河津市 from  "./山西省/运城市/河津市.json";
-import 长治市 from"./山西省/长治市/长治市.json";
-import 潞州区 from"./山西省/长治市/潞州区.json";
-import 上党区 from"./山西省/长治市/上党区.json";
-import 屯留区 from"./山西省/长治市/屯留区.json";
-import 潞城区 from"./山西省/长治市/潞城区.json";
-import 襄垣县 from"./山西省/长治市/襄垣县.json";
-import 平顺县 from"./山西省/长治市/平顺县.json";
-import 黎城县 from"./山西省/长治市/黎城县.json";
-import 壶关县 from"./山西省/长治市/壶关县.json";
-import 长子县 from"./山西省/长治市/长子县.json";
-import 武乡县 from"./山西省/长治市/武乡县.json";
-import 沁县 from"./山西省/长治市/沁县.json";
-import 沁源县 from"./山西省/长治市/沁源县.json";
+import 晋城市 from "./山西省/晋城市/晋城市.json";
+import 晋城市城区 from "./山西省/晋城市/城区.json";
+import 沁水县 from "./山西省/晋城市/沁水县.json";
+import 阳城县 from "./山西省/晋城市/阳城县.json";
+import 陵川县 from "./山西省/晋城市/陵川县.json";
+import 泽州县 from "./山西省/晋城市/泽州县.json";
+import 高平市 from "./山西省/晋城市/高平市.json";
+import 晋中市 from "./山西省/晋中市/晋中市.json";
+import 榆次区 from "./山西省/晋中市/榆次区.json";
+import 太谷区 from "./山西省/晋中市/太谷区.json";
+import 榆社县 from "./山西省/晋中市/榆社县.json";
+import 左权县 from "./山西省/晋中市/左权县.json";
+import 和顺县 from "./山西省/晋中市/和顺县.json";
+import 昔阳县 from "./山西省/晋中市/昔阳县.json";
+import 寿阳县 from "./山西省/晋中市/寿阳县.json";
+import 祁县 from "./山西省/晋中市/祁县.json";
+import 平遥县 from "./山西省/晋中市/平遥县.json";
+import 灵石县 from "./山西省/晋中市/灵石县.json";
+import 介休市 from "./山西省/晋中市/介休市.json";
+import 临汾市 from "./山西省/临汾市/临汾市.json";
+import 尧都区 from "./山西省/临汾市/尧都区.json";
+import 曲沃县 from "./山西省/临汾市/曲沃县.json";
+import 翼城县 from "./山西省/临汾市/翼城县.json";
+import 襄汾县 from "./山西省/临汾市/襄汾县.json";
+import 洪洞县 from "./山西省/临汾市/洪洞县.json";
+import 古县 from "./山西省/临汾市/古县.json";
+import 安泽县 from "./山西省/临汾市/安泽县.json";
+import 浮山县 from "./山西省/临汾市/浮山县.json";
+import 吉县 from "./山西省/临汾市/吉县.json";
+import 乡宁县 from "./山西省/临汾市/乡宁县.json";
+import 大宁县 from "./山西省/临汾市/大宁县.json";
+import 隰县 from "./山西省/临汾市/隰县.json";
+import 永和县 from "./山西省/临汾市/永和县.json";
+import 蒲县 from "./山西省/临汾市/蒲县.json";
+import 汾西县 from "./山西省/临汾市/汾西县.json";
+import 侯马市 from "./山西省/临汾市/侯马市.json";
+import 霍州市 from "./山西省/临汾市/霍州市.json";
+import 吕梁市 from "./山西省/吕梁市/吕梁市.json";
+import 离石区 from "./山西省/吕梁市/离石区.json";
+import 文水县 from "./山西省/吕梁市/文水县.json";
+import 交城县 from "./山西省/吕梁市/交城县.json";
+import 兴县 from "./山西省/吕梁市/兴县.json";
+import 临县 from "./山西省/吕梁市/临县.json";
+import 柳林县 from "./山西省/吕梁市/柳林县.json";
+import 石楼县 from "./山西省/吕梁市/石楼县.json";
+import 岚县 from "./山西省/吕梁市/岚县.json";
+import 方山县 from "./山西省/吕梁市/方山县.json";
+import 中阳县 from "./山西省/吕梁市/中阳县.json";
+import 交口县 from "./山西省/吕梁市/交口县.json";
+import 孝义市 from "./山西省/吕梁市/孝义市.json";
+import 汾阳市 from "./山西省/吕梁市/汾阳市.json";
+import 朔州市 from "./山西省/朔州市/朔州市.json";
+import 朔城区 from "./山西省/朔州市/朔城区.json";
+import 平鲁区 from "./山西省/朔州市/平鲁区.json";
+import 山阴县 from "./山西省/朔州市/山阴县.json";
+import 应县 from "./山西省/朔州市/应县.json";
+import 右玉县 from "./山西省/朔州市/右玉县.json";
+import 怀仁市 from "./山西省/朔州市/怀仁市.json";
+import 太原市 from "./山西省/太原市/太原市.json";
+import 小店区 from "./山西省/太原市/小店区.json";
+import 迎泽区 from "./山西省/太原市/迎泽区.json";
+import 杏花岭区 from "./山西省/太原市/杏花岭区.json";
+import 尖草坪区 from "./山西省/太原市/尖草坪区.json";
+import 万柏林区 from "./山西省/太原市/万柏林区.json";
+import 晋源区 from "./山西省/太原市/晋源区.json";
+import 清徐县 from "./山西省/太原市/清徐县.json";
+import 阳曲县 from "./山西省/太原市/阳曲县.json";
+import 娄烦县 from "./山西省/太原市/娄烦县.json";
+import 古交市 from "./山西省/太原市/古交市.json";
+import 忻州市 from "./山西省/忻州市/忻州市.json";
+import 忻府区 from "./山西省/忻州市/忻府区.json";
+import 定襄县 from "./山西省/忻州市/定襄县.json";
+import 五台县 from "./山西省/忻州市/五台县.json";
+import 代县 from "./山西省/忻州市/代县.json";
+import 繁峙县 from "./山西省/忻州市/繁峙县.json";
+import 宁武县 from "./山西省/忻州市/宁武县.json";
+import 静乐县 from "./山西省/忻州市/静乐县.json";
+import 神池县 from "./山西省/忻州市/神池县.json";
+import 五寨县 from "./山西省/忻州市/五寨县.json";
+import 岢岚县 from "./山西省/忻州市/岢岚县.json";
+import 河曲县 from "./山西省/忻州市/河曲县.json";
+import 保德县 from "./山西省/忻州市/保德县.json";
+import 偏关县 from "./山西省/忻州市/偏关县.json";
+import 原平市 from "./山西省/忻州市/原平市.json";
+import 阳泉市 from "./山西省/阳泉市/阳泉市.json";
+import 阳泉市城区 from "./山西省/阳泉市/城区.json";
+import 矿区 from "./山西省/阳泉市/矿区.json";
+import 阳泉市郊区 from "./山西省/阳泉市/郊区.json";
+import 平定县 from "./山西省/阳泉市/平定县.json";
+import 盂县 from "./山西省/阳泉市/盂县.json";
+import 运城市 from "./山西省/运城市/运城市.json";
+import 盐湖区 from "./山西省/运城市/盐湖区.json";
+import 临猗县 from "./山西省/运城市/临猗县.json";
+import 万荣县 from "./山西省/运城市/万荣县.json";
+import 闻喜县 from "./山西省/运城市/闻喜县.json";
+import 稷山县 from "./山西省/运城市/稷山县.json";
+import 新绛县 from "./山西省/运城市/新绛县.json";
+import 绛县 from "./山西省/运城市/绛县.json";
+import 垣曲县 from "./山西省/运城市/垣曲县.json";
+import 夏县 from "./山西省/运城市/夏县.json";
+import 平陆县 from "./山西省/运城市/平陆县.json";
+import 芮城县 from "./山西省/运城市/芮城县.json";
+import 永济市 from "./山西省/运城市/永济市.json";
+import 河津市 from "./山西省/运城市/河津市.json";
+import 长治市 from "./山西省/长治市/长治市.json";
+import 潞州区 from "./山西省/长治市/潞州区.json";
+import 上党区 from "./山西省/长治市/上党区.json";
+import 屯留区 from "./山西省/长治市/屯留区.json";
+import 潞城区 from "./山西省/长治市/潞城区.json";
+import 襄垣县 from "./山西省/长治市/襄垣县.json";
+import 平顺县 from "./山西省/长治市/平顺县.json";
+import 黎城县 from "./山西省/长治市/黎城县.json";
+import 壶关县 from "./山西省/长治市/壶关县.json";
+import 长子县 from "./山西省/长治市/长子县.json";
+import 武乡县 from "./山西省/长治市/武乡县.json";
+import 沁县 from "./山西省/长治市/沁县.json";
+import 沁源县 from "./山西省/长治市/沁源县.json";
+//青海
+import 果洛藏族自治州 from "./青海省/果洛藏族自治州/果洛藏族自治州.json";
+import 玛沁县 from "./青海省/果洛藏族自治州/玛沁县.json";
+import 班玛县 from "./青海省/果洛藏族自治州/班玛县.json";
+import 甘德县 from "./青海省/果洛藏族自治州/甘德县.json";
+import 达日县 from "./青海省/果洛藏族自治州/达日县.json";
+import 久治县 from "./青海省/果洛藏族自治州/久治县.json";
+import 玛多县 from "./青海省/果洛藏族自治州/玛多县.json";
+import 海北藏族自治州 from "./青海省/海北藏族自治州/海北藏族自治州.json";
+import 海晏县 from "./青海省/海北藏族自治州/海晏县.json";
+import 祁连县 from "./青海省/海北藏族自治州/祁连县.json";
+import 刚察县 from "./青海省/海北藏族自治州/刚察县.json";
+import 门源回族自治县 from "./青海省/海北藏族自治州/门源回族自治县.json";
+import 海东市 from "./青海省/海东市/海东市.json";
+import 乐都区 from "./青海省/海东市/乐都区.json";
+import 平安区 from "./青海省/海东市/平安区.json";
+import 民和回族土族自治县 from "./青海省/海东市/民和回族土族自治县.json";
+import 互助土族自治县 from "./青海省/海东市/互助土族自治县.json";
+import 化隆回族自治县 from "./青海省/海东市/化隆回族自治县.json";
+import 循化撒拉族自治县 from "./青海省/海东市/循化撒拉族自治县.json";
+import 海南藏族自治州 from "./青海省/海南藏族自治州/海南藏族自治州.json";
+import 共和县 from "./青海省/海南藏族自治州/共和县.json";
+import 同德县 from "./青海省/海南藏族自治州/同德县.json";
+import 贵德县 from "./青海省/海南藏族自治州/贵德县.json";
+import 兴海县 from "./青海省/海南藏族自治州/兴海县.json";
+import 贵南县 from "./青海省/海南藏族自治州/贵南县.json";
+import 海西蒙古族藏族自治州 from "./青海省/海西蒙古族藏族自治州/海西蒙古族藏族自治州.json";
+import 德令哈市 from "./青海省/海西蒙古族藏族自治州/德令哈市.json";
+import 格尔木市 from "./青海省/海西蒙古族藏族自治州/格尔木市.json";
+import 茫崖市 from "./青海省/海西蒙古族藏族自治州/茫崖市.json";
+import 天峻县 from "./青海省/海西蒙古族藏族自治州/天峻县.json";
+import 都兰县 from "./青海省/海西蒙古族藏族自治州/都兰县.json";
+import 乌兰县 from "./青海省/海西蒙古族藏族自治州/乌兰县.json";
+import 黄南藏族自治州 from "./青海省/黄南藏族自治州/黄南藏族自治州.json";
+import 同仁市 from "./青海省/黄南藏族自治州/同仁市.json";
+import 尖扎县 from "./青海省/黄南藏族自治州/尖扎县.json";
+import 泽库县 from "./青海省/黄南藏族自治州/泽库县.json";
+import 河南蒙古族自治县 from "./青海省/黄南藏族自治州/河南蒙古族自治县.json";
+import 西宁市 from "./青海省/西宁市/西宁市.json";
+import 西宁市城中区 from "./青海省/西宁市/城中区.json";
+import 城东区 from "./青海省/西宁市/城东区.json";
+import 城西区 from "./青海省/西宁市/城西区.json";
+import 城北区 from "./青海省/西宁市/城北区.json";
+import 湟中区 from "./青海省/西宁市/湟中区?.json";
+import 大通回族土族自治县 from "./青海省/西宁市/大通回族土族自治县.json";
+import 湟源县 from "./青海省/西宁市/湟源县.json";
+import 玉树藏族自治州 from "./青海省/玉树藏族自治州/玉树藏族自治州.json";
+import 玉树市 from "./青海省/玉树藏族自治州/玉树市.json";
+import 杂多县 from "./青海省/玉树藏族自治州/杂多县.json";
+import 称多县 from "./青海省/玉树藏族自治州/称多县.json";
+import 治多县 from "./青海省/玉树藏族自治州/治多县.json";
+import 囊谦县 from "./青海省/玉树藏族自治州/囊谦县.json";
+import 曲麻莱县 from "./青海省/玉树藏族自治州/曲麻莱县.json";
+//重庆
+import 巴南区 from "./重庆/巴南区.json";
+import 北碚区 from "./重庆/北碚区.json";
+import 璧山区 from "./重庆/璧山区.json";
+import 城口县 from "./重庆/城口县.json";
+import 大渡口区 from "./重庆/大渡口区.json";
+import 大足区 from "./重庆/大足区.json";
+import 垫江县 from "./重庆/垫江县.json";
+import 丰都县 from "./重庆/丰都县.json";
+import 奉节县 from "./重庆/奉节县.json";
+import 涪陵区 from "./重庆/涪陵区.json";
+import 合川区 from "./重庆/合川区.json";
+import 江北区 from "./重庆/江北区.json";
+import 江津区 from "./重庆/江津区.json";
+import 九龙坡区 from "./重庆/九龙坡区.json";
+import 开州区 from "./重庆/开州区.json";
+import 梁平区 from "./重庆/梁平区.json";
+import 南岸区 from "./重庆/南岸区.json";
+import 黔江区 from "./重庆/黔江区.json";
+import 綦江区 from "./重庆/綦江区.json";
+import 荣昌区 from "./重庆/荣昌区.json";
+import 沙坪坝区 from "./重庆/沙坪坝区.json";
+import 铜梁区 from "./重庆/铜梁区.json";
+import 彭水苗族土家族自治县 from "./重庆/彭水苗族土家族自治县.json";
+import 石柱土家族自治县 from "./重庆/石柱土家族自治县.json";
+import 潼南区 from "./重庆/潼南区.json";
+import 万州区 from "./重庆/万州区.json";
+import 巫山县 from "./重庆/巫山县.json";
+import 巫溪县 from "./重庆/巫溪县.json";
+import 武隆区 from "./重庆/武隆区.json";
+import 永川区 from "./重庆/永川区.json";
+import 秀山土家族苗族自治县 from "./重庆/秀山土家族苗族自治县.json";
+import 酉阳土家族苗族自治县 from "./重庆/酉阳土家族苗族自治县.json";
+import 渝北区 from "./重庆/渝北区.json";
+import 渝中区 from "./重庆/渝中区.json";
+import 云阳县 from "./重庆/云阳县.json";
+import 长寿区 from "./重庆/长寿区.json";
+import 忠县 from "./重庆/忠县.json";
+// 四川
+import 成都市 from "./四川省/成都市/成都市.json";
+import 崇州市 from "./四川省/成都市/崇州市.json";
+import 大邑县 from "./四川省/成都市/大邑县.json";
+import 都江堰市 from "./四川省/成都市/都江堰市.json";
+import 简阳市 from "./四川省/成都市/简阳市.json";
+import 金牛区 from "./四川省/成都市/金牛区.json";
+import 金堂县 from "./四川省/成都市/金堂县.json";
+import 锦江区 from "./四川省/成都市/锦江区.json";
+import 龙泉驿区 from "./四川省/成都市/龙泉驿区.json";
+import 彭州市 from "./四川省/成都市/彭州市.json";
+import 郫都区 from "./四川省/成都市/郫都区.json";
+import 蒲江县 from "./四川省/成都市/蒲江县.json";
+import 青白江区 from "./四川省/成都市/青白江区.json";
+import 青羊区 from "./四川省/成都市/青羊区.json";
+import 邛崃市 from "./四川省/成都市/邛崃市.json";
+import 双流区 from "./四川省/成都市/双流区.json";
+import 温江区 from "./四川省/成都市/温江区.json";
+import 新都区 from "./四川省/成都市/新都区.json";
+import 新津区 from "./四川省/成都市/新津区.json";
+import 阿坝藏族羌族自治州 from "./四川省/阿坝藏族羌族自治州.json";
+import 巴中市 from "./四川省/巴中市.json";
+import 达州市 from "./四川省/达州市.json";
+import 德阳市 from "./四川省/德阳市.json";
+import 乐山市 from "./四川省/乐山市.json";
+import 泸州市 from "./四川省/泸州市.json";
+import 眉山市 from "./四川省/眉山市.json";
+import 南充市 from "./四川省/南充市.json";
+import 遂宁市 from "./四川省/遂宁市.json";
+import 雅安市 from "./四川省/雅安市.json";
+import 甘孜藏族自治州 from "./四川省/甘孜藏族自治州.json";
+import 凉山彝族自治州 from "./四川省/凉山彝族自治州.json";
+import 攀枝花市 from "./四川省/攀枝花市.json";
 export {
   China,
   中华人民共和国,
@@ -1373,161 +1500,161 @@ export {
   驻马店市,
   信阳市,
   安阳县,
-北关区,
-滑县,
-林州市,
-龙安区,
-内黄县,
-汤阴县,
-文峰区,
-殷都区,
-鹤山区,
-浚县,
-淇滨区,
-淇县,
-山城区,
-博爱县,
-解放区,
-马村区,
-孟州市,
-沁阳市,
-山阳区,
-温县,
-武陟县,
-修武县,
-中站区,
-// 河南鼓楼区,
-兰考县,
-龙亭区,
-杞县,
+  北关区,
+  滑县,
+  林州市,
+  龙安区,
+  内黄县,
+  汤阴县,
+  文峰区,
+  殷都区,
+  鹤山区,
+  浚县,
+  淇滨区,
+  淇县,
+  山城区,
+  博爱县,
+  解放区,
+  马村区,
+  孟州市,
+  沁阳市,
+  山阳区,
+  温县,
+  武陟县,
+  修武县,
+  中站区,
+  // 河南鼓楼区,
+  兰考县,
+  龙亭区,
+  杞县,
   顺河回族区,
   通许县,
-尉氏县,
-祥符区,
+  尉氏县,
+  祥符区,
   禹王台区,
-瀍河回族区,
-老城区,
-涧西区,
-栾川县,
-洛龙区,
-洛宁县,
-孟津区,
-汝阳县,
-嵩县,
-西工区,
-新安县,
-偃师区,
-伊川县,
-宜阳县,
-临颍县,
-舞阳县,
-郾城区,
-源汇区,
-召陵区,
-邓州市,
-方城县,
-南召县,
-内乡县,
-社旗县,
-唐河县,
-桐柏县,
-宛城区,
-卧龙区,
-西峡县,
-淅川县,
-新野县,
-镇平县,
-宝丰县,
-郏县,
-鲁山县,
-汝州市,
-石龙区,
-卫东区,
-舞钢市,
-新华区,
-叶县,
-湛河区,
-范县,
-华龙区,
-南乐县,
-濮阳县,
-清丰县,
-台前县,
-湖滨区,
-灵宝市,
-卢氏县,
-渑池县,
-陕州区,
-义马市,
-梁园区,
-民权县,
-宁陵县,
-睢县,
-睢阳区,
-夏邑县,
-永城市,
-虞城县,
-柘城县,
-封丘县,
-凤泉区,
-红旗区,
-辉县市,
-获嘉县,
-牧野区,
-卫滨区,
-卫辉市,
-新乡县,
-延津县,
-原阳县,
-长垣市,
-固始县,
-光山县,
-淮滨县,
-潢川县,
-罗山县,
-平桥区,
-商城县,
-浉河区,
-息县,
-新县,
-建安区,
-魏都区,
-襄城县,
-鄢陵县,
-禹州市,
-长葛市,
-登封市,
-二七区,
-巩义市,
-管城回族区,
-惠济区,
-金水区,
-上街区,
-新密市,
-新郑市,
-荥阳市,
-中牟县,
-中原区,
-川汇区,
-郸城县,
-扶沟县,
-淮阳区,
-鹿邑县,
-商水县,
-沈丘县,
-太康县,
-西华县,
-项城市,
-泌阳县,
-平舆县,
-确山县,
-汝南县,
-上蔡县,
-遂平县,
-西平县,
-新蔡县,
-驿城区,
-正阳县,
+  瀍河回族区,
+  老城区,
+  涧西区,
+  栾川县,
+  洛龙区,
+  洛宁县,
+  孟津区,
+  汝阳县,
+  嵩县,
+  西工区,
+  新安县,
+  偃师区,
+  伊川县,
+  宜阳县,
+  临颍县,
+  舞阳县,
+  郾城区,
+  源汇区,
+  召陵区,
+  邓州市,
+  方城县,
+  南召县,
+  内乡县,
+  社旗县,
+  唐河县,
+  桐柏县,
+  宛城区,
+  卧龙区,
+  西峡县,
+  淅川县,
+  新野县,
+  镇平县,
+  宝丰县,
+  郏县,
+  鲁山县,
+  汝州市,
+  石龙区,
+  卫东区,
+  舞钢市,
+  新华区,
+  叶县,
+  湛河区,
+  范县,
+  华龙区,
+  南乐县,
+  濮阳县,
+  清丰县,
+  台前县,
+  湖滨区,
+  灵宝市,
+  卢氏县,
+  渑池县,
+  陕州区,
+  义马市,
+  梁园区,
+  民权县,
+  宁陵县,
+  睢县,
+  睢阳区,
+  夏邑县,
+  永城市,
+  虞城县,
+  柘城县,
+  封丘县,
+  凤泉区,
+  红旗区,
+  辉县市,
+  获嘉县,
+  牧野区,
+  卫滨区,
+  卫辉市,
+  新乡县,
+  延津县,
+  原阳县,
+  长垣市,
+  固始县,
+  光山县,
+  淮滨县,
+  潢川县,
+  罗山县,
+  平桥区,
+  商城县,
+  浉河区,
+  息县,
+  新县,
+  建安区,
+  魏都区,
+  襄城县,
+  鄢陵县,
+  禹州市,
+  长葛市,
+  登封市,
+  二七区,
+  巩义市,
+  管城回族区,
+  惠济区,
+  金水区,
+  上街区,
+  新密市,
+  新郑市,
+  荥阳市,
+  中牟县,
+  中原区,
+  川汇区,
+  郸城县,
+  扶沟县,
+  淮阳区,
+  鹿邑县,
+  商水县,
+  沈丘县,
+  太康县,
+  西华县,
+  项城市,
+  泌阳县,
+  平舆县,
+  确山县,
+  汝南县,
+  上蔡县,
+  遂平县,
+  西平县,
+  新蔡县,
+  驿城区,
+  正阳县,
   安徽,
   安庆市,
   怀宁县,
@@ -2419,273 +2546,397 @@ export {
   沂源县,
   广东,
   潮州市,
-湘桥区,
-潮安区,
-饶平县,
-东莞市,
-佛山市,
-禅城区,
-南海区,
-顺德区,
-三水区,
-高明区,
-广州市,
-荔湾区,
-越秀区,
-海珠区,
-天河区,
-白云区,
-黄埔区,
-番禺区,
-花都区,
-南沙区,
-从化区,
-增城区,
-河源市,
-源城区,
-紫金县,
-龙川县,
-连平县,
-和平县,
-东源县,
-惠州市,
-惠城区,
-惠阳区,
-博罗县,
-惠东县,
-龙门县,
-蓬江区,
-江海区,
-新会区,
-台山市,
-开平市,
-鹤山市,
-恩平市,
-揭阳市,
-榕城区,
-揭东区,
-揭西县,
-惠来县,
-普宁市,
-茂名市,
-茂南区,
-电白区,
-高州市,
-化州市,
-信宜市,
-梅州市,
-梅江区,
-梅县区,
-大埔县,
-丰顺县,
-五华县,
-平远县,
-蕉岭县,
-兴宁市,
-清远市,
-清城区,
-清新区,
-佛冈县,
-阳山县,
-连山壮族瑶族自治县,
-连南瑶族自治县,
-英德市,
-连州市,
-汕头市,
-龙湖区,
-金平区,
-濠江区,
-潮阳区,
-潮南区,
-澄海区,
-南澳县,
-汕尾市,
-城区,
-海丰县,
-陆河县,
-陆丰市,
-韶关市,
-武江区,
-浈江区,
-曲江区,
-始兴县,
-仁化县,
-翁源县,
-乳源瑶族自治县,
-新丰县,
-乐昌市,
-南雄市,
-深圳市,
-罗湖区,
-福田区,
-南山区,
-宝安区,
-龙岗区,
-盐田区,
-龙华区,
-坪山区,
-光明区,
-阳江市,
-江城区,
-阳东区,
-阳西县,
-阳春市,
-云浮市,
-云城区,
-云安区,
-新兴县,
-郁南县,
-罗定市,
-湛江市,
-赤坎区,
-霞山区,
-坡头区,
-麻章区,
-遂溪县,
-徐闻县,
-廉江市,
-雷州市,
-肇庆市,
-端州区,
-鼎湖区,
-高要区,
-广宁县,
-怀集县,
-封开县,
-德庆县,
-四会市,
-中山市,
-珠海市,
-香洲区,
-斗门区,
-金湾区,
+  湘桥区,
+  潮安区,
+  饶平县,
+  东莞市,
+  佛山市,
+  禅城区,
+  南海区,
+  顺德区,
+  三水区,
+  高明区,
+  广州市,
+  荔湾区,
+  越秀区,
+  海珠区,
+  天河区,
+  白云区,
+  黄埔区,
+  番禺区,
+  花都区,
+  南沙区,
+  从化区,
+  增城区,
+  河源市,
+  源城区,
+  紫金县,
+  龙川县,
+  连平县,
+  和平县,
+  东源县,
+  惠州市,
+  惠城区,
+  惠阳区,
+  博罗县,
+  惠东县,
+  龙门县,
+  蓬江区,
+  江海区,
+  新会区,
+  台山市,
+  开平市,
+  鹤山市,
+  恩平市,
+  揭阳市,
+  榕城区,
+  揭东区,
+  揭西县,
+  惠来县,
+  普宁市,
+  茂名市,
+  茂南区,
+  电白区,
+  高州市,
+  化州市,
+  信宜市,
+  梅州市,
+  梅江区,
+  梅县区,
+  大埔县,
+  丰顺县,
+  五华县,
+  平远县,
+  蕉岭县,
+  兴宁市,
+  清远市,
+  清城区,
+  清新区,
+  佛冈县,
+  阳山县,
+  连山壮族瑶族自治县,
+  连南瑶族自治县,
+  英德市,
+  连州市,
+  汕头市,
+  龙湖区,
+  金平区,
+  濠江区,
+  潮阳区,
+  潮南区,
+  澄海区,
+  南澳县,
+  汕尾市,
+  城区,
+  海丰县,
+  陆河县,
+  陆丰市,
+  韶关市,
+  武江区,
+  浈江区,
+  曲江区,
+  始兴县,
+  仁化县,
+  翁源县,
+  乳源瑶族自治县,
+  新丰县,
+  乐昌市,
+  南雄市,
+  深圳市,
+  罗湖区,
+  福田区,
+  南山区,
+  宝安区,
+  龙岗区,
+  盐田区,
+  龙华区,
+  坪山区,
+  光明区,
+  阳江市,
+  江城区,
+  阳东区,
+  阳西县,
+  阳春市,
+  云浮市,
+  云城区,
+  云安区,
+  新兴县,
+  郁南县,
+  罗定市,
+  湛江市,
+  赤坎区,
+  霞山区,
+  坡头区,
+  麻章区,
+  遂溪县,
+  徐闻县,
+  廉江市,
+  雷州市,
+  肇庆市,
+  端州区,
+  鼎湖区,
+  高要区,
+  广宁县,
+  怀集县,
+  封开县,
+  德庆县,
+  四会市,
+  中山市,
+  珠海市,
+  香洲区,
+  斗门区,
+  金湾区,
   山西,
-大同市,
-新荣区,
-平城区,
-云冈区,
-云州区,
-阳高县,
-天镇县,
-广灵县,
-灵丘县,
-浑源县,
-左云县,
-晋城市,
-晋城市城区,
-沁水县,
-阳城县,
-陵川县,
-泽州县,
-高平市,
-晋中市,
-榆次区,
-太谷区,
-榆社县,
-左权县,
-和顺县,
-昔阳县,
-寿阳县,
-祁县,
-平遥县,
-灵石县,
-介休市,
-临汾市,
-尧都区,
-曲沃县,
-翼城县,
-襄汾县,
-洪洞县,
-古县,
-安泽县,
-浮山县,
-吉县,
-乡宁县,
-大宁县,
-隰县,
-永和县,
-蒲县,
-汾西县,
-侯马市,
-霍州市,
-吕梁市,
-离石区,
-文水县,
-交城县,
-兴县,
-临县,
-柳林县,
-石楼县,
-岚县,
-方山县,
-中阳县,
-交口县,
-孝义市,
-汾阳市,
-朔州市,
-朔城区,
-平鲁区,
-山阴县,
-应县,
-右玉县,
-怀仁市,
-太原市,
-小店区,
-迎泽区,
-杏花岭区,
-尖草坪区,
-万柏林区,
-晋源区,
-清徐县,
-阳曲县,
-娄烦县,
-古交市,
-忻州市,
-忻府区,
-定襄县,
-五台县,
-代县,
-繁峙县,
-宁武县,
-静乐县,
-神池县,
-五寨县,
-岢岚县,
-河曲县,
-保德县,
-偏关县,
-原平市,
-阳泉市,
-阳泉市城区,
-矿区,
-阳泉市郊区,
-平定县,
-盂县,
-运城市,
-盐湖区,
-临猗县,
-万荣县,
-闻喜县,
-稷山县,
-新绛县,
-绛县,
-垣曲县,
-夏县,
-平陆县,
-芮城县,
-永济市,
-河津市,
-长治市,
-潞州区,
-上党区,
-屯留区,
-潞城区,
-襄垣县,
-平顺县,
-黎城县,
-壶关县,
-长子县,
-武乡县,
-沁县,
-沁源县,
+  大同市,
+  新荣区,
+  平城区,
+  云冈区,
+  云州区,
+  阳高县,
+  天镇县,
+  广灵县,
+  灵丘县,
+  浑源县,
+  左云县,
+  晋城市,
+  晋城市城区,
+  沁水县,
+  阳城县,
+  陵川县,
+  泽州县,
+  高平市,
+  晋中市,
+  榆次区,
+  太谷区,
+  榆社县,
+  左权县,
+  和顺县,
+  昔阳县,
+  寿阳县,
+  祁县,
+  平遥县,
+  灵石县,
+  介休市,
+  临汾市,
+  尧都区,
+  曲沃县,
+  翼城县,
+  襄汾县,
+  洪洞县,
+  古县,
+  安泽县,
+  浮山县,
+  吉县,
+  乡宁县,
+  大宁县,
+  隰县,
+  永和县,
+  蒲县,
+  汾西县,
+  侯马市,
+  霍州市,
+  吕梁市,
+  离石区,
+  文水县,
+  交城县,
+  兴县,
+  临县,
+  柳林县,
+  石楼县,
+  岚县,
+  方山县,
+  中阳县,
+  交口县,
+  孝义市,
+  汾阳市,
+  朔州市,
+  朔城区,
+  平鲁区,
+  山阴县,
+  应县,
+  右玉县,
+  怀仁市,
+  太原市,
+  小店区,
+  迎泽区,
+  杏花岭区,
+  尖草坪区,
+  万柏林区,
+  晋源区,
+  清徐县,
+  阳曲县,
+  娄烦县,
+  古交市,
+  忻州市,
+  忻府区,
+  定襄县,
+  五台县,
+  代县,
+  繁峙县,
+  宁武县,
+  静乐县,
+  神池县,
+  五寨县,
+  岢岚县,
+  河曲县,
+  保德县,
+  偏关县,
+  原平市,
+  阳泉市,
+  阳泉市城区,
+  矿区,
+  阳泉市郊区,
+  平定县,
+  盂县,
+  运城市,
+  盐湖区,
+  临猗县,
+  万荣县,
+  闻喜县,
+  稷山县,
+  新绛县,
+  绛县,
+  垣曲县,
+  夏县,
+  平陆县,
+  芮城县,
+  永济市,
+  河津市,
+  长治市,
+  潞州区,
+  上党区,
+  屯留区,
+  潞城区,
+  襄垣县,
+  平顺县,
+  黎城县,
+  壶关县,
+  长子县,
+  武乡县,
+  沁县,
+  沁源县,
+  青海,
+  果洛藏族自治州,
+  玛沁县,
+  班玛县,
+  甘德县,
+  达日县,
+  久治县,
+  玛多县,
+  海北藏族自治州,
+  海晏县,
+  祁连县,
+  刚察县,
+  门源回族自治县,
+  海东市,
+  乐都区,
+  平安区,
+  民和回族土族自治县,
+  互助土族自治县,
+  化隆回族自治县,
+  循化撒拉族自治县,
+  海南藏族自治州,
+  共和县,
+  同德县,
+  贵德县,
+  兴海县,
+  贵南县,
+  海西蒙古族藏族自治州,
+  德令哈市,
+  格尔木市,
+  茫崖市,
+  天峻县,
+  都兰县,
+  乌兰县,
+  黄南藏族自治州,
+  同仁市,
+  尖扎县,
+  泽库县,
+  河南蒙古族自治县,
+  西宁市,
+  西宁市城中区,
+  城东区,
+  城西区,
+  城北区,
+  湟中区,
+  大通回族土族自治县,
+  湟源县,
+  玉树藏族自治州,
+  玉树市,
+  杂多县,
+  称多县,
+  治多县,
+  囊谦县,
+  曲麻莱县,
+  重庆市,
+  巴南区,
+  北碚区,
+  璧山区,
+  城口县,
+  大渡口区,
+  大足区,
+  垫江县,
+  丰都县,
+  奉节县,
+  涪陵区,
+  合川区,
+  江北区,
+  江津区,
+  九龙坡区,
+  开州区,
+  梁平区,
+  南岸区,
+  黔江区,
+  綦江区,
+  荣昌区,
+  沙坪坝区,
+  铜梁区,
+  彭水苗族土家族自治县,
+  石柱土家族自治县,
+  潼南区,
+  万州区,
+  巫山县,
+  巫溪县,
+  武隆区,
+  永川区,
+  秀山土家族苗族自治县,
+  酉阳土家族苗族自治县,
+  渝北区,
+  渝中区,
+  云阳县,
+  长寿区,
+  忠县,
+  四川,
+  成都市,
+  崇州市,
+  大邑县,
+  都江堰市,
+  简阳市,
+  金牛区,
+  金堂县,
+  锦江区,
+  龙泉驿区,
+  彭州市,
+  郫都区,
+  蒲江县,
+  青白江区,
+  青羊区,
+  邛崃市,
+  双流区,
+  温江区,
+  新都区,
+  新津区,
+  阿坝藏族羌族自治州,
+  巴中市,
+  达州市,
+  德阳市,
+  乐山市,
+  泸州市,
+  眉山市,
+  南充市,
+  遂宁市,
+  雅安市,
+  甘孜藏族自治州,
+  凉山彝族自治州,
+  攀枝花市,
 }

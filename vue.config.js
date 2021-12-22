@@ -35,10 +35,18 @@ module.exports = {
   },
   devServer: {
     proxy: {
+      "/prod-api": {
+        target: "http://www.zkgt-safety.com:28089",
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+          "^/prod-api": "/prod-api",
+        },
+      },
       '/': {
         target: process.env.VUE_APP_BASE_API,
         changeOrigin: true
-      }
+      },
     }
   }
 }

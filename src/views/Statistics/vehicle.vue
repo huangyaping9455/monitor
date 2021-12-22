@@ -240,11 +240,11 @@
       <el-form-item label="使用性质:">
         <el-select v-model="from.shiyongxingzhi" class="search-input">
           <el-option label="全部" value=""></el-option>
-          <el-option label="道路危险货物运输" :value="1"></el-option>
-          <el-option label="道路旅客运输" :value="2"></el-option>
-          <el-option label="道路货物运输" :value="3"></el-option>
-          <el-option label="出租车" :value="4"></el-option>
-          <el-option label="其他" :value="5"></el-option>
+          <el-option label="道路危险货物运输" value="道路危险货物运输"></el-option>
+          <el-option label="道路旅客运输" value="道路旅客运输"></el-option>
+          <el-option label="道路货物运输" value="道路货物运输"></el-option>
+          <el-option label="出租车" value="出租车"></el-option>
+          <el-option label="其他" value="其他"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -461,14 +461,14 @@ export default {
       );
       this.loading = false;
       if (data) {
-        this.vehicleList = data.data
-          ? data.data.map((el) => {
+        this.vehicleList = data.records
+          ? data.records.map((el) => {
               return {
                 ...el,
-                zhuangtai: ["", "全部", "监控车辆", "停用", "在用"][
-                  el.zhuangtai
-                ],
-                zaixian: ["", "全部", "上线", "未上线"][el.zaixian],
+                // zhuangtai: ["", "全部", "监控车辆", "停用", "在用"][
+                //   el.zhuangtai
+                // ],
+                // zaixian: ["", "全部", "上线", "未上线"][el.zaixian],
               };
             })
           : [];

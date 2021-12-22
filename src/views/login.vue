@@ -12,7 +12,7 @@
   margin-top: 5.5rem;
   margin-left: 9.0714rem;
   width: 59.1429rem;
-  height: 7.7857rem;
+  height: 8.7857rem;
   // height: 4.7857rem;
   // width: 54.1429rem;
   img {
@@ -33,7 +33,7 @@
   background-image: url("~@/assets/img/loginbox.png");
   background-size: 100% 100%;
   // margin-top: 7.8571vh;
-  margin-top: 10.8571vh;
+  margin-top: 9.8571vh;
   margin-right: 15vw;
   display: flex;
   flex-direction: column;
@@ -102,6 +102,7 @@
     <div class="logo">
       <!-- <img src="@/assets/img/zkgt.png" /> -->
       <!-- <img src="@/assets/img/logo-22.png" /> -->
+      <!-- <img src="@/assets/img/logo_ybf.png" /> -->
       <!-- <img src="@/assets/img/logo3.png" /> -->
       <img src="@/assets/img/logo66.png" />
     </div>

@@ -333,7 +333,8 @@
             prop="jigouzizhi"
             label="经营范围"
             align="center"
-            min-width="150"
+            min-width="300"
+            show-overflow-tooltip
           ></el-table-column>
           <!-- </el-table-column> -->
           <!-- <el-table-column label="所属运管" align="center"> -->
