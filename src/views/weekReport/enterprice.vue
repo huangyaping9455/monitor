@@ -325,7 +325,7 @@ export default {
         })
       );
       if (data) {
-        window.location.href = "http://www.zkgt-safety.com:8204/" + data.path;
+        window.location.href = "http://sztoosun.com:8204/" + data.path;
       } else {
         this.$message.error(msg);
       }

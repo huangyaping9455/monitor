@@ -36,7 +36,7 @@ module.exports = {
   devServer: {
     proxy: {
       "/prod-api": {
-        target: "http://www.zkgt-safety.com:28089",
+        target: "http://sztoosun.com:28089",
         ws: true,
         changeOrigin: true,
         pathRewrite: {

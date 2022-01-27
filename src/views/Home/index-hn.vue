@@ -11,8 +11,8 @@
   padding-left: 20px;
   padding-right: 20px;
   .car-item {
-    // width: 23%;
-    width: 11.6%;
+    width: 23%;
+    // width: 19%;
     height: 10.7143rem;
     border-radius: 0.7143rem;
     box-sizing: border-box;
@@ -20,43 +20,28 @@
     color: #ffffff;
     font-size: 1.1429rem;
     background-size: 100% 100%;
-    // cursor: pointer;
+    cursor: pointer;
     span:last-of-type {
       display: block;
       font-size: 2.8571rem;
       font-weight: bold;
     }
     &:nth-of-type(1) {
-      background-image: url("~@/assets/img/bg30.gif");
-      cursor: pointer;
+      background-image: url("~@/assets/img/bg_16.jpg");
     }
     &:nth-of-type(2) {
-      background-image: url("~@/assets/img/bg31.gif");
-      cursor: pointer;
+      background-image: url("~@/assets/img/bg_17.jpg");
     }
     &:nth-of-type(3) {
-      background-image: url("~@/assets/img/bg32.gif");
-      cursor: pointer;
+      background-image: url("~@/assets/img/bg_18.jpg");
     }
     &:nth-of-type(4) {
-      background-image: url("~@/assets/img/bg33.gif");
-      // cursor: pointer;
+      background-image: url("~@/assets/img/bg_19.jpg");
+      cursor: pointer;
     }
     &:nth-of-type(5) {
-      background-image: url("~@/assets/img/bg34.gif");
-      // cursor: pointer;
-    }
-    &:nth-of-type(6) {
-      background-image: url("~@/assets/img/bg35.gif");
-      // cursor: pointer;
-    }
-    &:nth-of-type(7) {
-      background-image: url("~@/assets/img/bg36.gif");
-      // cursor: pointer;
-    }
-    &:nth-of-type(8) {
-      background-image: url("~@/assets/img/bg37.gif");
-      // cursor: pointer;
+      background-image: url("~@/assets/img/bg_20.png");
+      cursor: pointer;
     }
   }
 }
@@ -218,46 +203,26 @@
         <span>企业总数</span>
         <span>{{ overview.qiyeshu }}</span>
       </div>
-      <!-- <div class="car-item" @click="AllGT">
+      <div class="car-item" @click="AllGT">
         <span>个体总数</span>
         <span>{{ overview.getishu }}</span>
-      </div> -->
+      </div>
       <div class="car-item" @click="linkto('/vehicle')">
         <span>车辆总数</span>
         <span>{{ overview.zcvehnumb }}</span>
       </div>
-      <!-- <div class="car-item" @click="linkto('/vehicle', { zaixian: '上线' })">
+      <div class="car-item" @click="linkto('/vehicle', { zaixian: '上线' })">
         <span>在线车辆数</span>
         <span>{{ overview.sxvehnum }}</span>
-      </div> -->
+      </div>
       <!-- <div class="car-item" @click="linkto('/safeStandard')">
         <span>安全达标率</span>
         <span>{{ overview.dabiaolv }}</span>
-      </div> -->
+      </div>
       <div class="car-item" @click="linkto('/hidDanger')">
         <span>隐患因子</span>
         <span>{{ troubleNum.zhenggai }}</span>
-      </div>
-      <div class="car-item" @click="linkto('/vehicle', { zaixian: '上线' })">
-        <span>上线率</span>
-        <span>{{ overview.onlineRate }}</span>
-      </div>
-      <div class="car-item" @click="linkto('/vehicle', { zaixian: '上线' })">
-        <span>定位率</span>
-        <span>{{ overview.locateRate }}</span>
-      </div>
-      <div class="car-item">
-        <span>数据合格率</span>
-        <span>{{ overview.qualifiedPositionRate }}</span>
-      </div>
-      <div class="car-item">
-        <span>轨迹完整率</span>
-        <span>{{ overview.intactPositionRate }}</span>
-      </div>
-      <div class="car-item">
-        <span>轨迹漂移率</span>
-        <span>{{ overview.driftPositionRate }}</span>
-      </div>
+      </div> -->
     </div>
     <div class="home-bottom">
       <div
@@ -443,6 +408,51 @@
         </div>
         <div class="content-bottom">
           <span class="title">各地区详细数据表</span>
+          <!-- <el-table
+            v-loading="load.load2"
+            element-loading-background="rgba(0, 0, 0, 0.4)"
+            size="mini"
+            height="calc(100% - 38px)"
+            class="homeTable"
+            :data="tableData"
+            style="width: 100%"
+          >
+            <el-table-column label="地区名称" align="center">
+              <template slot-scope="{ row }">
+                <span class="businessName">{{ row.areaname }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column
+              prop="zhengfuname"
+              label="政府运管局名称"
+              align="center"
+            ></el-table-column>
+            <el-table-column
+              prop="cheliangshu"
+              label="车辆数"
+              align="center"
+            ></el-table-column>
+            <el-table-column
+              prop="bjcheliangshu"
+              label="报警车辆数"
+              align="center"
+            ></el-table-column>
+            <el-table-column
+              prop="baojingcishu"
+              label="报警总数"
+              align="center"
+            ></el-table-column>
+            <el-table-column
+              prop="baojingclcishu"
+              label="报警总处理数"
+              align="center"
+            ></el-table-column>
+            <el-table-column
+              prop="baojingcishuchulilv"
+              label="报警总处理率"
+              align="center"
+            ></el-table-column>
+          </el-table> -->
           <div class="table">
             <table class="table-head">
               <tr>
@@ -593,10 +603,7 @@ export default {
         this.getFour(this.userinfo.deptId);
       }
     }, 180000);
-
-    // 隐患因子
-    this.getTroubleCountNum();
-
+    // this.getTroubleCountNum();
     // 通过$once来监听定时器，在beforeDestroy钩子可以被清除。
     this.$once("hook:beforeDestroy", () => {
       clearInterval(timer1);

@@ -117,7 +117,7 @@ export default {
         if (this.active.mubanPath != "") {
           // let str = this.active.mubanPath.indexOf(".doc");
           window.location.href =
-            "http://www.zkgt-safety.com:8204/" +
+            "http://sztoosun.com:8204/" +
             this.active.mubanPath +
             "/" +
             this.active.name;
@@ -138,7 +138,7 @@ export default {
             return;
           }
           window.location.href =
-            "http://www.zkgt-safety.com:8204/" + res.data.data.path;
+            "http://sztoosun.com:8204/" + res.data.data.path;
         });
       }
     },

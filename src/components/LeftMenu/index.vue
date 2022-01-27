@@ -244,7 +244,7 @@
           </div>
         </el-menu-item>
       </el-submenu>
-      <!-- <el-submenu index="6">
+      <el-submenu index="6">
         <template slot="title">
           <div class="menu-item">
             <svg-icon class="icon" icon-class="tongzhi" />
@@ -285,7 +285,7 @@
             <span>隐患排查</span>
           </div>
         </el-menu-item>
-      </el-submenu> -->
+      </el-submenu>
     </el-menu>
     <div
       class="movebtn"

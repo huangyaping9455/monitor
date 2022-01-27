@@ -214,6 +214,7 @@ export default {
       if (newid) {
         this.zhengfuId = this.zhuzzhiId;
         this.getDate(1);
+        this.getTroublelistCount();
       }
     },
   },
@@ -346,7 +347,7 @@ export default {
         cursor: pointer;
       }
       img {
-        width: 40%;
+        width: 50%;
         height: 100%;
         position: absolute;
         right: 0;
