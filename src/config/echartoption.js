@@ -125,6 +125,19 @@ export const lineName = new Map()
     yOne: 'pilaoshipincl',
     yTow: 'pilaoshipin'
   })
+  .set('risk', {
+    legendDate: ['一级', '二级', '三级'],
+    riskOne: 'riskOne',
+    riskTwo: 'riskTwo',
+    riskThree: 'riskThree'
+  })
+  .set('inspect', {
+    legendDate: ['一级', '二级', '三级', '四级'],
+    riskOne: 'troubleOne',
+    riskTwo: 'troubleTwo',
+    riskThree: 'troubleThree',
+    riskFour: 'troubleFour'
+  })
 
 export const geooption = (name, mapData) => {
   echarts.registerMap(name, maps[name]);

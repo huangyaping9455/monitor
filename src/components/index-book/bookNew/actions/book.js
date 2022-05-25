@@ -47,12 +47,12 @@ export default {
     initBook(nodeData) {
       this.treeData = [];
       this.loading = true;
-      this.getNode(nodeData).then((data) => {
-        this.treeData = data[1];
+      this.getNode(nodeData).then((res) => {
+        this.treeData = res[1];
         this.loading = false;
         this.LOAD = true;
         new Vue().$emit('clickTree', {
-          data: data[1]
+          data: res.data
         });
       });
     },
@@ -60,11 +60,14 @@ export default {
     loadNode(data = this.nodeData) {
       if (data._load) return;
       data._loading = true;
-      this.getNode(data).then((datas) => {
-        data.children = datas[1];
+      this.getNode(data).then((res) => {
+        data.children = res[1];
         data._loading = false;
         data._load = true;
         data._unfold = true;
+        if (this.form.action && this.form.action == "uploadDocByImg") {
+          this.treeData = res.data; //解决新增后刷新问题
+        }
         // Bus.$emit('clickTree', {
         //   data
         // });

@@ -14,19 +14,20 @@
     transform: translateX(0%);
   }
   .leftMenu-menu {
-    height: 69%;
+    // height: 69%;
+    height: 100%;
     width: 160px;
     overflow: hidden;
     border-right: 0px;
-  }
-  .menu-item {
-    display: flex;
-    align-items: center;
-    .icon {
-      width: 18px;
-      height: 18px;
-      margin-right: 5px;
-      fill: #01f8ff;
+    .menu-item {
+      display: flex;
+      align-items: center;
+      .icon {
+        width: 18px;
+        height: 18px;
+        margin-right: 5px;
+        fill: #01f8ff;
+      }
     }
   }
   .movebtn {
@@ -101,192 +102,270 @@
 
 <template>
   <aside class="leftMenu" :class="ismenuShow ? 'show' : 'noshow'">
-    <el-menu
-      :default-active="urlName"
-      class="leftMenu-menu"
-      active-text-color="#ffffff"
-      router
-      background-color="transparent"
-      text-color="#01f8ff"
-      :unique-opened="true"
-    >
-      <el-menu-item index="home" @click="openMenu">
-        <div class="menu-item">
-          <svg-icon class="icon" icon-class="home" />
-          <span slot="title">首 页</span>
-        </div>
-      </el-menu-item>
-      <el-submenu index="2">
-        <template slot="title">
+    <scroll style="height:69%;width:160px;">
+      <el-menu
+        :default-active="urlName"
+        class="leftMenu-menu"
+        active-text-color="#ffffff"
+        router
+        background-color="transparent"
+        text-color="#01f8ff"
+        :unique-opened="true"
+      >
+        <el-menu-item index="home" @click="openMenu">
           <div class="menu-item">
-            <svg-icon class="icon" icon-class="shuju" />
-            <span>动态监管分析</span>
-          </div>
-        </template>
-        <el-menu-item index="dataAnalysis" @click="openMenu">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="shuju" />
-            <span>数据分析</span>
+            <svg-icon class="icon" icon-class="home" />
+            <span slot="title">首 页</span>
           </div>
         </el-menu-item>
-        <!-- <el-menu-item index="OBDDataAnalysis" @click="openMenu">
+        <el-submenu index="2">
+          <template slot="title">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="shuju" />
+              <span>动态监管分析</span>
+            </div>
+          </template>
+          <el-menu-item index="dataAnalysis" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="shuju" />
+              <span>数据分析</span>
+            </div>
+          </el-menu-item>
+          <!-- <el-menu-item index="OBDDataAnalysis" @click="openMenu">
           <div class="menu-item">
             <svg-icon class="icon" icon-class="shuju" />
             <span>OBD数据分析</span>
           </div>
         </el-menu-item> -->
-        <el-menu-item index="treatmentRate" @click="openMenu">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="chulilv" />
-            <span>处理率统计</span>
-          </div>
-        </el-menu-item>
-        <el-menu-item index="vehicle" @click="openMenu">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="cheliang" />
-            <span>车辆统计</span>
-          </div>
-        </el-menu-item>
-        <el-menu-item index="QYvehicle" @click="openMenu">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="zhengqi" />
-            <span>企业统计</span>
-          </div>
-        </el-menu-item>
-        <el-menu-item index="DayStatistics" @click="openMenu">
+          <el-menu-item index="treatmentRate" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="chulilv" />
+              <span>处理率统计</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="vehicle" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="cheliang" />
+              <span>车辆统计</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="QYvehicle" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhengqi" />
+              <span>企业统计</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="DayStatistics" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span>车辆日运行统计</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="QYDayStatistics" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span>企业日运行统计</span>
+            </div>
+          </el-menu-item>
+        </el-submenu>
+        <el-submenu index="3">
+          <template slot="title">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="chulilv" />
+              <span>报警排名</span>
+            </div>
+          </template>
+          <el-menu-item index="ZFDQ" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span>地区报警排名</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="enterprise" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="shuju" />
+              <span>企业报警排名</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="VehicleRank" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="cheliang" />
+              <span>车辆报警排名</span>
+            </div>
+          </el-menu-item>
+        </el-submenu>
+        <el-submenu index="4">
+          <template slot="title">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhengqi" />
+              <span>政企互通</span>
+            </div>
+          </template>
+          <el-menu-item index="notice" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="tongzhi" />
+              <span>通知公告</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="SafetyInspection" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="anquan" />
+              <span>安全查岗</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="documentFile" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="wenjian" />
+              <span>文件下发</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="issueRectification" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span>下发整改</span>
+            </div>
+          </el-menu-item>
+        </el-submenu>
+        <el-submenu index="5">
+          <template slot="title">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="wenjian" />
+              <span>安全报告</span>
+            </div>
+          </template>
+          <el-menu-item index="weekReport" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="wenjian" />
+              <span>周报</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="monthReport" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="wenjian" />
+              <span>月报</span>
+            </div>
+          </el-menu-item>
+        </el-submenu>
+        <el-submenu index="6">
+          <template slot="title">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="tongzhi" />
+              <span>安全达标</span>
+            </div>
+          </template>
+          <el-menu-item index="safeStandard" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span>企业达标明细</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="safeDocument" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span>安全台账明细</span>
+            </div>
+          </el-menu-item>
+        </el-submenu>
+        <el-submenu index="7">
+          <template slot="title">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span>安全教育学习</span>
+            </div>
+          </template>
+          <el-menu-item index="learningPlatform" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="wenjian" />
+              <span>学习情况统计</span>
+            </div>
+          </el-menu-item>
+        </el-submenu>
+        <el-submenu index="8">
+          <template slot="title">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="anquan" />
+              <span>安全管理</span>
+            </div>
+          </template>
+          <el-menu-item index="hidDanger" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="wenjian" />
+              <span>隐患排查</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="risk" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="wenjian" />
+              <span>风险管控</span>
+            </div>
+          </el-menu-item>
+        </el-submenu>
+        <el-submenu index="9">
+          <template slot="title">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="wenjian" />
+              <span>疫情管控</span>
+            </div>
+          </template>
+          <el-menu-item index="ZFDQ_yq" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span>地区疫区统计</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="enterprise_yq" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span>企业疫区统计</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="vehicleRank_yq" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span>车辆疫区统计</span>
+            </div>
+          </el-menu-item>
+        </el-submenu>
+        <el-submenu index="10">
+          <template slot="title">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="wenjian" />
+              <span>档案管控</span>
+            </div>
+          </template>
+          <el-menu-item index="vehicleArchives" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span>车辆档案</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="driverArchives" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span>驾驶员档案</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="vehicleMaintain" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span>车辆维护</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="accident" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span>车辆事故</span>
+            </div>
+          </el-menu-item>
+        </el-submenu>
+        <el-menu-item index="home" @click="openThree">
           <div class="menu-item">
             <svg-icon class="icon" icon-class="zhenggai" />
-            <span>车辆日运行统计</span>
+            <span slot="title">风险管控</span>
           </div>
         </el-menu-item>
-        <el-menu-item index="QYDayStatistics" @click="openMenu">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="zhenggai" />
-            <span>企业日运行统计</span>
-          </div>
-        </el-menu-item>
-      </el-submenu>
-      <el-submenu index="3">
-        <template slot="title">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="chulilv" />
-            <span>报警排名</span>
-          </div>
-        </template>
-        <el-menu-item index="ZFDQ" @click="openMenu">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="zhenggai" />
-            <span>地区报警排名</span>
-          </div>
-        </el-menu-item>
-        <el-menu-item index="enterprise" @click="openMenu">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="shuju" />
-            <span>企业报警排名</span>
-          </div>
-        </el-menu-item>
-        <el-menu-item index="VehicleRank" @click="openMenu">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="cheliang" />
-            <span>车辆报警排名</span>
-          </div>
-        </el-menu-item>
-      </el-submenu>
-      <el-submenu index="4">
-        <template slot="title">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="zhengqi" />
-            <span>政企互通</span>
-          </div>
-        </template>
-        <el-menu-item index="notice" @click="openMenu">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="tongzhi" />
-            <span>通知公告</span>
-          </div>
-        </el-menu-item>
-        <el-menu-item index="SafetyInspection" @click="openMenu">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="anquan" />
-            <span>安全查岗</span>
-          </div>
-        </el-menu-item>
-        <el-menu-item index="documentFile" @click="openMenu">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="wenjian" />
-            <span>文件下发</span>
-          </div>
-        </el-menu-item>
-        <el-menu-item index="issueRectification" @click="openMenu">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="zhenggai" />
-            <span>下发整改</span>
-          </div>
-        </el-menu-item>
-      </el-submenu>
-      <el-submenu index="5">
-        <template slot="title">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="wenjian" />
-            <span>安全报告</span>
-          </div>
-        </template>
-        <el-menu-item index="weekReport" @click="openMenu">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="wenjian" />
-            <span>周报</span>
-          </div>
-        </el-menu-item>
-        <el-menu-item index="monthReport" @click="openMenu">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="wenjian" />
-            <span>月报</span>
-          </div>
-        </el-menu-item>
-      </el-submenu>
-      <el-submenu index="6">
-        <template slot="title">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="tongzhi" />
-            <span>安全达标</span>
-          </div>
-        </template>
-        <el-menu-item index="safeStandard" @click="openMenu">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="zhenggai" />
-            <span>企业达标明细</span>
-          </div>
-        </el-menu-item>
-      </el-submenu>
-      <el-submenu index="7">
-        <template slot="title">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="zhenggai" />
-            <span>安全教育学习</span>
-          </div>
-        </template>
-        <el-menu-item index="learningPlatform" @click="openMenu">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="wenjian" />
-            <span>学习情况统计</span>
-          </div>
-        </el-menu-item>
-      </el-submenu>
-      <el-submenu index="8">
-        <template slot="title">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="anquan" />
-            <span>安全管理</span>
-          </div>
-        </template>
-        <el-menu-item index="hidDanger" @click="openMenu">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="wenjian" />
-            <span>隐患排查</span>
-          </div>
-        </el-menu-item>
-      </el-submenu>
-    </el-menu>
+      </el-menu>
+    </scroll>
     <div
       class="movebtn"
       :class="ismenuShow ? 'el-icon-d-arrow-left' : 'el-icon-d-arrow-right'"
@@ -326,6 +405,11 @@ export default {
     ...mapMutations({
       SET_FASONGDANWEI: "government/SET_FASONGDANWEI",
     }),
+    openThree() {
+      window.open(
+        "http://139.155.45.177/dashboard/analysis?username=shaanxi&password=SS@123456"
+      );
+    },
   },
 };
 </script>

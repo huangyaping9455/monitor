@@ -48,6 +48,9 @@
       .businessName {
         color: #01f8ff;
       }
+      .cur {
+        cursor: pointer;
+      }
     }
   }
   .page {
@@ -212,9 +215,6 @@
           :model="form"
           class="search"
         >
-          <!-- <el-form-item label="所属企业">
-            <el-input v-model="formInline.company"></el-input>
-          </el-form-item>-->
           <el-form-item label="时间">
             <el-col :span="11" class="timetype">
               <el-form-item>
@@ -242,8 +242,25 @@
               </el-form-item>
             </el-col>
           </el-form-item>
+          <el-form-item label="企业名称">
+            <el-input
+              style="width:100%"
+              clearable
+              v-model="form.deptName"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="风险区域">
+            <el-input
+              style="width:100%"
+              clearable
+              v-model="form.area"
+            ></el-input>
+          </el-form-item>
           <el-form-item>
-            <el-button type="primary" class="sbtn" @click="getZFDQBJTJJS(1)"
+            <el-button
+              type="primary"
+              class="sbtn"
+              @click="getDeptIntoAreaPMTJ(1)"
               >搜索</el-button
             >
           </el-form-item>
@@ -268,21 +285,29 @@
           </el-table-column>
           <el-table-column label="地区" width="120" align="center">
             <template slot-scope="{ row }">
-              <span class="businessName">{{ row.areaname }}</span>
+              <span>{{ row.areaname }}</span>
             </template>
           </el-table-column>
+          <el-table-column
+            prop="qiyemingcheng"
+            label="企业名称"
+            min-width="120"
+            align="center"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            prop="area"
+            label="风险区域"
+            min-width="140"
+            align="center"
+            show-overflow-tooltip
+          ></el-table-column>
           <el-table-column
             prop="date"
             label="统计日期"
             min-width="140"
             align="center"
-          ></el-table-column>
-          <el-table-column
-            prop="cheliangshu"
-            label="车辆总数"
-            min-width="100"
-            sortable="custom"
-            align="center"
+            show-overflow-tooltip
           ></el-table-column>
           <el-table-column
             prop="baojingcheliangshu"
@@ -291,79 +316,22 @@
             sortable="custom"
             align="center"
           ></el-table-column>
-          <el-table-column label="北斗设备报警" align="center">
-            <el-table-column
-              prop="gpschaosu"
-              label="超速"
-              sortable="custom"
-              align="center"
-            ></el-table-column>
-            <el-table-column
-              prop="gpspilao"
-              label="疲劳驾驶"
-              sortable="custom"
-              align="center"
-            ></el-table-column>
-            <el-table-column
-              prop="gpsyejian"
-              label="夜间行驶"
-              sortable="custom"
-              align="center"
-            ></el-table-column>
-            <el-table-column
-              prop="gpsyichang"
-              label="异常车辆"
-              sortable="custom"
-              align="center"
-            ></el-table-column>
-          </el-table-column>
-          <el-table-column label="DMS设备报警" align="center">
-            <el-table-column
-              prop="dmsjiedadianhua"
-              sortable="custom"
-              label="接打电话"
-              align="center"
-            ></el-table-column>
-            <el-table-column
-              prop="dmschouyan"
-              sortable="custom"
-              label="抽烟"
-              align="center"
-            ></el-table-column>
-            <el-table-column
-              prop="dmsfenshen"
-              sortable="custom"
-              label="分神驾驶"
-              align="center"
-            ></el-table-column>
-            <el-table-column
-              prop="dmspilao"
-              sortable="custom"
-              label="疲劳驾驶"
-              align="center"
-            ></el-table-column>
-            <!-- <el-table-column prop="date" label="驾驶员异常" align="center"> </el-table-column>
-            <el-table-column prop="date" label="未系安全带" align="center"> </el-table-column>-->
-          </el-table-column>
-          <!-- <el-table-column label="ADAS设备报警（5532）" align="center">
-            <el-table-column prop="date" label="向前碰撞" align="center"> </el-table-column>
-            <el-table-column prop="date" label="车道偏离" align="center"> </el-table-column>
-            <el-table-column prop="date" label="车距过近" align="center"> </el-table-column>
-            <el-table-column prop="date" label="设备" align="center"> </el-table-column>
-          </el-table-column>-->
           <el-table-column
-            prop="baojingzongshu"
+            label="进区域报警"
+            min-width="100"
             sortable="custom"
-            label="报警总数"
             align="center"
-          ></el-table-column>
-          <el-table-column
-            prop="danchebaojingbi"
-            sortable="custom"
-            min-width="90"
-            label="单车报警比"
-            align="center"
-          ></el-table-column>
+          >
+            <template slot-scope="{ row }">
+              <span
+                v-if="row.baojingzongshu > 0"
+                class="businessName cur"
+                @click="getEnterprise(row)"
+                >{{ row.baojingzongshu }}</span
+              >
+              <span v-else class="businessName">{{ row.baojingzongshu }}</span>
+            </template>
+          </el-table-column>
         </el-table>
         <!-- page -->
         <div class="page">
@@ -382,50 +350,53 @@
             </span>
           </div>
           <div class="page-r">
-            <span class="el-icon-d-arrow-left" @click="getZFDQBJTJJS(1)"></span>
+            <span
+              class="el-icon-d-arrow-left"
+              @click="getDeptIntoAreaPMTJ(1)"
+            ></span>
             <span
               class="el-icon-arrow-left"
-              @click="getZFDQBJTJJS(current - 1)"
+              @click="getDeptIntoAreaPMTJ(current - 1)"
             ></span>
             <span
               class="num"
               v-show="current - 2 > 0"
-              @click="getZFDQBJTJJS(current - 2)"
+              @click="getDeptIntoAreaPMTJ(current - 2)"
               >{{ current - 2 }}</span
             >
             <span
               class="num"
               v-show="current - 1 > 0"
-              @click="getZFDQBJTJJS(current - 1)"
+              @click="getDeptIntoAreaPMTJ(current - 1)"
               >{{ current - 1 }}</span
             >
             <span class="num active">{{ current }}</span>
             <span
               class="num"
               v-show="current + 1 <= pageTotal"
-              @click="getZFDQBJTJJS(current + 1)"
+              @click="getDeptIntoAreaPMTJ(current + 1)"
               >{{ current + 1 }}</span
             >
             <span
               class="num"
               v-show="current + 2 <= pageTotal"
-              @click="getZFDQBJTJJS(current + 2)"
+              @click="getDeptIntoAreaPMTJ(current + 2)"
               >{{ current + 2 }}</span
             >
             <span
               class="el-icon-arrow-right"
-              @click="getZFDQBJTJJS(current + 1)"
+              @click="getDeptIntoAreaPMTJ(current + 1)"
             ></span>
             <span
               class="el-icon-d-arrow-right"
-              @click="getZFDQBJTJJS(pageTotal)"
+              @click="getDeptIntoAreaPMTJ(pageTotal)"
             ></span>
             <div class="pagesize">
               每页显示
               <el-select
                 class="showselect"
                 size="mini"
-                @change="getZFDQBJTJJS(1)"
+                @change="getDeptIntoAreaPMTJ(1)"
                 v-model="pagesizeactive"
               >
                 <el-option
@@ -477,6 +448,8 @@ export default {
           new Date().getTime() - 24 * 60 * 60 * 1000,
           "YYYY-MM-DD"
         ),
+        deptName: "",
+        area: "",
       },
       enterpriseList: [],
       pickerOptions: {
@@ -493,7 +466,7 @@ export default {
   },
   mounted() {
     //报警统计结算
-    this.getZFDQBJTJJS();
+    this.getDeptIntoAreaPMTJ();
     this.isorder = new Map()
       .set("ascending", 0)
       .set("descending", 1)
@@ -508,25 +481,26 @@ export default {
     zhuzzhiId(newid) {
       // 切换单位
       if (newid) {
-        this.getZFDQBJTJJS();
+        this.getDeptIntoAreaPMTJ();
       }
     },
   },
   methods: {
     //报警统计结算
-    async getZFDQBJTJJS(current = 1) {
+    async getDeptIntoAreaPMTJ(current = 1) {
       current = Number(current);
       this.loading = true;
       let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.getZFDQBJTJJS({
-          // deptId:5448,
+        dataAnalysisApi.getDeptIntoAreaPMTJ({
           deptId: this.zhuzzhiId,
           current: current,
           size: this.pagesizeactive,
           orderColumns: this.orderColumns,
           order: this.order,
-          begintime: this.form.begintime,
-          endtime: this.form.endtime,
+          beginTime: this.form.begintime,
+          endTime: this.form.endtime,
+          deptName: this.form.deptName,
+          area: this.form.area,
         })
       );
       this.loading = false;
@@ -550,22 +524,36 @@ export default {
     changeSort(val) {
       this.orderColumns = val.prop;
       this.order = this.isorder.get(val.order);
-      console.log(this.order);
-      this.getZFDQBJTJJS(1);
+      this.getDeptIntoAreaPMTJ(1);
+    },
+    // 报警详情
+    getEnterprise(row) {
+      this.$router.push({
+        path: "/enterprisetreat",
+        query: {
+          deptId: row.qiyeid,
+          begintime: row.date.split("至")[0],
+          endtime: row.date.split("至")[0],
+          deptName: row.qiyemingcheng,
+          area: row.area,
+          areaId: row.areaId,
+        },
+      });
     },
     // 统计下载
     async downtable() {
       this.downloading = true;
       let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.getZFDQBJTJJS({
-          // deptId:5448,
+        dataAnalysisApi.getDeptIntoAreaPMTJ({
           deptId: this.zhuzzhiId,
           current: 0,
           size: 0,
           orderColumns: this.orderColumns,
           order: this.order,
-          begintime: this.form.begintime,
-          endtime: this.form.endtime,
+          beginTime: this.form.begintime,
+          endTime: this.form.endtime,
+          deptName: this.form.deptName,
+          area: this.form.area,
         })
       );
       this.downloading = false;
@@ -590,69 +578,37 @@ export default {
         const multiHeader = [
           "排名",
           "地区",
-          "车辆总数",
+          "企业名称",
+          "风险区域",
+          "统计日期",
           "报警车辆数",
-          "北斗设备报警",
-          "",
-          "",
-          "",
-          "DMS设备报警",
-          "",
-          "",
-          "",
-          "报警总数",
-          "单车报警比",
-        ];
-        const tHeader = [
-          "",
-          "",
-          "",
-          "",
-          "超速",
-          "疲劳驾驶",
-          "夜间行驶",
-          "异常车辆",
-          "接打电话",
-          "抽烟",
-          "分神驾驶",
-          "疲劳驾驶",
-          "",
-          "",
+          "进区域报警",
         ];
         const filterVal = [
           "index",
           "areaname",
-          "cheliangshu",
+          "qiyemingcheng",
+          "area",
+          "date",
           "baojingcheliangshu",
-          "gpschaosu",
-          "gpspilao",
-          "gpsyejian",
-          "gpsyichang",
-          "dmsjiedadianhua",
-          "dmschouyan",
-          "dmsfenshen",
-          "dmspilao",
           "baojingzongshu",
-          "danchebaojingbi",
         ];
         const merges = [
           "A1:A2",
           "B1:B2",
           "C1:C2",
           "D1:D2",
-          "E1:H1",
-          "I1:L1",
-          "M1:M2",
-          "N1:N2",
+          "E1:E2",
+          "F1:F2",
+          "G1:G2",
         ];
-        // const list = this.goodsItems;
         const data = this.formatJson(filterVal, list);
         export_json_to_excel({
           multiHeader,
-          header: tHeader,
+          header: multiHeader,
           data,
           merges,
-          filename: "地区报警统计",
+          filename: "企业进区域报警排名统计",
         });
       });
     },

@@ -182,6 +182,41 @@ export const constantRouterMap = [{
     },
     component: () => import('@/views/VehicleRank/index')
   },
+  // 地区报警排名
+  {
+    path: '/enterprise_yq',
+    name: 'enterprise_yq',
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import('@/views/enterprise_yq/index')
+  },
+  // 地区报警详情
+  {
+    path: '/enterprisetreat',
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import('@/views/enterprise_yq/enterprisetreat')
+  },
+  // 地区报警排名
+  {
+    path: '/ZFDQ_yq',
+    name: 'ZFDQ_yq',
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import('@/views/ZFDQ_yq/index')
+  },
+  // 车辆报警排名
+  {
+    path: '/vehicleRank_yq',
+    name: 'vehicleRank_yq',
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import('@/views/vehicleRank_yq/index')
+  },
   {
     path: '/standard',
     name: 'standard',
@@ -280,6 +315,15 @@ export const constantRouterMap = [{
         component: () => import('@/views/safeStandard/index'),
       },
       {
+        path: '/safeDocument',
+        name: 'safeDocument',
+        meta: {
+          title: '安全台账明细',
+          requiresAuth: true
+        },
+        component: () => import('@/views/safeDocument/index'),
+      },
+      {
         path: '/learningPlatform',
         name: 'learningPlatform',
         meta: {
@@ -297,8 +341,62 @@ export const constantRouterMap = [{
         },
         component: () => import('@/views/hidDanger/index'),
       },
+      {
+        path: '/risk',
+        name: 'risk',
+        meta: {
+          title: '风险管控',
+          requiresAuth: true
+        },
+        component: () => import('@/views/risk/index'),
+      },
     ]
   },
+  {
+    path: '',
+    meta: {
+      title: '档案管理'
+    },
+    component: Layout,
+    redirect: '/vehicleArchives',
+    children: [{
+        path: '/vehicleArchives',
+        name: 'vehicleArchives',
+        meta: {
+          title: '车辆档案',
+          requiresAuth: true
+        },
+        component: () => import('@/views/vehicleArchives/index'),
+      },
+      {
+        path: '/driverArchives',
+        name: 'driverArchives',
+        meta: {
+          title: '驾驶员档案',
+          requiresAuth: true
+        },
+        component: () => import('@/views/driverArchives/index'),
+      },
+      {
+        path: '/vehicleMaintain',
+        name: 'vehicleMaintain',
+        meta: {
+          title: '车辆维护',
+          requiresAuth: true
+        },
+        component: () => import('@/views/vehicleMaintain/index')
+      },
+      {
+        path: '/accident',
+        name: 'accident',
+        meta: {
+          title: '车辆事故',
+          requiresAuth: true
+        },
+        component: () => import('@/views/accident/index')
+      },
+    ]
+  }
 ]
 
 export default new Router({

@@ -232,8 +232,8 @@ export default {
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getTroubleSetList({
           comId: this.rows.comId,
-          pageNum: current,
-          pageSize: this.pagesizeactive,
+          current: current,
+          size: this.pagesizeactive,
           troubleDj: this.troubleDJ,
           troubleMc: this.troubleMc,
           troubleLy: this.troubleLy,
@@ -242,7 +242,7 @@ export default {
       );
       this.msgloading = false;
       if (data) {
-        this.tableData = data.rows.map((el) => {
+        this.tableData = data.records.map((el) => {
           if (el.troubleDj == 1) {
             el.dengji = "一级";
           } else if (el.troubleDj == 2) {

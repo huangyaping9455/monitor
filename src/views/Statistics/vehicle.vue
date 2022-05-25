@@ -240,11 +240,29 @@
       <el-form-item label="使用性质:">
         <el-select v-model="from.shiyongxingzhi" class="search-input">
           <el-option label="全部" value=""></el-option>
-          <el-option label="道路危险货物运输" value="道路危险货物运输"></el-option>
+          <el-option
+            label="道路危险货物运输"
+            value="道路危险货物运输"
+          ></el-option>
           <el-option label="道路旅客运输" value="道路旅客运输"></el-option>
           <el-option label="道路货物运输" value="道路货物运输"></el-option>
           <el-option label="出租车" value="出租车"></el-option>
           <el-option label="其他" value="其他"></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="运营商:">
+        <el-select
+          v-model="from.yunyingshang"
+          class="search-input"
+          filterable
+          clearable
+        >
+          <el-option
+            :label="item.yunyingshangmingcheng"
+            :value="item.yunyingshangmingcheng"
+            v-for="(item, index) in yunyingshangList"
+            :key="index"
+          ></el-option>
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -409,10 +427,12 @@ export default {
         name: "",
         deptname: "",
         shiyongxingzhi: "",
+        yunyingshang: "",
       },
       options: [],
       visible: false,
       vehicleoption: {},
+      yunyingshangList: [],
     };
   },
   mounted() {
@@ -426,6 +446,7 @@ export default {
     }
     //获取统计车辆数据
     this.getVehicleList();
+    this.getVehicleYunYingShang();
   },
   computed: {
     ...mapGetters({
@@ -437,6 +458,7 @@ export default {
       // 切换单位
       if (newid) {
         this.getVehicleList();
+        this.getVehicleYunYingShang();
       }
     },
   },
@@ -457,6 +479,7 @@ export default {
           zaixian: this.from.zaixian,
           zhuangtai: this.from.zhuangtai,
           shiyongxingzhi: this.from.shiyongxingzhi,
+          yunyingshang: this.from.yunyingshang,
         })
       );
       this.loading = false;
@@ -480,6 +503,21 @@ export default {
         this.$message.error(err);
       }
     },
+    async getVehicleYunYingShang(current = 1) {
+      current = Number(current);
+      let [err, data] = await governmentApi.awaitWrap(
+        governmentApi.getVehicleYunYingShang({
+          deptId: this.zhuzzhiId,
+          current: current,
+          size: this.pagesizeactive,
+        })
+      );
+      if (data) {
+        this.yunyingshangList = data;
+      } else {
+        this.$message.error(err);
+      }
+    },
     // 在线状态
     getzaixian(data) {
       this.from.zaixian = data;
@@ -497,15 +535,16 @@ export default {
           zaixian: this.from.zaixian,
           zhuangtai: this.from.zhuangtai,
           shiyongxingzhi: this.from.shiyongxingzhi,
+          yunyingshang: this.from.yunyingshang,
         })
       );
       this.downloading = false;
       if (data) {
-        data = data.data.map((el) => {
+        data = data.records.map((el) => {
           return {
             ...el,
-            zhuangtai: ["", "全部", "监控车辆", "停用", "在用"][el.zhuangtai],
-            zaixian: ["", "全部", "上线", "未上线"][el.zaixian],
+            // zhuangtai: ["", "全部", "监控车辆", "停用", "在用"][el.zhuangtai],
+            // zaixian: ["", "全部", "上线", "未上线"][el.zaixian],
           };
         });
         this.export2Excel(data);

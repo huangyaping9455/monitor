@@ -2,6 +2,7 @@ import {
   $axios,
   awaitWrap
 } from '../api';
+import Cookies from 'js-cookie'
 /** 数据分析模块 */
 export default {
   // 政府报警统计-报警处理情况(月)
@@ -94,6 +95,14 @@ export default {
   getAlarmGuIdList(params) {
     return $axios.get('/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getAlarmGuIdList', {
       params: params
+    });
+  },
+  // 获取报警数据
+  getDeptMXIntoAreaPMTJ(data) {
+    return $axios.post('/blade-anbiao/anbiao/epidemicPreventionAndControl/getDeptMXIntoAreaPMTJ', data, {
+      headers: {
+        "blade-auth": "Bearer " + Cookies.get('accessToken')
+      }
     });
   },
   awaitWrap

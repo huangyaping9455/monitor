@@ -11,8 +11,8 @@
   padding-left: 20px;
   padding-right: 20px;
   .car-item {
-    width: 19%;
-    // width: 11.6%;
+    // width: 23%;
+    width: 11.6%;
     height: 10.7143rem;
     border-radius: 0.7143rem;
     box-sizing: border-box;
@@ -27,21 +27,36 @@
       font-weight: bold;
     }
     &:nth-of-type(1) {
-      background-image: url("~@/assets/img/bg_16.jpg");
+      background-image: url("~@/assets/img/bg30.gif");
+      cursor: pointer;
     }
     &:nth-of-type(2) {
-      background-image: url("~@/assets/img/bg_17.jpg");
+      background-image: url("~@/assets/img/bg31.gif");
+      cursor: pointer;
     }
     &:nth-of-type(3) {
-      background-image: url("~@/assets/img/bg_18.jpg");
+      background-image: url("~@/assets/img/bg32.gif");
+      cursor: pointer;
     }
     &:nth-of-type(4) {
-      background-image: url("~@/assets/img/bg_19.jpg");
-      cursor: pointer;
+      background-image: url("~@/assets/img/bg33.gif");
+      // cursor: pointer;
     }
     &:nth-of-type(5) {
-      background-image: url("~@/assets/img/bg_20.png");
-      cursor: pointer;
+      background-image: url("~@/assets/img/bg34.gif");
+      // cursor: pointer;
+    }
+    &:nth-of-type(6) {
+      background-image: url("~@/assets/img/bg35.gif");
+      // cursor: pointer;
+    }
+    &:nth-of-type(7) {
+      background-image: url("~@/assets/img/bg36.gif");
+      // cursor: pointer;
+    }
+    &:nth-of-type(8) {
+      background-image: url("~@/assets/img/bg37.gif");
+      // cursor: pointer;
     }
   }
 }
@@ -203,21 +218,45 @@
         <span>企业总数</span>
         <span>{{ overview.qiyeshu }}</span>
       </div>
+      <!-- <div class="car-item" @click="AllGT">
+        <span>个体总数</span>
+        <span>{{ overview.getishu }}</span>
+      </div> -->
       <div class="car-item" @click="linkto('/vehicle')">
         <span>车辆总数</span>
         <span>{{ overview.zcvehnumb }}</span>
       </div>
+      <!-- <div class="car-item" @click="linkto('/vehicle', { zaixian: '上线' })">
+        <span>在线车辆数</span>
+        <span>{{ overview.sxvehnum }}</span>
+      </div> -->
+      <!-- <div class="car-item" @click="linkto('/safeStandard')">
+        <span>安全达标率</span>
+        <span>{{ overview.dabiaolv }}</span>
+      </div> -->
       <div class="car-item" @click="linkto('/hidDanger')">
         <span>隐患因子</span>
         <span>{{ troubleNum.zhenggai }}</span>
       </div>
-      <div class="car-item" @click="linkto('/risk')">
-        <span>风险值</span>
-        <span>{{ overview.riskCount }}</span>
+      <div class="car-item" @click="linkto('/vehicle', { zaixian: '上线' })">
+        <span>上线率</span>
+        <span>{{ overview.onlineRate }}</span>
       </div>
-      <div class="car-item" @click="linkto('/QYDayStatistics')">
-        <span>考核指标分数</span>
-        <span>{{ overview.assessmentScore }}</span>
+      <div class="car-item" @click="linkto('/vehicle', { zaixian: '上线' })">
+        <span>定位率</span>
+        <span>{{ overview.locateRate }}</span>
+      </div>
+      <div class="car-item">
+        <span>数据合格率</span>
+        <span>{{ overview.qualifiedPositionRate }}</span>
+      </div>
+      <div class="car-item">
+        <span>轨迹完整率</span>
+        <span>{{ overview.intactPositionRate }}</span>
+      </div>
+      <div class="car-item">
+        <span>轨迹漂移率</span>
+        <span>{{ overview.driftPositionRate }}</span>
       </div>
     </div>
     <div class="home-bottom">
@@ -265,173 +304,142 @@
           </div>
         </div>
         <div class="content-center">
-          <el-carousel
-            style="height: calc(100%);width:100%;"
-            trigger="click"
-            indicator-position="none"
-            arrow="always"
+          <div
+            class="linebox"
+            v-loading="load.load1"
+            element-loading-background="rgba(0, 0, 0, 0.4)"
           >
-            <el-carousel-item
-              style="display:flex;justify-content: space-between;"
-            >
-              <div
-                class="linebox"
-                v-loading="load.load1"
-                element-loading-background="rgba(0, 0, 0, 0.4)"
+            <span class="title">北斗报警统计</span>
+            <div class="btns">
+              <span
+                @click="changeCar('carousel', 'chaosu')"
+                :class="isbtn == 0 ? 'active' : ''"
+                >超速报警</span
               >
-                <span class="title">北斗报警统计</span>
-                <div class="btns">
-                  <span
-                    @click="changeCar('carousel', 'chaosu')"
-                    :class="isbtn == 0 ? 'active' : ''"
-                    >超速报警</span
-                  >
-                  <span
-                    @click="changeCar('carousel', 'pilao')"
-                    :class="isbtn == 1 ? 'active' : ''"
-                    >疲劳驾驶</span
-                  >
-                  <span
-                    @click="changeCar('carousel', 'yejian')"
-                    :class="isbtn == 2 ? 'active' : ''"
-                    >夜间行驶</span
-                  >
-                  <span
-                    @click="changeCar('carousel', 'yichang')"
-                    :class="isbtn == 3 ? 'active' : ''"
-                    >异常车辆</span
-                  >
-                </div>
-                <el-carousel
-                  class="gpsCarousel"
-                  style="height: calc(100% - 50px);width:100%;"
-                  trigger="click"
-                  height="100%"
-                  ref="carousel"
-                  indicator-position="none"
-                  arrow="always"
-                  @change="changeGps($event, 'isbtn')"
-                >
-                  <el-carousel-item name="chaosu">
-                    <echart-base
-                      height="100%"
-                      width="100%"
-                      :chart-option="chartOption.option1"
-                    ></echart-base>
-                  </el-carousel-item>
-                  <el-carousel-item name="pilao">
-                    <echart-base
-                      height="100%"
-                      width="100%"
-                      :chart-option="chartOption.option2"
-                    ></echart-base>
-                  </el-carousel-item>
-                  <el-carousel-item name="yejian">
-                    <echart-base
-                      height="100%"
-                      width="100%"
-                      :chart-option="chartOption.option3"
-                    ></echart-base>
-                  </el-carousel-item>
-                  <el-carousel-item name="yichang">
-                    <echart-base
-                      height="100%"
-                      width="100%"
-                      :chart-option="chartOption.option4"
-                    ></echart-base>
-                  </el-carousel-item>
-                </el-carousel>
-              </div>
-              <div
-                class="linebox"
-                v-loading="load.load1"
-                element-loading-background="rgba(0, 0, 0, 0.4)"
+              <span
+                @click="changeCar('carousel', 'pilao')"
+                :class="isbtn == 1 ? 'active' : ''"
+                >疲劳驾驶</span
               >
-                <span class="title">主动安全设备报警</span>
-                <div class="btns">
-                  <span
-                    @click="changeCar('carousel1', 'dadianhua')"
-                    :class="isbtn1 == 0 ? 'active' : ''"
-                    >接打电话</span
-                  >
-                  <span
-                    @click="changeCar('carousel1', 'fenshen')"
-                    :class="isbtn1 == 1 ? 'active' : ''"
-                    >分神驾驶</span
-                  >
-                  <span
-                    @click="changeCar('carousel1', 'chouyan')"
-                    :class="isbtn1 == 2 ? 'active' : ''"
-                    >抽烟报警</span
-                  >
-                  <span
-                    @click="changeCar('carousel1', 'zhudongbj')"
-                    :class="isbtn1 == 3 ? 'active' : ''"
-                    >生理疲劳</span
-                  >
-                </div>
-                <el-carousel
-                  class="gpsCarousel"
-                  style="height: calc(100% - 50px)"
-                  trigger="click"
-                  height="100%"
-                  ref="carousel1"
-                  indicator-position="none"
-                  arrow="always"
-                  @change="changeGps($event, 'isbtn1')"
-                >
-                  <el-carousel-item name="dadianhua">
-                    <echart-base
-                      height="100%"
-                      width="100%"
-                      :chart-option="chartOption.option5"
-                    ></echart-base>
-                  </el-carousel-item>
-                  <el-carousel-item name="fenshen">
-                    <echart-base
-                      height="100%"
-                      width="100%"
-                      :chart-option="chartOption.option6"
-                    ></echart-base>
-                  </el-carousel-item>
-                  <el-carousel-item name="chouyan">
-                    <echart-base
-                      height="100%"
-                      width="100%"
-                      :chart-option="chartOption.option7"
-                    ></echart-base>
-                  </el-carousel-item>
-                  <el-carousel-item name="zhudongbj">
-                    <echart-base
-                      height="100%"
-                      width="100%"
-                      :chart-option="chartOption.option8"
-                    ></echart-base>
-                  </el-carousel-item>
-                </el-carousel>
-              </div>
-            </el-carousel-item>
-            <el-carousel-item
-              style="display:flex;justify-content: space-between;"
+              <span
+                @click="changeCar('carousel', 'yejian')"
+                :class="isbtn == 2 ? 'active' : ''"
+                >夜间行驶</span
+              >
+              <span
+                @click="changeCar('carousel', 'yichang')"
+                :class="isbtn == 3 ? 'active' : ''"
+                >异常车辆</span
+              >
+            </div>
+            <el-carousel
+              class="gpsCarousel"
+              style="height: calc(100% - 50px)"
+              trigger="click"
+              height="100%"
+              ref="carousel"
+              indicator-position="none"
+              arrow="always"
+              @change="changeGps($event, 'isbtn')"
             >
-              <div class="linebox">
-                <span class="title">隐患月趋势</span>
+              <el-carousel-item name="chaosu">
                 <echart-base
-                  height="95%"
+                  height="100%"
                   width="100%"
-                  :chart-option="chartOption.option10"
+                  :chart-option="chartOption.option1"
                 ></echart-base>
-              </div>
-              <div class="linebox">
-                <span class="title">风险月趋势</span>
+              </el-carousel-item>
+              <el-carousel-item name="pilao">
                 <echart-base
-                  height="95%"
+                  height="100%"
                   width="100%"
-                  :chart-option="chartOption.option11"
+                  :chart-option="chartOption.option2"
                 ></echart-base>
-              </div>
-            </el-carousel-item>
-          </el-carousel>
+              </el-carousel-item>
+              <el-carousel-item name="yejian">
+                <echart-base
+                  height="100%"
+                  width="100%"
+                  :chart-option="chartOption.option3"
+                ></echart-base>
+              </el-carousel-item>
+              <el-carousel-item name="yichang">
+                <echart-base
+                  height="100%"
+                  width="100%"
+                  :chart-option="chartOption.option4"
+                ></echart-base>
+              </el-carousel-item>
+            </el-carousel>
+          </div>
+          <div
+            class="linebox"
+            v-loading="load.load1"
+            element-loading-background="rgba(0, 0, 0, 0.4)"
+          >
+            <span class="title">主动安全设备报警</span>
+            <div class="btns">
+              <span
+                @click="changeCar('carousel1', 'dadianhua')"
+                :class="isbtn1 == 0 ? 'active' : ''"
+                >接打电话</span
+              >
+              <span
+                @click="changeCar('carousel1', 'fenshen')"
+                :class="isbtn1 == 1 ? 'active' : ''"
+                >分神驾驶</span
+              >
+              <span
+                @click="changeCar('carousel1', 'chouyan')"
+                :class="isbtn1 == 2 ? 'active' : ''"
+                >抽烟报警</span
+              >
+              <span
+                @click="changeCar('carousel1', 'zhudongbj')"
+                :class="isbtn1 == 3 ? 'active' : ''"
+                >生理疲劳</span
+              >
+            </div>
+            <el-carousel
+              class="gpsCarousel"
+              style="height: calc(100% - 50px)"
+              trigger="click"
+              height="100%"
+              ref="carousel1"
+              indicator-position="none"
+              arrow="always"
+              @change="changeGps($event, 'isbtn1')"
+            >
+              <el-carousel-item name="dadianhua">
+                <echart-base
+                  height="100%"
+                  width="100%"
+                  :chart-option="chartOption.option5"
+                ></echart-base>
+              </el-carousel-item>
+              <el-carousel-item name="fenshen">
+                <echart-base
+                  height="100%"
+                  width="100%"
+                  :chart-option="chartOption.option6"
+                ></echart-base>
+              </el-carousel-item>
+              <el-carousel-item name="chouyan">
+                <echart-base
+                  height="100%"
+                  width="100%"
+                  :chart-option="chartOption.option7"
+                ></echart-base>
+              </el-carousel-item>
+              <el-carousel-item name="zhudongbj">
+                <echart-base
+                  height="100%"
+                  width="100%"
+                  :chart-option="chartOption.option8"
+                ></echart-base>
+              </el-carousel-item>
+            </el-carousel>
+          </div>
         </div>
         <div class="content-bottom">
           <span class="title">各地区详细数据表</span>
@@ -538,8 +546,6 @@ export default {
       overview: {}, //总览
       statistics: {}, //统计
       lineData: [], //折线图数据
-      lineDataRisk: [], //折线图数据
-      lineDataInspect: [], //折线图数据
       isbtn: 0,
       isbtn1: 0, //按钮判断
       tableData: [],
@@ -551,13 +557,11 @@ export default {
         option2: {},
         option3: {},
         option4: {},
-        option5: {},
+        optiona5: {},
         option6: {},
         option7: {},
         option8: {},
         option9: {},
-        option10: {},
-        option11: {},
       },
       g_clickTime: null,
       g_TimeFn: "",
@@ -582,15 +586,11 @@ export default {
         this.getTwo(this.zhengfuindex, 1, this.areaName);
         this.getThree(this.zhengfuindex, 1);
         this.getFour(this.zhengfuindex);
-        this.getRiskTendency(this.zhengfuindex, 1);
-        this.getDangerTroubleTendency(this.zhengfuindex, 1);
       } else {
         this.getOne(this.userinfo.deptId);
         this.getTwo(this.userinfo.deptId, 0);
         this.getThree(this.userinfo.deptId, 0);
         this.getFour(this.userinfo.deptId);
-        this.getRiskTendency(this.userinfo.deptId, 0);
-        this.getDangerTroubleTendency(this.userinfo.deptId, 0);
       }
     }, 180000);
 
@@ -632,8 +632,6 @@ export default {
       this.getThree(this.userinfo.deptId, 0);
       //政府-各地区详细报警数据表
       this.getFour(this.userinfo.deptId);
-      this.getRiskTendency(this.userinfo.deptId, 0);
-      this.getDangerTroubleTendency(this.userinfo.deptId, 0);
     },
     // 政府-企业总数、个体总数、车辆总数、在线车辆数
     async getOne(deptId) {
@@ -755,40 +753,6 @@ export default {
         this.tableData = data;
       }
     },
-    //风险月趋势
-    async getRiskTendency(deptId, type = 0) {
-      let [err, data] = await homeApi.awaitWrap(
-        homeApi.getRiskTendency({
-          deptId: deptId,
-          type: type,
-        })
-      );
-      if (err) {
-        this.$message.error(err);
-      } else {
-        if (data.length > 0) {
-          this.lineDataRisk = data;
-          this.setEchart("option11", "risk");
-        }
-      }
-    },
-    // 隐患月趋势
-    async getDangerTroubleTendency(deptId, type = 0) {
-      let [err, data] = await homeApi.awaitWrap(
-        homeApi.getDangerTroubleTendency({
-          deptId: deptId,
-          type: type,
-        })
-      );
-      if (err) {
-        this.$message.error(err);
-      } else {
-        if (data.length > 0) {
-          this.lineDataInspect = data;
-          this.setEchart("option10", "inspect");
-        }
-      }
-    },
 
     // 表格数据动态滚动
     // changetable() {
@@ -808,8 +772,6 @@ export default {
       this.getThree(this.userinfo.deptId, 0);
       this.getOne(this.userinfo.deptId);
       this.getFour(this.userinfo.deptId);
-      this.getRiskTendency(this.userinfo.deptId, 0);
-      this.getDangerTroubleTendency(this.userinfo.deptId, 0);
     },
     linkto(url, req = {}) {
       this.$router.push({
@@ -825,8 +787,6 @@ export default {
       this.getThree(el.data.zhengfuid, 1);
       this.getOne(el.data.zhengfuid);
       this.getFour(el.data.zhengfuid);
-      this.getRiskTendency(el.data.zhengfuid, 1);
-      this.getDangerTroubleTendency(el.data.zhengfuid, 1);
     },
     echartclick(el) {
       if (!el.value) return false;
@@ -962,81 +922,23 @@ export default {
     /**渲染图表 */
     setEchart(name, type) {
       let itemName = lineName.get(type);
-      if (type == "risk") {
-        this.chartOption[name] = {
-          ...lineoption,
-          dataset: { source: this.lineDataRisk },
-          legend: { ...lineoption.legend, data: itemName.legendDate },
-          series: [
-            {
-              ...lineoption.series,
-              name: itemName.legendDate[0],
-              encode: { x: "date", y: itemName.riskOne },
-            },
-            {
-              ...lineoption.series,
-              name: itemName.legendDate[1],
-              encode: { x: "date", y: itemName.riskTwo },
-            },
-            {
-              ...lineoption.series,
-              name: itemName.legendDate[2],
-              encode: { x: "date", y: itemName.riskThree },
-            },
-          ],
-        };
-      } else if (type == "inspect") {
-        this.chartOption[name] = {
-          ...lineoption,
-          dataset: { source: this.lineDataInspect },
-          legend: { ...lineoption.legend, data: itemName.legendDate },
-          series: [
-            {
-              ...lineoption.series,
-              name: itemName.legendDate[0],
-              encode: { x: "date", y: itemName.riskOne },
-            },
-            {
-              ...lineoption.series,
-              name: itemName.legendDate[1],
-              encode: { x: "date", y: itemName.riskTwo },
-            },
-            {
-              ...lineoption.series,
-              name: itemName.legendDate[2],
-              encode: { x: "date", y: itemName.riskThree },
-            },
-            {
-              ...lineoption.series,
-              name: itemName.legendDate[3],
-              encode: { x: "date", y: itemName.riskFour },
-            },
-          ],
-        };
-      } else {
-        this.chartOption[name] = {
-          ...lineoption,
-          dataset: { source: this.lineData },
-          legend: { ...lineoption.legend, data: itemName.legendDate },
-          series: [
-            {
-              ...lineoption.series,
-              name: itemName.legendDate[0],
-              encode: { x: "date", y: itemName.yOne },
-            },
-            {
-              ...lineoption.series,
-              name: itemName.legendDate[1],
-              encode: { x: "date", y: itemName.yTow },
-            },
-            {
-              ...lineoption.series,
-              name: itemName.legendDate[2],
-              encode: { x: "date", y: itemName.yow },
-            },
-          ],
-        };
-      }
+      this.chartOption[name] = {
+        ...lineoption,
+        dataset: { source: this.lineData },
+        legend: { ...lineoption.legend, data: itemName.legendDate },
+        series: [
+          {
+            ...lineoption.series,
+            name: itemName.legendDate[0],
+            encode: { x: "date", y: itemName.yOne },
+          },
+          {
+            ...lineoption.series,
+            name: itemName.legendDate[1],
+            encode: { x: "date", y: itemName.yTow },
+          },
+        ],
+      };
     },
     //获取隐患排查数
     async getTroubleCountNum() {
@@ -1098,6 +1000,9 @@ export default {
   .el-table__body-wrapper {
     height: calc(100% - 92px);
   }
+  // .el-table__row:hover {
+  //   background-color: #58626e;
+  // }
 }
 .gpsCarousel {
   .el-carousel__arrow {

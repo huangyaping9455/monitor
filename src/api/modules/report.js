@@ -24,6 +24,18 @@ export default {
   getZFDQBJTJJS(data) {
     return $axios.post('/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getZFDQBJTJPM', data);
   },
+  //政府报警统计-地区进区域报警排名统计
+  getDQIntoAreaPMTJ(data) {
+    return $axios.post('/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getDQIntoAreaPMTJ', data);
+  },
+  //政府报警统计-企业进区域报警排名统计
+  getDeptIntoAreaPMTJ(data) {
+    return $axios.post('/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getDeptIntoAreaPMTJ', data);
+  },
+  //政府报警统计-车辆进区域报警排名统计
+  gettDeptCLIntoAreaPMTJ(data) {
+    return $axios.post('/blade-anbiao/anbiao/zhengFuBaoJingTongJi/gettDeptCLIntoAreaPMTJ', data);
+  },
   getZFCLBJTJPM(data) {
     return $axios.post('/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getZFCLBJTJPM', data);
   },
@@ -56,26 +68,86 @@ export default {
     return $axios.post('/blade-anbiao/anbiao/qiYeShouYe/selectPersonLearnInfoAll', data);
   },
   // 获取隐患排查 明细 列表
-  getTroubleSetList(params) {
-    return $axios.get('/prod-api/tapi/thirdtrouble/trouble/buiness/list', {
-      params: params
-    });
+  getTroubleSetList(data) {
+    return $axios.post('/blade-anbiao/anbiao/trouble/buiness/list', data);
   },
   // 获取隐患排查列表
-  getTroubleList(params) {
-    return $axios.get('/prod-api/tapi/thirdtrouble/trouble/buiness/statisticsList', {
-      params: params
-    });
+  getTroubleList(data) {
+    return $axios.post('/blade-anbiao/anbiao/trouble/buiness/statisticsList', data);
   },
   // 获取隐患排查 数
   getTroublelistCount(params) {
-    return $axios.get('/prod-api/tapi/thirdtrouble/trouble/buiness/listCount', {
+    return $axios.get('/blade-anbiao/anbiao/trouble/buiness/listCount', {
       params: params
     });
   },
   // 获取首页隐患排查 数
   getTroubleCountNum(comId) {
-    return $axios.get(`/prod-api/tapi/thirdtrouble/trouble/buiness/countNumZF/${comId}`);
+    return $axios.get(`/blade-anbiao/anbiao/trouble/buiness/countNumZF?yunguanid=${comId}`);
+  },
+  // 政府-联网考核五率统计
+  getOneRate(params) {
+    return $axios.get(`/blade-anbiao/anbiao/zhengFuShouYeNew/getOneRate`, {
+      params: params
+    });
+  },
+  // 风险管控列表
+  getRiskList(data) {
+    return $axios.post(`/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getDQRiskPMTJ`, data);
+  },
+  // 风险管控详情
+  getRiskListByType(params) {
+    return $axios.get(`/blade-anbiao/anbiao/yinhuanpaicha/getRiskListByType`, {
+      params: params
+    });
+  },
+  // 政府车辆档案信息
+  getZFVehiclePage(data) {
+    return $axios.post('/blade-anbiao/anbiao/vehicle/getZFVehiclePage', data);
+  },
+  // 政府驾驶员档案信息
+  getZFJSYPageList(data) {
+    return $axios.post('/blade-anbiao/anbiao/jiashiyuan/getZFJSYPageList', data);
+  },
+  // 车辆详情
+  getVehicleDetail(params) {
+    return $axios.get(`/blade-anbiao/anbiao/vehicle/detail`, {
+      params: params
+    });
+  },
+  // 驾驶员详情
+  getDriverDetail(params) {
+    return $axios.get(`/blade-anbiao/anbiao/jiashiyuan/detail`, {
+      params: params
+    });
+  },
+  // 车辆维护
+  getZFVehicleWeiHuPage(data) {
+    return $axios.post(`/blade-anbiao/anbiao/cheliangweihu/getZFVehicleWeiHuPage`, data);
+  },
+  // 车辆维护详情
+  getvehicleWHrDetail(params) {
+    return $axios.get(`/blade-anbiao/anbiao/cheliangweihu/detail`, {
+      params: params
+    });
+  },
+  // 车辆事故
+  getZFCLSGPage(data) {
+    return $axios.post(`/blade-anbiao/anbiao/shigubaogao/getZFCLSGPage`, data);
+  },
+  // 车辆事故详情
+  getvehicleSGDetail(params) {
+    return $axios.get(`/blade-anbiao/anbiao/shigubaogao/detail`, {
+      params: params
+    });
+  },
+  directoryTree(deptId, parentId) {
+    return $axios.get(`/blade-doc/doc/SafetyProductionFile/boxTree`, {
+      params: {
+        deptId,
+        parentId
+      }
+    });
   },
   awaitWrap
 };

@@ -2,6 +2,7 @@ import {
   $axios,
   awaitWrap
 } from '../api';
+import qs from 'qs';
 export default {
   getTree(params) {
     return $axios.get('/blade-doc/doc/SafetyProductionFile/tree', {
@@ -31,10 +32,9 @@ export default {
       params: id
     });
   },
-  imgPreview(id) {
-    return $axios.post('/blade-doc/doc/SafetyProductionFile/imgPreview', {
-      id
-    });
+  imgPreview(params) {
+    params = qs.stringify(params)
+    return $axios.post('/blade-doc/doc/SafetyProductionFile/imgPreview', params);
   },
   moveFile(originId, targetId) {
     return $axios.get('/blade-doc/doc/SafetyProductionFile/swapFileSort', {
@@ -62,12 +62,3 @@ export default {
   },
   awaitWrap
 };
-
-// export const uploadDocByImg = (data) => {
-//   return request({
-//     url: '/api/blade-doc/doc/SafetyProductionFile/addImages',
-//     method: 'POST',
-//     headers: { 'Content-Type': 'multipart/form-data' },
-//     data
-//   });
-// };

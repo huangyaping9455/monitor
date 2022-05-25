@@ -10,42 +10,25 @@
     .main-r {
       margin-left: 1.0714rem;
       width: calc(100% - 24rem);
-      .hide-top {
-        margin-top: 5px;
-        display: flex;
-        justify-content: space-between;
-        .car-item {
-          width: 19%;
-          height: 9.7143rem;
-          border-radius: 0.7143rem;
-          box-sizing: border-box;
-          padding: 1.82rem 2.2286rem;
-          color: #ffffff;
-          font-size: 1.1429rem;
-          background-size: 100% 100%;
-          overflow: hidden;
-          position: relative;
-          span:last-of-type {
-            display: block;
-            font-size: 2.8571rem;
-            font-weight: bold;
-            margin-top: 5px;
-          }
-          &:nth-of-type(1) {
-            background-image: url("~@/assets/img/bg33.gif");
-          }
-          &:nth-of-type(2) {
-            background-image: url("~@/assets/img/bg34.gif");
-          }
-          &:nth-of-type(3) {
-            background-image: url("~@/assets/img/bg35.gif");
-          }
-          &:nth-of-type(4) {
-            background-image: url("~@/assets/img/bg36.gif");
-          }
-          &:nth-of-type(5) {
-            background-image: url("~@/assets/img/bg37.gif");
-          }
+    }
+    .btns {
+      margin-top: 0.3571rem;
+      margin-bottom: 1.0714rem;
+      .btn {
+        width: 9.2857rem;
+        height: 2.8571rem;
+        font-size: 1.1429rem;
+        border: none;
+        color: #ffffff;
+        background: url("~@/assets/img/btn.png");
+        background-size: 100% 100%;
+        .icon {
+          width: 1.1429rem;
+          height: 1.1429rem;
+          margin-right: 0.3571rem;
+        }
+        &:before {
+          background-color: rgba(255, 255, 255, 0);
         }
       }
     }
@@ -138,19 +121,8 @@
 </style>
 <style lang="scss">
 .search {
-  margin-top: 10px;
   .el-form-item__label {
     color: #01f8ff;
-  }
-  .el-input-group__prepend {
-    background: #112e4d;
-    border-color: #004b77;
-    color: #ffffff;
-    font-size: 1rem;
-    padding: 0 10px;
-  }
-  .inputW {
-    width: 10.7143rem;
   }
   input {
     background: #112e4d;
@@ -219,29 +191,43 @@
     <div class="main">
       <statistics-aside></statistics-aside>
       <div class="main-r">
-        <div class="hide-top">
-          <div class="car-item">
-            <span>上线率</span>
-            <span>{{ enterpriseCount.onlineRate }}</span>
-          </div>
-          <div class="car-item">
-            <span>定位率</span>
-            <span>{{ enterpriseCount.locateRate }}</span>
-          </div>
-          <div class="car-item">
-            <span>数据合格率</span>
-            <span>{{ enterpriseCount.qualifiedPositionRate }}</span>
-          </div>
-          <div class="car-item">
-            <span>轨迹完整率</span>
-            <span>{{ enterpriseCount.intactPositionRate }}</span>
-          </div>
-          <div class="car-item">
-            <span>轨迹漂移率</span>
-            <span>{{ enterpriseCount.driftPositionRate }}</span>
-          </div>
+        <!-- 操作按钮 -->
+        <div class="btns">
+          <el-button
+            @click="changeSearch"
+            size="mini"
+            class="btn"
+            icon="el-icon-search"
+            >查询</el-button
+          >
+          <el-button
+            size="mini"
+            :loading="downloading"
+            @click="downtable"
+            class="btn"
+          >
+            <svg-icon
+              class="icon"
+              v-show="!downloading"
+              icon-class="down"
+            />下载
+          </el-button>
+          <el-button
+            @click="refresh"
+            size="mini"
+            class="btn"
+            icon="el-icon-refresh"
+            >刷新</el-button
+          >
         </div>
-        <el-form :inline="true" size="mini" :model="form" class="search">
+        <!-- 查询 -->
+        <el-form
+          v-show="searchshow"
+          :inline="true"
+          size="mini"
+          :model="form"
+          class="search"
+        >
           <el-form-item label="开始时间">
             <el-date-picker
               v-model="form.begintime"
@@ -249,7 +235,6 @@
               :picker-options="pickerOptions"
               value-format="yyyy-MM-dd"
               placeholder="选择开始日期"
-              class="inputW"
             ></el-date-picker>
           </el-form-item>
           <el-form-item label="结束时间">
@@ -259,32 +244,11 @@
               :picker-options="pickerOptions"
               value-format="yyyy-MM-dd"
               placeholder="选择结束日期"
-              class="inputW"
             ></el-date-picker>
-          </el-form-item>
-          <el-form-item label="车辆总数">
-            <el-autocomplete
-              class="inline-input inputW"
-              v-model="vehicleCount"
-              :fetch-suggestions="querySearch"
-            >
-              <template slot="prepend">≥</template>
-            </el-autocomplete>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" class="sbtn" @click="getDate(1)"
               >搜索</el-button
-            >
-            <el-button
-              size="mini"
-              :loading="downloading"
-              @click="downtable"
-              type="primary"
-              class="sbtn"
-              >下载
-            </el-button>
-            <el-button @click="refresh" size="mini" type="primary" class="sbtn"
-              >刷新</el-button
             >
           </el-form-item>
         </el-form>
@@ -487,7 +451,7 @@ export default {
       pageTotal: 1, //总页数
       pagesize: [20, 30, 50, 100, 200], //每页显示列表
       pagesizeactive: 20, //当前每页显示
-      enterpriseListH: "calc(100vh - 23.6814rem)",
+      enterpriseListH: "calc(100vh - 14.6814rem)",
       form: {
         begintime: format(
           new Date().getTime() - 3600 * 1000 * 24,
@@ -504,14 +468,11 @@ export default {
         },
       },
       enterpriseList: [],
-      enterpriseCount: [],
       zhengfuId: "", //地区id
-      vehicleCount: "1",
     };
   },
   mounted() {
     this.getQYRYXTJ();
-    this.getOneRate();
   },
   computed: {
     ...mapGetters({
@@ -525,7 +486,6 @@ export default {
       if (newid) {
         this.zhengfuId = this.zhuzzhiId;
         this.getDate(1);
-        this.getOneRate();
       }
     },
   },
@@ -539,30 +499,6 @@ export default {
         endtime: format(new Date().getTime(), "YYYY-MM-DD"),
       };
       this.getDate(1);
-    },
-    // 车辆数 搜索建议
-    querySearch(queryString, cb) {
-      let restaurants = [
-        { value: "1" },
-        { value: "10" },
-        { value: "15" },
-        { value: "20" },
-        { value: "25" },
-        { value: "30" },
-      ];
-      // let results = queryString
-      //   ? restaurants.filter(this.createFilter(queryString))
-      //   : restaurants;
-      // 调用 callback 返回建议列表的数据
-      cb(restaurants);
-    },
-    createFilter(queryString) {
-      return (restaurant) => {
-        return (
-          restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) ===
-          0
-        );
-      };
     },
     // 请求数据判断
     getDate(page) {
@@ -579,7 +515,6 @@ export default {
           size: this.pagesizeactive,
           begintime: this.form.begintime,
           endtime: this.form.endtime,
-          vehiclecount: this.vehicleCount,
         })
       );
       this.loading = false;
@@ -593,18 +528,11 @@ export default {
         this.$message.error(err);
       }
     },
-    //联网考核五率统计
-    async getOneRate() {
-      let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.getOneRate({
-          deptId: this.zhuzzhiId,
-        })
-      );
-      if (data) {
-        this.enterpriseCount = data[0];
-      } else {
-        this.$message.error(err);
-      }
+    changeSearch() {
+      this.searchshow
+        ? (this.enterpriseListH = "calc(100vh - 13.5714rem)")
+        : (this.enterpriseListH = "calc(100vh - 16.8571rem)");
+      this.searchshow = !this.searchshow;
     },
     // 统计下载
     async downtable() {
@@ -622,7 +550,6 @@ export default {
           size: 0,
           begintime: this.form.begintime,
           endtime: this.form.endtime,
-          vehiclecount: this.vehicleCount,
         })
       );
       this.downloading = false;

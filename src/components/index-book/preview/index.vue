@@ -117,7 +117,14 @@ export default {
         if (this.active.mubanPath != "") {
           // let str = this.active.mubanPath.indexOf(".doc");
           window.location.href =
-            "http://sztoosun.com:8204/" +
+            // "http://59.36.239.170:8204/" +
+            // "http://61.136.101.78:8894/" +
+            // "http://sztoosun.com:8204/" +
+            // "http://222.82.236.242:8204/" +
+            "http://58.144.142.198:8204/" +
+            // "http://www.zkgt-safety.com:8204/" +
+            // "http://183.57.73.73:8204/" +
+            // "http://150.138.133.178:8204/" +
             this.active.mubanPath +
             "/" +
             this.active.name;
@@ -138,7 +145,14 @@ export default {
             return;
           }
           window.location.href =
-            "http://sztoosun.com:8204/" + res.data.data.path;
+            // "http://59.36.239.170:8204/" + res.data.data.path;
+            // "http://61.136.101.78:8894/" + res.data.data.path;
+            // "http://sztoosun.com:8204/" + res.data.data.path;
+            // "http://222.82.236.242:8204/" + res.data.data.path;
+            "http://58.144.142.198:8204/" + res.data.data.path;
+          // "http://www.zkgt-safety.com:8204/" + res.data.data.path;
+          // "http://183.57.73.73:8204/" + res.data.data.path;
+          // "http://150.138.133.178:8204/" + res.data.data.path;
         });
       }
     },
@@ -172,12 +186,12 @@ export default {
 
     preview() {
       this.loading = true;
-      // if (this.active._fileList) {
-      //   setTimeout(() => {
-      //     this.loading = false;
-      //   }, 200);
-      //   return;
-      // }
+      if (this.active._fileList) {
+        setTimeout(() => {
+          this.loading = false;
+        }, 200);
+        return;
+      }
 
       if (this.action) {
         this.action()
@@ -207,6 +221,8 @@ export default {
   $head-h: 40px;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
 
   .head {
     height: $head-h;

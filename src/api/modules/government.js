@@ -50,5 +50,9 @@ export default {
       params: params
     });
   },
+  // 政府车辆统计-运营商
+  getVehicleYunYingShang(data) {
+    return $axios.post('/blade-anbiao/anbiao/vehicle/getVehicleYunYingShang', data);
+  },
   awaitWrap
 };
