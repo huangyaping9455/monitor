@@ -188,6 +188,12 @@ export default {
       );
       this.msgloading = false;
       if (data) {
+        if (data.shenfenzhenghao) {
+            data.shenfenzhenghao = data.shenfenzhenghao.replace(
+              /^(.{6})(?:\d+)(.{4})$/,
+              "\$1****\$2"
+            );
+          }
         this.driverDetailList = data;
       } else {
         this.$message.error(err);

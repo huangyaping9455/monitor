@@ -231,6 +231,7 @@ export default {
   computed: {
     ...mapGetters({
       zhuzzhiId: "government/fasongdanwei",
+      userinfo: "userinfo",
     }),
   },
   watch: {
@@ -329,10 +330,14 @@ export default {
         // window.location.href = "http://61.136.101.78:8204/" + data.path;
         // window.location.href = "http://sztoosun.com:8204/" + data.path;
         // window.location.href = "http://222.82.236.242:8204/" + data.path;
-        window.location.href = "http://58.144.142.198:8204/" + data.path;
+        // window.location.href = "http://58.144.142.198:8204/" + data.path;
+        // window.location.href = "http://47.112.100.126:8204/" + data.path;
+        // window.location.href = "http://125.64.5.2:8204/" + data.path;
+        // window.location.href = "http://103.47.83.154:8204/" + data.path;
         // window.location.href = "http://www.zkgt-safety.com:8204/" + data.path;
         // window.location.href = "http://183.57.73.73:8204/" + data.path;
         // window.location.href = "http://150.138.133.178:8204/" + data.path;
+        window.location.href = this.userinfo.urlPrefix + data.path;
       } else {
         this.$message.error(msg);
       }
@@ -488,7 +493,7 @@ export default {
         font-size: 0.9286rem;
         width: 1.2857rem;
         height: 1.2857rem;
-        padding: 0;
+        padding: 5px;
         border-radius: 50%;
         text-align: center;
         &.active {

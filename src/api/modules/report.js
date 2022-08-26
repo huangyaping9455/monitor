@@ -12,6 +12,12 @@ export default {
   getZFDQBJCLLVTJ(data) {
     return $axios.post('/blade-anbiao/anbiao/organization/getList', data);
   },
+  // 企业详情
+  detailByDeptId(params) {
+    return $axios.get(`/blade-anbiao/anbiao/organizations/detailByDeptId`, {
+      params: params
+    });
+  },
   // 车辆日运行情况统计
   getZFCLRYXTJ(data) {
     return $axios.post('/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getZFCLRYXTJ', data);
@@ -19,6 +25,18 @@ export default {
   // 企业日运行情况统计
   getQYRYXTJ(data) {
     return $axios.post('/blade-anbiao/anbiao/zhengFuBaoJingTongJi/GetQYRYXTJ', data);
+  },
+  // 运营商日运行情况统计
+  getYYSRYXTJ(data) {
+    return $axios.post('/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getYYSRYXTJ', data);
+  },
+  // 道路运输企业联网联控考核评分
+  getLWLKTJ(data) {
+    return $axios.post('/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getLWLKTJ', data);
+  },
+  // 道路运输运营商联网联控考核评分
+  getFWSLWLKTJ(data) {
+    return $axios.post('/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getFWSLWLKTJ', data);
   },
   //政府报警统计-报警统计结算
   getZFDQBJTJJS(data) {
@@ -147,6 +165,16 @@ export default {
         deptId,
         parentId
       }
+    });
+  },
+  // 法律法规列表
+  getlawList(data) {
+    return $axios.post(`/blade-anbiao/anbiao/lawsRegulations/getNoticeAll`, data);
+  },
+  // 法律法规详情
+  getlawDetail(params) {
+    return $axios.get(`/blade-anbiao/anbiao/lawsRegulations/detail`, {
+      params
     });
   },
   awaitWrap

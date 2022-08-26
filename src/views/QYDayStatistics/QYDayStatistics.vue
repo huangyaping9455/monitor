@@ -125,7 +125,7 @@
         font-size: 0.9286rem;
         width: 1.2857rem;
         height: 1.2857rem;
-        padding: 0;
+        padding: 5px;
         border-radius: 50%;
         text-align: center;
         &.active {
@@ -313,7 +313,7 @@
             align="center"
           ></el-table-column
           ><el-table-column
-            label="所属运管"
+            label="所属交通局"
             prop="zhengfuname"
             min-width="150"
             :show-overflow-tooltip="true"
@@ -648,7 +648,7 @@ export default {
         multiHeader = [
           "排名",
           "所属地市",
-          "所属运管",
+          "所属交通局",
           "企业名称",
           "统计日期",
           "车辆总数",

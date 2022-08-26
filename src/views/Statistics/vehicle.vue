@@ -86,7 +86,7 @@
         font-size: 0.9286rem;
         width: 1.2857rem;
         height: 1.2857rem;
-        padding: 0;
+        padding: 5px;
         border-radius: 50%;
         text-align: center;
         &.active {
@@ -287,7 +287,7 @@
       <el-table-column prop="areaName" label="所属地区"></el-table-column>
       <el-table-column
         prop="yunguanmingcheng"
-        label="所属运管"
+        label="所属交通局"
       ></el-table-column>
       <el-table-column
         prop="DeptName"
@@ -590,7 +590,7 @@ export default {
       require.ensure([], () => {
         const tHeader = [
           "所属地区",
-          "所属运管",
+          "所属交通局",
           "所属企业",
           "车辆牌照",
           "车牌颜色",

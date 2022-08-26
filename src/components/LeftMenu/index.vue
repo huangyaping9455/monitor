@@ -1,6 +1,6 @@
 <style lang="scss" scoped>
 .leftMenu {
-  width: 190px;
+  width: 200px;
   height: 100vh;
   background-image: url("~@/assets/img/bg_12.png");
   background-size: 100% 100%;
@@ -16,7 +16,7 @@
   .leftMenu-menu {
     // height: 69%;
     height: 100%;
-    width: 160px;
+    width: 170px;
     overflow: hidden;
     border-right: 0px;
     .menu-item {
@@ -92,7 +92,7 @@
   }
   .el-submenu .el-menu-item {
     width: 100%;
-    padding: 0 0 0 40px !important;
+    padding: 0 0 0 32px !important;
   }
   .el-menu-item.is-active .menu-item .icon {
     fill: #ffffff;
@@ -102,7 +102,7 @@
 
 <template>
   <aside class="leftMenu" :class="ismenuShow ? 'show' : 'noshow'">
-    <scroll style="height:69%;width:160px;">
+    <scroll style="height:69%;width:170px;">
       <el-menu
         :default-active="urlName"
         class="leftMenu-menu"
@@ -149,12 +149,12 @@
               <span>车辆统计</span>
             </div>
           </el-menu-item>
-          <el-menu-item index="QYvehicle" @click="openMenu">
+          <!-- <el-menu-item index="QYvehicle" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="zhengqi" />
               <span>企业统计</span>
             </div>
-          </el-menu-item>
+          </el-menu-item> -->
           <el-menu-item index="DayStatistics" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="zhenggai" />
@@ -167,6 +167,24 @@
               <span>企业日运行统计</span>
             </div>
           </el-menu-item>
+          <!-- <el-menu-item index="YYSDayStatistics" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span>运营商日运行统计</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="LWLKStatic" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span>企业考核评分</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="YYSStatic" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span>运营商考核评分</span>
+            </div>
+          </el-menu-item> -->
         </el-submenu>
         <el-submenu index="3">
           <template slot="title">
@@ -330,9 +348,15 @@
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="wenjian" />
-              <span>档案管控</span>
+              <span>档案管理</span>
             </div>
           </template>
+          <el-menu-item index="QYvehicle" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhengqi" />
+              <span>企业统计</span>
+            </div>
+          </el-menu-item>
           <el-menu-item index="vehicleArchives" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="zhenggai" />
@@ -357,13 +381,33 @@
               <span>车辆事故</span>
             </div>
           </el-menu-item>
+          <el-menu-item index="law" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span>法律法规</span>
+            </div>
+          </el-menu-item>
         </el-submenu>
-        <el-menu-item index="home" @click="openThree">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="zhenggai" />
-            <span slot="title">风险管控</span>
-          </div>
-        </el-menu-item>
+        <!-- <el-submenu index="11">
+          <template slot="title">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="chulilv" />
+              <span>风险管控</span>
+            </div>
+          </template>
+          <el-menu-item index="home" @click="openThree">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span slot="title">陕西</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="home" @click="openThree1">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span slot="title">广东</span>
+            </div>
+          </el-menu-item>
+        </el-submenu> -->
       </el-menu>
     </scroll>
     <div
@@ -408,6 +452,11 @@ export default {
     openThree() {
       window.open(
         "http://139.155.45.177/dashboard/analysis?username=shaanxi&password=SS@123456"
+      );
+    },
+    openThree1() {
+      window.open(
+        "http://60.171.241.126:6600/dualMechanismData/safeBrain/SafeBrain?type=sp"
       );
     },
   },

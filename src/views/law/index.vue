@@ -1,6 +1,7 @@
 <style lang="scss" scoped>
 .enterprise {
-  height: 90vh;
+  width: 100%;
+  height: 100vh;
   background: #0b122e;
   .main {
     height: calc(100vh - 7rem);
@@ -8,7 +9,8 @@
     padding: 0 10px 10px 10px;
     box-sizing: border-box;
     .main-r {
-      //   margin-left: 1.0714rem;
+      margin-left: 1.0714rem;
+      //   width: calc(100% - 24rem);
       width: calc(100%);
     }
     .btns {
@@ -187,7 +189,9 @@
 
 <template>
   <div class="enterprise">
+    <all-header></all-header>
     <div class="main">
+      <!-- <statistics-aside></statistics-aside> -->
       <div class="main-r">
         <!-- 操作按钮 -->
         <div class="btns">
@@ -198,6 +202,18 @@
             icon="el-icon-search"
             >查询</el-button
           >
+          <el-button
+            size="mini"
+            :loading="downloading"
+            @click="downtable"
+            class="btn"
+          >
+            <svg-icon
+              class="icon"
+              v-show="!downloading"
+              icon-class="down"
+            />下载
+          </el-button>
           <el-button
             @click="refresh"
             size="mini"
@@ -213,36 +229,40 @@
           size="mini"
           :model="form"
           class="search"
-        >
-          <el-form-item label="企业名称">
+          ><el-form-item label="标题">
             <el-input
-              v-model="form.deptName"
-              placeholder="请输入企业名称"
+              v-model="form.biaoti"
+              placeholder="请输入标题"
               clearable
             ></el-input>
           </el-form-item>
-          <el-form-item label="学习月份">
-            <el-date-picker
-              value-format="yyyy-MM"
-              type="month"
-              placement="bottom-end"
-              v-model="form.month"
-              placeholder="请选择学习月份"
-            ></el-date-picker>
-          </el-form-item>
-          <el-form-item label="完成情况">
-            <el-select
-              v-model="form.status"
+          <el-form-item label="文号">
+            <el-input
+              v-model="form.wenhao"
+              placeholder="请输入文号"
               clearable
-              placeholder="请选择完成情况"
+            ></el-input>
+          </el-form-item>
+          <!-- <el-form-item label="发布日期">
+            <el-date-picker
+              v-model="form.begintime"
+              type="date"
+              value-format="yyyy-MM-dd"
+              placeholder="选择发布日期"
+            ></el-date-picker>
+          </el-form-item> -->
+          <el-form-item label="分类">
+            <el-select
+              v-model="form.biaoqianType"
+              placeholder="请选择分类"
+              clearable
             >
               <el-option
-                v-for="item in isfinish"
-                :key="item.value"
                 :label="item.label"
                 :value="item.value"
-              >
-              </el-option>
+                v-for="(item, index) in lawTypeList"
+                :key="index"
+              ></el-option>
             </el-select>
           </el-form-item>
           <el-form-item>
@@ -251,6 +271,7 @@
             >
           </el-form-item>
         </el-form>
+        <!-- mainTable -->
         <el-table
           v-loading="loading"
           element-loading-background="rgba(0, 0, 0, 0.4)"
@@ -261,43 +282,51 @@
           :data="enterpriseList"
         >
           <el-table-column
-            label="企业名称"
-            prop="deptname"
+            label="文件名"
+            prop="name"
+            min-width="100"
+            :show-overflow-tooltip="true"
             align="center"
-          ></el-table-column>
-          <el-table-column
-            label="学习月份"
-            prop="learnmonth"
-            width="240"
-            align="center"
-          ></el-table-column>
-          <el-table-column
-            label="应学人数"
-            prop="yxnum"
-            align="center"
-          ></el-table-column>
-          <el-table-column
-            prop="dbnum"
-            label="达标人数"
-            align="center"
-          ></el-table-column>
-          <el-table-column
-            prop="wdbnum"
-            label="未达标人数"
-            align="center"
-          ></el-table-column>
-          <el-table-column
-            prop="wxnum"
-            label="未学人数"
-            align="center"
-          ></el-table-column>
-          <el-table-column label="操作" align="center" width="110">
-            <template slot-scope="{ row }">
-              <el-button size="mini" type="primary" @click="learnView(row)"
-                >详情</el-button
+          >
+            <template scope="scope">
+              <span
+                style="color: #01f8ff;cursor: pointer;"
+                @click="detailView(scope.row)"
+                >{{ scope.row.name }}</span
               >
-            </template>
-          </el-table-column>
+            </template> </el-table-column
+          ><el-table-column
+            label="文号"
+            prop="number"
+            :show-overflow-tooltip="true"
+            align="center"
+          ></el-table-column>
+          <el-table-column
+            label="发布机关"
+            prop="authority"
+            :show-overflow-tooltip="true"
+            align="center"
+          ></el-table-column>
+          <el-table-column
+            label="分类"
+            prop="type"
+            align="center"
+          ></el-table-column>
+          <el-table-column
+            label="发布日期"
+            prop="releaseDate"
+            align="center"
+          ></el-table-column>
+          <el-table-column
+            label="实施日期"
+            prop="materialDate"
+            align="center"
+          ></el-table-column>
+          <el-table-column
+            label="文件状态"
+            prop="status"
+            align="center"
+          ></el-table-column>
         </el-table>
         <!-- page -->
         <div class="page">
@@ -372,107 +401,97 @@
             </div>
           </div>
         </div>
-        <viewlearn ref="learnview"></viewlearn>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import allHeader from "@/components/Header/index";
 import dataAnalysisApi from "@/api/modules/report";
+import dataApi from "@/api/modules/government";
 import { mapGetters } from "vuex";
-import viewlearn from "./view.vue";
 import { format } from "@/config/date";
+import { export_json_to_excel } from "@/config/Export2Excel";
 export default {
-  components: { viewlearn },
+  components: {
+    "all-header": allHeader,
+  },
   data() {
     return {
       loading: false,
+      downloading: false,
       searchshow: false,
       total: 0, //消息总数
       current: 1, //当前页数
       pageTotal: 1, //总页数
-      pagesize: [10, 20, 30, 50, 100], //每页显示列表
+      pagesize: [20, 30, 50, 100, 200], //每页显示列表
       pagesizeactive: 20, //当前每页显示
       enterpriseListH: "calc(100vh - 14.6814rem)",
       form: {
-        deptName: "",
-        month: format(new Date(), "yyyy-MM"),
-        status: "",
+        // begintime: format(new Date().getTime(), "YYYY-MM-DD"),
+        begintime: "2000-01-01",
+        wenhao: "",
+        biaoti: "",
+        biaoqianType: "",
       },
       enterpriseList: [],
-      zhengfuId: "", //地区id
-      isfinish: [
-        {
-          label: "全部",
-          value: "",
-        },
-        {
-          label: "达标",
-          value: "达标",
-        },
-        {
-          label: "未达标",
-          value: "未达标",
-        },
-      ],
+      lawTypeList: [],
+      policyTypeList: [],
     };
   },
   created() {
-    this.selectZFPersonLearnInfoAll();
+    this.getPolicyType();
+    this.getLawype();
+    this.getlawList();
   },
   computed: {
     ...mapGetters({
-      zhuzzhiId: "government/fasongdanwei",
       xuanzhongchengshi: "government/xuanzhongchengshi",
+      userinfo: "userinfo",
     }),
   },
-  watch: {
-    zhuzzhiId(newid) {
-      // 切换单位
-      if (newid) {
-        this.zhengfuId = this.zhuzzhiId;
-        this.getDate(1);
-      }
-    },
-  },
+  watch: {},
   methods: {
     refresh() {
       this.form = {
-        deptName: "",
-        month: format(new Date(), "yyyy-MM"),
-        status: "",
+        begintime: format(new Date().getTime(), "YYYY-MM-DD"),
       };
       this.getDate(1);
     },
     // 请求数据判断
     getDate(page) {
-      this.selectZFPersonLearnInfoAll(page);
+      this.getlawList(page);
     },
     //地区报警处理率
-    async selectZFPersonLearnInfoAll(current = 1) {
+    async getlawList(current = 1) {
       current = Number(current);
       this.loading = true;
-      let lyear = this.form.month.split("-")[0];
-      let lmonth = this.form.month.split("-")[1];
       let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.selectZFPersonLearnInfoAll({
-          deptId: this.zhuzzhiId,
+        dataAnalysisApi.getlawList({
           current: current,
           size: this.pagesizeactive,
-          lmonth: lmonth,
-          lyear: lyear,
-          deptName: this.form.deptName,
-          status: this.form.status,
+          releaseDate: this.form.begintime,
+          name: this.form.biaoti,
+          type: this.form.biaoqianType,
+          number: this.form.wenhao,
         })
       );
       this.loading = false;
       if (data) {
-        this.enterpriseList = data.data.records;
+        this.enterpriseList = data.records.map((el) => {
+          let types = this.lawTypeList.find((val) => val.value == el.type);
+          if (types) el.type = types.label;
+          let status = this.policyTypeList.find(
+            (val) => val.value == el.status
+          );
+          if (status) el.status = status.label;
+          return el;
+        });
         //分页处理
-        this.current = data.data.current;
-        this.total = data.data.total;
-        this.pageTotal = data.data.pageTotal;
+        this.current = data.current;
+        this.total = data.total;
+        this.pageTotal = data.pageTotal;
       } else {
         this.$message.error(err);
       }
@@ -483,15 +502,117 @@ export default {
         : (this.enterpriseListH = "calc(100vh - 16.8571rem)");
       this.searchshow = !this.searchshow;
     },
-    // 详情 弹框
-    learnView(row) {
-      this.$refs.learnview.usernames = "";
-      this.$refs.learnview.statusshow = "";
-      this.$refs.learnview.learnStudys = "";
-      this.$refs.learnview.rows = row;
-      this.$refs.learnview.lmonths = row.learnmonth;
-      this.$refs.learnview.selectPersonLearnInfoAll();
-      this.$refs.learnview.learnVisible = true;
+    // 获取字典
+    async getPolicyType() {
+      let [err, data] = await dataApi.awaitWrap(
+        dataApi.getByCode({ code: "lawstatus" })
+      );
+      if (data) {
+        this.policyTypeList = data;
+      }
+    },
+    // 获取字典
+    async getLawype() {
+      let [err, data] = await dataApi.awaitWrap(
+        dataApi.getByCode({ code: "lawtype" })
+      );
+      if (data) {
+        this.lawTypeList = data;
+      }
+    },
+    // 文件预览
+    async detailView(item) {
+      let [err, data] = await dataAnalysisApi.awaitWrap(
+        dataAnalysisApi.getlawDetail({ Id: item.id })
+      );
+      if (data) {
+        if (data.filePdfUrl) {
+          window.open(this.userinfo.urlPrefix + data.filePdfUrl, "_blank");
+        } else {
+          this.$message.error("文件打开失败");
+        }
+      }
+    },
+    // 统计下载
+    async downtable() {
+      this.downloading = true;
+      let req, url;
+      url = "getlawList";
+      req = {};
+      let [err, data] = await dataAnalysisApi.awaitWrap(
+        dataAnalysisApi[url]({
+          ...req,
+          current: 0,
+          size: 0,
+          releaseDate: this.form.begintime,
+          name: this.form.biaoti,
+          type: this.form.biaoqianType,
+          number: this.form.wenhao,
+        })
+      );
+      this.downloading = false;
+      if (data) {
+        data = data.records.map((el, index) => {
+          let types = this.lawTypeList.find((val) => val.value == el.type);
+          el.type = types.label;
+          let status = this.policyTypeList.find(
+            (val) => val.value == el.status
+          );
+          el.status = status.label;
+          return {
+            ...el,
+            index: index + 1,
+          };
+        });
+        this.export2Excel(data);
+      } else {
+        this.$message.error(err);
+      }
+    },
+    //处理下载数据
+    formatJson(filterVal, jsonData) {
+      return jsonData.map((v) => filterVal.map((j) => v[j]));
+    },
+    export2Excel(list) {
+      require.ensure([], () => {
+        let multiHeader, filterVal, merges, filename;
+        multiHeader = [
+          "文件名",
+          "文号",
+          "发布机关",
+          "分类",
+          "发布日期",
+          "实施日期",
+          "文件状态",
+        ];
+        filterVal = [
+          "name",
+          "number",
+          "authority",
+          "type",
+          "releaseDate",
+          "materialDate",
+          "status",
+        ];
+        merges = [
+          "A1:A2",
+          "B1:B2",
+          "C1:C2",
+          "D1:D2",
+          "E1:E2",
+          "F1:F2",
+          "G1:G2",
+        ];
+        filename = "法律法规";
+        const data = this.formatJson(filterVal, list);
+        export_json_to_excel({
+          multiHeader,
+          header: multiHeader,
+          data,
+          filename: filename,
+          merges,
+        });
+      });
     },
   },
 };

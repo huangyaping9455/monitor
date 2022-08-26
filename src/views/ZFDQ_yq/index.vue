@@ -90,7 +90,7 @@
         font-size: 0.9286rem;
         width: 1.2857rem;
         height: 1.2857rem;
-        padding: 0;
+        padding: 5px;
         border-radius: 50%;
         text-align: center;
         &.active {
@@ -240,7 +240,11 @@
             </el-col>
           </el-form-item>
           <el-form-item label="风险区域">
-              <el-input style="width:100%" clearable v-model="form.area"></el-input>
+            <el-input
+              style="width:100%"
+              clearable
+              v-model="form.area"
+            ></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" class="sbtn" @click="getDQIntoAreaPMTJ(1)"

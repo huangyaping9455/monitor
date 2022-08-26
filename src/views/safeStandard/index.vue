@@ -108,7 +108,7 @@
         font-size: 0.9286rem;
         width: 1.2857rem;
         height: 1.2857rem;
-        padding: 0;
+        padding: 5px;
         border-radius: 50%;
         text-align: center;
         &.active {
@@ -253,7 +253,7 @@
           :data="enterpriseList"
         >
           <el-table-column
-            label="运管名称"
+            label="交通局名称"
             prop="zhengfuname"
             align="center"
           ></el-table-column>

@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import axios from "axios";
 export default {
   name: "preview-doc",
@@ -105,6 +106,9 @@ export default {
     files() {
       return this.active._fileList || [];
     },
+    ...mapGetters({
+      userinfo: "userinfo",
+    }),
   },
   watch: {
     active() {
@@ -121,10 +125,14 @@ export default {
             // "http://61.136.101.78:8894/" +
             // "http://sztoosun.com:8204/" +
             // "http://222.82.236.242:8204/" +
-            "http://58.144.142.198:8204/" +
+            // "http://58.144.142.198:8204/" +
+            // "http://47.112.100.126:8204/" +
+            // "http://125.64.5.2:8204/" +
+            // "http://103.47.83.154:8204/" +
             // "http://www.zkgt-safety.com:8204/" +
             // "http://183.57.73.73:8204/" +
             // "http://150.138.133.178:8204/" +
+            this.userinfo.urlPrefix +
             this.active.mubanPath +
             "/" +
             this.active.name;
@@ -149,10 +157,14 @@ export default {
             // "http://61.136.101.78:8894/" + res.data.data.path;
             // "http://sztoosun.com:8204/" + res.data.data.path;
             // "http://222.82.236.242:8204/" + res.data.data.path;
-            "http://58.144.142.198:8204/" + res.data.data.path;
-          // "http://www.zkgt-safety.com:8204/" + res.data.data.path;
-          // "http://183.57.73.73:8204/" + res.data.data.path;
-          // "http://150.138.133.178:8204/" + res.data.data.path;
+            // "http://58.144.142.198:8204/" + res.data.data.path;
+            // "http://47.112.100.126:8204/" + res.data.data.path;
+            // "http://125.64.5.2:8204/" + res.data.data.path;
+            // "http://103.47.83.154:8204/" + res.data.data.path;
+            // "http://www.zkgt-safety.com:8204/" + res.data.data.path;
+            // "http://183.57.73.73:8204/" + res.data.data.path;
+            // "http://150.138.133.178:8204/" + res.data.data.path;
+            this.userinfo.urlPrefix + res.data.data.path;
         });
       }
     },

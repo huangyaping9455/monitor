@@ -27,6 +27,20 @@
         <span>{{ listCount.num5 }}</span>
       </div>
     </div>
+    <el-form :inline="true" size="mini" class="hide-search"
+      ><el-form-item label="公司名称">
+        <el-input
+          v-model="deptName"
+          placeholder="请输入公司名称"
+          clearable
+        ></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" class="sbtn" @click="getDate(1)"
+          >搜索</el-button
+        >
+      </el-form-item>
+    </el-form>
     <el-table
       class="hideTable"
       :data="tableData"
@@ -104,7 +118,7 @@
       <el-table-column label="操作" align="center" width="110">
         <template slot-scope="{ row }">
           <el-button size="mini" type="primary" @click="sendZG(row)">
-            下发整改
+            催办
           </el-button>
         </template>
       </el-table-column>
@@ -192,10 +206,11 @@ export default {
       pageTotal: 1, //总页数
       pagesize: [10, 20, 30, 50, 100], //每页显示列表
       pagesizeactive: 20, //当前每页显示
-      tableListH: "calc(100vh - 20.8828rem)",
+      tableListH: "calc(100vh - 23.8828rem)",
       tableData: [],
       listCount: [],
       zhengfuId: this.$store.state.userinfo.deptId,
+      deptName: "",
     };
   },
   created() {
@@ -232,6 +247,7 @@ export default {
           current: current,
           size: this.pagesizeactive,
           yunguanid: this.zhengfuId,
+          deptName: this.deptName,
         })
       );
       this.msgloading = false;
@@ -289,6 +305,7 @@ export default {
     justify-content: space-between;
     padding-left: 20px;
     padding-right: 20px;
+    margin-bottom: 10px;
     .car-item {
       width: 19%;
       height: 10.7143rem;
@@ -355,6 +372,28 @@ export default {
       }
     }
   }
+  .hide-search {
+    display: flex;
+    align-items: center;
+    /deep/.el-form-item__label {
+      color: #01f8ff;
+    }
+    /deep/ input {
+      background: #112e4d;
+      border-color: #004b77;
+      color: #ffffff;
+      height: 2.8571rem;
+      font-size: 1rem;
+      &:focus {
+        border-color: #00d2ff;
+      }
+    }
+    /deep/.el-form-item--mini.el-form-item {
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+    }
+  }
   .page {
     display: flex;
     color: #d3d4d6;
@@ -395,7 +434,7 @@ export default {
         font-size: 0.9286rem;
         width: 1.2857rem;
         height: 1.2857rem;
-        padding: 0;
+        padding: 5px;
         border-radius: 50%;
         text-align: center;
         &.active {
@@ -411,7 +450,7 @@ export default {
   width: 100%;
   background: #0f1f40;
   border: 0.0714rem solid #0a3774;
-  margin-top: 15px;
+  // margin-top: 15px;
   .spancolor {
     color: #00c8f5;
     cursor: pointer;

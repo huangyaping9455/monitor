@@ -110,7 +110,7 @@
         font-size: 0.9286rem;
         width: 1.2857rem;
         height: 1.2857rem;
-        padding: 0;
+        padding: 5px;
         border-radius: 50%;
         text-align: center;
         &.active {
@@ -450,7 +450,12 @@
             align="center"
             :show-overflow-tooltip="true"
           ></el-table-column>
-          <el-table-column prop="chulimiaoshu" label="处理描述" :show-overflow-tooltip="true" align="center">
+          <el-table-column
+            prop="chulimiaoshu"
+            label="处理描述"
+            :show-overflow-tooltip="true"
+            align="center"
+          >
             <template slot-scope="{ row }">
               <el-tooltip
                 popper-class="tablePopper"
@@ -469,7 +474,12 @@
             width="70"
             align="center"
           ></el-table-column>
-          <el-table-column prop="shensumiaoshu" label="申诉描述" :show-overflow-tooltip="true" align="center">
+          <el-table-column
+            prop="shensumiaoshu"
+            label="申诉描述"
+            :show-overflow-tooltip="true"
+            align="center"
+          >
             <template slot-scope="{ row }">
               <el-tooltip
                 popper-class="tablePopper"

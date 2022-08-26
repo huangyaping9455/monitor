@@ -1,6 +1,6 @@
 <style lang="scss" scoped>
 .enterprise {
-  height: 90vh;
+  height: 100vh;
   background: #0b122e;
   .main {
     height: calc(100vh - 7rem);
@@ -8,8 +8,8 @@
     padding: 0 10px 10px 10px;
     box-sizing: border-box;
     .main-r {
-      //   margin-left: 1.0714rem;
-      width: calc(100%);
+      margin-left: 1.0714rem;
+      width: calc(100% - 24rem);
     }
     .btns {
       margin-top: 0.3571rem;
@@ -187,7 +187,9 @@
 
 <template>
   <div class="enterprise">
+    <all-header></all-header>
     <div class="main">
+      <statistics-aside></statistics-aside>
       <div class="main-r">
         <!-- 操作按钮 -->
         <div class="btns">
@@ -198,6 +200,18 @@
             icon="el-icon-search"
             >查询</el-button
           >
+          <el-button
+            size="mini"
+            :loading="downloading"
+            @click="downtable"
+            class="btn"
+          >
+            <svg-icon
+              class="icon"
+              v-show="!downloading"
+              icon-class="down"
+            />下载
+          </el-button>
           <el-button
             @click="refresh"
             size="mini"
@@ -214,36 +228,23 @@
           :model="form"
           class="search"
         >
-          <el-form-item label="企业名称">
-            <el-input
-              v-model="form.deptName"
-              placeholder="请输入企业名称"
-              clearable
-            ></el-input>
-          </el-form-item>
-          <el-form-item label="学习月份">
+          <el-form-item label="开始时间">
             <el-date-picker
-              value-format="yyyy-MM"
-              type="month"
-              placement="bottom-end"
-              v-model="form.month"
-              placeholder="请选择学习月份"
+              v-model="form.begintime"
+              type="date"
+              :picker-options="pickerOptions"
+              value-format="yyyy-MM-dd"
+              placeholder="选择开始日期"
             ></el-date-picker>
           </el-form-item>
-          <el-form-item label="完成情况">
-            <el-select
-              v-model="form.status"
-              clearable
-              placeholder="请选择完成情况"
-            >
-              <el-option
-                v-for="item in isfinish"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
-            </el-select>
+          <el-form-item label="结束时间">
+            <el-date-picker
+              v-model="form.endtime"
+              type="date"
+              :picker-options="pickerOptions"
+              value-format="yyyy-MM-dd"
+              placeholder="选择结束日期"
+            ></el-date-picker>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" class="sbtn" @click="getDate(1)"
@@ -251,6 +252,7 @@
             >
           </el-form-item>
         </el-form>
+        <!-- mainTable -->
         <el-table
           v-loading="loading"
           element-loading-background="rgba(0, 0, 0, 0.4)"
@@ -260,44 +262,94 @@
           border
           :data="enterpriseList"
         >
-          <el-table-column
-            label="企业名称"
-            prop="deptname"
-            align="center"
-          ></el-table-column>
-          <el-table-column
-            label="学习月份"
-            prop="learnmonth"
-            width="240"
-            align="center"
-          ></el-table-column>
-          <el-table-column
-            label="应学人数"
-            prop="yxnum"
-            align="center"
-          ></el-table-column>
-          <el-table-column
-            prop="dbnum"
-            label="达标人数"
-            align="center"
-          ></el-table-column>
-          <el-table-column
-            prop="wdbnum"
-            label="未达标人数"
-            align="center"
-          ></el-table-column>
-          <el-table-column
-            prop="wxnum"
-            label="未学人数"
-            align="center"
-          ></el-table-column>
-          <el-table-column label="操作" align="center" width="110">
-            <template slot-scope="{ row }">
-              <el-button size="mini" type="primary" @click="learnView(row)"
-                >详情</el-button
-              >
+          <el-table-column type="index" label="排名" width="50" align="center">
+            <template scope="scope">
+              <span>{{
+                (current - 1) * pagesizeactive + scope.$index + 1
+              }}</span>
             </template>
           </el-table-column>
+          <el-table-column
+            label="所属地市"
+            prop="areaname"
+            min-width="100"
+            :show-overflow-tooltip="true"
+            align="center"
+          ></el-table-column
+          ><el-table-column
+            label="所属交通局"
+            prop="zhengfuname"
+            min-width="150"
+            :show-overflow-tooltip="true"
+            align="center"
+          ></el-table-column>
+          <el-table-column
+            label="运营商名称"
+            prop="operatorName"
+            min-width="210"
+            :show-overflow-tooltip="true"
+            align="center"
+          ></el-table-column>
+          <el-table-column
+            label="统计日期"
+            prop="date"
+            width="130"
+            align="center"
+          ></el-table-column>
+          <el-table-column
+            label="车辆总数"
+            prop="vehicleCount"
+            align="center"
+            min-width="80"
+          ></el-table-column>
+          <el-table-column
+            label="上线车辆数"
+            prop="upLineCount"
+            width="120"
+            align="center"
+          ></el-table-column>
+          <el-table-column
+            label="离线车辆数"
+            prop="offLineCount"
+            align="center"
+            min-width="120"
+          ></el-table-column>
+          <el-table-column
+            label="上线率"
+            prop="onlineRate"
+            align="center"
+            min-width="100"
+          ></el-table-column>
+          <el-table-column
+            prop="locateCount"
+            label="定位车辆数"
+            align="center"
+            min-width="100"
+          ></el-table-column>
+          <el-table-column
+            prop="locateRate"
+            label="定位率"
+            align="center"
+            min-width="100"
+          ></el-table-column>
+          <el-table-column
+            prop="driftPositionRate"
+            label="轨迹漂移率"
+            align="center"
+            min-width="100"
+          ></el-table-column>
+          <el-table-column
+            prop="intactPositionRate"
+            label="轨迹完整率"
+            align="center"
+            min-width="100"
+          ></el-table-column>
+          <el-table-column
+            prop="qualifiedPositionRate"
+            label="数据合格率"
+            align="center"
+            min-width="100"
+          ></el-table-column>
         </el-table>
         <!-- page -->
         <div class="page">
@@ -372,54 +424,55 @@
             </div>
           </div>
         </div>
-        <viewlearn ref="learnview"></viewlearn>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import allHeader from "@/components/Header/index";
+import statisticsAside from "@/components/StatisticsAside/index";
 import dataAnalysisApi from "@/api/modules/report";
 import { mapGetters } from "vuex";
-import viewlearn from "./view.vue";
 import { format } from "@/config/date";
+import { export_json_to_excel } from "@/config/Export2Excel";
 export default {
-  components: { viewlearn },
+  components: {
+    "statistics-aside": statisticsAside,
+    "all-header": allHeader,
+  },
   data() {
     return {
       loading: false,
+      downloading: false,
       searchshow: false,
       total: 0, //消息总数
       current: 1, //当前页数
       pageTotal: 1, //总页数
-      pagesize: [10, 20, 30, 50, 100], //每页显示列表
+      pagesize: [20, 30, 50, 100, 200], //每页显示列表
       pagesizeactive: 20, //当前每页显示
       enterpriseListH: "calc(100vh - 14.6814rem)",
       form: {
-        deptName: "",
-        month: format(new Date(), "yyyy-MM"),
-        status: "",
+        begintime: format(
+          new Date().getTime() - 3600 * 1000 * 24,
+          "YYYY-MM-DD"
+        ),
+        endtime: format(new Date().getTime(), "YYYY-MM-DD"),
+      },
+      pickerOptions: {
+        disabledDate(time) {
+          return (
+            time.getTime() > Date.now() ||
+            time.getTime() < Date.now() - 24 * 60 * 60 * 1000 * 30
+          );
+        },
       },
       enterpriseList: [],
       zhengfuId: "", //地区id
-      isfinish: [
-        {
-          label: "全部",
-          value: "",
-        },
-        {
-          label: "达标",
-          value: "达标",
-        },
-        {
-          label: "未达标",
-          value: "未达标",
-        },
-      ],
     };
   },
-  created() {
-    this.selectZFPersonLearnInfoAll();
+  mounted() {
+    this.getYYSRYXTJ();
   },
   computed: {
     ...mapGetters({
@@ -439,40 +492,38 @@ export default {
   methods: {
     refresh() {
       this.form = {
-        deptName: "",
-        month: format(new Date(), "yyyy-MM"),
-        status: "",
+        begintime: format(
+          new Date().getTime() - 3600 * 1000 * 24,
+          "YYYY-MM-DD"
+        ),
+        endtime: format(new Date().getTime(), "YYYY-MM-DD"),
       };
       this.getDate(1);
     },
     // 请求数据判断
     getDate(page) {
-      this.selectZFPersonLearnInfoAll(page);
+      this.getYYSRYXTJ(page);
     },
     //地区报警处理率
-    async selectZFPersonLearnInfoAll(current = 1) {
+    async getYYSRYXTJ(current = 1) {
       current = Number(current);
       this.loading = true;
-      let lyear = this.form.month.split("-")[0];
-      let lmonth = this.form.month.split("-")[1];
       let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.selectZFPersonLearnInfoAll({
+        dataAnalysisApi.getYYSRYXTJ({
           deptId: this.zhuzzhiId,
           current: current,
           size: this.pagesizeactive,
-          lmonth: lmonth,
-          lyear: lyear,
-          deptName: this.form.deptName,
-          status: this.form.status,
+          begintime: this.form.begintime,
+          endtime: this.form.endtime,
         })
       );
       this.loading = false;
       if (data) {
-        this.enterpriseList = data.data.records;
+        this.enterpriseList = data.records;
         //分页处理
-        this.current = data.data.current;
-        this.total = data.data.total;
-        this.pageTotal = data.data.pageTotal;
+        this.current = data.current;
+        this.total = data.total;
+        this.pageTotal = data.pageTotal;
       } else {
         this.$message.error(err);
       }
@@ -483,15 +534,101 @@ export default {
         : (this.enterpriseListH = "calc(100vh - 16.8571rem)");
       this.searchshow = !this.searchshow;
     },
-    // 详情 弹框
-    learnView(row) {
-      this.$refs.learnview.usernames = "";
-      this.$refs.learnview.statusshow = "";
-      this.$refs.learnview.learnStudys = "";
-      this.$refs.learnview.rows = row;
-      this.$refs.learnview.lmonths = row.learnmonth;
-      this.$refs.learnview.selectPersonLearnInfoAll();
-      this.$refs.learnview.learnVisible = true;
+    // 统计下载
+    async downtable() {
+      this.downloading = true;
+      let req, url;
+      url = "getYYSRYXTJ";
+      req = {
+        deptId: this.zhuzzhiId,
+        // };
+      };
+      let [err, data] = await dataAnalysisApi.awaitWrap(
+        dataAnalysisApi[url]({
+          ...req,
+          current: 0,
+          size: 0,
+          begintime: this.form.begintime,
+          endtime: this.form.endtime,
+        })
+      );
+      this.downloading = false;
+      if (data) {
+        data = data.records.map((el, index) => {
+          return {
+            ...el,
+            index: index + 1,
+          };
+        });
+        this.export2Excel(data);
+      } else {
+        this.$message.error(err);
+      }
+    },
+    //处理下载数据
+    formatJson(filterVal, jsonData) {
+      return jsonData.map((v) => filterVal.map((j) => v[j]));
+    },
+    export2Excel(list) {
+      require.ensure([], () => {
+        let multiHeader, filterVal, merges, filename;
+        multiHeader = [
+          "排名",
+          "所属地市",
+          "所属交通局",
+          "运营商名称",
+          "统计日期",
+          "车辆总数",
+          "上线车辆数",
+          "离线车辆数",
+          "上线率",
+          "定位车辆数",
+          "定位率",
+          "轨迹漂移率",
+          "轨迹完整率",
+          "数据合格率",
+        ];
+        filterVal = [
+          "index",
+          "areaname",
+          "zhengfuname",
+          "operatorName",
+          "date",
+          "vehicleCount",
+          "upLineCount",
+          "offLineCount",
+          "onlineRate",
+          "locateCount",
+          "locateRate",
+          "driftPositionRate",
+          "intactPositionRate",
+          "qualifiedPositionRate",
+        ];
+        merges = [
+          "A1:A2",
+          "B1:B2",
+          "C1:C2",
+          "D1:D2",
+          "E1:E2",
+          "F1:F2",
+          "G1:G2",
+          "H1:H2",
+          "I1:I2",
+          "J1:J2",
+          "K1:K2",
+          "L1:L2",
+          "M1:M2",
+        ];
+        filename = "运营商日运行统计";
+        const data = this.formatJson(filterVal, list);
+        export_json_to_excel({
+          multiHeader,
+          header: multiHeader,
+          data,
+          filename: filename,
+          merges,
+        });
+      });
     },
   },
 };

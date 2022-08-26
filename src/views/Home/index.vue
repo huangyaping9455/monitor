@@ -439,7 +439,7 @@
             <table class="table-head">
               <tr>
                 <th>
-                  <span>政府运管局名称</span>
+                  <span>政府交通局名称</span>
                 </th>
                 <th>
                   <span>车辆数</span>
@@ -478,7 +478,7 @@
               >
                 <el-table-column
                   prop="zhengfuname"
-                  label="政府运管局名称"
+                  label="政府交通局名称"
                   align="center"
                   :show-overflow-tooltip="true"
                 ></el-table-column>
@@ -519,6 +519,15 @@
         </div>
       </div>
     </div>
+    <div
+      v-if="userinfo.copyrighter || userinfo.technicalsupport"
+      style="bottom: 3px;position: absolute;left: 50%;transform: translateX(-50%);color:#fff;font-size:16px;z-index:9;"
+    >
+      <span style="margin-right:40px;">
+        版权所有：{{ userinfo.copyrighter }}
+      </span>
+      <span>技术支持：{{ userinfo.technicalsupport }}</span>
+    </div>
   </div>
 </template>
 
@@ -527,7 +536,8 @@ import echartBase from "@/components/EChart/index";
 import allHeader from "@/components/Header/index";
 import homeApi from "@/api/modules/home";
 import dataAnalysisApi from "@/api/modules/report";
-import { lineoption, lineName, geooption } from "@/config/echartoption";
+// import { lineoption, lineName, geooption } from "@/config/echartoption";
+import { lineoption, lineName } from "@/config/echartoption";
 import { mapGetters } from "vuex";
 import { format } from "@/config/date";
 import vueSeamlessScroll from "vue-seamless-scroll";
@@ -659,62 +669,69 @@ export default {
           size: this.cengji,
         })
       );
-      this.load.load = false;
-      if (err) {
-        this.$message.error(err);
-      } else {
-        // 判断下钻有无数据
-        if (type > 0 && data.xjlist.length <= 0 && isxiazhuan) {
-          this.cengji--;
-          return false;
-        }
-        // 判断是否下钻  单击
-        if (!isxiazhuan) {
-          this.statistics = data;
-          this.cengji--;
-          this.mapData = this.mapData.map((el) => {
-            return {
-              ...el,
-              itemStyle: {
-                borderWidth: el.name == areaName ? 4 : 1,
-              },
-            };
-          });
-          this.chartOption.option9 = geooption(this.areaName, this.mapData);
-          return false;
-        }
-        let mapData;
-        this.statistics = data;
-        if (type == 0) {
-          mapData = [
-            {
-              name: data.areaname === "重庆市" ? "重庆" : data.areaname,
-              value: data.baojingcishu,
-              zhengfuid: data.zhengfuid,
-            },
-          ];
+      let _this = this;
+      setTimeout(function() {
+        _this.load.load = false;
+        if (err) {
+          _this.$message.error(err);
         } else {
-          mapData = data.xjlist.map((el) => {
-            return {
-              name: el.areaname,
-              value: el.baojingcishu,
-              zhengfuid: el.zhengfuid,
-            };
-          });
+          let geooption = require("@/config/mapoption");
+          // 判断下钻有无数据
+          if (type > 0 && data.xjlist.length <= 0 && isxiazhuan) {
+            _this.cengji--;
+            return false;
+          }
+          // 判断是否下钻  单击
+          if (!isxiazhuan) {
+            _this.statistics = data;
+            _this.cengji--;
+            _this.mapData = _this.mapData.map((el) => {
+              return {
+                ...el,
+                itemStyle: {
+                  borderWidth: el.name == areaName ? 4 : 1,
+                },
+              };
+            });
+            _this.chartOption.option9 = geooption.geooption(
+              _this.areaName,
+              _this.mapData
+            );
+            return false;
+          }
+          let mapData;
+          _this.statistics = data;
+          if (type == 0) {
+            mapData = [
+              {
+                name: data.areaname === "重庆市" ? "重庆" : data.areaname,
+                value: data.baojingcishu,
+                zhengfuid: data.zhengfuid,
+              },
+            ];
+          } else {
+            mapData = data.xjlist.map((el) => {
+              return {
+                name: el.areaname,
+                value: el.baojingcishu,
+                zhengfuid: el.zhengfuid,
+              };
+            });
+          }
+          _this.mapData = mapData;
+          _this.areaName = areaName ? areaName : _this.userinfo.diqu;
+          _this.chartOption.option9 = geooption.geooption(
+            areaName
+              ? areaName === "重庆"
+                ? "重庆市"
+                : areaName
+              : _this.userinfo.diqu === "重庆市"
+              ? "China"
+              : _this.userinfo.diqu,
+            mapData
+          );
         }
-        this.mapData = mapData;
-        this.areaName = areaName ? areaName : this.userinfo.diqu;
-        this.chartOption.option9 = geooption(
-          areaName
-            ? areaName === "重庆"
-              ? "重庆市"
-              : areaName
-            : this.userinfo.diqu === "重庆市"
-            ? "China"
-            : this.userinfo.diqu,
-          mapData
-        );
-      }
+      }, 200);
     },
     //政府-注册、监控企业数据
     async getThree(deptId, type = 0) {

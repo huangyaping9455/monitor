@@ -108,7 +108,7 @@
         font-size: 0.9286rem;
         width: 1.2857rem;
         height: 1.2857rem;
-        padding: 0;
+        padding: 5px;
         border-radius: 50%;
         text-align: center;
         &.active {
@@ -185,7 +185,6 @@
 }
 </style>
 
-
 <template>
   <div class="enterprise">
     <all-header></all-header>
@@ -236,42 +235,13 @@
               clearable
             ></el-input>
           </el-form-item>
-          <el-form-item label="机构类型">
-            <el-select
-              v-model="form.jigouleixing"
-              clearable
-              placeholder="请选择机构类型"
-              @change="ZFjigou"
-            >
-              <el-option
-                v-for="item in jigouleix"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="法人代表">
-            <el-input
-              v-model="form.farendaibiao"
-              placeholder="请输入法人代表"
-              clearable
-            ></el-input>
-          </el-form-item>
-          <el-form-item label="所属运管">
-            <el-input
-              v-model="form.yunguanmingcheng"
-              placeholder="请输入所属运管"
-              clearable
-            ></el-input>
-          </el-form-item>
-          <el-form-item label="经营范围">
-            <el-input
-              v-model="form.jigouzizhi"
-              placeholder="请输入经营范围"
-              clearable
-            ></el-input>
+          <el-form-item label="日期">
+            <el-date-picker
+              v-model="form.begintime"
+              type="date"
+              value-format="yyyy-MM-dd"
+              placeholder="选择结束日期"
+            ></el-date-picker>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" class="sbtn" @click="getDate(1)"
@@ -296,92 +266,133 @@
               }}</span>
             </template>
           </el-table-column>
-          <!-- <el-table-column label="企业名称" align="center"> -->
+          <el-table-column
+            label="所属运管"
+            prop="zhengfuname"
+            :show-overflow-tooltip="true"
+            align="center"
+          >
+          </el-table-column>
           <el-table-column
             label="企业名称"
-            prop="deptName"
-            width="240"
+            prop="qiyemingcheng"
+            min-width="200"
+            :show-overflow-tooltip="true"
             align="center"
-          ></el-table-column>
+          >
+          </el-table-column>
           <el-table-column
-            label="企业简称"
-            prop="fullName"
-            width="240"
+            label="日期"
+            prop="date"
+            width="100"
             align="center"
-          ></el-table-column>
+            show-overflow-tooltip
+          >
+          </el-table-column>
           <el-table-column
-            label="地市"
-            prop="areaname"
+            label="上线率"
+            prop="onlineRate"
             align="center"
-            min-width="80"
-          ></el-table-column>
-          <!-- </el-table-column> -->
-          <!-- <el-table-column label="法人代表" align="center"> -->
-          <el-table-column
-            prop="yunguanmingcheng"
-            label="所属运管局"
-            width="150"
-            align="center"
-          ></el-table-column>
-          <el-table-column
-            prop="createtime"
-            label="入网时间"
-            align="center"
-            min-width="150"
-          ></el-table-column>
-          <el-table-column
-            prop="jigouzizhi"
-            label="经营范围"
-            align="center"
-            min-width="300"
+            width="100"
             show-overflow-tooltip
           ></el-table-column>
-          <!-- </el-table-column> -->
-          <!-- <el-table-column label="所属运管" align="center"> -->
           <el-table-column
-            prop="farendaibiao"
-            label="法人代表"
+            label="车辆上线率分数"
+            prop="uplinerateScore"
             align="center"
-            min-width="100"
+            width="110"
+            show-overflow-tooltip
           ></el-table-column>
           <el-table-column
-            prop="jigoufuzeren"
-            label="公司负责人"
+            label="入网率"
+            prop="ruWangLv"
             align="center"
-            min-width="100"
-          ></el-table-column>
-          <!-- </el-table-column> -->
-          <!-- <el-table-column label="经营范围" align="center"> -->
-          <el-table-column
-            prop="lianxidianhua"
-            label="联系电话"
-            align="center"
-            min-width="100"
+            width="110"
+            show-overflow-tooltip
           ></el-table-column>
           <el-table-column
-            prop="zhuceziben"
-            label="注册资本"
+            label="车辆入网率分数"
+            prop="ruWangLvScore"
             align="center"
-            min-width="100"
-          ></el-table-column>
-          <!-- </el-table-column> -->
-          <el-table-column
-            prop="cheliangguimo"
-            label="车辆规模"
-            align="center"
-            min-width="100"
+            width="110"
+            show-overflow-tooltip
           ></el-table-column>
           <el-table-column
-            prop="congyerenshuliang"
-            label="从业人员数量"
+            label="轨迹漂移率"
+            prop="driftPositionRate"
             align="center"
-            min-width="100"
+            width="100"
+            show-overflow-tooltip
           ></el-table-column>
           <el-table-column
-            prop="chenglishijian"
-            label="成立时间"
+            label="轨迹漂移率分数"
+            prop="driftPositionRateScore"
             align="center"
-            min-width="150"
+            width="110"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="轨迹完整率"
+            prop="intactPositionRate"
+            align="center"
+            width="100"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="轨迹完整率分数"
+            prop="intactPositionRateScore"
+            align="center"
+            width="110"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="数据合格率"
+            prop="qualifiedPositionRate"
+            align="center"
+            width="100"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="数据合格率分数"
+            prop="qualifiedPositionRateScore"
+            align="center"
+            width="110"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="平台连通率/平台查岗响应率"
+            prop="checkPostResponseRate"
+            align="center"
+            width="180"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="平台查岗响应率分数"
+            prop="checkPostResponseRateScore"
+            align="center"
+            width="140"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="平均车辆超速次数分数"
+            prop="chaosuScore"
+            align="center"
+            width="150"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="平均疲劳驾驶时长分数"
+            prop="pilaotimesScore"
+            align="center"
+            width="150"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="总分"
+            prop="countScore"
+            width="90"
+            align="center"
+            show-overflow-tooltip
           ></el-table-column>
         </el-table>
         <!-- page -->
@@ -467,7 +478,7 @@ import allHeader from "@/components/Header/index";
 import statisticsAside from "@/components/StatisticsAside/index";
 import dataAnalysisApi from "@/api/modules/report";
 import { mapGetters } from "vuex";
-// import { format } from "@/config/date";
+import { format } from "@/config/date";
 import { export_json_to_excel } from "@/config/Export2Excel";
 export default {
   components: {
@@ -482,37 +493,22 @@ export default {
       total: 0, //消息总数
       current: 1, //当前页数
       pageTotal: 1, //总页数
-      pagesize: [10, 20, 30, 50, 100], //每页显示列表
+      pagesize: [20, 30, 50, 100, 200], //每页显示列表
       pagesizeactive: 20, //当前每页显示
       enterpriseListH: "calc(100vh - 14.6814rem)",
       form: {
+        begintime: format(
+          new Date().getTime() - 3600 * 1000 * 24,
+          "YYYY-MM-DD"
+        ),
         deptName: "",
-        farendaibiao: "",
-        yunguanmingcheng: "",
-        jigouzizhi: "",
-        jigouleixing: this.$route.params.jigouleixing,
       },
       enterpriseList: [],
       zhengfuId: "", //地区id
-      // jigouleixing: "",
-      jigouleix: [
-        {
-          label: "全部",
-          value: "",
-        },
-        {
-          label: "企业",
-          value: "qiye",
-        },
-        {
-          label: "个体",
-          value: "geti",
-        },
-      ],
     };
   },
   mounted() {
-    this.getZFDQBJCLLVTJ();
+    this.getLWLKTJ();
   },
   computed: {
     ...mapGetters({
@@ -532,47 +528,41 @@ export default {
   methods: {
     refresh() {
       this.form = {
+        begintime: format(
+          new Date().getTime() - 3600 * 1000 * 24,
+          "YYYY-MM-DD"
+        ),
         deptName: "",
-        farendaibiao: "",
-        yunguanmingcheng: "",
-        jigouzizhi: "",
-        jigouleixing: "",
       };
-      this.$route.params.jigouleixing = "";
       this.getDate(1);
-    },
-    // 机构类型筛选
-    ZFjigou(data) {
-      this.form.jigouleixing = data;
     },
     // 请求数据判断
     getDate(page) {
-      this.getZFDQBJCLLVTJ(page);
+      this.getLWLKTJ(page);
     },
     //地区报警处理率
-    async getZFDQBJCLLVTJ(current = 1) {
+    async getLWLKTJ(current = 1) {
       current = Number(current);
       this.loading = true;
       let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.getZFDQBJCLLVTJ({
-          // deptId:5448,
+        dataAnalysisApi.getLWLKTJ({
           deptId: this.zhuzzhiId,
           current: current,
           size: this.pagesizeactive,
+          date: this.form.begintime,
           deptName: this.form.deptName,
-          farendaibiao: this.form.farendaibiao,
-          yunguanmingcheng: this.form.yunguanmingcheng,
-          jigouzizhi: this.form.jigouzizhi,
-          jigouleixing: this.form.jigouleixing,
         })
       );
       this.loading = false;
       if (data) {
-        this.enterpriseList = data.data.records;
+        this.enterpriseList = data.records.map((el) => {
+          el.ruWangLv = "100.00%";
+          return el;
+        });
         //分页处理
-        this.current = data.data.current;
-        this.total = data.data.total;
-        this.pageTotal = data.data.pageTotal;
+        this.current = data.current;
+        this.total = data.total;
+        this.pageTotal = data.pageTotal;
       } else {
         this.$message.error(err);
       }
@@ -587,7 +577,7 @@ export default {
     async downtable() {
       this.downloading = true;
       let req, url;
-      url = "getZFDQBJCLLVTJ";
+      url = "getLWLKTJ";
       req = {
         deptId: this.zhuzzhiId,
         // };
@@ -597,16 +587,13 @@ export default {
           ...req,
           current: 0,
           size: 0,
-          deptName: this.form.deptName,
-          farendaibiao: this.form.farendaibiao,
-          yunguanmingcheng: this.form.yunguanmingcheng,
-          jigouzizhi: this.form.jigouzizhi,
-          jigouleixing: this.form.jigouleixing,
+          date: this.form.begintime,
+          deptName: this.deptName,
         })
       );
       this.downloading = false;
       if (data) {
-        data = data.data.records.map((el, index) => {
+        data = data.records.map((el, index) => {
           return {
             ...el,
             index: index + 1,
@@ -626,51 +613,45 @@ export default {
         let multiHeader, filterVal, merges, filename;
         multiHeader = [
           "排名",
+          "所属运管",
           "企业名称",
-          "企业简称",
-          "地市",
-          "所属运管局",
-          "经营范围",
-          "法人代表",
-          "公司负责人",
-          "联系电话",
-          "注册资本",
-          "车辆规模",
-          "从业人员数量",
-          "成立时间",
-          "入网时间",
+          "日期",
+          "上线率",
+          "车辆上线率分数",
+          "入网率",
+          "车辆入网率分数",
+          "轨迹漂移率",
+          "轨迹漂移率分数",
+          "轨迹完整率",
+          "轨迹完整率分数",
+          "数据合格率",
+          "数据合格率分数",
+          "平台连通率/平台查岗响应率",
+          "平台查岗响应率分数",
+          "平均车辆超速次数分数",
+          "平均疲劳驾驶时长分数",
+          "总分",
         ];
-        // tHeader = [
-        //   "",
-        //   "企业名称",
-        //   "企业简称",
-        //   "地市",
-        //   "所属运管局",
-        //   "经营范围",
-        //   "法人代表",
-        //   "公司负责人",
-        //   "联系电话",
-        //   "注册资本",
-        //   "",
-        //   "",
-        //   "",
-        //   "",
-        // ];
         filterVal = [
           "index",
-          "deptName",
-          "fullName",
-          "areaname",
-          "yunguanmingcheng",
-          "jigouzizhi",
-          "farendaibiao",
-          "jigoufuzeren",
-          "lianxidianhua",
-          "zhuceziben",
-          "cheliangguimo",
-          "congyerenshuliang",
-          "chenglishijian",
-          "createtime",
+          "zhengfuname",
+          "qiyemingcheng",
+          "date",
+          "onlineRate",
+          "uplinerateScore",
+          "ruWangLv",
+          "ruWangLvScore",
+          "driftPositionRate",
+          "driftPositionRateScore",
+          "intactPositionRate",
+          "intactPositionRateScore",
+          "qualifiedPositionRate",
+          "qualifiedPositionRateScore",
+          "checkPostResponseRate",
+          "checkPostResponseRateScore",
+          "chaosuScore",
+          "pilaotimesScore",
+          "countScore",
         ];
         merges = [
           "A1:A2",
@@ -687,8 +668,13 @@ export default {
           "L1:L2",
           "M1:M2",
           "N1:N2",
+          "O1:O2",
+          "P1:P2",
+          "Q1:Q2",
+          "R1:R2",
+          "S1:S2",
         ];
-        filename = "企业统计";
+        filename = "企业联网联控考核评分";
         const data = this.formatJson(filterVal, list);
         export_json_to_excel({
           multiHeader,

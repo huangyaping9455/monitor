@@ -105,7 +105,7 @@
         font-size: 0.9286rem;
         width: 1.2857rem;
         height: 1.2857rem;
-        padding: 0;
+        padding: 5px;
         border-radius: 50%;
         text-align: center;
         &.active {
@@ -471,6 +471,12 @@ export default {
             i.congyeleibie = "道路危险货物运输装卸管理人员";
           } else {
             i.congyeleibie = i.congyeleibie;
+          }
+          if (i.shenfenzhenghao) {
+            i.shenfenzhenghao = i.shenfenzhenghao.replace(
+              /^(.{6})(?:\d+)(.{4})$/,
+              "\$1****\$2"
+            );
           }
           return i;
         });

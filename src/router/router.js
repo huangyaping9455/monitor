@@ -164,6 +164,33 @@ export const constantRouterMap = [{
     },
     component: () => import('@/views/QYDayStatistics/index')
   },
+  // 运营商日运行情况统计
+  {
+    path: '/YYSDayStatistics',
+    name: 'YYSDayStatistics',
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import('@/views/YYSDayStatistics/index')
+  },
+  // 道路运输企业联网联控考核评分
+  {
+    path: '/LWLKStatic',
+    name: 'LWLKStatic',
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import('@/views/LWLKStatic/index')
+  },
+  // 道路运输运营商联网联控考核评分
+  {
+    path: '/YYSStatic',
+    name: 'YYSStatic',
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import('@/views/YYSStatic/index')
+  },
   // 地区报警排名
   {
     path: '/ZFDQ',
@@ -224,6 +251,15 @@ export const constantRouterMap = [{
       requiresAuth: true
     },
     component: () => import('@/views/standard/index')
+  },
+  {
+    path: '/law',
+    name: 'law',
+    meta: {
+      title: '法律法规',
+      requiresAuth: true
+    },
+    component: () => import('@/views/law/index')
   },
   {
     path: '',

@@ -10,11 +10,12 @@
 .logo {
   align-self: flex-start;
   margin-top: 5.5rem;
-  margin-left: 9.0714rem;
-  // width: 59.1429rem;
-  // height: 8.7857rem;
-  height: 4.7857rem;
-  width: 54.1429rem;
+  // margin-left: 9.0714rem;
+  margin-left: 38.0714rem;//徐州
+  width: 58.1429rem;
+  height: 7.7857rem;
+  // height: 4.7857rem;
+  // width: 54.1429rem;
   img {
     width: 100%;
     height: 100%;
@@ -101,7 +102,9 @@
   <div class="login">
     <div class="logo">
       <!-- <img src="@/assets/img/zkgt.png" /> -->
-      <img src="@/assets/img/logo-22.png" />
+      <!-- <img src="@/assets/img/logo-22.png" /> -->
+      <img src="@/assets/img/xvzhoulogo.png" />
+      <!-- <img src="@/assets/img/liuzhou.png" /> -->
       <!-- <img src="@/assets/img/logo_ybf.png" /> -->
       <!-- <img src="@/assets/img/logo3.png" /> -->
       <!-- <img src="@/assets/img/logo66.png" /> -->
@@ -180,6 +183,7 @@ export default {
   },
   mounted() {
     this.redirect = this.$route.query.redirect;
+    console.log(this.redirect);
     this.getCode();
   },
   methods: {

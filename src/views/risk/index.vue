@@ -1,5 +1,19 @@
 <template>
   <div class="hide">
+    <el-form :inline="true" size="mini" class="hide-search">
+      <el-form-item label="公司名称">
+        <el-input
+          v-model="deptName"
+          placeholder="请输入公司名称"
+          clearable
+        ></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" class="sbtn" @click="getDate(1)"
+          >搜索</el-button
+        >
+      </el-form-item>
+    </el-form>
     <el-table
       class="hideTable"
       :data="tableData"
@@ -149,9 +163,10 @@ export default {
       pageTotal: 1, //总页数
       pagesize: [10, 20, 30, 50, 100], //每页显示列表
       pagesizeactive: 20, //当前每页显示
-      tableListH: "calc(100vh - 11.8828rem)",
+      tableListH: "calc(100vh - 12.8828rem)",
       tableData: [],
       zhengfuId: this.$store.state.userinfo.deptId,
+      deptName: "",
     };
   },
   created() {
@@ -187,6 +202,7 @@ export default {
           date: format(new Date().getTime(), "YYYY-MM-DD"),
           current: current,
           size: this.pagesizeactive,
+          deptName: this.deptName,
         })
       );
       this.msgloading = false;
@@ -211,8 +227,28 @@ export default {
 </script>
 <style lang="scss" scoped>
 .hide {
-  width: calc(100% - 40px);
-  padding: 10px;
+  .hide-search {
+    display: flex;
+    align-items: center;
+    /deep/.el-form-item__label {
+      color: #01f8ff;
+    }
+    /deep/ input {
+      background: #112e4d;
+      border-color: #004b77;
+      color: #ffffff;
+      height: 2.8571rem;
+      font-size: 1rem;
+      &:focus {
+        border-color: #00d2ff;
+      }
+    }
+    /deep/.el-form-item--mini.el-form-item {
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+    }
+  }
   .page {
     display: flex;
     color: #d3d4d6;
@@ -253,7 +289,7 @@ export default {
         font-size: 0.9286rem;
         width: 1.2857rem;
         height: 1.2857rem;
-        padding: 0;
+        padding: 5px;
         border-radius: 50%;
         text-align: center;
         &.active {
@@ -269,7 +305,7 @@ export default {
   width: 100%;
   background: #0f1f40;
   border: 0.0714rem solid #0a3774;
-  margin-top: 15px;
+  // margin-top: 15px;
   .spancolor {
     color: #00c8f5;
     cursor: pointer;
