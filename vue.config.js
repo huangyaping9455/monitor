@@ -38,7 +38,8 @@ module.exports = {
       "/prod-api": {
         // target: "http://59.36.239.170:28089",
         // target: "http://61.136.101.78:28089",
-        target: "http://sztoosun.com:28089",
+        // target: "http://sztoosun.com:28089",
+        target: "http://123.60.106.110:28089",
         // target: "http://222.82.236.242:28089",
         // target: "http://www.zkgt-safety.com:28089",
         // target: "http://58.144.142.198:28089",

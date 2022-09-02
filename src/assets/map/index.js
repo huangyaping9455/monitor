@@ -15,6 +15,7 @@ import 山西 from "./山西省/山西省.json"
 import 青海 from "./青海省/青海省.json"
 import 重庆市 from "./重庆/重庆市.json"
 import 四川 from "./四川省/四川省.json";
+import 贵州 from "./贵州省/贵州省.json";
 
 // 河南
 import 三门峡市 from "./河南/三门峡市.json";
@@ -1476,6 +1477,252 @@ import 雅安市 from "./四川省/雅安市.json";
 import 甘孜藏族自治州 from "./四川省/甘孜藏族自治州.json";
 import 凉山彝族自治州 from "./四川省/凉山彝族自治州.json";
 import 攀枝花市 from "./四川省/攀枝花市.json";
+import  自流井区 from "./四川省/自贡市/自流井区.json";
+import  贡井区 from "./四川省/自贡市/贡井区.json";
+import  大安区 from "./四川省/自贡市/大安区.json";
+import  沿滩区 from "./四川省/自贡市/沿滩区.json";
+import  荣县 from "./四川省/自贡市/荣县.json";
+import  富顺县  from "./四川省/自贡市/富顺县.json";
+import  东区 from "./四川省/攀枝花市/东区.json";
+import  西区 from "./四川省/攀枝花市/西区.json";
+import  仁和区 from "./四川省/攀枝花市/仁和区.json";
+import  米易县 from "./四川省/攀枝花市/米易县.json";
+import  盐边县 from "./四川省/攀枝花市/盐边县.json";
+import  江阳区 from "./四川省/泸州市/江阳区.json";
+import  纳溪区 from "./四川省/泸州市/纳溪区.json";
+import  龙马潭区 from "./四川省/泸州市/龙马潭区.json";
+import  泸县 from "./四川省/泸州市/泸县.json";
+import  合江县 from "./四川省/泸州市/合江县.json";
+import  叙永县 from "./四川省/泸州市/叙永县.json";
+import  古蔺县  from "./四川省/泸州市/古蔺县.json";
+import  旌阳区 from "./四川省/德阳市/旌阳区.json";
+import  罗江区 from "./四川省/德阳市/罗江区.json";
+import  广汉市 from "./四川省/德阳市/广汉市.json";
+import  什邡市 from "./四川省/德阳市/什邡市.json";
+import  绵竹市 from "./四川省/德阳市/绵竹市.json";
+import  中江县  from "./四川省/德阳市/中江县.json";
+import  涪城区 from "./四川省/绵阳市/涪城区.json";
+import  游仙区 from "./四川省/绵阳市/游仙区.json";
+import  安州区 from "./四川省/绵阳市/安州区.json";
+import  江油市 from "./四川省/绵阳市/江油市.json";
+import  三台县 from "./四川省/绵阳市/三台县.json";
+import  盐亭县 from "./四川省/绵阳市/盐亭县.json";
+import  梓潼县 from "./四川省/绵阳市/梓潼县.json";
+import  北川羌族自治县 from "./四川省/绵阳市/北川羌族自治县.json";
+import  平武县  from "./四川省/绵阳市/平武县.json";
+import  利州区 from "./四川省/广元市/利州区.json";
+import  昭化区 from "./四川省/广元市/昭化区.json";
+import  朝天区 from "./四川省/广元市/朝天区.json";
+import  旺苍县 from "./四川省/广元市/旺苍县.json";
+import  青川县 from "./四川省/广元市/青川县.json";
+import  剑阁县 from "./四川省/广元市/剑阁县.json";
+import  苍溪县 from "./四川省/广元市/苍溪县.json";
+import  安居区 from "./四川省/遂宁市/安居区.json";
+import  船山区 from "./四川省/遂宁市/船山区.json";
+import  射洪市 from "./四川省/遂宁市/射洪市.json";
+import  大英县 from "./四川省/遂宁市/大英县.json";
+import  蓬溪县 from "./四川省/遂宁市/蓬溪县.json";
+import  乐山市市中区 from "./四川省/乐山市/市中区.json";
+import  沙湾区 from "./四川省/乐山市/沙湾区.json";
+import  五通桥区 from "./四川省/乐山市/五通桥区.json";
+import  金口河区 from "./四川省/乐山市/金口河区.json";
+import  峨眉山市 from "./四川省/乐山市/峨眉山市.json";
+import  犍为县 from "./四川省/乐山市/犍为县.json";
+import  井研县 from "./四川省/乐山市/井研县.json";
+import  夹江县 from "./四川省/乐山市/夹江县.json";
+import  沐川县 from "./四川省/乐山市/沐川县.json";
+import  峨边彝族自治县 from "./四川省/乐山市/峨边彝族自治县.json";
+import  马边彝族自治县 from "./四川省/乐山市/马边彝族自治县.json";
+import  顺庆区 from "./四川省/南充市/顺庆区.json";
+import  高坪区 from "./四川省/南充市/高坪区.json";
+import  嘉陵区 from "./四川省/南充市/嘉陵区.json";
+import  阆中市 from "./四川省/南充市/阆中市.json";
+import  南部县 from "./四川省/南充市/南部县.json";
+import  营山县 from "./四川省/南充市/营山县.json";
+import  蓬安县 from "./四川省/南充市/蓬安县.json";
+import  仪陇县 from "./四川省/南充市/仪陇县.json";
+import  西充县 from "./四川省/南充市/西充县.json";
+import  东坡区 from "./四川省/眉山市/东坡区.json";
+import  彭山区 from "./四川省/眉山市/彭山区.json";
+import  仁寿县 from "./四川省/眉山市/仁寿县.json";
+import  洪雅县 from "./四川省/眉山市/洪雅县.json";
+import  丹棱县 from "./四川省/眉山市/丹棱县.json";
+import  青神县 from "./四川省/眉山市/青神县.json";
+import  广安区 from "./四川省/广安市/广安区.json";
+import  前锋区 from "./四川省/广安市/前锋区.json";
+import  华蓥市 from "./四川省/广安市/华蓥市.json";
+import  岳池县 from "./四川省/广安市/岳池县.json";
+import  武胜县 from "./四川省/广安市/武胜县.json";
+import  邻水县 from "./四川省/广安市/邻水县.json";
+import  通川区 from "./四川省/达州市/通川区.json";
+import  达川区 from "./四川省/达州市/达川区.json";
+import  万源市 from "./四川省/达州市/万源市.json";
+import  宣汉县 from "./四川省/达州市/宣汉县.json";
+import  开江县 from "./四川省/达州市/开江县.json";
+import  大竹县 from "./四川省/达州市/大竹县.json";
+import  渠县 from "./四川省/达州市/渠县.json";
+import  雨城区 from "./四川省/雅安市/雨城区.json";
+import  名山区 from "./四川省/雅安市/名山区.json";
+import  荥经县 from "./四川省/雅安市/荥经县.json";
+import  汉源县 from "./四川省/雅安市/汉源县.json";
+import  石棉县 from "./四川省/雅安市/石棉县.json";
+import  天全县 from "./四川省/雅安市/天全县.json";
+import  芦山县 from "./四川省/雅安市/芦山县.json";
+import  宝兴县 from "./四川省/雅安市/宝兴县.json";
+import  巴州区 from "./四川省/巴中市/巴州区.json";
+import  恩阳区 from "./四川省/巴中市/恩阳区.json";
+import  通江县 from "./四川省/巴中市/通江县.json";
+import  南江县 from "./四川省/巴中市/南江县.json";
+import  平昌县 from "./四川省/巴中市/平昌县.json";
+import  雁江区 from "./四川省/资阳市/雁江区.json";
+import  安岳县 from "./四川省/资阳市/安岳县.json";
+import  乐至县 from "./四川省/资阳市/乐至县.json";
+import  马尔康市 from "./四川省/阿坝藏族羌族自治州/马尔康市.json";
+import  汶川县 from "./四川省/阿坝藏族羌族自治州/汶川县.json";
+import  理县 from "./四川省/阿坝藏族羌族自治州/理县.json";
+import  茂县 from "./四川省/阿坝藏族羌族自治州/茂县.json";
+import  松潘县 from "./四川省/阿坝藏族羌族自治州/松潘县.json";
+import  九寨沟县 from "./四川省/阿坝藏族羌族自治州/九寨沟县.json";
+import  金川县 from "./四川省/阿坝藏族羌族自治州/金川县.json";
+import  小金县 from "./四川省/阿坝藏族羌族自治州/小金县.json";
+import  黑水县 from "./四川省/阿坝藏族羌族自治州/黑水县.json";
+import  壤塘县 from "./四川省/阿坝藏族羌族自治州/壤塘县.json";
+import  阿坝县 from "./四川省/阿坝藏族羌族自治州/阿坝县.json";
+import  若尔盖县 from "./四川省/阿坝藏族羌族自治州/若尔盖县.json";
+import  红原县  from "./四川省/阿坝藏族羌族自治州/红原县.json";
+import  西昌市 from "./四川省/凉山彝族自治州/西昌市.json";
+import  会理市 from "./四川省/凉山彝族自治州/会理市.json";
+import  木里藏族自治县 from "./四川省/凉山彝族自治州/木里藏族自治县.json";
+import  盐源县 from "./四川省/凉山彝族自治州/盐源县.json";
+import  德昌县 from "./四川省/凉山彝族自治州/德昌县.json";
+import  会东县 from "./四川省/凉山彝族自治州/会东县.json";
+import  宁南县 from "./四川省/凉山彝族自治州/宁南县.json";
+import  普格县 from "./四川省/凉山彝族自治州/普格县.json";
+import  布拖县 from "./四川省/凉山彝族自治州/布拖县.json";
+import  金阳县 from "./四川省/凉山彝族自治州/金阳县.json";
+import  昭觉县 from "./四川省/凉山彝族自治州/昭觉县.json";
+import  喜德县 from "./四川省/凉山彝族自治州/喜德县.json";
+import  冕宁县 from "./四川省/凉山彝族自治州/冕宁县.json";
+import  越西县 from "./四川省/凉山彝族自治州/越西县.json";
+import  甘洛县 from "./四川省/凉山彝族自治州/甘洛县.json";
+import  美姑县 from "./四川省/凉山彝族自治州/美姑县.json";
+import  雷波县  from "./四川省/凉山彝族自治州/雷波县.json";
+import  康定市 from "./四川省/甘孜藏族自治州/康定市.json";
+import  泸定县 from "./四川省/甘孜藏族自治州/泸定县.json";
+import  丹巴县 from "./四川省/甘孜藏族自治州/丹巴县.json";
+import  九龙县 from "./四川省/甘孜藏族自治州/九龙县.json";
+import  雅江县 from "./四川省/甘孜藏族自治州/雅江县.json";
+import  道孚县 from "./四川省/甘孜藏族自治州/道孚县.json";
+import  炉霍县 from "./四川省/甘孜藏族自治州/炉霍县.json";
+import  甘孜县 from "./四川省/甘孜藏族自治州/甘孜县.json";
+import  新龙县 from "./四川省/甘孜藏族自治州/新龙县.json";
+import  德格县 from "./四川省/甘孜藏族自治州/德格县.json";
+import  白玉县 from "./四川省/甘孜藏族自治州/白玉县.json";
+import  石渠县 from "./四川省/甘孜藏族自治州/石渠县.json";
+import  色达县 from "./四川省/甘孜藏族自治州/色达县.json";
+import  理塘县 from "./四川省/甘孜藏族自治州/理塘县.json";
+import  巴塘县 from "./四川省/甘孜藏族自治州/巴塘县.json";
+import  乡城县 from "./四川省/甘孜藏族自治州/乡城县.json";
+import  稻城县 from "./四川省/甘孜藏族自治州/稻城县.json";
+import  得荣县 from "./四川省/甘孜藏族自治州/得荣县.json";
+// 贵州
+import  贵阳市 from "./贵州省/贵阳市/贵阳市.json";
+import  观山湖区 from "./贵州省/贵阳市/观山湖区.json";
+import  南明区 from "./贵州省/贵阳市/南明区.json";
+import  云岩区 from "./贵州省/贵阳市/云岩区.json";
+import  花溪区 from "./贵州省/贵阳市/花溪区.json";
+import  乌当区 from "./贵州省/贵阳市/乌当区.json";
+import  贵阳市白云区 from "./贵州省/贵阳市/白云区.json";
+import  清镇市 from "./贵州省/贵阳市/清镇市.json";
+import  开阳县 from "./贵州省/贵阳市/开阳县.json";
+import  息烽县 from "./贵州省/贵阳市/息烽县.json";
+import  修文县 from "./贵州省/贵阳市/修文县.json";
+import  遵义市 from "./贵州省/遵义市/遵义市.json";
+import  汇川区 from "./贵州省/遵义市/汇川区.json";
+import  红花岗区 from "./贵州省/遵义市/红花岗区.json";
+import  播州区 from "./贵州省/铜仁市/播州区.json";
+import  赤水市 from "./贵州省/遵义市/赤水市.json";
+import  仁怀市 from "./贵州省/遵义市/仁怀市.json";
+import  桐梓县 from "./贵州省/遵义市/桐梓县.json";
+import  绥阳县 from "./贵州省/遵义市/绥阳县.json";
+import  正安县 from "./贵州省/遵义市/正安县.json";
+import  道真仡佬族苗族自治县 from "./贵州省/遵义市/道真仡佬族苗族自治县.json";
+import  务川仡佬族苗族自治县  from "./贵州省/遵义市/务川仡佬族苗族自治县.json";
+import  凤冈县 from "./贵州省/遵义市/凤冈县.json";
+import  湄潭县 from "./贵州省/遵义市/湄潭县.json";
+import  余庆县 from "./贵州省/铜仁市/余庆县.json";
+import  习水县 from "./贵州省/遵义市/习水县.json";
+import  六盘水市 from "./贵州省/六盘水市/六盘水市.json";
+import  钟山区 from "./贵州省/六盘水市/钟山区.json";
+import  水城区 from "./贵州省/六盘水市/水城区.json";
+import  盘州市 from "./贵州省/六盘水市/盘州市.json";
+import  六枝特区 from "./贵州省/六盘水市/六枝特区.json";
+import  安顺市 from "./贵州省/安顺市/安顺市.json";
+import  西秀区 from "./贵州省/安顺市/西秀区.json";
+import  平坝区 from "./贵州省/安顺市/平坝区.json";
+import  镇宁布依族苗族自治县 from "./贵州省/安顺市/镇宁布依族苗族自治县.json";
+import  普定县 from "./贵州省/安顺市/普定县.json";
+import  关岭布依族苗族自治县 from "./贵州省/安顺市/关岭布依族苗族自治县.json";
+import  紫云苗族布依族自治县 from "./贵州省/安顺市/紫云苗族布依族自治县.json";
+import  毕节市 from "./贵州省/毕节市/毕节市.json";
+import  七星关区 from "./贵州省/毕节市/七星关区.json";
+import  黔西市 from "./贵州省/毕节市/黔西市.json";
+import  赫章县 from "./贵州省/毕节市/赫章县.json";
+import  威宁彝族回族苗族自治县 from "./贵州省/毕节市/威宁彝族回族苗族自治县.json";
+import  纳雍县 from "./贵州省/毕节市/纳雍县.json";
+import  织金县 from "./贵州省/毕节市/织金县.json";
+import  金沙县 from "./贵州省/毕节市/金沙县.json";
+import  大方县 from "./贵州省/毕节市/大方县.json";
+import  铜仁市 from "./贵州省/铜仁市/铜仁市.json";
+import  碧江区 from "./贵州省/铜仁市/碧江区.json";
+import  万山区 from "./贵州省/黔东南苗族侗族自治州/万山区.json";
+import  江口县 from "./贵州省/铜仁市/江口县.json";
+import  玉屏侗族自治县 from "./贵州省/黔东南苗族侗族自治州/玉屏侗族自治县.json";
+import  石阡县 from "./贵州省/铜仁市/石阡县.json";
+import  思南县 from "./贵州省/铜仁市/思南县.json";
+import  印江土家族苗族自治县 from "./贵州省/铜仁市/印江土家族苗族自治县.json";
+import  德江县 from "./贵州省/铜仁市/德江县.json";
+import  沿河土家族自治县 from "./贵州省/铜仁市/沿河土家族自治县.json";
+import  松桃苗族自治县 from "./贵州省/铜仁市/松桃苗族自治县.json";
+import  黔东南苗族侗族自治州 from "./贵州省/黔东南苗族侗族自治州/黔东南苗族侗族自治州.json";
+import  凯里市 from "./贵州省/黔东南苗族侗族自治州/凯里市.json";
+import  镇远县 from "./贵州省/黔东南苗族侗族自治州/镇远县.json";
+import  黄平县 from "./贵州省/黔东南苗族侗族自治州/黄平县.json";
+import  施秉县 from "./贵州省/黔东南苗族侗族自治州/施秉县.json";
+import  三穗县 from "./贵州省/黔东南苗族侗族自治州/三穗县.json";
+import  岑巩县 from "./贵州省/黔东南苗族侗族自治州/岑巩县.json";
+import  天柱县 from "./贵州省/黔东南苗族侗族自治州/天柱县.json";
+import  锦屏县 from "./贵州省/黔东南苗族侗族自治州/锦屏县.json";
+import  剑河县 from "./贵州省/黔东南苗族侗族自治州/剑河县.json";
+import  台江县 from "./贵州省/黔东南苗族侗族自治州/台江县.json";
+import  黎平县 from "./贵州省/黔东南苗族侗族自治州/黎平县.json";
+import  榕江县 from "./贵州省/黔东南苗族侗族自治州/榕江县.json";
+import  从江县 from "./贵州省/黔东南苗族侗族自治州/从江县.json";
+import  雷山县 from "./贵州省/黔东南苗族侗族自治州/雷山县.json";
+import  麻江县 from "./贵州省/黔东南苗族侗族自治州/麻江县.json";
+import  丹寨县 from "./贵州省/黔东南苗族侗族自治州/丹寨县.json";
+import  黔南布依族苗族自治州 from "./贵州省/黔南布依族苗族自治州/黔南布依族苗族自治州.json";
+import  都匀市 from "./贵州省/黔南布依族苗族自治州/都匀市.json";
+import  福泉市 from "./贵州省/黔南布依族苗族自治州/福泉市.json";
+import  荔波县 from "./贵州省/黔南布依族苗族自治州/荔波县.json";
+import  贵定县 from "./贵州省/黔南布依族苗族自治州/贵定县.json";
+import  瓮安县 from "./贵州省/黔南布依族苗族自治州/瓮安县.json";
+import  独山县 from "./贵州省/黔南布依族苗族自治州/独山县.json";
+import  平塘县 from "./贵州省/黔南布依族苗族自治州/平塘县.json";
+import  罗甸县 from "./贵州省/黔南布依族苗族自治州/罗甸县.json";
+import  长顺县 from "./贵州省/黔南布依族苗族自治州/长顺县.json";
+import  龙里县 from "./贵州省/黔南布依族苗族自治州/龙里县.json";
+import  惠水县 from "./贵州省/黔南布依族苗族自治州/惠水县.json";
+import  三都水族自治县 from "./贵州省/黔南布依族苗族自治州/三都水族自治县.json";
+import  黔西南布依族苗族自治州 from "./贵州省/黔西南布依族苗族自治州/黔西南布依族苗族自治州.json";
+import  兴义市 from "./贵州省/黔西南布依族苗族自治州/兴义市.json";
+import  兴仁市 from "./贵州省/黔西南布依族苗族自治州/兴仁市.json";
+import  普安县 from "./贵州省/黔西南布依族苗族自治州/普安县.json";
+import  晴隆县 from "./贵州省/黔西南布依族苗族自治州/晴隆县.json";
+import  贞丰县 from "./贵州省/黔西南布依族苗族自治州/贞丰县.json";
+import  望谟县 from "./贵州省/黔西南布依族苗族自治州/望谟县.json";
+import  册亨县 from "./贵州省/黔西南布依族苗族自治州/册亨县.json";
+import  安龙县 from "./贵州省/黔西南布依族苗族自治州/安龙县.json";
 export {
   China,
   中华人民共和国,
@@ -2939,4 +3186,250 @@ export {
   甘孜藏族自治州,
   凉山彝族自治州,
   攀枝花市,
+  自流井区,
+  贡井区,
+  大安区,
+  沿滩区,
+  荣县,
+  富顺县,
+  东区,
+  西区,
+  仁和区,
+  米易县,
+  盐边县,
+  江阳区,
+  纳溪区,
+  龙马潭区,
+  泸县,
+  合江县,
+叙永县,
+古蔺县,
+旌阳区,
+罗江区,
+广汉市,
+什邡市,
+绵竹市,
+中江县,
+涪城区,
+游仙区,
+安州区,
+江油市,
+三台县,
+盐亭县,
+梓潼县,
+北川羌族自治县,
+平武县,
+利州区,
+昭化区,
+朝天区,
+旺苍县,
+青川县,
+剑阁县,
+苍溪县,
+乐山市市中区,
+安居区,
+船山区,
+射洪市,
+大英县,
+蓬溪县,
+沙湾区,
+五通桥区,
+金口河区,
+峨眉山市,
+犍为县,
+井研县,
+夹江县,
+沐川县,
+峨边彝族自治县,
+马边彝族自治县,
+顺庆区,
+高坪区,
+嘉陵区,
+阆中市,
+南部县,
+营山县,
+蓬安县,
+仪陇县,
+西充县,
+东坡区,
+彭山区,
+仁寿县,
+洪雅县,
+丹棱县,
+青神县,
+广安区,
+前锋区,
+华蓥市,
+岳池县,
+武胜县,
+邻水县,
+通川区,
+达川区,
+万源市,
+宣汉县,
+开江县,
+大竹县,
+渠县,
+雨城区,
+名山区,
+荥经县,
+汉源县,
+石棉县,
+天全县,
+芦山县,
+宝兴县,
+巴州区,
+恩阳区,
+通江县,
+南江县,
+平昌县,
+雁江区,
+安岳县,
+乐至县,
+马尔康市,
+汶川县,
+理县,
+茂县,
+松潘县,
+九寨沟县,
+金川县,
+小金县,
+黑水县,
+壤塘县,
+阿坝县,
+若尔盖县,
+红原县,
+西昌市,
+会理市,
+木里藏族自治县,
+盐源县,
+德昌县,
+会东县,
+宁南县,
+普格县,
+布拖县,
+金阳县,
+昭觉县,
+喜德县,
+冕宁县,
+越西县,
+甘洛县,
+美姑县,
+雷波县,
+康定市,
+泸定县,
+丹巴县,
+九龙县,
+雅江县,
+道孚县,
+炉霍县,
+甘孜县,
+新龙县,
+德格县,
+白玉县,
+石渠县,
+色达县,
+理塘县,
+巴塘县,
+乡城县,
+稻城县,
+得荣县,
+贵州,
+贵阳市,
+观山湖区,
+南明区,
+云岩区,
+花溪区,
+乌当区,
+贵阳市白云区,
+清镇市,
+开阳县,
+息烽县,
+修文县,
+遵义市,
+汇川区,
+红花岗区,
+播州区,
+赤水市,
+仁怀市,
+桐梓县,
+绥阳县,
+正安县,
+道真仡佬族苗族自治县,
+务川仡佬族苗族自治县,
+凤冈县,
+湄潭县,
+余庆县,
+习水县,
+六盘水市,
+钟山区,
+水城区,
+盘州市,
+六枝特区,
+安顺市,
+西秀区,
+平坝区,
+镇宁布依族苗族自治县,
+普定县,
+关岭布依族苗族自治县,
+紫云苗族布依族自治县,
+毕节市,
+七星关区,
+黔西市,
+赫章县,
+威宁彝族回族苗族自治县,
+纳雍县,
+织金县,
+金沙县,
+大方县,
+铜仁市,
+碧江区,
+万山区,
+江口县,
+玉屏侗族自治县,
+石阡县,
+思南县,
+印江土家族苗族自治县,
+德江县,
+沿河土家族自治县,
+松桃苗族自治县,
+黔东南苗族侗族自治州,
+凯里市,
+镇远县,
+黄平县,
+施秉县,
+三穗县,
+岑巩县,
+天柱县,
+锦屏县,
+剑河县,
+台江县,
+黎平县,
+榕江县,
+从江县,
+雷山县,
+麻江县,
+丹寨县,
+黔南布依族苗族自治州,
+都匀市,
+福泉市,
+荔波县,
+贵定县,
+瓮安县,
+独山县,
+平塘县,
+罗甸县,
+长顺县,
+龙里县,
+惠水县,
+三都水族自治县,
+黔西南布依族苗族自治州,
+兴义市,
+兴仁市,
+普安县,
+晴隆县,
+贞丰县,
+望谟县,
+册亨县,
+安龙县,
 }

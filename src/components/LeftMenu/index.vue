@@ -284,7 +284,7 @@
             </div>
           </el-menu-item>
         </el-submenu>
-        <el-submenu index="7">
+        <!-- <el-submenu index="7">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="zhenggai" />
@@ -317,7 +317,7 @@
               <span>风险管控</span>
             </div>
           </el-menu-item>
-        </el-submenu>
+        </el-submenu> -->
         <el-submenu index="9">
           <template slot="title">
             <div class="menu-item">
