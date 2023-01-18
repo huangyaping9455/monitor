@@ -455,7 +455,7 @@ export default {
   methods: {
     refresh() {
       this.form = {
-        begintime: format(new Date().getTime(), "YYYY-MM-DD"),
+        begintime: "2000-01-01",
       };
       this.getDate(1);
     },

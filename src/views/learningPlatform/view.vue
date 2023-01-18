@@ -251,6 +251,12 @@ export default {
           if (el.lmonth == "-1") {
             el.lmonth = "";
           }
+          if (el.usercard) {
+            el.usercard = el.usercard.replace(
+              /^(.{6})(?:\d+)(.{4})$/,
+              "\$1****\$2"
+            );
+          }
           return el;
         });
         //分页处理

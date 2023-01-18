@@ -649,7 +649,7 @@ export default {
         });
         this.chartOption.option3 = {
           ...pieoption,
-          title: { ...pieoption.title, show: true, text: "企业警报占比" },
+          title: { ...pieoption.title, show: true, text: "企业报警占比(月)" },
           legend: { show: false },
           series: {
             ...pieoption.series,

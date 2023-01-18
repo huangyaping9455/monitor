@@ -20,11 +20,11 @@
     position: absolute;
     top: 68px;
     right: 25px;
-    /deep/ .el-date-editor.el-input,
+    ::v-deep .el-date-editor.el-input,
     .el-date-editor.el-input__inner {
       width: 175px;
     }
-    /deep/ .el-button {
+    ::v-deep .el-button {
       margin-left: 5px;
     }
   }

@@ -230,10 +230,10 @@ export default {
   .hide-search {
     display: flex;
     align-items: center;
-    /deep/.el-form-item__label {
+    ::v-deep.el-form-item__label {
       color: #01f8ff;
     }
-    /deep/ input {
+    ::v-deep input {
       background: #112e4d;
       border-color: #004b77;
       color: #ffffff;
@@ -243,7 +243,7 @@ export default {
         border-color: #00d2ff;
       }
     }
-    /deep/.el-form-item--mini.el-form-item {
+    ::v-deep.el-form-item--mini.el-form-item {
       margin-bottom: 0.8rem;
       display: flex;
       align-items: center;

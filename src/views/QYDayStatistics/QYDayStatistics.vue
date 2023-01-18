@@ -225,8 +225,8 @@
             <span>{{ enterpriseCount.onlineRate }}</span>
           </div>
           <div class="car-item">
-            <span>定位率</span>
-            <span>{{ enterpriseCount.locateRate }}</span>
+            <span>入网率</span>
+            <span>100%</span>
           </div>
           <div class="car-item">
             <span>数据合格率</span>
@@ -362,12 +362,11 @@
             align="center"
             min-width="100"
           ></el-table-column>
-          <el-table-column
-            prop="locateRate"
-            label="定位率"
-            align="center"
-            min-width="100"
-          ></el-table-column>
+          <el-table-column label="入网率" align="center" min-width="100">
+            <template>
+              <span>100%</span>
+            </template>
+          </el-table-column>
           <el-table-column
             prop="driftPositionRate"
             label="轨迹漂移率"

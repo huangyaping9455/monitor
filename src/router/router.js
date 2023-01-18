@@ -1,443 +1,553 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Layout from '@/layout/index'
+import Vue from "vue";
+import Router from "vue-router";
+import Layout from "@/layout/index";
 
-Vue.use(Router)
+Vue.use(Router);
 
 //解决点击同一个路由报错
-const [originalPush, routerReplace] = [Router.prototype.push, Router.prototype.replace];
+const [originalPush, routerReplace] = [
+  Router.prototype.push,
+  Router.prototype.replace,
+];
 Router.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err)
-}
+  return originalPush.call(this, location).catch((err) => err);
+};
 Router.prototype.replace = function replace(location) {
-  return routerReplace.call(this, location).catch(error => error);
+  return routerReplace.call(this, location).catch((error) => error);
 };
 
-export const constantRouterMap = [{
-    path: '/',
+export const constantRouterMap = [
+  {
+    path: "/",
     // redirect: '/home'
-    redirect: function () {
+    redirect: function() {
       if (window.location.search === "") {
-        return '/home'
+        return "/home";
       } else {
-        return 'wel'
+        return "wel";
       }
-    }
+    },
   },
   {
-    path: '/login',
+    path: "/login",
     meta: {
-      title: '登录',
-      requiresAuth: false
+      title: "登录",
+      requiresAuth: false,
     },
-    component: () => import('@/views/login')
+    component: () => import("@/views/login"),
   },
   {
-    path: '/wel',
+    path: "/wel",
     meta: {
-      title: '欢迎页',
-      requiresAuth: false
+      title: "欢迎页",
+      requiresAuth: false,
     },
-    component: () => import('@/views/wel')
+    component: () => import("@/views/wel"),
   },
   {
-    path: '/home',
+    path: "/home",
     meta: {
-      title: '首页',
-      requiresAuth: true
+      title: "首页",
+      requiresAuth: true,
     },
-    component: () => import('@/views/Home/index')
+    component: () => import("@/views/Home/index"),
   },
   {
-    path: '/dataAnalysis',
+    path: "/dataAnalysis",
     meta: {
-      title: '数据分析',
-      requiresAuth: true
+      title: "数据分析",
+      requiresAuth: true,
     },
-    component: () => import('@/views/DataAnalysis/index')
+    component: () => import("@/views/DataAnalysis/index"),
     // component: () => import('@/views/DataAnalysis/index_new')
   },
   {
-    path: '/OBDDataAnalysis',
+    path: "/dataAnalysis_gz",
     meta: {
-      title: 'OBD数据分析',
-      requiresAuth: true
+      title: "数据分析",
+      requiresAuth: true,
     },
-    component: () => import('@/views/DataAnalysis/index_new')
+    component: () => import("@/views/DataAnalysis/index-gz"),
   },
   {
-    path: '/enterprise',
+    path: "/OBDDataAnalysis",
     meta: {
-      title: '报警排名统计',
-      requiresAuth: true
+      title: "OBD数据分析",
+      requiresAuth: true,
     },
-    component: () => import('@/views/Statistics/enterprise')
+    component: () => import("@/views/DataAnalysis/index_new"),
   },
   {
-    path: '/treatmentRate',
+    path: "/enterprise",
     meta: {
-      title: '处理率统计',
-      requiresAuth: true
+      title: "报警排名统计",
+      requiresAuth: true,
     },
-    component: () => import('@/views/TreatmentRate/index')
+    component: () => import("@/views/Statistics/enterprise"),
   },
   {
-    path: '/treatmentRateinfo',
+    path: "/treatmentRate",
     meta: {
-      title: '处理率统计详情',
-      requiresAuth: true
+      title: "处理率统计",
+      requiresAuth: true,
     },
-    component: () => import('@/views/TreatmentRate/treatmentRateinfo')
+    component: () => import("@/views/TreatmentRate/index"),
   },
   {
-    path: '/vehicleinfo',
+    path: "/treatmentRateinfo",
     meta: {
-      title: '报警车辆详情',
-      requiresAuth: true
+      title: "处理率统计详情",
+      requiresAuth: true,
     },
-    component: () => import('@/views/TreatmentRate/vehicleinfo')
+    component: () => import("@/views/TreatmentRate/treatmentRateinfo"),
   },
   {
-    path: '/addNotice',
-    name: 'addNotice',
+    path: "/vehicleinfo",
     meta: {
-      requiresAuth: true
+      title: "报警车辆详情",
+      requiresAuth: true,
     },
-    component: () => import('@/views/Notice/addNotice')
+    component: () => import("@/views/TreatmentRate/vehicleinfo"),
   },
   {
-    path: '/addNotice',
-    name: 'addNotice',
+    path: "/addNotice",
+    name: "addNotice",
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     },
-    component: () => import('@/views/Notice/addNotice')
+    component: () => import("@/views/Notice/addNotice"),
   },
   {
-    path: '/addSafetyInspection',
-    name: 'addSafetyInspection',
+    path: "/addNotice",
+    name: "addNotice",
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     },
-    component: () => import('@/views/SafetyInspection/addSafetyInspection')
+    component: () => import("@/views/Notice/addNotice"),
   },
   {
-    path: '/addDocumentFile',
-    name: 'addDocumentFile',
+    path: "/addSafetyInspection",
+    name: "addSafetyInspection",
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     },
-    component: () => import('@/views/DocumentFile/addDocumentFile')
+    component: () => import("@/views/SafetyInspection/addSafetyInspection"),
   },
   {
-    path: '/addIssueRectification',
-    name: 'addIssueRectification',
+    path: "/addDocumentFile",
+    name: "addDocumentFile",
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     },
-    component: () => import('@/views/IssueRectification/addIssueRectification')
+    component: () => import("@/views/DocumentFile/addDocumentFile"),
+  },
+  {
+    path: "/addIssueRectification",
+    name: "addIssueRectification",
+    meta: {
+      requiresAuth: true,
+    },
+    component: () => import("@/views/IssueRectification/addIssueRectification"),
   },
   // 企业报警排名
   {
-    path: '/QYvehicle',
-    name: 'QYvehicle',
+    path: "/QYvehicle",
+    name: "QYvehicle",
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     },
-    component: () => import('@/views/QYvehicle/index')
+    component: () => import("@/views/QYvehicle/index"),
   },
   // 日运行情况统计
   {
-    path: '/DayStatistics',
-    name: 'DayStatistics',
+    path: "/DayStatistics",
+    name: "DayStatistics",
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     },
-    component: () => import('@/views/DayStatistics/index')
+    component: () => import("@/views/DayStatistics/index"),
   },
   // 企业日运行情况统计
   {
-    path: '/QYDayStatistics',
-    name: 'QYDayStatistics',
+    path: "/QYDayStatistics",
+    name: "QYDayStatistics",
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     },
-    component: () => import('@/views/QYDayStatistics/index')
+    component: () => import("@/views/QYDayStatistics/index"),
   },
   // 运营商日运行情况统计
   {
-    path: '/YYSDayStatistics',
-    name: 'YYSDayStatistics',
+    path: "/YYSDayStatistics_qd",
+    name: "YYSDayStatistics_qd",
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     },
-    component: () => import('@/views/YYSDayStatistics/index')
+    component: () => import("@/views/YYSDayStatistics/index"),
+  },
+  {
+    path: "/YYSDayStatistics_ts",
+    name: "YYSDayStatistics_ts",
+    meta: {
+      requiresAuth: true,
+    },
+    component: () => import("@/views/YYSDayStatistics/index-ts.vue"),
+  },
+  {
+    path: "/YYSEnterprise",
+    name: "YYSEnterprise",
+    meta: {
+      requiresAuth: true,
+    },
+    component: () => import("@/views/YYSEnterprise/index.vue"),
   },
   // 道路运输企业联网联控考核评分
   {
-    path: '/LWLKStatic',
-    name: 'LWLKStatic',
+    path: "/LWLKStatic",
+    name: "LWLKStatic",
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     },
-    component: () => import('@/views/LWLKStatic/index')
+    component: () => import("@/views/LWLKStatic/index"),
   },
   // 道路运输运营商联网联控考核评分
   {
-    path: '/YYSStatic',
-    name: 'YYSStatic',
+    path: "/YYSStatic",
+    name: "YYSStatic",
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     },
-    component: () => import('@/views/YYSStatic/index')
+    component: () => import("@/views/YYSStatic/index"),
+  },
+  {
+    path: "/YYSArchives",
+    name: "YYSArchives",
+    meta: {
+      requiresAuth: true,
+    },
+    component: () => import("@/views/YYSArchives/index"),
   },
   // 地区报警排名
   {
-    path: '/ZFDQ',
-    name: 'ZFDQ',
+    path: "/ZFDQ",
+    name: "ZFDQ",
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     },
-    component: () => import('@/views/ZFDQ/index')
+    component: () => import("@/views/ZFDQ/index"),
   },
   // 车辆报警排名
   {
-    path: '/VehicleRank',
-    name: 'VehicleRank',
+    path: "/VehicleRank",
+    name: "VehicleRank",
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     },
-    component: () => import('@/views/VehicleRank/index')
+    component: () => import("@/views/VehicleRank/index"),
   },
   // 地区报警排名
   {
-    path: '/enterprise_yq',
-    name: 'enterprise_yq',
+    path: "/enterprise_yq",
+    name: "enterprise_yq",
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     },
-    component: () => import('@/views/enterprise_yq/index')
+    component: () => import("@/views/enterprise_yq/index"),
   },
   // 地区报警详情
   {
-    path: '/enterprisetreat',
+    path: "/enterprisetreat",
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     },
-    component: () => import('@/views/enterprise_yq/enterprisetreat')
+    component: () => import("@/views/enterprise_yq/enterprisetreat"),
   },
   // 地区报警排名
   {
-    path: '/ZFDQ_yq',
-    name: 'ZFDQ_yq',
+    path: "/ZFDQ_yq",
+    name: "ZFDQ_yq",
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     },
-    component: () => import('@/views/ZFDQ_yq/index')
+    component: () => import("@/views/ZFDQ_yq/index"),
   },
   // 车辆报警排名
   {
-    path: '/vehicleRank_yq',
-    name: 'vehicleRank_yq',
+    path: "/vehicleRank_yq",
+    name: "vehicleRank_yq",
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     },
-    component: () => import('@/views/vehicleRank_yq/index')
+    component: () => import("@/views/vehicleRank_yq/index"),
   },
   {
-    path: '/standard',
-    name: 'standard',
+    path: "/standard",
+    name: "standard",
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     },
-    component: () => import('@/views/standard/index')
+    component: () => import("@/views/standard/index"),
   },
   {
-    path: '/law',
-    name: 'law',
+    path: "/law",
+    name: "law",
     meta: {
-      title: '法律法规',
-      requiresAuth: true
+      title: "法律法规",
+      requiresAuth: true,
     },
-    component: () => import('@/views/law/index')
+    component: () => import("@/views/law/index"),
   },
   {
-    path: '',
+    path: "",
     meta: {
-      title: '政企互通'
+      title: "政企互通",
     },
     component: Layout,
-    redirect: '/notice',
-    children: [{
-        path: 'notice',
-        name: 'notice',
+    redirect: "/notice",
+    children: [
+      {
+        path: "notice",
+        name: "notice",
         meta: {
-          title: '通知公告',
-          requiresAuth: true
+          title: "通知公告",
+          requiresAuth: true,
         },
-        component: () => import('@/views/Notice/index')
+        component: () => import("@/views/Notice/index"),
       },
       {
-        path: '/SafetyInspection',
-        name: 'SafetyInspection',
+        path: "/SafetyInspection",
+        name: "SafetyInspection",
         meta: {
-          title: '安全查岗',
-          requiresAuth: true
+          title: "安全查岗",
+          requiresAuth: true,
         },
-        component: () => import('@/views/SafetyInspection/index')
+        component: () => import("@/views/SafetyInspection/index"),
       },
       {
-        path: '/documentFile',
-        name: 'documentFile',
+        path: "/documentFile",
+        name: "documentFile",
         meta: {
-          title: '文件下发',
-          requiresAuth: true
+          title: "文件下发",
+          requiresAuth: true,
         },
-        component: () => import('@/views/DocumentFile/index')
+        component: () => import("@/views/DocumentFile/index"),
       },
 
       {
-        path: '/distributionOptions',
-        name: 'distributionOptions',
+        path: "/distributionOptions",
+        name: "distributionOptions",
         meta: {
-          title: '下发单位选择',
-          requiresAuth: true
+          title: "下发单位选择",
+          requiresAuth: true,
         },
-        component: () => import('@/views/DocumentFile/distributionOptions')
+        component: () => import("@/views/DocumentFile/distributionOptions"),
       },
       {
-        path: '/issueRectification',
-        name: 'issueRectification',
+        path: "/issueRectification",
+        name: "issueRectification",
         meta: {
-          title: '下发整改',
-          requiresAuth: true
+          title: "下发整改",
+          requiresAuth: true,
         },
-        component: () => import('@/views/IssueRectification/index')
+        component: () => import("@/views/IssueRectification/index"),
       },
       {
-        path: '/vehicle',
-        name: 'vehicle',
+        path: "/vehicle",
+        name: "vehicle",
         meta: {
-          title: '车辆统计',
-          requiresAuth: true
+          title: "车辆统计",
+          requiresAuth: true,
         },
-        component: () => import('@/views/Statistics/vehicle')
+        component: () => import("@/views/Statistics/vehicle"),
       },
       {
-        path: '/weekReport',
-        name: 'weekReport',
+        path: "/weekReport",
+        name: "weekReport",
         meta: {
-          title: '周报',
-          requiresAuth: true
+          title: "周报",
+          requiresAuth: true,
         },
-        component: () => import('@/views/weekReport/index'),
+        component: () => import("@/views/weekReport/index"),
       },
       {
-        path: '/monthReport',
-        name: 'monthReport',
+        path: "/monthReport",
+        name: "monthReport",
         meta: {
-          title: '月报',
-          requiresAuth: true
+          title: "月报",
+          requiresAuth: true,
         },
-        component: () => import('@/views/monthReport/index'),
+        component: () => import("@/views/monthReport/index"),
       },
       {
-        path: '/safeStandard',
-        name: 'safeStandard',
+        path: "/quarterReport",
+        name: "quarterReport",
         meta: {
-          title: '企业达标明细',
-          requiresAuth: true
+          title: "月报",
+          requiresAuth: true,
         },
-        component: () => import('@/views/safeStandard/index'),
+        component: () => import("@/views/monthReport/index"),
       },
       {
-        path: '/safeDocument',
-        name: 'safeDocument',
+        path: "/safeStandard",
+        name: "safeStandard",
         meta: {
-          title: '安全台账明细',
-          requiresAuth: true
+          title: "企业达标明细",
+          requiresAuth: true,
         },
-        component: () => import('@/views/safeDocument/index'),
+        component: () => import("@/views/safeStandard/index"),
       },
       {
-        path: '/learningPlatform',
-        name: 'learningPlatform',
+        path: "/safeDocument",
+        name: "safeDocument",
         meta: {
-          title: '学习情况统计',
-          requiresAuth: true
+          title: "安全台账明细",
+          requiresAuth: true,
         },
-        component: () => import('@/views/learningPlatform/index'),
+        component: () => import("@/views/safeDocument/index"),
       },
       {
-        path: '/hidDanger',
-        name: 'hidDanger',
+        path: "/learningPlatform",
+        name: "learningPlatform",
         meta: {
-          title: '隐患排查',
-          requiresAuth: true
+          title: "学习情况统计",
+          requiresAuth: true,
         },
-        component: () => import('@/views/hidDanger/index'),
+        component: () => import("@/views/learningPlatform/index"),
       },
       {
-        path: '/risk',
-        name: 'risk',
+        path: "/hidDanger",
+        name: "hidDanger",
         meta: {
-          title: '风险管控',
-          requiresAuth: true
+          title: "隐患排查",
+          requiresAuth: true,
         },
-        component: () => import('@/views/risk/index'),
+        component: () => import("@/views/hidDanger/index"),
       },
-    ]
+      {
+        path: "/dayHideDanger",
+        name: "dayHideDanger",
+        meta: {
+          title: "日隐患排查",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/dayHideDanger/index"),
+      },
+      {
+        path: "/weekHideDanger",
+        name: "weekHideDanger",
+        meta: {
+          title: "周隐患排查",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/dayHideDanger1/index"),
+      },
+      {
+        path: "/monthHideDanger",
+        name: "monthHideDanger",
+        meta: {
+          title: "月隐患排查",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/dayHideDanger2/index"),
+      },
+      {
+        path: "/seasonHideDanger",
+        name: "seasonHideDanger",
+        meta: {
+          title: "季节性排查",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/dayHideDanger3/index"),
+      },
+      {
+        path: "/holidayHideDanger",
+        name: "holidayHideDanger",
+        meta: {
+          title: "重大节假日排查",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/dayHideDanger4/index"),
+      },
+      {
+        path: "/specialHideDanger",
+        name: "specialHideDanger",
+        meta: {
+          title: "专项排查",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/dayHideDanger5/index"),
+      },
+      {
+        path: "/compreHideDanger",
+        name: "compreHideDanger",
+        meta: {
+          title: "综合排查",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/dayHideDanger6/index"),
+      },
+      {
+        path: "/risk",
+        name: "risk",
+        meta: {
+          title: "风险管控",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/risk/index"),
+      },
+    ],
   },
   {
-    path: '',
+    path: "",
     meta: {
-      title: '档案管理'
+      title: "档案管理",
     },
     component: Layout,
-    redirect: '/vehicleArchives',
-    children: [{
-        path: '/vehicleArchives',
-        name: 'vehicleArchives',
+    redirect: "/vehicleArchives",
+    children: [
+      {
+        path: "/vehicleArchives",
+        name: "vehicleArchives",
         meta: {
-          title: '车辆档案',
-          requiresAuth: true
+          title: "车辆档案",
+          requiresAuth: true,
         },
-        component: () => import('@/views/vehicleArchives/index'),
+        component: () => import("@/views/vehicleArchives/index"),
       },
       {
-        path: '/driverArchives',
-        name: 'driverArchives',
+        path: "/driverArchives",
+        name: "driverArchives",
         meta: {
-          title: '驾驶员档案',
-          requiresAuth: true
+          title: "驾驶员档案",
+          requiresAuth: true,
         },
-        component: () => import('@/views/driverArchives/index'),
+        component: () => import("@/views/driverArchives/index"),
       },
       {
-        path: '/vehicleMaintain',
-        name: 'vehicleMaintain',
+        path: "/vehicleMaintain",
+        name: "vehicleMaintain",
         meta: {
-          title: '车辆维护',
-          requiresAuth: true
+          title: "车辆维护",
+          requiresAuth: true,
         },
-        component: () => import('@/views/vehicleMaintain/index')
+        component: () => import("@/views/vehicleMaintain/index"),
       },
       {
-        path: '/accident',
-        name: 'accident',
+        path: "/accident",
+        name: "accident",
         meta: {
-          title: '车辆事故',
-          requiresAuth: true
+          title: "车辆事故",
+          requiresAuth: true,
         },
-        component: () => import('@/views/accident/index')
+        component: () => import("@/views/accident/index"),
       },
-    ]
-  }
-]
+    ],
+  },
+];
 
 export default new Router({
   scrollBehavior: () => ({
-    y: 0
+    y: 0,
   }),
-  routes: constantRouterMap
-})
+  routes: constantRouterMap,
+});

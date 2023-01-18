@@ -43,14 +43,14 @@
       v-loading="msgloading"
       element-loading-background="rgba(0, 0, 0, 0.4)"
     >
-      <el-table-column
+      <!-- <el-table-column
         prop="dengji"
         label="隐患等级"
         width="90"
         show-overflow-tooltip
         align="center"
       >
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column
         prop="troubleBh"
         label="隐患编号"

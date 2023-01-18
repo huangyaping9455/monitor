@@ -367,6 +367,20 @@
             show-overflow-tooltip
           ></el-table-column>
           <el-table-column
+            label="运政基础数据合规率"
+            prop="yunzhenghegelv"
+            width="150"
+            align="center"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="逾期注销率"
+            prop="yuqizhuxiaolv"
+            width="150"
+            align="center"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
             label="平台查岗响应率分数"
             prop="checkPostResponseRateScore"
             align="center"
@@ -557,6 +571,8 @@ export default {
       if (data) {
         this.enterpriseList = data.records.map((el) => {
           el.ruWangLv = "100.00%";
+          el.yunzhenghegelv = "100.00%";
+          el.yuqizhuxiaolv = "100.00%";
           return el;
         });
         //分页处理

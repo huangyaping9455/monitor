@@ -11,7 +11,8 @@
   padding-left: 20px;
   padding-right: 20px;
   .car-item {
-    width: 19%;
+    // width: 19%;
+    width: 24%;
     // width: 11.6%;
     height: 10.7143rem;
     border-radius: 0.7143rem;
@@ -208,13 +209,13 @@
         <span>{{ overview.zcvehnumb }}</span>
       </div>
       <div class="car-item" @click="linkto('/hidDanger')">
-        <span>隐患因子</span>
-        <span>{{ troubleNum.zhenggai }}</span>
+        <span>隐患排查</span>
+        <span>{{ troubleNum.zhenggai }} / {{ troubleNum.zongshu }}</span>
       </div>
-      <div class="car-item" @click="linkto('/risk')">
+      <!-- <div class="car-item" @click="linkto('/risk')">
         <span>风险值</span>
         <span>{{ overview.riskCount }}</span>
-      </div>
+      </div> -->
       <div class="car-item" @click="linkto('/QYDayStatistics')">
         <span>考核指标分数</span>
         <span>{{ overview.assessmentScore }}</span>
@@ -537,7 +538,7 @@ import allHeader from "@/components/Header/index";
 import homeApi from "@/api/modules/home";
 import dataAnalysisApi from "@/api/modules/report";
 // import { lineoption, lineName, geooption } from "@/config/echartoption";
-import { lineoption, lineName } from "@/config/echartoption";
+import { lineoption, lineName } from "@/config/echartoption-new";
 import { mapGetters } from "vuex";
 import { format } from "@/config/date";
 import vueSeamlessScroll from "vue-seamless-scroll";

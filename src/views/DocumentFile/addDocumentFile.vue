@@ -160,7 +160,7 @@
           <span v-else>{{ from.songdadanwei }}</span>
         </td>
         <td>是否回执：</td>
-        <td style="flex:0 0 10%">
+        <td style="flex: 0 0 10%">
           <el-checkbox v-if="!eye" size="mini" v-model="from.zhuangtai"
             >回执</el-checkbox
           >
@@ -197,8 +197,9 @@
           <el-upload
             v-if="!eye"
             class="upload-demo"
-            action="http://36.133.42.216:8200/blade-upload/upload/upload"
+            action="/api/blade-upload/upload/upload"
             :data="uploadData"
+            :headers="headers"
             :show-file-list="false"
             :on-success="handlePreview"
           >
@@ -221,6 +222,7 @@
 </template>
 
 <script>
+import Cookies from "js-cookie";
 import operationGroup from "@/components/0perationGroup/index";
 import governmentApi from "@/api/modules/government";
 import { mapGetters, mapMutations } from "vuex";
@@ -263,6 +265,9 @@ export default {
       files: {}, //附件
       fileName: "",
       errmsg: "",
+      headers: {
+        "blade-auth": "Bearer " + Cookies.get("accessToken"),
+      },
     };
   },
   created() {
@@ -290,7 +295,7 @@ export default {
     uploadData() {
       return {
         table: "zhengfu",
-        fileid: format(new Date(), "MM"),
+        fileId: format(new Date(), "MM"),
       };
     },
     ...mapGetters({
@@ -465,7 +470,7 @@ export default {
       }
     },
     handlePreview(response, file, fileList) {
-      this.files = response;
+      this.files = response.data;
     },
     strhandle(str, name) {
       let index = str.lastIndexOf(`${name}`);

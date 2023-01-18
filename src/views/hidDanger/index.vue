@@ -3,37 +3,56 @@
     <div class="hide-top">
       <div class="car-item">
         <img src="~@/assets/img/cao.png" alt="" />
-        <span>1级隐患未完成整改</span>
+        <span>人的不安全行为</span>
         <span>{{ listCount.num1 }}</span>
       </div>
       <div class="car-item">
         <img src="~@/assets/img/cao.png" alt="" />
-        <span>2级隐患未完成整改</span>
+        <span>物的不安全状态</span>
         <span>{{ listCount.num2 }}</span>
       </div>
       <div class="car-item">
         <img src="~@/assets/img/cao.png" alt="" />
-        <span>3级隐患未完成整改</span>
+        <span>环境的不安全因素</span>
         <span>{{ listCount.num3 }}</span>
       </div>
       <div class="car-item">
         <img src="~@/assets/img/cao.png" alt="" />
-        <span>4级隐患未完成整改</span>
+        <span>管理缺陷</span>
         <span>{{ listCount.num4 }}</span>
       </div>
-      <div class="car-item">
+      <!-- <div class="car-item">
         <img src="~@/assets/img/cao.png" alt="" />
         <span>风险因子</span>
         <span>{{ listCount.num5 }}</span>
-      </div>
+      </div> -->
     </div>
-    <el-form :inline="true" size="mini" class="hide-search"
-      ><el-form-item label="公司名称">
+    <el-form :inline="true" size="mini" class="hide-search">
+      <el-form-item label="公司名称">
         <el-input
           v-model="deptName"
           placeholder="请输入公司名称"
           clearable
         ></el-input>
+      </el-form-item>
+      <el-form-item label="时间">
+        <div style="display:flex;align-items:center;">
+          <el-date-picker
+            style="width: 90%"
+            type="date"
+            placeholder="开始日期"
+            v-model="begintime"
+            value-format="yyyy-MM-dd"
+          ></el-date-picker>
+          <span style="color:#fff;margin:0 5px;"> - </span>
+          <el-date-picker
+            style="width: 90%"
+            type="date"
+            placeholder="结束日期"
+            value-format="yyyy-MM-dd"
+            v-model="endtime"
+          ></el-date-picker>
+        </div>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" class="sbtn" @click="getDate(1)"
@@ -57,7 +76,11 @@
         align="center"
       >
       </el-table-column>
-      <el-table-column label="一级隐患数" show-overflow-tooltip align="center">
+      <el-table-column
+        label="人的不安全行为"
+        show-overflow-tooltip
+        align="center"
+      >
         <template slot-scope="{ row }">
           <span v-if="row.num1 > 0" class="spancolor" @click="hidView(row, 1)">
             {{ row.num1 }}
@@ -65,7 +88,11 @@
           <span v-else>{{ row.num1 }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="二级隐患数" show-overflow-tooltip align="center">
+      <el-table-column
+        label="物的不安全状态"
+        show-overflow-tooltip
+        align="center"
+      >
         <template slot-scope="{ row }">
           <span v-if="row.num2 > 0" class="spancolor" @click="hidView(row, 2)">
             {{ row.num2 }}
@@ -73,7 +100,11 @@
           <span v-else>{{ row.num2 }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="三级隐患数" show-overflow-tooltip align="center">
+      <el-table-column
+        label="环境的不安全因素"
+        show-overflow-tooltip
+        align="center"
+      >
         <template slot-scope="{ row }">
           <span v-if="row.num3 > 0" class="spancolor" @click="hidView(row, 3)">
             {{ row.num3 }}
@@ -81,7 +112,7 @@
           <span v-else>{{ row.num3 }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="四级隐患数" show-overflow-tooltip align="center">
+      <el-table-column label="管理缺陷" show-overflow-tooltip align="center">
         <template slot-scope="{ row }">
           <span v-if="row.num4 > 0" class="spancolor" @click="hidView(row, 4)">
             {{ row.num4 }}
@@ -108,13 +139,13 @@
         align="center"
       >
       </el-table-column>
-      <el-table-column
+      <!-- <el-table-column
         prop="num5"
         label="风险因子"
         show-overflow-tooltip
         align="center"
       >
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column label="操作" align="center" width="110">
         <template slot-scope="{ row }">
           <el-button size="mini" type="primary" @click="sendZG(row)">
@@ -211,6 +242,8 @@ export default {
       listCount: [],
       zhengfuId: this.$store.state.userinfo.deptId,
       deptName: "",
+      begintime: "",
+      endtime: "",
     };
   },
   created() {
@@ -307,7 +340,8 @@ export default {
     padding-right: 20px;
     margin-bottom: 10px;
     .car-item {
-      width: 19%;
+      // width: 19%;
+      width: 24%;
       height: 10.7143rem;
       border-radius: 0.7143rem;
       box-sizing: border-box;
@@ -375,10 +409,10 @@ export default {
   .hide-search {
     display: flex;
     align-items: center;
-    /deep/.el-form-item__label {
+    ::v-deep.el-form-item__label {
       color: #01f8ff;
     }
-    /deep/ input {
+    ::v-deep input {
       background: #112e4d;
       border-color: #004b77;
       color: #ffffff;
@@ -388,7 +422,7 @@ export default {
         border-color: #00d2ff;
       }
     }
-    /deep/.el-form-item--mini.el-form-item {
+    ::v-deep.el-form-item--mini.el-form-item {
       margin-bottom: 0.8rem;
       display: flex;
       align-items: center;
