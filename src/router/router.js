@@ -70,6 +70,14 @@ export const constantRouterMap = [
     component: () => import("@/views/DataAnalysis/index-gz"),
   },
   {
+    path: "/mapAnalysis",
+    meta: {
+      title: "地图监控",
+      requiresAuth: true,
+    },
+    component: () => import("@/views/mapAnalysis/index"),
+  },
+  {
     path: "/OBDDataAnalysis",
     meta: {
       title: "OBD数据分析",
@@ -540,6 +548,79 @@ export const constantRouterMap = [
           requiresAuth: true,
         },
         component: () => import("@/views/accident/index"),
+      },
+    ],
+  },
+  {
+    path: "",
+    meta: {
+      title: "动态考核",
+    },
+    component: Layout,
+    redirect: "/dayExamine",
+    children: [
+      {
+        path: "/dayExamine",
+        name: "dayExamine",
+        meta: {
+          title: "业户日考核查询",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/dayExamine/index"),
+      },
+      {
+        path: "/weekExamine",
+        name: "weekExamine",
+        meta: {
+          title: "业户周考核查询",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/weekExamine/index"),
+      },
+      {
+        path: "/monthExamine",
+        name: "monthExamine",
+        meta: {
+          title: "业户月考核查询",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/monthExamine/index"),
+      },
+      {
+        path: "/vehicleMultiple",
+        name: "vehicleMultiple",
+        meta: {
+          title: "车辆综合查询",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/vehicleMultiple/index"),
+      },
+      {
+        path: "/dataQualified",
+        name: "dataQualified",
+        meta: {
+          title: "数据合格率",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/dataQualified/index"),
+      },
+      {
+        path: "/completeTrack",
+        name: "completeTrack",
+        meta: {
+          title: "轨迹完整率",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/completeTrack/index"),
+      },
+      {
+        path: "/trackDrift",
+        name: "trackDrift",
+        meta: {
+          title: "轨迹漂移率",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/trackDrift/index"),
       },
     ],
   },

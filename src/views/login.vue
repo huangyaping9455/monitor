@@ -10,13 +10,13 @@
 .logo {
   align-self: flex-start;
   margin-top: 5.5rem;
-  width: 50.1429rem; //福清市
+  // width: 50.1429rem; //福清市
   // width: 58.1429rem;
-  height: 7.7857rem;
-  margin-left: 38.0714rem; //徐州
-  // margin-left: 9.0714rem;
-  // height: 4.7857rem;
-  // width: 54.1429rem;
+  // height: 7.7857rem;
+  // margin-left: 38.0714rem; //徐州
+  margin-left: 9.0714rem;
+  height: 4.7857rem;
+  width: 54.1429rem;
   img {
     width: 100%;
     height: 100%;
@@ -107,8 +107,9 @@
     <div class="logo">
       <!-- <img src="@/assets/img/zkgt.png" /> -->
       <!-- <img src="@/assets/img/logo-22.png" /> -->
-      <img src="@/assets/img/fuqing.png" />
-      <!-- <img src="@/assets/img/guizhoulogo.png" /> -->
+      <!-- <img src="@/assets/img/youbifei.png" /> -->
+      <!-- <img src="@/assets/img/fuqing.png" /> -->
+      <img src="@/assets/img/guizhoulogo.png" />
       <!-- <img class="yjlogo" src="@/assets/img/yj-logo.png" /> -->
       <!-- <img src="@/assets/img/logo_changzhou.png" /> -->
       <!-- <img src="@/assets/img/xvzhoulogo.png" /> -->

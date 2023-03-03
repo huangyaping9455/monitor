@@ -17,6 +17,7 @@ import 重庆市 from "./重庆/重庆市.json";
 import 四川 from "./四川省/四川省.json";
 import 贵州 from "./贵州省/贵州省.json";
 import 浙江 from "./浙江省/浙江省.json";
+import 宁夏 from "./宁夏/宁夏回族自治区.json";
 
 // 河南
 import 三门峡市 from "./河南/三门峡市.json";
@@ -1818,6 +1819,34 @@ import 松阳县 from "./浙江省/丽水市/松阳县.json";
 import 云和县 from "./浙江省/丽水市/云和县.json";
 import 庆元县 from "./浙江省/丽水市/庆元县.json";
 import 景宁畲族自治县 from "./浙江省/丽水市/景宁畲族自治县.json";
+// 宁夏
+import 银川市 from "./宁夏/银川市/银川市.json";
+import 兴庆区 from "./宁夏/银川市/兴庆区.json";
+import 金凤区 from "./宁夏/银川市/金凤区.json";
+import 西夏区 from "./宁夏/银川市/西夏区.json";
+import 灵武市 from "./宁夏/银川市/灵武市.json";
+import 永宁县 from "./宁夏/银川市/永宁县.json";
+import 贺兰县 from "./宁夏/银川市/贺兰县.json";
+import 石嘴山市 from "./宁夏/石嘴山市/石嘴山市.json";
+import 大武口区 from "./宁夏/石嘴山市/大武口区.json";
+import 惠农区 from "./宁夏/石嘴山市/惠农区.json";
+import 平罗县 from "./宁夏/石嘴山市/平罗县.json";
+import 吴忠市 from "./宁夏/吴忠市/吴忠市.json";
+import 利通区 from "./宁夏/吴忠市/利通区.json";
+import 红寺堡区 from "./宁夏/吴忠市/红寺堡区.json";
+import 青铜峡市 from "./宁夏/吴忠市/青铜峡市.json";
+import 同心县 from "./宁夏/吴忠市/同心县.json";
+import 盐池县 from "./宁夏/吴忠市/盐池县.json";
+import 固原市 from "./宁夏/固原市/固原市.json";
+import 原州区 from "./宁夏/固原市/原州区.json";
+import 西吉县 from "./宁夏/固原市/西吉县.json";
+import 隆德县 from "./宁夏/固原市/隆德县.json";
+import 泾源县 from "./宁夏/固原市/泾源县.json";
+import 彭阳县 from "./宁夏/固原市/彭阳县.json";
+import 中卫市 from "./宁夏/中卫市/中卫市.json";
+import 沙坡头区 from "./宁夏/中卫市/沙坡头区.json";
+import 中宁县 from "./宁夏/中卫市/中宁县.json";
+import 海原县 from "./宁夏/中卫市/海原县.json";
 export {
   China,
   中华人民共和国,
@@ -3621,4 +3650,32 @@ export {
   云和县,
   庆元县,
   景宁畲族自治县,
+  宁夏,
+  银川市,
+  兴庆区,
+  金凤区,
+  西夏区,
+  灵武市,
+  永宁县,
+  贺兰县,
+  石嘴山市,
+  大武口区,
+  惠农区,
+  平罗县,
+  吴忠市,
+  利通区,
+  红寺堡区,
+  青铜峡市,
+  同心县,
+  盐池县,
+  固原市,
+  原州区,
+  西吉县,
+  隆德县,
+  泾源县,
+  彭阳县,
+  中卫市,
+  沙坡头区,
+  中宁县,
+  海原县,
 };

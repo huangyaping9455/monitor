@@ -28,7 +28,7 @@ export default {
   },
   watch: {
     $route(to, from) {
-      if (to.path == "/login") {
+      if (to.path == "/login" || to.path == "/mapAnalysis") {
         this.ismenu = false;
       } else {
         this.ismenu = true;

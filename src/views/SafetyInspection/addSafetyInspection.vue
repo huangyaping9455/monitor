@@ -350,14 +350,36 @@ export default {
       }
     },
     // 获取 企业历史记录 列表
+    // async getHFQY(id) {
+    //   let [err, data] = await governmentApi.awaitWrap(
+    //     governmentApi.getHFQY({
+    //       deptId: id,
+    //     })
+    //   );
+    //   if (data) {
+    //     this.tableData = data.map((el) => {
+    //       if (el.huifushijian !== "") {
+    //         el.isBack = "已回复";
+    //       } else {
+    //         el.isBack = "未回复";
+    //       }
+    //       return el;
+    //     });
+    //   } else {
+    //     this.$message.error(err);
+    //   }
+    // },
+    // 获取 企业历史记录 列表
     async getHFQY(id) {
       let [err, data] = await governmentApi.awaitWrap(
-        governmentApi.getHFQY({
-          deptId: id,
+        governmentApi.xinXiJiaoHuHuiFuList({
+          current: 1,
+          size: 100,
+          zhutiId:this.$route.query.id
         })
       );
-      if (data) {
-        this.tableData = data.map((el) => {
+      if (data && data.records) {
+        this.tableData = data.records.map((el) => {
           if (el.huifushijian !== "") {
             el.isBack = "已回复";
           } else {
