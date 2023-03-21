@@ -173,6 +173,7 @@
             size="mini"
             type="number"
             v-model="from.huifuyouxiaoqi"
+            :disabled="from.zhuangtai ? false : true"
           ></el-input>
           <span v-else>{{ from.huifuyouxiaoqi }}</span>
         </td>
@@ -228,6 +229,7 @@ import governmentApi from "@/api/modules/government";
 import { mapGetters, mapMutations } from "vuex";
 import { SET_DEPTS } from "@/store/mutation-types";
 import { format } from "@/config/date";
+import dayjs from 'dayjs';
 export default {
   components: {
     "operation-group": operationGroup,
@@ -252,7 +254,7 @@ export default {
         wenjianleixing: "",
         songdadanwei: "",
         zhuangtai: "",
-        faqishijian: "",
+        faqishijian: dayjs().format('YYYY-MM-DD HH:mm:ss'),
         zhutizhengwen: "",
         huifuyouxiaoqi: "",
       },

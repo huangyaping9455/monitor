@@ -170,7 +170,7 @@
         </td>
         <td>是否回执：</td>
         <td>
-          <el-checkbox v-if="!eye" size="mini" v-model="from.zhuangtai"
+          <el-checkbox checked disabled v-if="!eye" size="mini" v-model="from.zhuangtai"
             >回执</el-checkbox
           >
           <span v-else>{{ from.zhuangtai ? "是" : "否" }}</span>
@@ -232,6 +232,7 @@ import governmentApi from "@/api/modules/government";
 import { mapGetters, mapMutations } from "vuex";
 import { SET_DEPTS } from "@/store/mutation-types";
 import { format } from "@/config/date";
+import dayjs from "dayjs";
 export default {
   components: {
     "operation-group": operationGroup,
@@ -255,7 +256,7 @@ export default {
         zhutimingcheng: "",
         songdadanwei: "",
         zhuangtai: "",
-        faqishijian: "",
+        faqishijian: dayjs().format('YYYY-MM-DD HH:mm:ss'),
         zhutizhengwen: "",
         huifuyouxiaoqi: "",
       },
@@ -461,6 +462,8 @@ export default {
           songdadanwei: songdadanwei.join(","),
           songdadanweiid: songdadanweiid.join(","),
           zhuangtai: this.from.zhuangtai ? 1 : 0,
+          // zhuangtai: 1,
+
           faqishijian: this.from.faqishijian,
           zhutizhengwen: this.from.zhutizhengwen,
           huifuyouxiaoqi: this.from.huifuyouxiaoqi
@@ -491,6 +494,7 @@ export default {
           songdadanwei: songdadanwei.join(","),
           songdadanweiid: songdadanweiid.join(","),
           zhuangtai: this.from.zhuangtai ? 1 : 0,
+          // zhuangtai: 1,
           huifuyouxiaoqi: this.from.huifuyouxiaoqi
             ? this.from.huifuyouxiaoqi + "分钟"
             : "",
