@@ -45,7 +45,7 @@
   <div class="home-header">
     <p class="time">{{ newtime }}</p>
     <h1 class="title">{{ userinfo.mingcheng }}</h1>
-    <!-- <h1 class="title" style="font-size:27px;">
+    <!-- <h1 class="title" style="font-size: 27px">
       柳州市交通运输卫星定位政府监管平台
     </h1> -->
     <div class="user">
