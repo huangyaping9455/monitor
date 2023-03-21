@@ -179,7 +179,7 @@
           <el-upload
             v-if="!eye"
             class="upload-demo"
-            action="/api/blade-upload/upload/upload"
+            action="/blade-upload/upload/upload"
             :data="uploadData"
             :headers="headers"
             :show-file-list="false"
