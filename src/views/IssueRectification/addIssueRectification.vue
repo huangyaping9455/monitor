@@ -1,4 +1,7 @@
 <style lang="scss" scoped>
+li{
+  list-style: none;
+}
 .main {
   background: #0b122e;
   padding: 20px;
@@ -216,19 +219,26 @@
             action="/blade-upload/upload/upload"
             :data="uploadData"
             :headers="headers"
-            :show-file-list="false"
+            :show-file-list="true"
             :on-success="handlePreview"
+            :limit="100"
+            :file-list="[]"
           >
             <el-button size="mini" class="upbtn">上传附件</el-button>
           </el-upload>
-          <a
-            :href="files.name ? 'return:false;' : from.fujian"
-            target="_blank"
-            download
-            class="file"
-            :class="eye ? 'noml' : ''"
-            >{{ files.name ? files.name : fileName }}</a
-          >
+          <li v-for="(item, index) in fu_jian" :key="index">
+            <a
+              :href="item"
+              target="_blank"
+              download
+              class="file"
+              :class="eye ? 'noml' : ''"
+            >
+              {{ item }}
+            </a>
+            <br>
+            <br>
+          </li>
         </td>
       </tr>
     </table>
@@ -244,13 +254,14 @@ import governmentApi from "@/api/modules/government";
 import { mapGetters, mapMutations } from "vuex";
 import { SET_DEPTS } from "@/store/mutation-types";
 import { format } from "@/config/date";
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 export default {
   components: {
     "operation-group": operationGroup,
   },
   data() {
     return {
+      fu_jian: [],
       title: "",
       loading: false,
       type: "", //页面状态
@@ -269,7 +280,7 @@ export default {
         wenjianleixing: "",
         songdadanwei: "",
         zhuangtai: "",
-        faqishijian: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+        faqishijian: dayjs().format("YYYY-MM-DD HH:mm:ss"),
         zhenggaishijian: "",
         huifuyouxiaoqi: "",
         zhutizhengwen: "",
@@ -280,7 +291,7 @@ export default {
           return date.getTime() <= Date.now() - 1000 * 60 * 60 * 24;
         },
       }, //时间范围限制
-      files: {}, //附件
+      files: "", //附件
       fileName: "",
       errmsg: "",
       headers: {
@@ -372,6 +383,9 @@ export default {
       } else {
         this.$message.error(err);
       }
+      this.fu_jian = this.from.fujian.split(",");
+      console.log("-------------------------");
+      console.log(this.fu_jian);
     },
     // 获取获取送达企业列表
     async getQiYe() {
@@ -467,7 +481,8 @@ export default {
             this.from.zhenggaishijian,
             "YYYY-MM-DD HH:mm:ss"
           ),
-          fujian: this.files.url ? this.files.url : "",
+          // fujian: this.files.url ? this.files.url : "",
+          fujian: this.files,
           huifuyouxiaoqi: this.from.huifuyouxiaoqi
             ? this.from.huifuyouxiaoqi + "分钟"
             : "",
@@ -482,6 +497,7 @@ export default {
         });
       }
     },
+
     // 编辑
     async update() {
       let songdadanwei = [],
@@ -500,7 +516,8 @@ export default {
           huifuyouxiaoqi: this.from.huifuyouxiaoqi
             ? this.from.huifuyouxiaoqi + "分钟"
             : "",
-          fujian: this.files.url ? this.files.url : this.from.fujian,
+          // fujian: this.files.url ? this.files.url : this.from.fujian,
+          fujian:this.files
         })
       );
       this.operationOption.loading.save = false;
@@ -511,8 +528,16 @@ export default {
         });
       }
     },
+    // 图片信息
     handlePreview(response, file, fileList) {
-      this.files = response.data;
+      const arr = fileList.map((item) => {
+        return item.response.data.url;
+      });
+      const a = arr.join();
+      console.log(arr.join());
+      console.log(a.split(","));
+      // this.files = response.data;
+      this.files = arr.join();
     },
     strhandle(str, name) {
       let index = str.lastIndexOf(`${name}`);
