@@ -11,8 +11,8 @@
   padding-left: 20px;
   padding-right: 20px;
   .car-item {
-    // width: 23%;
-    width: 19%;
+    width: 23%;
+    // width: 19%;
     height: 10.7143rem;
     border-radius: 0.7143rem;
     box-sizing: border-box;
@@ -203,10 +203,10 @@
         <span>企业总数</span>
         <span>{{ overview.qiyeshu }}</span>
       </div>
-      <!-- <div class="car-item" @click="AllGT">
+      <div class="car-item" @click="AllGT">
         <span>个体总数</span>
         <span>{{ overview.getishu }}</span>
-      </div> -->
+      </div>
       <div class="car-item" @click="linkto('/vehicle')">
         <span>车辆总数</span>
         <span>{{ overview.zcvehnumb }}</span>
@@ -215,14 +215,14 @@
         <span>在线车辆数</span>
         <span>{{ overview.sxvehnum }}</span>
       </div>
-      <div class="car-item" @click="linkto('/safeStandard')">
+      <!-- <div class="car-item" @click="linkto('/safeStandard')">
         <span>安全达标率</span>
         <span>{{ overview.dabiaolv }}</span>
       </div>
       <div class="car-item" @click="linkto('/hidDanger')">
         <span>隐患因子</span>
         <span>{{ troubleNum.zhenggai }}</span>
-      </div>
+      </div> -->
     </div>
     <div class="home-bottom">
       <div
@@ -603,7 +603,7 @@ export default {
         this.getFour(this.userinfo.deptId);
       }
     }, 180000);
-    this.getTroubleCountNum();
+    // this.getTroubleCountNum();
     // 通过$once来监听定时器，在beforeDestroy钩子可以被清除。
     this.$once("hook:beforeDestroy", () => {
       clearInterval(timer1);
