@@ -384,8 +384,7 @@ export default {
         this.$message.error(err);
       }
       this.fu_jian = this.from.fujian.split(",");
-      console.log("-------------------------");
-      console.log(this.fu_jian);
+
     },
     // 获取获取送达企业列表
     async getQiYe() {
@@ -539,6 +538,7 @@ export default {
       // this.files = response.data;
       this.files = arr.join();
     },
+    // 获取图片名称
     strhandle(str, name) {
       let index = str.lastIndexOf(`${name}`);
       str = str.substring(index + 1, str.length);
