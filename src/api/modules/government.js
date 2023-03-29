@@ -65,5 +65,19 @@ export default {
       data
     );
   },
+  // 运营商查岗-列表
+  getCheckPostList(data) {
+    return $axios.post("/blade-anbiao/anbiao/checkPost/getCheckPostList", data);
+  },
+  // 运营商查岗-新增
+  checkPostInsert(data) {
+    return $axios.post("/blade-anbiao/anbiao/checkPost/insert", data);
+  },
+  // 运营商查岗-详情
+  checkPostDetail(params) {
+    return $axios.get("/blade-anbiao/anbiao/checkPost/detail", {
+      params: params,
+    });
+  },
   awaitWrap,
 };

@@ -264,7 +264,7 @@
       >
       </el-table-column>
       <el-table-column
-        label="企业名称"
+        label="业户名称"
         prop="deptName"
         align="center"
         width="220"
@@ -272,7 +272,7 @@
       >
       </el-table-column>
       <el-table-column
-        label="运营商名称"
+        label="服务商名称"
         prop="opName"
         align="center"
         width="150"
@@ -287,8 +287,8 @@
       >
       </el-table-column>
       <el-table-column
-        prop="evelocity"
-        label="速度"
+        prop="bvelocity"
+        label="开始速度"
         align="center"
         width="80"
         :show-overflow-tooltip="true"
@@ -298,6 +298,14 @@
         prop="btime"
         label="开始时间"
         align="center"
+        :show-overflow-tooltip="true"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="evelocity"
+        label="结束速度"
+        align="center"
+        width="80"
         :show-overflow-tooltip="true"
       >
       </el-table-column>

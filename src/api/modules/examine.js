@@ -5,6 +5,65 @@ export default {
   getDayTJ(data) {
     return $axios.post("/blade-anbiao/anbiao/lwlkDeptDay/getDayTJ", data);
   },
+  // 联网联控业户考核（日）列表
+  getDeptDayTJ(data) {
+    return $axios.post("/blade-anbiao/anbiao/lwlkDeptDay/getDayTJ", data);
+  },
+  // 联网联控车辆明细（日）列表
+  getVehDayTJ(data) {
+    return $axios.post("/blade-anbiao/anbiao/lwlkVehDay/getVehDayTJ", data);
+  },
+  // 车辆不合格点位明细列表
+  getVehQualifyDetailTJ(data) {
+    return $axios.post(
+      "/blade-anbiao/anbiao/lwlkQualifyDetail/getVehQualifyDetailTJ",
+      data
+    );
+  },
+
+  // 联网联控业户考核（周）列表
+  getDeptWeekTJ(data) {
+    return $axios.post(
+      "/blade-anbiao/anbiao/lwlkDeptWeek/getDeptWeekTJMX",
+      data
+    );
+  },
+  // 联网联控业户考核（月）列表
+  getDeptMonthTJ(data) {
+    return $axios.post(
+      "/blade-anbiao/anbiao/lwlkDeptMonth/getDeptMonthTJMX",
+      data
+    );
+  },
+  // 联网联控服务商考核（日）列表
+  getOperDayTJ(data) {
+    return $axios.post("/blade-anbiao/anbiao/lwlkOperDay/getOperDayTJMX", data);
+  },
+  // 联网联控服务商考核（周）列表
+  getOperWeekTJ(data) {
+    return $axios.post("/blade-anbiao/anbiao/lwlkOperWeek/getOperWeekTJ", data);
+  },
+  // 联网联控服务商考核（周）明细
+  getOperWeekTJMX(data) {
+    return $axios.post(
+      "/blade-anbiao/anbiao/lwlkOperWeek/getOperWeekTJMX",
+      data
+    );
+  },
+  // 联网联控服务商考核（月）列表
+  getOperMonthTJ(data) {
+    return $axios.post(
+      "/blade-anbiao/anbiao/lwlkOperMonth/getOperMonthTJ",
+      data
+    );
+  },
+  // 联网联控服务商考核（月）明细
+  getOperMonthTJMX(data) {
+    return $axios.post(
+      "/blade-anbiao/anbiao/lwlkOperMonth/getOperMonthTJMX",
+      data
+    );
+  },
   // 联网联控车辆明细（日）列表
   getVehDayTJ(data) {
     return $axios.post("/blade-anbiao/anbiao/lwlkVehDay/getVehDayTJ", data);

@@ -250,8 +250,8 @@
         </template>
       </el-table-column>
       <el-table-column
-        label="业户名称"
-        prop="deptName"
+        label="服务商名称"
+        prop="opName"
         align="center"
         width="220"
         :show-overflow-tooltip="true"
@@ -273,16 +273,16 @@
       >
       </el-table-column>
       <el-table-column
-        prop="joinRateShow"
-        label="车辆入网率"
+        prop="connectedRateShow"
+        label="平台连通率"
         align="center"
         width="100"
         :show-overflow-tooltip="true"
       >
       </el-table-column>
       <el-table-column
-        prop="joinScore"
-        label="车辆入网率得分"
+        prop="connectedScore"
+        label="平台连通率得分"
         align="center"
         width="110"
         :show-overflow-tooltip="true"
@@ -352,29 +352,21 @@
         :show-overflow-tooltip="true"
       >
       </el-table-column>
-      <el-table-column
-        prop="checkScore"
-        label="平台查岗响应率得分"
-        align="center"
-        width="130"
-        :show-overflow-tooltip="true"
-      >
-      </el-table-column>
-      <el-table-column
-        prop="fatigueScore"
-        label="平均疲劳驾驶时长得分"
-        align="center"
-        width="150"
-        :show-overflow-tooltip="true"
-      >
-      </el-table-column>
-      <el-table-column
-        prop="overspeedScore"
-        label="平均车辆超速次数得分"
-        align="center"
-        width="150"
-        :show-overflow-tooltip="true"
-      >
+      <el-table-column label="操作" align="center" width="80" fixed="right">
+        <template slot-scope="{ row }">
+          <el-button
+            size="mini"
+            style="color: #00c8f5"
+            type="text"
+            @click="
+              $router.push({
+                path: '/weekExamineDetailOper',
+                query: { opName: row.opName },
+              })
+            "
+            >详情</el-button
+          >
+        </template>
       </el-table-column>
     </el-table>
     <div class="page">
@@ -475,7 +467,7 @@ export default {
     };
   },
   created() {
-    this.getDeptWeekTJ();
+    this.getOperWeekTJ();
   },
   computed: {
     ...mapGetters({
@@ -520,14 +512,14 @@ export default {
     },
     // 请求数据判断
     getDate(page) {
-      this.getDeptWeekTJ(page);
+      this.getOperWeekTJ(page);
     },
     //地区报警处理率
-    async getDeptWeekTJ(current = 1) {
+    async getOperWeekTJ(current = 1) {
       current = Number(current);
       this.loading = true;
       let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.getDeptWeekTJ({
+        dataAnalysisApi.getOperWeekTJ({
           deptId: this.zhuzzhiId,
           current: current,
           size: this.pagesizeactive,

@@ -221,12 +221,10 @@
     >
       <el-form-item label="统计日期">
         <el-date-picker
-          v-model="form.week"
-          type="week"
-          format="yyyy 第 WW 周"
+          v-model="form.month"
+          type="month"
           value-format="yyyy-MM-dd"
-          placeholder="选择周"
-          :picker-options="pickerOptions"
+          placeholder="选择月"
         ></el-date-picker>
       </el-form-item>
       <el-form-item>
@@ -248,6 +246,14 @@
         <template scope="scope">
           <span>{{ (current - 1) * pagesizeactive + scope.$index + 1 }}</span>
         </template>
+      </el-table-column>
+      <el-table-column
+        label="服务商名称"
+        prop="opName"
+        align="center"
+        width="220"
+        :show-overflow-tooltip="true"
+      >
       </el-table-column>
       <el-table-column
         label="业户名称"
@@ -273,16 +279,16 @@
       >
       </el-table-column>
       <el-table-column
-        prop="joinRateShow"
-        label="车辆入网率"
+        prop="connectedRateShow"
+        label="平台连通率"
         align="center"
         width="100"
         :show-overflow-tooltip="true"
       >
       </el-table-column>
       <el-table-column
-        prop="joinScore"
-        label="车辆入网率得分"
+        prop="connectedScore"
+        label="平台连通率得分"
         align="center"
         width="110"
         :show-overflow-tooltip="true"
@@ -349,30 +355,6 @@
         label="数据合格率得分"
         align="center"
         width="110"
-        :show-overflow-tooltip="true"
-      >
-      </el-table-column>
-      <el-table-column
-        prop="checkScore"
-        label="平台查岗响应率得分"
-        align="center"
-        width="130"
-        :show-overflow-tooltip="true"
-      >
-      </el-table-column>
-      <el-table-column
-        prop="fatigueScore"
-        label="平均疲劳驾驶时长得分"
-        align="center"
-        width="150"
-        :show-overflow-tooltip="true"
-      >
-      </el-table-column>
-      <el-table-column
-        prop="overspeedScore"
-        label="平均车辆超速次数得分"
-        align="center"
-        width="150"
         :show-overflow-tooltip="true"
       >
       </el-table-column>
@@ -460,41 +442,32 @@ export default {
       pagesizeactive: 20, //当前每页显示
       enterpriseListH: "calc(100vh - 14.6814rem)",
       form: {
-        week: format(
-          new Date(
-            new Date().setHours(0, 0, 0, 0) +
-              (0 - new Date().getDay()) * 24 * 60 * 60 * 1000
-          ),
+        // begintime: format(
+        //   new Date().getTime() - 3600 * 1000 * 24,
+        //   "YYYY-MM-DD"
+        // ),
+        month: format(
+          new Date(new Date().getFullYear(), new Date().getMonth() - 1, 1),
           "YYYY-MM-DD"
         ),
+        opName: "",
       },
       enterpriseList: [],
       zhengfuId: "", //地区id
       vehiclemsgList: {},
-      pickerOptions: { firstDayOfWeek: 1 },
     };
   },
   created() {
-    this.getDeptWeekTJ();
+    if (this.$route.query.opName) {
+      this.form.opName = this.$route.query.opName;
+    }
+    this.getOperMonthTJMX();
   },
   computed: {
     ...mapGetters({
       zhuzzhiId: "government/fasongdanwei",
       xuanzhongchengshi: "government/xuanzhongchengshi",
     }),
-    cweek() {
-      if (new Date(this.form.week).getDay() != 0) {
-        return format(
-          new Date(
-            new Date(this.form.week).setHours(0, 0, 0, 0) +
-              (7 - new Date(this.form.week).getDay()) * 24 * 60 * 60 * 1000
-          ),
-          "YYYY-MM-DD"
-        );
-      } else {
-        return this.form.week;
-      }
-    },
   },
   watch: {
     zhuzzhiId(newid) {
@@ -508,11 +481,12 @@ export default {
   methods: {
     refresh() {
       this.form = {
-        week: format(
-          new Date(
-            new Date().setHours(0, 0, 0, 0) +
-              (0 - new Date().getDay()) * 24 * 60 * 60 * 1000
-          ),
+        // begintime: format(
+        //   new Date().getTime() - 3600 * 1000 * 24,
+        //   "YYYY-MM-DD"
+        // ),
+        month: format(
+          new Date(new Date().getFullYear(), new Date().getMonth() - 1, 1),
           "YYYY-MM-DD"
         ),
       };
@@ -520,18 +494,19 @@ export default {
     },
     // 请求数据判断
     getDate(page) {
-      this.getDeptWeekTJ(page);
+      this.getOperMonthTJMX(page);
     },
     //地区报警处理率
-    async getDeptWeekTJ(current = 1) {
+    async getOperMonthTJMX(current = 1) {
       current = Number(current);
       this.loading = true;
       let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.getDeptWeekTJ({
+        dataAnalysisApi.getOperMonthTJMX({
           deptId: this.zhuzzhiId,
           current: current,
           size: this.pagesizeactive,
-          date: this.cweek,
+          date: this.form.month,
+          opName: this.form.opName,
         })
       );
       this.loading = false;

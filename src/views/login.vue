@@ -116,7 +116,8 @@
       <!-- <img src="@/assets/img/logo_changzhou.png" /> -->
       <!-- <img src="@/assets/img/xvzhoulogo.png" /> -->
       <!-- <img src="@/assets/img/liuzhou.png" /> -->
-      <img src="@/assets/img/cd_zflogo.png" />
+      <!-- <img src="@/assets/img/cd_zflogo.png" /> -->
+      <img src="@/assets/img/logo_yulin.png" />
       <!-- <img src="@/assets/img/logo_ybf.png" /> -->
       <!-- <img src="@/assets/img/logo3.png" /> -->
       <!-- <img src="@/assets/img/logo66.png" /> -->

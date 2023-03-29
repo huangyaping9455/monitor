@@ -1,5 +1,5 @@
 <style lang="scss" scoped>
-li{
+li {
   list-style: none;
 }
 .main {
@@ -214,19 +214,21 @@ li{
         <td>附件：</td>
         <td colspan="7">
           <el-upload
-            v-if="!eye"
+            :disabled="eye"
             class="upload-demo"
-            action="/blade-upload/upload/upload"
+            action="/api/blade-upload/upload/upload"
             :data="uploadData"
             :headers="headers"
             :show-file-list="true"
-            :on-success="handlePreview"
+            :on-success="handleSuccess"
+            :on-preview="handlePreview"
+            :on-remove="handleRemove"
             :limit="100"
-            :file-list="[]"
+            :file-list="fu_jian"
           >
             <el-button size="mini" class="upbtn">上传附件</el-button>
           </el-upload>
-          <li v-for="(item, index) in fu_jian" :key="index">
+          <!-- <li v-for="(item, index) in fu_jian" :key="index">
             <a
               :href="item"
               target="_blank"
@@ -236,9 +238,9 @@ li{
             >
               {{ item }}
             </a>
-            <br>
-            <br>
-          </li>
+            <br />
+            <br />
+          </li> -->
         </td>
       </tr>
     </table>
@@ -291,7 +293,6 @@ export default {
         },
       }, //时间范围限制
       files: "", //附件
-      fileName: "",
       errmsg: "",
       headers: {
         "blade-auth": "Bearer " + Cookies.get("accessToken"),
@@ -378,13 +379,27 @@ export default {
             ? data.huifuyouxiaoqi
             : data.huifuyouxiaoqi.replace("分钟", ""),
         };
-        this.fileName = this.strhandle(data.fujian, "/");
+
+        // 附件处理
+        if (this.from.fujian) {
+          if (this.from.fujian.indexOf(",") != -1) {
+            this.fu_jian = this.from.fujian.split(",").map((ell) => {
+              return { url: ell, name: this.strhandle(ell, "/") };
+            });
+          } else {
+            this.fu_jian = [
+              {
+                url: this.from.fujian,
+                name: this.strhandle(this.from.fujian, "/"),
+              },
+            ];
+          }
+        } else {
+          this.fu_jian = [];
+        }
       } else {
         this.$message.error(err);
       }
-      this.fu_jian = this.from.fujian.split(",");
-      console.log("-------------------------");
-      console.log(this.fu_jian);
     },
     // 获取获取送达企业列表
     async getQiYe() {
@@ -464,6 +479,10 @@ export default {
         songdadanwei.push(el.deptName);
         songdadanweiid.push(el.deptId);
       });
+      let fileList = [];
+      this.fu_jian.forEach((val) => {
+        fileList.push(val.url);
+      });
       this.operationOption.loading.save = true;
       let [err, data] = await governmentApi.awaitWrap(
         governmentApi.createanbiaolist({
@@ -481,7 +500,7 @@ export default {
             "YYYY-MM-DD HH:mm:ss"
           ),
           // fujian: this.files.url ? this.files.url : "",
-          fujian: this.files,
+          fujian: fileList.join(","),
           huifuyouxiaoqi: this.from.huifuyouxiaoqi
             ? this.from.huifuyouxiaoqi + "分钟"
             : "",
@@ -505,6 +524,10 @@ export default {
         songdadanwei.push(el.deptName);
         songdadanweiid.push(el.deptId);
       });
+      let fileList = [];
+      this.fu_jian.forEach((val) => {
+        fileList.push(val.url);
+      });
       this.operationOption.loading.save = true;
       let [err, data] = await governmentApi.awaitWrap(
         governmentApi.update({
@@ -516,7 +539,7 @@ export default {
             ? this.from.huifuyouxiaoqi + "分钟"
             : "",
           // fujian: this.files.url ? this.files.url : this.from.fujian,
-          fujian:this.files
+          fujian: fileList.join(","),
         })
       );
       this.operationOption.loading.save = false;
@@ -528,16 +551,19 @@ export default {
       }
     },
     // 图片信息
-    handlePreview(response, file, fileList) {
-      const arr = fileList.map((item) => {
-        return item.response.data.url;
-      });
-      const a = arr.join();
-      console.log(arr.join());
-      console.log(a.split(","));
+    handleSuccess(response, file, fileList) {
       // this.files = response.data;
-      this.files = arr.join();
+      this.fu_jian.push(response.data);
     },
+    // 附件预览
+    handlePreview(file) {
+      window.open(file.url, "_blank");
+    },
+    // 附件 删除
+    handleRemove(file, fileList) {
+      this.fu_jian = fileList;
+    },
+    // 获取图片名称
     strhandle(str, name) {
       let index = str.lastIndexOf(`${name}`);
       str = str.substring(index + 1, str.length);
