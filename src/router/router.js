@@ -20,7 +20,7 @@ export const constantRouterMap = [
   {
     path: "/",
     // redirect: '/home'
-    redirect: function() {
+    redirect: function () {
       if (window.location.search === "") {
         return "/home";
       } else {
@@ -51,6 +51,15 @@ export const constantRouterMap = [
       requiresAuth: true,
     },
     component: () => import("@/views/Home/index"),
+  },
+  {
+    path: "/audit",
+    // name: "audit",
+    meta: {
+      title: "批量通过",
+      requiresAuth: true,
+    },
+    component: () => import("@/views/IssueRectification/audit"),
   },
   {
     path: "/dataAnalysis",
@@ -359,6 +368,8 @@ export const constantRouterMap = [
         },
         component: () => import("@/views/IssueRectification/index"),
       },
+      // 测试路由
+
       {
         path: "/vehicle",
         name: "vehicle",

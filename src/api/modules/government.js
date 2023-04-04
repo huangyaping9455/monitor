@@ -1,4 +1,5 @@
 import { $axios, awaitWrap } from "../api";
+import Cookies from "js-cookie";
 /** 政企互通模块 */
 export default {
   // 分页-通知公告管理
@@ -78,6 +79,61 @@ export default {
     return $axios.get("/blade-anbiao/anbiao/checkPost/detail", {
       params: params,
     });
+  },
+
+
+  // 整改审核
+  changeAudit(params) {
+    return $axios.get("/blade-anbiao/anbiao/issueAbarbeitung/audit", {
+      params,headers: {
+        "blade-auth": "Bearer " + Cookies.get("accessToken"),
+      },
+    })
+  },
+  //批量审核
+  batchAudit(params) {
+    return $axios.get("/blade-anbiao/anbiao/issueAbarbeitung/batchAudit", {
+      params,
+      headers: {
+        "blade-auth": "Bearer " + Cookies.get("accessToken"),
+      },
+    })
+  },
+  // 整改通知详情
+  abarbeitungDetail(params) {
+    return $axios.get("/blade-anbiao/anbiao/issueAbarbeitung/detail", {
+      params
+    }, {
+      headers: {
+        "blade-auth": "Bearer " + Cookies.get("accessToken"),
+      },
+    })
+  },
+  // 整改审核详情
+  detailDeptList(params) {
+    return $axios.get("/blade-anbiao/anbiao/issueAbarbeitung/detailDeptList", {
+      params
+    }, {
+      headers: {
+        "blade-auth": "Bearer " + Cookies.get("accessToken"),
+      },
+    })
+  },
+  // 下发整改 分页
+  getAnquanhuiyiPage(data) {
+    return $axios.post("/blade-anbiao/anbiao/issueAbarbeitung/getAnquanhuiyiPage", data, {
+      headers: {
+        "blade-auth": "Bearer " + Cookies.get("accessToken"),
+      },
+    })
+  },
+  // 下发整改新增
+  insert(data) {
+    return $axios.post("/blade-anbiao/anbiao/issueAbarbeitung/insert", data, {
+      headers: {
+        "blade-auth": "Bearer " + Cookies.get("accessToken"),
+      },
+    })
   },
   awaitWrap,
 };

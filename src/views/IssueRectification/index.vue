@@ -1,4 +1,9 @@
 <style lang="scss" scoped>
+.operate {
+  color: #4bb7e0;
+  border: none;
+  background: none;
+}
 .main {
   background: #0b122e;
   padding: 20px;
@@ -145,52 +150,57 @@
 
 <template>
   <div class="main">
-    <!-- 操作按钮 -->
-    <operation-group
-      :option="operationOption"
-      @operationclick="operationclick"
-    ></operation-group>
-    <!-- 查询 -->
-    <el-form
-      v-show="searchshow"
-      :inline="true"
-      size="mini"
-      :model="form"
-      class="search"
-    >
-      <el-form-item label="送达单位">
-        <!-- <el-input v-model="formInline.company"></el-input> -->
-        <el-select
-          filterable
-          class="time"
-          size="mini"
-          v-model="form.songdadanweiid"
-          placeholder="请选择"
-          clearable
-        >
-          <el-option
-            v-for="item in depts"
-            :key="item.deptId"
-            :label="item.deptName"
-            :value="item.deptId"
-          >
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="主题名称">
+    <el-form :inline="true" size="mini" :model="form" class="search">
+      <el-form-item label="标题">
         <el-input
-          v-model="form.zhutimingcheng"
-          placeholder="请输入主题名称"
+          v-model="form.biaoti"
+          placeholder="请输入标题"
           clearable
         ></el-input>
       </el-form-item>
+      <el-form-item label="限期整改时间">
+        <el-date-picker
+          class="time"
+          size="mini"
+          v-model="form.riqishijian"
+          value-format="yyyy-MM-dd"
+          type="date"
+          placeholder="选择日期时间"
+        >
+        </el-date-picker>
+      </el-form-item>
+      <el-form-item label="运输企业">
+        <el-input
+          v-model="form.yunshuqiye"
+          placeholder="请输入企业"
+          clearable
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="审核状态">
+        <el-input
+          v-model="form.shenhezhuangtai"
+          placeholder="请输入状态"
+          clearable
+        ></el-input>
+      </el-form-item>
+
       <el-form-item>
         <el-button
           type="primary"
           class="sbtn"
           icon="el-icon-search"
           @click="getdata(1)"
-        ></el-button>
+          >查询</el-button
+        >
+      </el-form-item>
+      <el-form-item>
+        <el-button
+          type="primary"
+          class="sbtn"
+          icon="el-icon-plus"
+          @click="newAdd"
+          >新增</el-button
+        >
       </el-form-item>
     </el-form>
     <!-- main -->
@@ -203,59 +213,29 @@
       border
       :data="recordsList"
     >
-      <el-table-column label="查看" width="50">
+      <el-table-column prop="zhutimingcheng" type="index" label="序号">
+      </el-table-column>
+      <el-table-column prop="title" label="标题"></el-table-column>
+      <el-table-column prop="status" label="状态"></el-table-column>
+      <el-table-column prop="existingProblem" label="整改要求">
+      </el-table-column>
+      <el-table-column label="下发企业数/已读企业数/未读企业数">
         <template slot-scope="{ row }">
-          <p class="pointbtn">
-            <svg-icon
-              @click="changePage('eye', row)"
-              class="icon"
-              icon-class="show"
-            />
-          </p>
+          <span>{{ row.count }}/{{ row.ydcount }}/{{ row.wdcount }}</span>
         </template>
       </el-table-column>
-      <el-table-column prop="name" label="编辑" width="50">
+      <el-table-column prop="fasongdanwei" label="操作">
         <template slot-scope="{ row }">
-          <p class="pointbtn">
-            <svg-icon
-              @click="changePage('edit', row)"
-              class="icon"
-              icon-class="edit"
-            />
-          </p>
-        </template>
-      </el-table-column>
-      <el-table-column prop="zhutimingcheng" label="主题名称">
-      </el-table-column>
-      <el-table-column label="下发企业数/已回复企业数/未回复企业数">
-        <template slot-scope="{ row }">
-          <span
-            >{{ row.xiafaqiyeshu }}/{{ row.huifuqiyeshu }}/{{
-              row.weihuifuqiyeshu
-            }}</span
-          >
-        </template>
-      </el-table-column>
-      <el-table-column prop="fasongdanwei" label="发起单位"> </el-table-column>
-      <el-table-column prop="songdadanwei" label="送达单位">
-        <template slot-scope="{ row }">
-          <el-tooltip
-            popper-class="tablePopper"
-            effect="light"
-            :open-delay="500"
-            :content="row.songdadanwei"
-            placement="top"
-          >
-            <span class="songda">{{ row.songdadanwei }}</span>
-          </el-tooltip>
-        </template>
-      </el-table-column>
-      <el-table-column prop="faqishijian" label="发起时间"> </el-table-column>
-      <el-table-column prop="" label="整改文件" width="80">
-        <template slot-scope="{ row }">
-          <a :href="row.fujian" target="_blank" download="" class="pointbtn"
-            ><svg-icon class="icon" icon-class="down1"
-          /></a>
+          <el-button @click="examine(row)" class="operate">查看</el-button>
+          <el-button v-if="row.status==待审核" @click="audit(row)" class="operate">
+           {{
+              row.ydcount == 0
+                ? row.status == "审核通过"
+                  ? ""
+                  : "审核"
+                : "审核"
+            }}
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -329,12 +309,15 @@ import operationGroup from "@/components/0perationGroup/index";
 import governmentApi from "@/api/modules/government";
 import { mapGetters, mapMutations } from "vuex";
 import { SET_DEPTS } from "@/store/mutation-types";
+import { format } from "@/config/date";
+import dayjs from "dayjs";
 export default {
   components: {
     "operation-group": operationGroup,
   },
   data() {
     return {
+      types: 2,
       loading: false,
       searchshow: false, //是否展开查询
       recordsList: [], //公告列表
@@ -349,13 +332,21 @@ export default {
         jurisdiction: {
           search: true,
           add: true,
-          refresh: true,
+          // refresh: true,
         },
       }, // 操作按钮配置
       form: {
-        songdadanweiid: "",
-        zhutimingcheng: "",
+        biaoti: "",
+        riqishijian: dayjs().format("YYYY-MM-DD"),
+        yunshuqiye: "",
+        shenhezhuangtai: "",
       }, // 搜索参数
+
+      // expireTimeOption: {
+      //   disabledDate(date) {
+      //     return date.getTime() <= Date.now() - 1000 * 60 * 60 * 24;
+      //   },
+      // }, //时间范围限制
     };
   },
   mounted() {
@@ -385,28 +376,64 @@ export default {
       current = Number(current);
       this.loading = true;
       let [err, data] = await governmentApi.awaitWrap(
-        governmentApi.getanbiaolist({
+        governmentApi.getAnquanhuiyiPage({
           current: current,
           size: this.pagesizeactive,
-          type: 4,
-          userId: this.userinfo.userId,
-          fasongdanweiid: this.zhuzzhiId,
-          zhutimingcheng: this.form.zhutimingcheng,
-          songdadanweiid: this.form.songdadanweiid,
+          date: dayjs().format("YYYY-MM-DD"),
+          deptId: this.zhuzzhiId,
+          title: this.form.biaoti,
+          date: this.form.riqishijian,
+          deptName: this.form.yunshuqiye,
+          status: this.form.shenhezhuangtai,
         })
       );
       this.loading = false;
       if (data) {
-        this.recordsList = data.records;
-        //分页处理
-        this.jumpNum = data.current;
-        this.current = data.current;
-        this.total = data.total;
-        this.pageTotal = data.pageTotal;
+        console.log(data);
+        this.recordsList = data.records.map((el) => {
+          if (el.status == 0) {
+            el.status = "待处理";
+          } else if (el.status == 1) {
+            el.status = "待审核";
+          } else if (el.status == 2) {
+            el.status = "审核通过";
+          } else if (el.status == 3) {
+            el.status = "审核未通过";
+          }
+          return el;
+        });
       } else {
         this.$message.error(err);
       }
     },
+
+    // 获取数据
+    // async getdata(current = 1) {
+    //   current = Number(current);
+    //   this.loading = true;
+    //   let [err, data] = await governmentApi.awaitWrap(
+    //     governmentApi.getanbiaolist({
+    //       current: current,
+    //       size: this.pagesizeactive,
+    //       type: 4,
+    //       userId: this.userinfo.userId,
+    //       fasongdanweiid: this.zhuzzhiId,
+    //       zhutimingcheng: this.form.zhutimingcheng,
+    //       songdadanweiid: this.form.songdadanweiid,
+    //     })
+    //   );
+    //   this.loading = false;
+    //   if (data) {
+    //     this.recordsList = data.records;
+    //     //分页处理
+    //     this.jumpNum = data.current;
+    //     this.current = data.current;
+    //     this.total = data.total;
+    //     this.pageTotal = data.pageTotal;
+    //   } else {
+    //     this.$message.error(err);
+    //   }
+    // },
     // 获取获取送达企业列表
     async getQiYe() {
       let [err, data] = await governmentApi.awaitWrap(
@@ -420,6 +447,36 @@ export default {
       } else {
         this.$message.error(err);
       }
+    },
+    // 新增
+    newAdd() {
+      this.$router.push({
+        path: "/addIssueRectification",
+        query: {
+          type: "add",
+          returnUrl: "/issueRectification",
+        },
+      });
+    },
+    // 查看
+    examine(row) {
+      this.$router.push({
+        path: "/addIssueRectification",
+        query: {
+          id: row.id,
+          returnUrl: "/issueRectification",
+        },
+      });
+    },
+    // 审核
+    audit(row) {
+      this.$router.push({
+        path: "/audit",
+        query: {
+          id: row.id,
+          returnUrl: "/issueRectification",
+        },
+      });
     },
     //点击操作按钮
     operationclick(type) {
