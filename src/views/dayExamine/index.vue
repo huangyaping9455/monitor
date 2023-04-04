@@ -242,11 +242,23 @@
       border
       :data="enterpriseList"
     >
+      <el-table-column type="index" label="排名" width="50" align="center">
+        <template scope="scope">
+          <span>{{ (current - 1) * pagesizeactive + scope.$index + 1 }}</span>
+        </template>
+      </el-table-column>
       <el-table-column
-        label="企业名称"
+        label="业户名称"
         prop="deptName"
         align="center"
         width="220"
+        :show-overflow-tooltip="true"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="totalScore"
+        label="总分"
+        align="center"
         :show-overflow-tooltip="true"
       >
       </el-table-column>
@@ -282,13 +294,6 @@
       >
       </el-table-column>
       <el-table-column
-        prop="totalScore"
-        label="总分"
-        align="center"
-        :show-overflow-tooltip="true"
-      >
-      </el-table-column>
-      <el-table-column
         prop="joinVehCount"
         label="入网车辆数"
         align="center"
@@ -314,7 +319,7 @@
       </el-table-column>
       <el-table-column
         prop="olVehCount"
-        label="在线车辆数"
+        label="上线车辆数"
         align="center"
         width="100"
         :show-overflow-tooltip="true"
@@ -322,7 +327,7 @@
       </el-table-column>
       <el-table-column
         prop="onlineRateShow"
-        label="车辆在线率"
+        label="车辆上线率"
         align="center"
         width="100"
         :show-overflow-tooltip="true"
@@ -330,7 +335,7 @@
       </el-table-column>
       <el-table-column
         prop="onlineScore"
-        label="车辆在线率得分"
+        label="车辆上线率得分"
         align="center"
         width="110"
         :show-overflow-tooltip="true"
@@ -393,7 +398,7 @@
       </el-table-column>
       <el-table-column
         prop="driftingRateShow"
-        label="车辆漂移率"
+        label="漂移车辆率"
         align="center"
         width="100"
         :show-overflow-tooltip="true"
@@ -401,7 +406,7 @@
       </el-table-column>
       <el-table-column
         prop="driftingScore"
-        label="车辆漂移率得分"
+        label="漂移车辆率得分"
         align="center"
         width="110"
         :show-overflow-tooltip="true"
@@ -425,7 +430,7 @@
       </el-table-column>
       <el-table-column
         prop="qualifyRateShow"
-        label="轨迹合格率"
+        label="数据合格率"
         align="center"
         width="110"
         :show-overflow-tooltip="true"
@@ -433,7 +438,7 @@
       </el-table-column>
       <el-table-column
         prop="qualifyScore"
-        label="轨迹合格率得分"
+        label="数据合格率得分"
         align="center"
         width="110"
         :show-overflow-tooltip="true"
@@ -574,7 +579,7 @@ export default {
     };
   },
   created() {
-    this.getDayTJ();
+    this.getDeptDayTJ();
   },
   computed: {
     ...mapGetters({
@@ -603,14 +608,14 @@ export default {
     },
     // 请求数据判断
     getDate(page) {
-      this.getDayTJ(page);
+      this.getDeptDayTJ(page);
     },
     //地区报警处理率
-    async getDayTJ(current = 1) {
+    async getDeptDayTJ(current = 1) {
       current = Number(current);
       this.loading = true;
       let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.getDayTJ({
+        dataAnalysisApi.getDeptDayTJ({
           deptId: this.zhuzzhiId,
           current: current,
           size: this.pagesizeactive,

@@ -496,6 +496,7 @@ export default {
         this.$message.error(err);
       }
     },
+    
     changeSearch() {
       this.searchshow
         ? (this.enterpriseListH = "calc(100vh - 13.5714rem)")

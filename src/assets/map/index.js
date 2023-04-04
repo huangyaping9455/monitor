@@ -18,6 +18,7 @@ import 四川 from "./四川省/四川省.json";
 import 贵州 from "./贵州省/贵州省.json";
 import 浙江 from "./浙江省/浙江省.json";
 import 宁夏 from "./宁夏/宁夏回族自治区.json";
+import 陕西 from "./陕西省/陕西省.json";
 
 // 河南
 import 三门峡市 from "./河南/三门峡市.json";
@@ -1847,6 +1848,29 @@ import 中卫市 from "./宁夏/中卫市/中卫市.json";
 import 沙坡头区 from "./宁夏/中卫市/沙坡头区.json";
 import 中宁县 from "./宁夏/中卫市/中宁县.json";
 import 海原县 from "./宁夏/中卫市/海原县.json";
+
+import 榆林市 from "./陕西省/榆林市/榆林市.json";
+import 榆阳区 from "./陕西省/榆林市/榆阳区.json";
+import 横山区 from "./陕西省/榆林市/横山区.json";
+import 神木市 from "./陕西省/榆林市/神木市.json";
+import 府谷县 from "./陕西省/榆林市/府谷县.json";
+import 靖边县 from "./陕西省/榆林市/靖边县.json";
+import 定边县 from "./陕西省/榆林市/定边县.json";
+import 绥德县 from "./陕西省/榆林市/绥德县.json";
+import 米脂县 from "./陕西省/榆林市/米脂县.json";
+import 佳县 from "./陕西省/榆林市/佳县.json";
+import 吴堡县 from "./陕西省/榆林市/吴堡县.json";
+import 清涧县 from "./陕西省/榆林市/清涧县.json";
+import 子洲县 from "./陕西省/榆林市/子洲县.json";
+import 安康市 from "./陕西省/安康市.json";
+import 宝鸡市 from "./陕西省/宝鸡市.json";
+import 汉中市 from "./陕西省/汉中市.json";
+import 商洛市 from "./陕西省/商洛市.json";
+import 铜川市 from "./陕西省/铜川市.json";
+import 渭南市 from "./陕西省/渭南市.json";
+import 西安市 from "./陕西省/西安市.json";
+import 咸阳市 from "./陕西省/咸阳市.json";
+import 延安市 from "./陕西省/延安市.json";
 export {
   China,
   中华人民共和国,
@@ -3678,4 +3702,27 @@ export {
   沙坡头区,
   中宁县,
   海原县,
+  陕西,
+  榆林市,
+  榆阳区,
+  横山区,
+  神木市,
+  府谷县,
+  靖边县,
+  定边县,
+  绥德县,
+  米脂县,
+  佳县,
+  吴堡县,
+  清涧县,
+  子洲县,
+  安康市,
+  宝鸡市,
+  汉中市,
+  商洛市,
+  铜川市,
+  渭南市,
+  西安市,
+  咸阳市,
+  延安市,
 };

@@ -1,5 +1,9 @@
 <style lang="scss" scoped>
-li{
+.btns {
+  float: right;
+}
+
+li {
   list-style: none;
 }
 .main {
@@ -17,6 +21,8 @@ li{
 }
 .mainTable {
   width: 100%;
+  // text-align: center;
+  margin: 0 auto;
   color: #d3d4d6;
   border-collapse: collapse;
   border: 1px solid #58626e;
@@ -84,6 +90,7 @@ li{
     <operation-group
       :option="operationOption"
       @operationclick="operationclick"
+      class="btns"
     ></operation-group>
     <!-- main -->
     <p class="main-title">下发整改信息</p>
@@ -94,52 +101,17 @@ li{
       element-loading-background="rgba(0, 0, 0, 0.4)"
     >
       <tr>
-        <td class="required">发起单位：</td>
-        <td>
-          <span>{{ userinfo.deptName }}</span>
-        </td>
         <td class="required">标题名称：</td>
         <td>
           <el-input
             v-if="!eye"
             size="mini"
-            v-model="from.zhutimingcheng"
+            v-model="form.biaotimigcheng"
           ></el-input>
-          <span v-else>{{ from.zhutimingcheng }}</span>
+          <span v-else>{{ form.title }}</span>
         </td>
-        <td class="required">下发时间：</td>
-        <td colspan="3">
-          <el-date-picker
-            class="time"
-            size="mini"
-            v-if="!eye"
-            v-model="from.faqishijian"
-            value-format="yyyy-MM-dd HH:mm:ss"
-            type="datetime"
-            :picker-options="expireTimeOption"
-            placeholder="选择日期时间"
-          >
-          </el-date-picker>
-          <span v-else>{{ from.faqishijian }}</span>
-        </td>
-      </tr>
-      <tr>
-        <td class="required">文件类型：</td>
-        <td>
-          <el-select
-            v-if="!eye"
-            class="time"
-            size="mini"
-            v-model="from.wenjianleixing"
-            placeholder="请选择"
-          >
-            <el-option label="一般文件" value="一般文件"></el-option>
-            <el-option label="特殊文件" value="特殊文件"></el-option>
-            <el-option label="紧急文件" value="紧急文件"></el-option>
-          </el-select>
-          <span v-else>{{ from.wenjianleixing }}</span>
-        </td>
-        <td class="required">送达单位：</td>
+
+        <td class="required">整改对象</td>
         <td>
           <el-select
             filterable
@@ -149,7 +121,7 @@ li{
             class="time"
             size="mini"
             value-key="deptId"
-            v-model="from.songdadanwei"
+            v-model="form.zhenggaiduixiang"
             placeholder="请选择"
           >
             <el-option
@@ -160,89 +132,84 @@ li{
             >
             </el-option>
           </el-select>
-          <span v-else>{{ from.songdadanwei }}</span>
-        </td>
-        <td>是否回执：</td>
-        <td>
-          <el-checkbox v-if="!eye" size="mini" v-model="from.zhuangtai"
-            >回执</el-checkbox
-          >
-          <span v-else>{{ from.zhuangtai ? "是" : "否" }}</span>
-        </td>
-        <td :class="from.zhuangtai ? 'required' : ''">回复有效期(分钟)：</td>
-        <td>
-          <el-input
-            v-if="!eye"
-            size="mini"
-            type="number"
-            v-model="from.huifuyouxiaoqi"
-            :disabled="from.zhuangtai ? false : true"
-          ></el-input>
-          <span v-else>{{ from.huifuyouxiaoqi }}</span>
+          <span v-else>{{ form.deptName }}</span>
         </td>
       </tr>
+      <tr></tr>
       <tr>
-        <td class="required">整改时间：</td>
-        <td colspan="7">
+        <td class="required">限期整改时间</td>
+        <td>
           <el-date-picker
             class="time"
             size="mini"
             v-if="!eye"
-            v-model="from.zhenggaishijian"
-            value-format="yyyy-MM-dd HH:mm:ss"
-            type="datetime"
+            v-model="form.zhenggaishijian"
+            value-format="yyyy-MM-dd"
+            type="date"
             :picker-options="expireTimeOption"
             placeholder="选择日期时间"
           >
           </el-date-picker>
-          <span v-else>{{ from.zhenggaishijian }}</span>
+          <span v-else>{{ form.rectificationTime }}</span>
         </td>
-      </tr>
-      <tr>
-        <td>备注：</td>
-        <td colspan="7">
-          <el-input
+
+        <td>是否强制整改时间</td>
+        <td>
+          <el-checkbox
             v-if="!eye"
             size="mini"
-            type="textarea"
-            v-model="from.zhutizhengwen"
-          ></el-input>
-          <span v-else>{{ from.zhutizhengwen }}</span>
+            v-model="form.isAbarbeitung"
+          ></el-checkbox>
+          <span v-else>{{ form.zhuangtai ? "是" : "否" }}</span>
         </td>
       </tr>
       <tr>
-        <td>附件：</td>
+        <td>存在问题：</td>
+        <td colspan="3">
+          <textarea
+            cols="100"
+            style="width: 100%"
+            v-if="!eye"
+            rows="4"
+            v-model="form.cunzaiwenti"
+          ></textarea>
+          <span v-else>{{ form.existingProblem }}</span>
+        </td>
+      </tr>
+      <tr>
+        <td>整改要求：</td>
+        <td colspan="3">
+          <textarea
+            cols="100"
+            style="width: 100%"
+            v-if="!eye"
+            rows="4"
+            v-model="form.zhenggaiyaoqiu"
+          ></textarea>
+          <span v-else>{{ form.rectificationRequirement }}</span>
+        </td>
+      </tr>
+      <tr>
+        <td>附件(可支持多个附件)：</td>
         <td colspan="7">
           <el-upload
-            v-if="!eye"
+            :disabled="eye"
             class="upload-demo"
             action="/blade-upload/upload/upload"
             :data="uploadData"
             :headers="headers"
             :show-file-list="true"
-            :on-success="handlePreview"
+            :on-success="handleSuccess"
+            :on-preview="handlePreview"
+            :on-remove="handleRemove"
             :limit="100"
-            :file-list="[]"
+            :file-list="fu_jian"
           >
             <el-button size="mini" class="upbtn">上传附件</el-button>
           </el-upload>
-          <li v-for="(item, index) in fu_jian" :key="index">
-            <a
-              :href="item"
-              target="_blank"
-              download
-              class="file"
-              :class="eye ? 'noml' : ''"
-            >
-              {{ item }}
-            </a>
-            <br>
-            <br>
-          </li>
         </td>
       </tr>
     </table>
-
     <p class="errmsg">{{ errmsg }}</p>
   </div>
 </template>
@@ -275,15 +242,13 @@ export default {
           save: false,
         },
       }, // 操作按钮配置
-      from: {
-        zhutimingcheng: "",
-        wenjianleixing: "",
-        songdadanwei: "",
+      form: {
+        biaotimigcheng: "",
+        zhenggaiduixiang: "",
+        zhenggaishijian: dayjs().format("YYYY-MM-DD"),
         zhuangtai: "",
-        faqishijian: dayjs().format("YYYY-MM-DD HH:mm:ss"),
-        zhenggaishijian: "",
-        huifuyouxiaoqi: "",
-        zhutizhengwen: "",
+        cunzaiwenti: "",
+        zhenggaiyaoqiu: "",
       },
       eye: false, //查看模式
       expireTimeOption: {
@@ -292,7 +257,6 @@ export default {
         },
       }, //时间范围限制
       files: "", //附件
-      fileName: "",
       errmsg: "",
       headers: {
         "blade-auth": "Bearer " + Cookies.get("accessToken"),
@@ -301,7 +265,7 @@ export default {
   },
   created() {
     this.type = this.$route.query.type;
-    this.returnUrl = this.$route.query.returnUrl;
+    this.returnUrl = "/issueRectification";
     if (this.type == "add") {
       this.title = "新增下发整改";
       // 获取获取送达企业列表
@@ -314,7 +278,7 @@ export default {
         });
       });
       if (this.$route.query.comId) {
-        this.from = {
+        this.form = {
           zhutimingcheng: "下发隐患排查整改通知",
           wenjianleixing: "紧急文件",
           songdadanwei: fasdw,
@@ -350,19 +314,25 @@ export default {
       userinfo: "userinfo",
       depts: "government/depts",
     }),
+
+    ...mapGetters({
+      // userinfo: "userinfo",
+      // depts: "government/depts",
+      zhuzzhiId: "government/fasongdanwei",
+    }),
   },
   methods: {
     // 获取详情
     async getOne(id) {
       let [err, data] = await governmentApi.awaitWrap(
-        governmentApi.getOne({
-          id: id,
+        governmentApi.abarbeitungDetail({
+          Id: this.$route.query.id,
         })
       );
       this.loading = false;
       if (data) {
-        let songdadanwei = data.songdadanwei.split(",");
-        let songdadanweiid = data.songdadanweiid.split(",");
+        let songdadanwei = data.deptName.split(",");
+        let songdadanweiid = data.deptId.split(",");
         songdadanwei = this.eye
           ? songdadanwei.join(",")
           : songdadanwei.map((el, index) => {
@@ -371,7 +341,7 @@ export default {
                 deptName: el,
               };
             });
-        this.from = {
+        this.form = {
           ...data,
           songdadanwei: songdadanwei,
           zhuangtai: data.zhuangtai == 1 ? true : false,
@@ -379,12 +349,27 @@ export default {
             ? data.huifuyouxiaoqi
             : data.huifuyouxiaoqi.replace("分钟", ""),
         };
-        this.fileName = this.strhandle(data.fujian, "/");
+
+        // 附件处理
+        if (this.form.fujian) {
+          if (this.form.fujian.indexOf(",") != -1) {
+            this.fu_jian = this.form.fujian.split(",").map((ell) => {
+              return { url: ell, name: this.strhandle(ell, "/") };
+            });
+          } else {
+            this.fu_jian = [
+              {
+                url: this.form.fujian,
+                name: this.strhandle(this.form.fujian, "/"),
+              },
+            ];
+          }
+        } else {
+          this.fu_jian = [];
+        }
       } else {
         this.$message.error(err);
       }
-      this.fu_jian = this.from.fujian.split(",");
-
     },
     // 获取获取送达企业列表
     async getQiYe() {
@@ -424,30 +409,30 @@ export default {
     },
     // 表单验证
     verification() {
-      if (!this.from.zhutimingcheng) {
+      if (!this.form.biaotimigcheng) {
         this.errmsg = "标题名称不能为空";
         return false;
       }
-      if (!this.from.faqishijian) {
-        this.errmsg = "下发时间不能为空";
-        return false;
-      }
-      if (!this.from.wenjianleixing) {
-        this.errmsg = "文件类型不能为空";
-        return false;
-      }
-      if (!this.from.songdadanwei.length) {
-        this.errmsg = "送达单位不能为空";
-        return false;
-      }
-      if (this.from.zhuangtai && !this.from.huifuyouxiaoqi) {
-        this.errmsg = "回复有效期不能为空";
-        return false;
-      }
-      if (!this.from.zhenggaishijian) {
+      if (!this.form.zhenggaishijian) {
         this.errmsg = "整改时间不能为空";
         return false;
       }
+      // if (!this.form.wenjianleixing) {
+      //   this.errmsg = "文件类型不能为空";
+      //   return false;
+      // }
+      if (!this.form.zhenggaiduixiang.length) {
+        this.errmsg = "整改对象不能为空";
+        return false;
+      }
+      // if (this.form.zhuangtai && !this.form.huifuyouxiaoqi) {
+      //   this.errmsg = "回复有效期不能为空";
+      //   return false;
+      // }
+      // if (!this.form.zhenggaishijian) {
+      //   this.errmsg = "整改时间不能为空";
+      //   return false;
+      // }
       if (this.type == "add") {
         // 新增-通知公告
         this.createfrom();
@@ -455,37 +440,35 @@ export default {
         this.update();
       }
     },
+
     // 新增
     async createfrom() {
+      console.log(this.form);
+      console.log(this.fu_jian);
       // 处理送达单位
-      let songdadanwei = [],
-        songdadanweiid = [];
-      this.from.songdadanwei.forEach((el) => {
-        songdadanwei.push(el.deptName);
-        songdadanweiid.push(el.deptId);
+      let zhenggaiduixiang = [],
+        zhenggaiduixiangid = [];
+      this.form.zhenggaiduixiang.forEach((el) => {
+        zhenggaiduixiang.push(el.deptName);
+        zhenggaiduixiangid.push(el.deptId);
+      });
+      let fileList = [];
+      this.fu_jian.forEach((val) => {
+        fileList.push(val.url);
       });
       this.operationOption.loading.save = true;
       let [err, data] = await governmentApi.awaitWrap(
-        governmentApi.createanbiaolist({
-          type: 4,
-          fasongdanweiid: this.userinfo.deptId,
-          fasongdanwei: this.userinfo.deptName,
-          zhutimingcheng: this.from.zhutimingcheng,
-          wenjianleixing: this.from.wenjianleixing,
-          songdadanwei: songdadanwei.join(","),
-          songdadanweiid: songdadanweiid.join(","),
-          zhuangtai: this.from.zhuangtai ? 1 : 0,
-          faqishijian: format(this.from.faqishijian, "YYYY-MM-DD HH:mm:ss"),
-          zhenggaishijian: format(
-            this.from.zhenggaishijian,
-            "YYYY-MM-DD HH:mm:ss"
-          ),
-          // fujian: this.files.url ? this.files.url : "",
-          fujian: this.files,
-          huifuyouxiaoqi: this.from.huifuyouxiaoqi
-            ? this.from.huifuyouxiaoqi + "分钟"
-            : "",
-          zhutizhengwen: this.from.zhutizhengwen,
+        governmentApi.insert({
+          fasongdanweiid: this.zhuzzhiId,
+          title: this.form.biaotimigcheng,
+          deptName: zhenggaiduixiang.join(","),
+          deptId: zhenggaiduixiangid.join(","),
+          rectificationTime: format(this.form.zhenggaishijian, "YYYY-MM-DD"),
+          isAbarbeitung: this.form.zhuangtai ? 1 : 0,
+          existingProblem: this.form.cunzaiwenti,
+          rectificationRequirement: this.form.zhenggaiyaoqiu,
+          fujian: this.files.url ? this.files.url : "",
+          fujian: fileList.join(","),
         })
       );
       this.operationOption.loading.save = false;
@@ -501,22 +484,26 @@ export default {
     async update() {
       let songdadanwei = [],
         songdadanweiid = [];
-      this.from.songdadanwei.forEach((el) => {
+      this.form.songdadanwei.forEach((el) => {
         songdadanwei.push(el.deptName);
         songdadanweiid.push(el.deptId);
+      });
+      let fileList = [];
+      this.fu_jian.forEach((val) => {
+        fileList.push(val.url);
       });
       this.operationOption.loading.save = true;
       let [err, data] = await governmentApi.awaitWrap(
         governmentApi.update({
-          ...this.from,
+          ...this.form,
           songdadanwei: songdadanwei.join(","),
           songdadanweiid: songdadanweiid.join(","),
-          zhuangtai: this.from.zhuangtai ? 1 : 0,
-          huifuyouxiaoqi: this.from.huifuyouxiaoqi
-            ? this.from.huifuyouxiaoqi + "分钟"
+          zhuangtai: this.form.zhuangtai ? 1 : 0,
+          huifuyouxiaoqi: this.form.huifuyouxiaoqi
+            ? this.form.huifuyouxiaoqi + "分钟"
             : "",
-          // fujian: this.files.url ? this.files.url : this.from.fujian,
-          fujian:this.files
+          // fujian: this.files.url ? this.files.url : this.form.fujian,
+          fujian: fileList.join(","),
         })
       );
       this.operationOption.loading.save = false;
@@ -528,15 +515,17 @@ export default {
       }
     },
     // 图片信息
-    handlePreview(response, file, fileList) {
-      const arr = fileList.map((item) => {
-        return item.response.data.url;
-      });
-      const a = arr.join();
-      console.log(arr.join());
-      console.log(a.split(","));
+    handleSuccess(response, file, fileList) {
       // this.files = response.data;
-      this.files = arr.join();
+      this.fu_jian.push(response.data);
+    },
+    // 附件预览
+    handlePreview(file) {
+      window.open(file.url, "_blank");
+    },
+    // 附件 删除
+    handleRemove(file, fileList) {
+      this.fu_jian = fileList;
     },
     // 获取图片名称
     strhandle(str, name) {

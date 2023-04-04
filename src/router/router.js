@@ -20,7 +20,7 @@ export const constantRouterMap = [
   {
     path: "/",
     // redirect: '/home'
-    redirect: function() {
+    redirect: function () {
       if (window.location.search === "") {
         return "/home";
       } else {
@@ -51,6 +51,15 @@ export const constantRouterMap = [
       requiresAuth: true,
     },
     component: () => import("@/views/Home/index"),
+  },
+  {
+    path: "/audit",
+    // name: "audit",
+    meta: {
+      title: "批量通过",
+      requiresAuth: true,
+    },
+    component: () => import("@/views/IssueRectification/audit"),
   },
   {
     path: "/dataAnalysis",
@@ -359,6 +368,8 @@ export const constantRouterMap = [
         },
         component: () => import("@/views/IssueRectification/index"),
       },
+      // 测试路由
+
       {
         path: "/vehicle",
         name: "vehicle",
@@ -586,6 +597,52 @@ export const constantRouterMap = [
         },
         component: () => import("@/views/monthExamine/index"),
       },
+
+      {
+        path: "/dayExamineOper",
+        name: "dayExamineOper",
+        meta: {
+          title: "服务商日考核查询",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/dayExamineOper/index"),
+      },
+      {
+        path: "/weekExamineOper",
+        name: "weekExamineOper",
+        meta: {
+          title: "服务商周考核查询",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/weekExamineOper/index"),
+      },
+      {
+        path: "/weekExamineDetailOper",
+        name: "weekExamineDetailOper",
+        meta: {
+          title: "服务商周考核明细查询",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/weekExamineDetailOper/index"),
+      },
+      {
+        path: "/monthExamineOper",
+        name: "monthExamineOper",
+        meta: {
+          title: "服务商月考核查询",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/monthExamineOper/index"),
+      },
+      {
+        path: "/monthExamineDetailOper",
+        name: "monthExamineDetailOper",
+        meta: {
+          title: "服务商月考核明细查询",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/monthExamineDetailOper/index"),
+      },
       {
         path: "/vehicleMultiple",
         name: "vehicleMultiple",
@@ -621,6 +678,15 @@ export const constantRouterMap = [
           requiresAuth: true,
         },
         component: () => import("@/views/trackDrift/index"),
+      },
+      {
+        path: "/YYSSafetyInspection",
+        name: "YYSSafetyInspection",
+        meta: {
+          title: "运营商查岗",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/YYSSafetyInspection/index"),
       },
     ],
   },

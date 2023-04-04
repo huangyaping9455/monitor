@@ -180,7 +180,7 @@
           <el-upload
             v-if="!eye"
             class="upload-demo"
-            action="/blade-upload/upload/upload"
+            action="/api/blade-upload/upload/upload"
             :data="uploadData"
             :headers="headers"
             :show-file-list="false"
@@ -211,7 +211,7 @@ import governmentApi from "@/api/modules/government";
 import { mapGetters, mapMutations } from "vuex";
 import { SET_DEPTS } from "@/store/mutation-types";
 import { format } from "@/config/date";
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 export default {
   components: {
     "operation-group": operationGroup,
@@ -235,7 +235,7 @@ export default {
         zhutimingcheng: "",
         songdadanwei: "",
         zhuangtai: "",
-        faqishijian: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+        faqishijian: dayjs().format("YYYY-MM-DD HH:mm:ss"),
         zhutizhengwen: "",
         huifuyouxiaoqi: "",
       },

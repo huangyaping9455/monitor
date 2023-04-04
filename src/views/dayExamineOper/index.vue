@@ -221,14 +221,13 @@
     >
       <el-form-item label="统计日期">
         <el-date-picker
-          v-model="form.week"
-          type="week"
-          format="yyyy 第 WW 周"
+          v-model="form.begintime"
+          type="date"
           value-format="yyyy-MM-dd"
-          placeholder="选择周"
-          :picker-options="pickerOptions"
+          placeholder="选择日期"
         ></el-date-picker>
       </el-form-item>
+
       <el-form-item>
         <el-button type="primary" class="sbtn" @click="getDate(1)">
           搜索
@@ -248,6 +247,14 @@
         <template scope="scope">
           <span>{{ (current - 1) * pagesizeactive + scope.$index + 1 }}</span>
         </template>
+      </el-table-column>
+      <el-table-column
+        label="服务商名称"
+        prop="opName"
+        align="center"
+        width="220"
+        :show-overflow-tooltip="true"
+      >
       </el-table-column>
       <el-table-column
         label="业户名称"
@@ -273,18 +280,51 @@
       >
       </el-table-column>
       <el-table-column
-        prop="joinRateShow"
-        label="车辆入网率"
+        prop="sumVehCount"
+        label="车辆总数"
+        align="center"
+        :show-overflow-tooltip="true"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="sumMile"
+        label="总里程"
+        align="center"
+        width="110"
+        :show-overflow-tooltip="true"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="sumPoiCount"
+        label="轨迹总数"
+        align="center"
+        width="120"
+        :show-overflow-tooltip="true"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="connectedrateShow"
+        label="平台连通率"
         align="center"
         width="100"
         :show-overflow-tooltip="true"
       >
       </el-table-column>
+      <!-- 
+        prop="connectedScore" -->
       <el-table-column
-        prop="joinScore"
-        label="车辆入网率得分"
+        prop="connectedScore"
+        label="平台连通率得分"
         align="center"
         width="110"
+        :show-overflow-tooltip="true"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="olVehCount"
+        label="上线车辆数"
+        align="center"
+        width="100"
         :show-overflow-tooltip="true"
       >
       </el-table-column>
@@ -305,6 +345,21 @@
       >
       </el-table-column>
       <el-table-column
+        prop="continuationMile"
+        label="完整里程"
+        align="center"
+        :show-overflow-tooltip="true"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="unContinuationMile"
+        label="不完整里程"
+        align="center"
+        width="100"
+        :show-overflow-tooltip="true"
+      >
+      </el-table-column>
+      <el-table-column
         prop="continuationRateShow"
         label="轨迹完整率"
         align="center"
@@ -317,6 +372,30 @@
         label="轨迹完整率得分"
         align="center"
         width="110"
+        :show-overflow-tooltip="true"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="driftingAvgCount"
+        label="平均漂移点数"
+        align="center"
+        width="100"
+        :show-overflow-tooltip="true"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="driftingPoiCount"
+        label="总漂移点数"
+        align="center"
+        width="100"
+        :show-overflow-tooltip="true"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="driftingVehCount"
+        label="漂移车辆数"
+        align="center"
+        width="100"
         :show-overflow-tooltip="true"
       >
       </el-table-column>
@@ -337,6 +416,22 @@
       >
       </el-table-column>
       <el-table-column
+        prop="qualifyPoiCount"
+        label="合格轨迹数"
+        align="center"
+        width="100"
+        :show-overflow-tooltip="true"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="unQualifyPoiCount"
+        label="不合格轨迹数"
+        align="center"
+        width="100"
+        :show-overflow-tooltip="true"
+      >
+      </el-table-column>
+      <el-table-column
         prop="qualifyRateShow"
         label="数据合格率"
         align="center"
@@ -352,29 +447,21 @@
         :show-overflow-tooltip="true"
       >
       </el-table-column>
-      <el-table-column
-        prop="checkScore"
-        label="平台查岗响应率得分"
-        align="center"
-        width="130"
-        :show-overflow-tooltip="true"
-      >
-      </el-table-column>
-      <el-table-column
-        prop="fatigueScore"
-        label="平均疲劳驾驶时长得分"
-        align="center"
-        width="150"
-        :show-overflow-tooltip="true"
-      >
-      </el-table-column>
-      <el-table-column
-        prop="overspeedScore"
-        label="平均车辆超速次数得分"
-        align="center"
-        width="150"
-        :show-overflow-tooltip="true"
-      >
+      <el-table-column label="操作" align="center" width="80" fixed="right">
+        <template slot-scope="{ row }">
+          <el-button
+            size="mini"
+            style="color: #00c8f5"
+            type="text"
+            @click="
+              $router.push({
+                path: '/vehicleMultiple',
+                query: { deptName: row.deptName, opName: row.opName },
+              })
+            "
+            >详情</el-button
+          >
+        </template>
       </el-table-column>
     </el-table>
     <div class="page">
@@ -460,41 +547,27 @@ export default {
       pagesizeactive: 20, //当前每页显示
       enterpriseListH: "calc(100vh - 14.6814rem)",
       form: {
-        week: format(
-          new Date(
-            new Date().setHours(0, 0, 0, 0) +
-              (0 - new Date().getDay()) * 24 * 60 * 60 * 1000
-          ),
+        begintime: format(
+          new Date().getTime() - 3600 * 1000 * 24,
           "YYYY-MM-DD"
         ),
       },
       enterpriseList: [],
       zhengfuId: "", //地区id
       vehiclemsgList: {},
-      pickerOptions: { firstDayOfWeek: 1 },
+      pickerOptions: {
+        firstDayOfWeek: 1,
+      },
     };
   },
   created() {
-    this.getDeptWeekTJ();
+    this.getOperDayTJ();
   },
   computed: {
     ...mapGetters({
       zhuzzhiId: "government/fasongdanwei",
       xuanzhongchengshi: "government/xuanzhongchengshi",
     }),
-    cweek() {
-      if (new Date(this.form.week).getDay() != 0) {
-        return format(
-          new Date(
-            new Date(this.form.week).setHours(0, 0, 0, 0) +
-              (7 - new Date(this.form.week).getDay()) * 24 * 60 * 60 * 1000
-          ),
-          "YYYY-MM-DD"
-        );
-      } else {
-        return this.form.week;
-      }
-    },
   },
   watch: {
     zhuzzhiId(newid) {
@@ -508,11 +581,8 @@ export default {
   methods: {
     refresh() {
       this.form = {
-        week: format(
-          new Date(
-            new Date().setHours(0, 0, 0, 0) +
-              (0 - new Date().getDay()) * 24 * 60 * 60 * 1000
-          ),
+        begintime: format(
+          new Date().getTime() - 3600 * 1000 * 24,
           "YYYY-MM-DD"
         ),
       };
@@ -520,18 +590,18 @@ export default {
     },
     // 请求数据判断
     getDate(page) {
-      this.getDeptWeekTJ(page);
+      this.getOperDayTJ(page);
     },
     //地区报警处理率
-    async getDeptWeekTJ(current = 1) {
+    async getOperDayTJ(current = 1) {
       current = Number(current);
       this.loading = true;
       let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.getDeptWeekTJ({
+        dataAnalysisApi.getOperDayTJ({
           deptId: this.zhuzzhiId,
           current: current,
           size: this.pagesizeactive,
-          date: this.cweek,
+          date: this.form.begintime,
         })
       );
       this.loading = false;

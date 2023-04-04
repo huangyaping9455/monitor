@@ -321,7 +321,7 @@
             </div>
           </el-menu-item>
         </el-submenu>
-        <!-- <el-submenu index="7">
+        <el-submenu index="7">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="jiaoyu" />
@@ -334,8 +334,8 @@
               <span>学习情况统计</span>
             </div>
           </el-menu-item>
-        </el-submenu> -->
-        <!-- <el-submenu index="8">
+        </el-submenu>
+        <el-submenu index="8">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="anquanguanli" />
@@ -347,8 +347,8 @@
               <svg-icon class="icon" icon-class="yinhuanpaicha" />
               <span>隐患排查统计</span>
             </div>
-          </el-menu-item> -->
-        <!-- <el-menu-item index="dayHideDanger" @click="openMenu">
+          </el-menu-item>
+          <!-- <el-menu-item index="dayHideDanger" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="riyinhuan" />
               <span>日隐患排查统计</span>
@@ -390,13 +390,13 @@
               <span>综合排查</span>
             </div>
           </el-menu-item> -->
-        <!-- <el-menu-item index="risk" @click="openMenu">
+          <el-menu-item index="risk" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="fengxianguanli" />
               <span>风险管理</span>
             </div>
           </el-menu-item>
-        </el-submenu> -->
+        </el-submenu>
         <el-submenu index="9">
           <template slot="title">
             <div class="menu-item">
@@ -448,12 +448,12 @@
               <span>驾驶员档案</span>
             </div>
           </el-menu-item>
-          <!-- <el-menu-item index="YYSArchives" @click="openMenu">
+          <el-menu-item index="YYSArchives" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yunyingshangkaohe" />
               <span>运营商档案</span>
             </div>
-          </el-menu-item> -->
+          </el-menu-item>
           <el-menu-item index="vehicleMaintain" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="weihu" />
@@ -473,7 +473,7 @@
             </div>
           </el-menu-item>
         </el-submenu>
-        <!-- <el-submenu index="11">
+        <el-submenu index="11">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="fengxian" />
@@ -486,8 +486,8 @@
               <span slot="title">广东</span>
             </div>
           </el-menu-item>
-        </el-submenu> -->
-        <el-submenu index="12">
+        </el-submenu>
+        <!-- <el-submenu index="12">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="fengxian" />
@@ -506,8 +506,8 @@
               <span slot="title">视频监控</span>
             </div>
           </el-menu-item>
-        </el-submenu>
-        <!-- <el-submenu index="13">
+        </el-submenu> -->
+        <el-submenu index="13">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="kaohe" />
@@ -519,8 +519,8 @@
               <svg-icon class="icon" icon-class="rikaohe" />
               <span slot="title">业户日考核查询</span>
             </div>
-          </el-menu-item> -->
-        <!-- <el-menu-item index="weekExamine" @click="openMenu">
+          </el-menu-item>
+          <el-menu-item index="weekExamine" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="zhoukaohe" />
               <span slot="title">业户周考核查询</span>
@@ -531,8 +531,26 @@
               <svg-icon class="icon" icon-class="yuekaohe" />
               <span slot="title">业户月考核查询</span>
             </div>
-          </el-menu-item> -->
-        <!-- <el-menu-item index="vehicleMultiple" @click="openMenu">
+          </el-menu-item>
+          <el-menu-item index="dayExamineOper" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="rikaoheoper" />
+              <span slot="title">服务商日考核查询</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="weekExamineOper" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="rikaoheoper" />
+              <span slot="title">服务商周考核查询</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="monthExamineOper" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="rikaoheoper" />
+              <span slot="title">服务商月考核查询</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="vehicleMultiple" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="vehicle" />
               <span slot="title">车辆综合查询</span>
@@ -556,7 +574,13 @@
               <span slot="title">轨迹漂移率</span>
             </div>
           </el-menu-item>
-        </el-submenu> -->
+          <!-- <el-menu-item index="YYSSafetyInspection" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="anquan" />
+              <span>运营商查岗</span>
+            </div>
+          </el-menu-item> -->
+        </el-submenu>
       </el-menu>
     </scroll>
     <div
@@ -616,7 +640,7 @@ export default {
     },
     openThree3() {
       let userName = config.Encrypt(
-        "FZFQ-001",
+        "NDJTJ-001",
         "abcdefgabcdefg12",
         "abcdefgabcdefg12"
       );
@@ -631,7 +655,7 @@ export default {
     },
     openThree4() {
       let userName = config.Encrypt(
-        "FZFQ-001",
+        "NDJTJ-001",
         "abcdefgabcdefg12",
         "abcdefgabcdefg12"
       );

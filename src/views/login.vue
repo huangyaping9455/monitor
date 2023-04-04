@@ -12,12 +12,12 @@
   margin-top: 5.5rem;
   // width: 50.1429rem; //福清市
   // width: 58.1429rem;
-  height: 7.7857rem;
+  // height: 7.7857rem;
   // margin-left: 38.0714rem; //徐州
   margin-left: 9.0714rem;
-  // height: 4.7857rem;
-  // width: 54.1429rem;
-  width: 45.1429rem; //优必飞
+  height: 4.7857rem;
+  width: 54.1429rem;
+  // width: 45.1429rem; //优必飞
   img {
     width: 100%;
     height: 100%;
@@ -108,7 +108,7 @@
     <div class="logo">
       <!-- <img src="@/assets/img/zkgt.png" /> -->
       <!-- <img src="@/assets/img/logo-22.png" /> -->
-      <img src="@/assets/img/youbifei.png" />
+      <!-- <img src="@/assets/img/youbifei.png" /> -->
       <!-- <img src="@/assets/img/fuqing.png" /> -->
       <!-- <img src="@/assets/img/fuqing2.png" /> -->
       <!-- <img src="@/assets/img/guizhoulogo.png" /> -->
@@ -117,6 +117,7 @@
       <!-- <img src="@/assets/img/xvzhoulogo.png" /> -->
       <!-- <img src="@/assets/img/liuzhou.png" /> -->
       <!-- <img src="@/assets/img/cd_zflogo.png" /> -->
+      <img src="@/assets/img/logo_yulin.png" />
       <!-- <img src="@/assets/img/logo_ybf.png" /> -->
       <!-- <img src="@/assets/img/logo3.png" /> -->
       <!-- <img src="@/assets/img/logo66.png" /> -->
