@@ -74,14 +74,14 @@
             slot="left"
             :split="0.5"
             @on-view="onView"
-            style="width:50%"
+            style="width: 50%"
             ref="mulu"
           ></mulu>
           <tag-tabs
             slot="right"
             v-model="tab"
             :tabs="tabs"
-            style="width:49%;height:100%;"
+            style="width: 49%; height: 100%"
           >
             <preview-doc
               slot="doc"
@@ -139,7 +139,15 @@ export default {
     this.previewNode = this.doc;
     // 获取获取送达企业列表
     this.getQiYe();
-    this.$message.warning("请先选择企业");
+    if (this.$route.query.deptId) {
+      this.songdadanwei = {
+        deptId: this.$route.query.deptId + "",
+        deptName: this.$route.query.deptName,
+      };
+      this.search();
+    } else {
+      this.$message.warning("请先选择企业");
+    }
   },
   computed: {
     ...mapGetters({

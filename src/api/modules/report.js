@@ -245,5 +245,12 @@ export default {
   getZFPage(data) {
     return $axios.post(`/blade-anbiao/anbiao/dangerTrouble/getZFPage`, data);
   },
+  // 合规台账排名
+  safetyList(data) {
+    return $axios.post(
+      `/blade-anbiao/anbiao/safetyproductionfileNum/getList`,
+      data
+    );
+  },
   awaitWrap,
 };

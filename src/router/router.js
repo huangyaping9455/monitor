@@ -416,6 +416,15 @@ export const constantRouterMap = [
         component: () => import("@/views/safeStandard/index"),
       },
       {
+        path: "/safeStandardRank",
+        name: "safeStandardRank",
+        meta: {
+          title: "合规台账排名",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/safeStandardRank/index"),
+      },
+      {
         path: "/safeDocument",
         name: "safeDocument",
         meta: {
