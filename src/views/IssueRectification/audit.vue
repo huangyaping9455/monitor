@@ -4,14 +4,17 @@
     <operation-group
       :option="operationOption"
       @operationclick="operationclick"
-      class="btns btn"
+      class="btn"
+      v-if="!btnType"
     ></operation-group>
     <el-button
       icon="el-icon-search"
       size="mini"
       type="primary"
       @click="plPass"
-      class="pass btns"
+      class="btn"
+      v-if="!btnType"
+      :disabled="isDisable"
       >批量通过</el-button
     >
     <el-table
@@ -21,7 +24,14 @@
       class="mainTable"
       border
       :data="form"
+      :cell-style="{ 'text-align': 'center' }"
+      :header-cell-style="{ 'text-align': 'center' }"
     >
+      <el-table-column
+        prop="deptName"
+        type="index"
+        label="序号"
+      ></el-table-column>
       <el-table-column prop="deptName" label="企业名称"></el-table-column>
       <el-table-column prop="isRead" label="阅读状态"> </el-table-column>
 
@@ -29,27 +39,32 @@
       <el-table-column prop="responseSituation" label="回复情况">
       </el-table-column>
       <el-table-column prop="responseTime" label="完成日期"> </el-table-column>
-      <el-table-column prop="beizhu" label="备注"> </el-table-column>
-      <el-table-column
-        v-for="(item, index) in fu_jian"
-        :key="index"
-        label="附件"
-      >
-        <template scope="row">
+      <el-table-column width="400" prop="beizhu" label="备注">
+      </el-table-column>
+      <el-table-column label="附件">
+        <template slot-scope="{ row }">
           <a
             style="color: #4bb7e0"
-            :href="item.url"
-            v-for="(item, index) in row.fujianList"
-            :key="index"
-            >{{ item.name }}</a
+            :href="val.url"
+            v-for="(val, ind) in row.fujianList"
+            target="_blank"
+            :key="ind"
+            >{{ val.name }}</a
           >
         </template>
       </el-table-column>
-      <el-table-column label="操作">
+      <el-table-column label="操作" v-if="!btnType">
         <template slot-scope="{ row }">
-          <el-button @click="examine(row)" class="operate" v-if="row.status==1">通过</el-button>
           <el-button
-           v-if="row.status==1"
+            size="mini"
+            @click="examine(row)"
+            class="operate"
+            v-if="row.status == 1"
+            >通过</el-button
+          >
+          <el-button
+            size="mini"
+            v-if="row.status == 1"
             @click="
               () => {
                 dialogVisible = true;
@@ -95,6 +110,7 @@ export default {
   components: {
     "operation-group": operationGroup,
   },
+
   data() {
     return {
       message: "",
@@ -105,6 +121,7 @@ export default {
       isShow: false,
       reason: "",
       fu_jian: [],
+      btnType: -1,
       operationOption: {
         jurisdiction: {
           // save: true,
@@ -119,10 +136,14 @@ export default {
       vehiclemsgList: {},
       weihuleibieList: [],
       rows: {},
+      isDisable: true,
+      // isRead: "", //是否禁用
+      // statusShow: "", //是否禁用
     };
   },
   created() {
     this.getData(this.$route.query.id);
+    this.btnType = this.$route.query.btnType;
   },
   methods: {
     // 获取详情
@@ -135,11 +156,15 @@ export default {
       );
       this.loading = false;
       if (data) {
-        this.form = data;
-        console.log(data);
-        console.log(11111111111111111111);
-        console.log(this.form);
-        this.form= this.form.map((item) => {
+        let disabled = data.find((val) => {
+          return val.status == 0 && isread != 1;
+        });
+        if (disabled) {
+          this.isDisable = true;
+        } else {
+          this.isDisable = false;
+        }
+        this.form = data.map((item) => {
           item.fujianList = [];
           item.fujian
             ? item.fujian.indexOf(",") !== -1
@@ -153,6 +178,7 @@ export default {
                   { name: this.strhandle(item.fujian, "/"), url: item.fujian },
                 ])
             : (item.fujianList = []);
+
           if (item.isRead == 0) {
             item.isRead = "未读";
           }
@@ -161,15 +187,17 @@ export default {
           }
           if (item.status == 0) {
             item.statusShow = "待处理";
-          }else if (item.status == 1) {
+          } else if (item.status == 1) {
             item.statusShow = "待审核";
-          }else if (item.status == 2) {
+          } else if (item.status == 2) {
             item.statusShow = "审核通过";
-          }else if (item.status == 3) {
+          } else if (item.status == 3) {
             item.statusShow = "审核未通过";
           }
-          return item
+          return item;
         });
+        console.log("-------------------------");
+        console.log(this.form);
         // 附件处理
         // if (this.form.fujian) {
         //   if (this.form.fujian.indexOf(",") != -1) {
@@ -184,8 +212,7 @@ export default {
         //       },
         //     ];
         //   }
-        // }
-        // else {
+        // } else {
         //   this.fu_jian = [];
         // }
       } else {
@@ -229,8 +256,19 @@ export default {
         this.getData(this.$route.query.id);
       }
     },
+
+    // plFilter() {
+    //   this.form.filter(item => {
+    //     item
+    //   })
+    // },
     // 批量通过
     async plPass() {
+      // console.log("000000000000000000");
+      // this.form.map((item) => {
+      //   item.statusShow == "审核未通过";
+      // });
+
       let [err, data] = await governmentApi.awaitWrap(
         governmentApi.batchAudit({
           Id: this.$route.query.id,
@@ -240,6 +278,8 @@ export default {
         this.$message("数据审核成功");
         this.loading = true;
         this.getData(this.$route.query.id);
+      } else {
+        this.message(err);
       }
     },
     //点击操作按钮
@@ -283,15 +323,15 @@ export default {
   padding: 20px;
   box-sizing: border-box;
   height: 100%;
-  .btns {
-    float: right;
-  }
+
   .btn {
+    margin-left: 10px;
     float: right;
     width: 100px;
     border-right: 0;
     border-color: #2f4761;
     background: #324041;
+    border-radius: 0;
     &:hover {
       background: rgb(49, 87, 128);
     }
@@ -302,15 +342,16 @@ export default {
     }
   }
   .pass {
-    background-color: #324041;
+    // background-color: #324041;
     color: #ffffff;
     border: none;
     margin-right: 10px;
-    height: 20px;
+    // height: 20px;
   }
   .mainTable {
     background: transparent;
     border: 1px solid #58626e;
+    margin: 0;
     .pointbtn {
       display: flex;
       align-items: center;

@@ -205,12 +205,15 @@ li {
             :limit="100"
             :file-list="fu_jian"
           >
-            <el-button size="mini" class="upbtn">上传附件</el-button>
+            <el-button size="mini" class="upbtn">附件</el-button>
           </el-upload>
         </td>
       </tr>
     </table>
     <p class="errmsg">{{ errmsg }}</p>
+
+    <p v-if="type !== 'add' && showStatus !=='待处理'" class="main-title">下发整改审核</p>
+    <audit style="height:50%" v-if="type !== 'add' && showStatus !=='待处理'" ></audit>
   </div>
 </template>
 
@@ -222,9 +225,11 @@ import { mapGetters, mapMutations } from "vuex";
 import { SET_DEPTS } from "@/store/mutation-types";
 import { format } from "@/config/date";
 import dayjs from "dayjs";
+import audit from "./audit.vue"
 export default {
   components: {
     "operation-group": operationGroup,
+    audit
   },
   data() {
     return {
@@ -261,11 +266,16 @@ export default {
       headers: {
         "blade-auth": "Bearer " + Cookies.get("accessToken"),
       },
+      showStatus:-1
     };
   },
   created() {
     this.type = this.$route.query.type;
+    this.showStatus = this.$route.query.status
     this.returnUrl = "/issueRectification";
+    if(this.$route.query.btnType == 1) {
+      this.operationOption.jurisdiction.save = false
+    }
     if (this.type == "add") {
       this.title = "新增下发整改";
       // 获取获取送达企业列表

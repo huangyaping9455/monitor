@@ -212,10 +212,22 @@
       :height="mainTableH"
       border
       :data="recordsList"
+      :cell-style="{ 'text-align': 'center' }"
+      :header-cell-style="{ 'text-align': 'center' }"
     >
-      <el-table-column prop="zhutimingcheng" type="index" label="序号">
+      <el-table-column
+        size="mini"
+        prop="zhutimingcheng"
+        type="index"
+        label="序号"
+      >
       </el-table-column>
       <el-table-column prop="title" label="标题"></el-table-column>
+      <el-table-column
+        prop="deptName"
+        show-overflow-tooltip
+        label="企业"
+      ></el-table-column>
       <el-table-column prop="status" label="状态"></el-table-column>
       <el-table-column prop="existingProblem" label="整改要求">
       </el-table-column>
@@ -226,15 +238,16 @@
       </el-table-column>
       <el-table-column prop="fasongdanwei" label="操作">
         <template slot-scope="{ row }">
-          <el-button @click="examine(row)" class="operate">查看</el-button>
-          <el-button v-if="row.status==待审核" @click="audit(row)" class="operate">
-           {{
-              row.ydcount == 0
-                ? row.status == "审核通过"
-                  ? ""
-                  : "审核"
-                : "审核"
-            }}
+          <el-button size="mini" @click="examine(row)" class="operate"
+            >查看</el-button
+          >
+          <el-button
+            size="mini"
+            v-if="row.status == '待审核' && row.ydcount !== 0"
+            @click="audit(row)"
+            class="operate"
+          >
+            审核
           </el-button>
         </template>
       </el-table-column>
@@ -464,6 +477,8 @@ export default {
         path: "/addIssueRectification",
         query: {
           id: row.id,
+          btnType: 1,
+          status:row.status,
           returnUrl: "/issueRectification",
         },
       });
