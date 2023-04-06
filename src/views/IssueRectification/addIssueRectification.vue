@@ -108,7 +108,8 @@ li {
             size="mini"
             v-model="form.biaotimigcheng"
           ></el-input>
-          <span v-else>{{ form.title }}</span>
+          <!-- <span v-else>{{ form.title }}</span> -->
+          <el-input disabled v-else size="mini" v-model="form.title"></el-input>
         </td>
 
         <td class="required">整改对象</td>
@@ -132,7 +133,13 @@ li {
             >
             </el-option>
           </el-select>
-          <span v-else>{{ form.deptName }}</span>
+          <!-- <span v-else>{{ form.deptName }}</span> -->
+          <el-input
+            disabled
+            v-else
+            size="mini"
+            v-model="form.deptName"
+          ></el-input>
         </td>
       </tr>
       <tr></tr>
@@ -150,7 +157,13 @@ li {
             placeholder="选择日期时间"
           >
           </el-date-picker>
-          <span v-else>{{ form.rectificationTime }}</span>
+          <!-- <span v-else>{{ form.rectificationTime }}</span> -->
+          <el-input
+            disabled
+            v-else
+            size="mini"
+            v-model="form.rectificationTime"
+          ></el-input>
         </td>
 
         <td>是否强制整改时间</td>
@@ -160,7 +173,13 @@ li {
             size="mini"
             v-model="form.isAbarbeitung"
           ></el-checkbox>
-          <span v-else>{{ form.zhuangtai ? "是" : "否" }}</span>
+          <!-- <span v-else>{{ form.zhuangtai ? "是" : "否" }}</span> -->
+          <el-checkbox
+            disabled
+            v-else
+            size="mini"
+            v-model="form.zhuangtai"
+          ></el-checkbox>
         </td>
       </tr>
       <tr>
@@ -173,7 +192,15 @@ li {
             rows="4"
             v-model="form.cunzaiwenti"
           ></textarea>
-          <span v-else>{{ form.existingProblem }}</span>
+          <!-- <span v-else>{{ form.existingProblem }}</span> -->
+          <textarea
+            disabled
+            cols="100"
+            style="width: 100%; background:white"
+            v-else
+            rows="4"
+            v-model="form.existingProblem"
+          ></textarea>
         </td>
       </tr>
       <tr>
@@ -181,12 +208,20 @@ li {
         <td colspan="3">
           <textarea
             cols="100"
-            style="width: 100%"
+            style="width: 100%;"
             v-if="!eye"
             rows="4"
             v-model="form.zhenggaiyaoqiu"
           ></textarea>
-          <span v-else>{{ form.rectificationRequirement }}</span>
+          <!-- <span v-else>{{ form.rectificationRequirement }}</span> -->
+          <textarea
+            disabled
+            cols="100"
+            style="width: 100%; background:white"
+            v-else
+            rows="4"
+            v-model="form.rectificationRequirement"
+          ></textarea>
         </td>
       </tr>
       <tr>
@@ -211,9 +246,11 @@ li {
       </tr>
     </table>
     <p class="errmsg">{{ errmsg }}</p>
-
-    <p v-if="type !== 'add' && showStatus !=='待处理'" class="main-title">下发整改审核</p>
-    <audit style="height:50%" v-if="type !== 'add' && showStatus !=='待处理'" ></audit>
+    <p v-if="type !== 'add' && showStatus !== '待处理'" class="main-title">
+      下发整改审核
+    </p>
+    <!-- && showStatus !=='待处理' -->
+    <audit style="height: 50%" v-if="type !== 'add'"></audit>
   </div>
 </template>
 
@@ -225,11 +262,11 @@ import { mapGetters, mapMutations } from "vuex";
 import { SET_DEPTS } from "@/store/mutation-types";
 import { format } from "@/config/date";
 import dayjs from "dayjs";
-import audit from "./audit.vue"
+import audit from "./audit.vue";
 export default {
   components: {
     "operation-group": operationGroup,
-    audit
+    audit,
   },
   data() {
     return {
@@ -266,15 +303,15 @@ export default {
       headers: {
         "blade-auth": "Bearer " + Cookies.get("accessToken"),
       },
-      showStatus:-1
+      showStatus: -1,
     };
   },
   created() {
     this.type = this.$route.query.type;
-    this.showStatus = this.$route.query.status
+    this.showStatus = this.$route.query.status;
     this.returnUrl = "/issueRectification";
-    if(this.$route.query.btnType == 1) {
-      this.operationOption.jurisdiction.save = false
+    if (this.$route.query.btnType == 1) {
+      this.operationOption.jurisdiction.save = false;
     }
     if (this.type == "add") {
       this.title = "新增下发整改";

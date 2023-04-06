@@ -196,25 +196,6 @@ export default {
           }
           return item;
         });
-        console.log("-------------------------");
-        console.log(this.form);
-        // 附件处理
-        // if (this.form.fujian) {
-        //   if (this.form.fujian.indexOf(",") != -1) {
-        //     this.fu_jian = this.form.fujian.split(",").map((ell) => {
-        //       return { url: ell, name: this.strhandle(ell, "/") };
-        //     });
-        //   } else {
-        //     this.fu_jian = [
-        //       {
-        //         url: this.form.fujian,
-        //         name: this.strhandle(this.form.fujian, "/"),
-        //       },
-        //     ];
-        //   }
-        // } else {
-        //   this.fu_jian = [];
-        // }
       } else {
         this.$message.error(err);
       }
