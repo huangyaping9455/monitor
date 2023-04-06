@@ -55,7 +55,7 @@
       class="btn"
       type="primary"
       ><svg-icon v-show="!option.loading.save" class="icon" icon-class="save" />
-      {{ $route.query.returnUrl == "/hidDanger" ? "发送" : "保存" }}
+      {{ $route.query.returnUrl == "/hidDanger" ? "发送" : "保存并提交" }}
     </el-button>
     <el-button
       v-if="option.jurisdiction.ok"

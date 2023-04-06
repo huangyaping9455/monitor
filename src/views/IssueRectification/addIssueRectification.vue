@@ -228,7 +228,7 @@ li {
         <td>附件(可支持多个附件)：</td>
         <td colspan="7">
           <el-upload
-            :disabled="eye"
+            disabled="!eye"
             class="upload-demo"
             action="/blade-upload/upload/upload"
             :data="uploadData"
@@ -240,7 +240,7 @@ li {
             :limit="100"
             :file-list="fu_jian"
           >
-            <el-button size="mini" class="upbtn">附件</el-button>
+            <el-button disabled="!eye" size="mini" class="upbtn">附件</el-button>
           </el-upload>
         </td>
       </tr>

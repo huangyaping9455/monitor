@@ -157,7 +157,7 @@ export default {
       this.loading = false;
       if (data) {
         let disabled = data.find((val) => {
-          return val.status == 0 && isread != 1;
+          return val.status == 0 && val.isread != 1;
         });
         if (disabled) {
           this.isDisable = true;
