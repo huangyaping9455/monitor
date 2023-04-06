@@ -11,7 +11,7 @@
       size="mini"
       type="primary"
       @click="plPass"
-      class="pass btns"
+      class="pass btns btn"
       >批量通过</el-button
     >
     <el-table
@@ -47,9 +47,14 @@
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="{ row }">
-          <el-button @click="examine(row)" class="operate" v-if="row.status==1">通过</el-button>
           <el-button
-           v-if="row.status==1"
+            @click="examine(row)"
+            class="operate"
+            v-if="row.status == 1"
+            >通过</el-button
+          >
+          <el-button
+            v-if="row.status == 1"
             @click="
               () => {
                 dialogVisible = true;
@@ -139,7 +144,7 @@ export default {
         console.log(data);
         console.log(11111111111111111111);
         console.log(this.form);
-        this.form= this.form.map((item) => {
+        this.form = this.form.map((item) => {
           item.fujianList = [];
           item.fujian
             ? item.fujian.indexOf(",") !== -1
@@ -161,14 +166,14 @@ export default {
           }
           if (item.status == 0) {
             item.statusShow = "待处理";
-          }else if (item.status == 1) {
+          } else if (item.status == 1) {
             item.statusShow = "待审核";
-          }else if (item.status == 2) {
+          } else if (item.status == 2) {
             item.statusShow = "审核通过";
-          }else if (item.status == 3) {
+          } else if (item.status == 3) {
             item.statusShow = "审核未通过";
           }
-          return item
+          return item;
         });
         // 附件处理
         // if (this.form.fujian) {
@@ -306,7 +311,7 @@ export default {
     color: #ffffff;
     border: none;
     margin-right: 10px;
-    height: 20px;
+    height: 29px;
   }
   .mainTable {
     background: transparent;

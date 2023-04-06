@@ -227,7 +227,7 @@
       <el-table-column prop="fasongdanwei" label="操作">
         <template slot-scope="{ row }">
           <el-button @click="examine(row)" class="operate">查看</el-button>
-          <el-button v-if="row.status==待审核" @click="audit(row)" class="operate">
+          <el-button v-if="row.status=='待审核'" @click="audit(row)" class="operate">
            {{
               row.ydcount == 0
                 ? row.status == "审核通过"
