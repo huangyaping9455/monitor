@@ -195,7 +195,7 @@ li {
           <el-upload
             :disabled="eye"
             class="upload-demo"
-            action="/blade-upload/upload/upload"
+            action="/api/blade-upload/upload/upload"
             :data="uploadData"
             :headers="headers"
             :show-file-list="true"
@@ -212,8 +212,13 @@ li {
     </table>
     <p class="errmsg">{{ errmsg }}</p>
 
-    <p v-if="type !== 'add' && showStatus !=='待处理'" class="main-title">下发整改审核</p>
-    <audit style="height:50%" v-if="type !== 'add' && showStatus !=='待处理'" ></audit>
+    <p v-if="type !== 'add' && showStatus !== '待处理'" class="main-title">
+      下发整改审核
+    </p>
+    <audit
+      style="height: 50%"
+      v-if="type !== 'add' && showStatus !== '待处理'"
+    ></audit>
   </div>
 </template>
 
@@ -225,11 +230,11 @@ import { mapGetters, mapMutations } from "vuex";
 import { SET_DEPTS } from "@/store/mutation-types";
 import { format } from "@/config/date";
 import dayjs from "dayjs";
-import audit from "./audit.vue"
+import audit from "./audit.vue";
 export default {
   components: {
     "operation-group": operationGroup,
-    audit
+    audit,
   },
   data() {
     return {
@@ -266,15 +271,15 @@ export default {
       headers: {
         "blade-auth": "Bearer " + Cookies.get("accessToken"),
       },
-      showStatus:-1
+      showStatus: -1,
     };
   },
   created() {
     this.type = this.$route.query.type;
-    this.showStatus = this.$route.query.status
+    this.showStatus = this.$route.query.status;
     this.returnUrl = "/issueRectification";
-    if(this.$route.query.btnType == 1) {
-      this.operationOption.jurisdiction.save = false
+    if (this.$route.query.btnType == 1) {
+      this.operationOption.jurisdiction.save = false;
     }
     if (this.type == "add") {
       this.title = "新增下发整改";
@@ -453,8 +458,6 @@ export default {
 
     // 新增
     async createfrom() {
-      console.log(this.form);
-      console.log(this.fu_jian);
       // 处理送达单位
       let zhenggaiduixiang = [],
         zhenggaiduixiangid = [];
