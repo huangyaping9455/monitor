@@ -211,9 +211,11 @@ export default {
         })
       );
       if (data) {
-        this.$message("数据审核成功");
+        this.$message.success("数据审核成功");
         this.loading = true;
         this.getData(this.$route.query.id);
+      }else{
+        this.$message.error(err)
       }
     },
 

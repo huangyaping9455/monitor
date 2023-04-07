@@ -171,14 +171,14 @@ li {
           <el-checkbox
             v-if="!eye"
             size="mini"
-            v-model="form.isAbarbeitung"
+            v-model="form.zhuangtai"
           ></el-checkbox>
           <!-- <span v-else>{{ form.zhuangtai ? "是" : "否" }}</span> -->
           <el-checkbox
             disabled
             v-else
             size="mini"
-            v-model="form.zhuangtai"
+            v-model="form.isAbarbeitung2"
           ></el-checkbox>
         </td>
       </tr>
@@ -196,7 +196,7 @@ li {
           <textarea
             disabled
             cols="100"
-            style="width: 100%; background:white"
+            style="width: 100%; background: white"
             v-else
             rows="4"
             v-model="form.existingProblem"
@@ -208,7 +208,7 @@ li {
         <td colspan="3">
           <textarea
             cols="100"
-            style="width: 100%;"
+            style="width: 100%"
             v-if="!eye"
             rows="4"
             v-model="form.zhenggaiyaoqiu"
@@ -217,7 +217,7 @@ li {
           <textarea
             disabled
             cols="100"
-            style="width: 100%; background:white"
+            style="width: 100%; background: white"
             v-else
             rows="4"
             v-model="form.rectificationRequirement"
@@ -228,7 +228,7 @@ li {
         <td>附件(可支持多个附件)：</td>
         <td colspan="7">
           <el-upload
-            disabled="!eye"
+            v-if="!eye"
             class="upload-demo"
             action="/blade-upload/upload/upload"
             :data="uploadData"
@@ -240,13 +240,32 @@ li {
             :limit="100"
             :file-list="fu_jian"
           >
-            <el-button disabled="!eye" size="mini" class="upbtn">附件</el-button>
+            <el-button size="mini" class="upbtn">附件</el-button>
+            
+          </el-upload>
+          <el-upload
+            v-else
+            disabled
+            class="upload-demo"
+            action="/blade-upload/upload/upload"
+            :data="uploadData"
+            :headers="headers"
+            :show-file-list="true"
+            :on-success="handleSuccess"
+            :on-preview="handlePreview"
+            :on-remove="handleRemove"
+            :limit="100"
+            :file-list="fu_jian"
+          >
+            <el-button disabled size="mini" class="upbtn"
+              >附件</el-button
+            >
           </el-upload>
         </td>
       </tr>
     </table>
     <p class="errmsg">{{ errmsg }}</p>
-    <p v-if="type !== 'add' && showStatus !== '待处理'" class="main-title">
+    <p v-if="type !== 'add'" class="main-title">
       下发整改审核
     </p>
     <!-- && showStatus !=='待处理' -->
@@ -291,6 +310,7 @@ export default {
         zhuangtai: "",
         cunzaiwenti: "",
         zhenggaiyaoqiu: "",
+        isAbarbeitung2: "",
       },
       eye: false, //查看模式
       expireTimeOption: {
@@ -391,7 +411,7 @@ export default {
         this.form = {
           ...data,
           songdadanwei: songdadanwei,
-          zhuangtai: data.zhuangtai == 1 ? true : false,
+          isAbarbeitung2: data.isAbarbeitung == 1 ? true : false,
           huifuyouxiaoqi: this.eye
             ? data.huifuyouxiaoqi
             : data.huifuyouxiaoqi.replace("分钟", ""),

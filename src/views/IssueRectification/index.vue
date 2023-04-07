@@ -177,11 +177,19 @@
         ></el-input>
       </el-form-item>
       <el-form-item label="审核状态">
-        <el-input
+        <!-- <el-input
           v-model="form.shenhezhuangtai"
           placeholder="请输入状态"
           clearable
-        ></el-input>
+        ></el-input> -->
+        <el-select @change="changeSelect" v-model="form.shenhezhuangtai" placeholder="请选择审核状态">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          ></el-option>
+        </el-select>
       </el-form-item>
 
       <el-form-item>
@@ -222,11 +230,15 @@
         label="序号"
       >
       </el-table-column>
-      <el-table-column prop="title" label="标题"></el-table-column>
+      <el-table-column show-overflow-tooltip prop="title" label="标题"></el-table-column>
       <el-table-column
         prop="deptName"
         show-overflow-tooltip
-        label="企业"
+        label="整改对象"
+      ></el-table-column>
+      <el-table-column
+        prop="rectificationTime"
+        label="限期整改日期"
       ></el-table-column>
       <el-table-column prop="status" label="状态"></el-table-column>
       <el-table-column prop="existingProblem" label="整改要求">
@@ -348,6 +360,24 @@ export default {
           // refresh: true,
         },
       }, // 操作按钮配置
+      options:[
+        {
+          value:0,
+          label:'待处理'
+        },
+        {
+          value:1,
+          label:'待审核'
+        },
+        {
+          value:2,
+          label:'审核通过'
+        },
+        {
+          value:3,
+          label:'审核未通过'
+        },
+      ],
       form: {
         biaoti: "",
         riqishijian: dayjs().format("YYYY-MM-DD"),
@@ -360,6 +390,7 @@ export default {
       //     return date.getTime() <= Date.now() - 1000 * 60 * 60 * 24;
       //   },
       // }, //时间范围限制
+      
     };
   },
   mounted() {
@@ -461,6 +492,10 @@ export default {
         this.$message.error(err);
       }
     },
+    // 选择审核状态
+    changeSelect(value){
+      this.form.shenhezhuangtai = value
+    },
     // 新增
     newAdd() {
       this.$router.push({
@@ -478,7 +513,7 @@ export default {
         query: {
           id: row.id,
           btnType: 1,
-          status:row.status,
+          status: row.status,
           returnUrl: "/issueRectification",
         },
       });
