@@ -89,7 +89,7 @@
       width="30%"
     >
       <div class="cehicleCard_form">
-        <textarea v-model="message" cols="70" rows="20"></textarea>
+        <textarea class="textarea_style" v-model="message" cols="70" rows="20"></textarea>
       </div>
       <div slot="footer">
         <el-button class="topbtn" size="mini" @click="noExamine">
@@ -396,6 +396,9 @@ export default {
     background-image: url("~@/assets/img/bg_14.png");
     background-size: 100% 100%;
     background-color: transparent; //背景透明
+    .el-dialog__header {
+      margin-top: 25vh;
+    }
     .el-dialog__title {
       color: #ffffff !important;
       font-weight: bold;
@@ -403,15 +406,17 @@ export default {
     .el-dialog__body {
       padding: 10px 20px;
       .cehicleCard_form {
-        height: 300px;
+        height: 150px;
         background-color: #0a3774;
         padding: 5px;
         color: #fff;
         textarea {
-          background: #112e4d;
-          border-color: #004b77;
-          color: #ffffff;
+          background: white;
+          border-color: white;
+          color: black;
           margin: 0 auto;
+          width: 100%;
+          height: 100%;
         }
       }
     }
