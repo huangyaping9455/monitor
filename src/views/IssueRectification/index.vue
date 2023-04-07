@@ -182,7 +182,11 @@
           placeholder="请输入状态"
           clearable
         ></el-input> -->
-        <el-select @change="changeSelect" v-model="form.shenhezhuangtai" placeholder="请选择审核状态">
+        <el-select
+          @change="changeSelect"
+          v-model="form.shenhezhuangtai"
+          placeholder="请选择审核状态"
+        >
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -230,7 +234,11 @@
         label="序号"
       >
       </el-table-column>
-      <el-table-column show-overflow-tooltip prop="title" label="标题"></el-table-column>
+      <el-table-column
+        show-overflow-tooltip
+        prop="title"
+        label="标题"
+      ></el-table-column>
       <el-table-column
         prop="deptName"
         show-overflow-tooltip
@@ -360,22 +368,26 @@ export default {
           // refresh: true,
         },
       }, // 操作按钮配置
-      options:[
+      options: [
         {
-          value:0,
-          label:'待处理'
+          value: '',
+          label: "全部",
         },
         {
-          value:1,
-          label:'待审核'
+          value: 0,
+          label: "待处理",
         },
         {
-          value:2,
-          label:'审核通过'
+          value: 1,
+          label: "待审核",
         },
         {
-          value:3,
-          label:'审核未通过'
+          value: 2,
+          label: "审核通过",
+        },
+        {
+          value: 3,
+          label: "审核未通过",
         },
       ],
       form: {
@@ -390,7 +402,6 @@ export default {
       //     return date.getTime() <= Date.now() - 1000 * 60 * 60 * 24;
       //   },
       // }, //时间范围限制
-      
     };
   },
   mounted() {
@@ -493,8 +504,8 @@ export default {
       }
     },
     // 选择审核状态
-    changeSelect(value){
-      this.form.shenhezhuangtai = value
+    changeSelect(value) {
+      this.form.shenhezhuangtai = value;
     },
     // 新增
     newAdd() {
