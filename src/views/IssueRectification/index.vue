@@ -395,7 +395,7 @@ export default {
         yunshuqiye: "",
         shenhezhuangtai: "",
       }, // 搜索参数
-      defaultdDate:''
+      defaultdDate: "",
       // expireTimeOption: {
       //   disabledDate(date) {
       //     return date.getTime() <= Date.now() - 1000 * 60 * 60 * 24;
@@ -409,8 +409,10 @@ export default {
     // 获取数据
     this.getdata();
   },
-  created(){
-    this.form.riqishijian = this.$route.query.date ? this.$route.query.date : dayjs().format("YYYY-MM-DD")
+  created() {
+    this.form.riqishijian = this.$route.query.date
+      ? this.$route.query.date
+      : dayjs().format("YYYY-MM-DD");
   },
 
   computed: {
@@ -437,7 +439,6 @@ export default {
         governmentApi.getAnquanhuiyiPage({
           current: current,
           size: this.pagesizeactive,
-          date: dayjs().format("YYYY-MM-DD"),
           deptId: this.zhuzzhiId,
           title: this.form.biaoti,
           date: this.form.riqishijian,
