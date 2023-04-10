@@ -467,6 +467,9 @@ export default {
         case "close":
           this.$router.push({
             path: this.returnUrl,
+            query: {
+              date: this.$route.query.date,
+            },
           });
           break;
         default:
@@ -518,7 +521,7 @@ export default {
       });
       let fileList = [];
       this.fu_jian.forEach((val) => {
-        const name = this.strhandle(val.url,'/');
+        const name = this.strhandle(val.url, "/");
         fileList.push(name);
       });
       this.operationOption.loading.save = true;

@@ -44,7 +44,7 @@
       <el-table-column label="附件">
         <template slot-scope="{ row }">
           <a
-            style="color: #4bb7e0"
+            style="color: #4bb7e0; margin-right: 10px"
             :href="val.url"
             v-for="(val, ind) in row.fujianList"
             target="_blank"
@@ -172,7 +172,9 @@ export default {
         this.form = data.map((item) => {
           item.fujianList = [];
           item.fujian
-            ?item.fujian.indexOf('[') !=-1?item.fujianList = JSON.parse(item.fujianList): item.fujian.indexOf(",") !== -1
+            ? item.fujian.indexOf("[") != -1
+              ? (item.fujianList = JSON.parse(item.fujian))
+              : item.fujian.indexOf(",") !== -1
               ? item.fujian.split(",").map((el) => {
                   item.fujianList.push({
                     name: this.strhandle(el, "/"),
@@ -183,27 +185,6 @@ export default {
                   { name: this.strhandle(item.fujian, "/"), url: item.fujian },
                 ])
             : (item.fujianList = []);
-
-          //   if (item.fujian) {
-          //   if (item.fujian.indexOf("[") != -1) {
-          //     this.fu_jian = JSON.parse(item.fujian);
-          //   } else {
-          //     if (this.form.fujian.indexOf(",") != -1) {
-          //       this.fu_jian = this.form.fujian.split(",").map((ell) => {
-          //         return { url: ell, name: this.strhandle(ell, "/") };
-          //       });
-          //     } else {
-          //       this.fu_jian = [
-          //         {
-          //           url: this.form.fujian,
-          //           name: this.strhandle(this.form.fujian, "/"),
-          //         },
-          //       ];
-          //     }
-          //   }
-          // } else {
-          //   this.fu_jian = [];
-          // }
 
           if (item.isRead == 0) {
             item.isRead = "未读";
