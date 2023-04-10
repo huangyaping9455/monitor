@@ -147,7 +147,6 @@
   max-width: 400px;
 }
 </style>
-
 <template>
   <div class="main">
     <el-form :inline="true" size="mini" :model="form" class="search">
@@ -370,7 +369,7 @@ export default {
       }, // 操作按钮配置
       options: [
         {
-          value: '',
+          value: "",
           label: "全部",
         },
         {
@@ -396,7 +395,7 @@ export default {
         yunshuqiye: "",
         shenhezhuangtai: "",
       }, // 搜索参数
-
+      defaultdDate:''
       // expireTimeOption: {
       //   disabledDate(date) {
       //     return date.getTime() <= Date.now() - 1000 * 60 * 60 * 24;
@@ -410,6 +409,10 @@ export default {
     // 获取数据
     this.getdata();
   },
+  created(){
+    this.form.riqishijian = this.$route.query.date ? this.$route.query.date : dayjs().format("YYYY-MM-DD")
+  },
+
   computed: {
     ...mapGetters({
       userinfo: "userinfo",
@@ -444,7 +447,6 @@ export default {
       );
       this.loading = false;
       if (data) {
-        console.log(data);
         this.recordsList = data.records.map((el) => {
           if (el.status == 0) {
             el.status = "待处理";
@@ -462,33 +464,6 @@ export default {
       }
     },
 
-    // 获取数据
-    // async getdata(current = 1) {
-    //   current = Number(current);
-    //   this.loading = true;
-    //   let [err, data] = await governmentApi.awaitWrap(
-    //     governmentApi.getanbiaolist({
-    //       current: current,
-    //       size: this.pagesizeactive,
-    //       type: 4,
-    //       userId: this.userinfo.userId,
-    //       fasongdanweiid: this.zhuzzhiId,
-    //       zhutimingcheng: this.form.zhutimingcheng,
-    //       songdadanweiid: this.form.songdadanweiid,
-    //     })
-    //   );
-    //   this.loading = false;
-    //   if (data) {
-    //     this.recordsList = data.records;
-    //     //分页处理
-    //     this.jumpNum = data.current;
-    //     this.current = data.current;
-    //     this.total = data.total;
-    //     this.pageTotal = data.pageTotal;
-    //   } else {
-    //     this.$message.error(err);
-    //   }
-    // },
     // 获取获取送达企业列表
     async getQiYe() {
       let [err, data] = await governmentApi.awaitWrap(
@@ -535,6 +510,7 @@ export default {
         path: "/audit",
         query: {
           id: row.id,
+          date: this.form.riqishijian,
           returnUrl: "/issueRectification",
         },
       });

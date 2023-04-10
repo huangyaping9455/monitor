@@ -230,7 +230,7 @@ li {
           <el-upload
             v-if="!eye"
             class="upload-demo"
-            action="/api/blade-upload/upload/upload"
+            action="/blade-upload/upload/upload"
             :data="uploadData"
             :headers="headers"
             :show-file-list="true"
@@ -414,17 +414,21 @@ export default {
 
         // 附件处理
         if (this.form.fujian) {
-          if (this.form.fujian.indexOf(",") != -1) {
-            this.fu_jian = this.form.fujian.split(",").map((ell) => {
-              return { url: ell, name: this.strhandle(ell, "/") };
-            });
+          if (this.form.fujian.indexOf("[") != -1) {
+            this.fu_jian = JSON.parse(this.form.fujian);
           } else {
-            this.fu_jian = [
-              {
-                url: this.form.fujian,
-                name: this.strhandle(this.form.fujian, "/"),
-              },
-            ];
+            if (this.form.fujian.indexOf(",") != -1) {
+              this.fu_jian = this.form.fujian.split(",").map((ell) => {
+                return { url: ell, name: this.strhandle(ell, "/") };
+              });
+            } else {
+              this.fu_jian = [
+                {
+                  url: this.form.fujian,
+                  name: this.strhandle(this.form.fujian, "/"),
+                },
+              ];
+            }
           }
         } else {
           this.fu_jian = [];
@@ -514,7 +518,8 @@ export default {
       });
       let fileList = [];
       this.fu_jian.forEach((val) => {
-        fileList.push(val.url);
+        const name = this.strhandle(val.url,'/');
+        fileList.push(name);
       });
       this.operationOption.loading.save = true;
       let [err, data] = await governmentApi.awaitWrap(
@@ -527,7 +532,7 @@ export default {
           isAbarbeitung: this.form.zhuangtai ? 1 : 0,
           existingProblem: this.form.cunzaiwenti,
           rectificationRequirement: this.form.zhenggaiyaoqiu,
-          fujian: this.files.url ? this.files.url : "",
+          fujian: this.files.url ? this.strhandle(this.files.url) : "",
           fujian: fileList.join(","),
         })
       );

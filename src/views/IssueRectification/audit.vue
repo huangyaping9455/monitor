@@ -89,7 +89,12 @@
       width="30%"
     >
       <div class="cehicleCard_form">
-        <textarea class="textarea_style" v-model="message" cols="70" rows="20"></textarea>
+        <textarea
+          class="textarea_style"
+          v-model="message"
+          cols="70"
+          rows="20"
+        ></textarea>
       </div>
       <div slot="footer">
         <el-button class="topbtn" size="mini" @click="noExamine">
@@ -167,7 +172,7 @@ export default {
         this.form = data.map((item) => {
           item.fujianList = [];
           item.fujian
-            ? item.fujian.indexOf(",") !== -1
+            ?item.fujian.indexOf('[') !=-1?item.fujianList = JSON.parse(item.fujianList): item.fujian.indexOf(",") !== -1
               ? item.fujian.split(",").map((el) => {
                   item.fujianList.push({
                     name: this.strhandle(el, "/"),
@@ -178,6 +183,27 @@ export default {
                   { name: this.strhandle(item.fujian, "/"), url: item.fujian },
                 ])
             : (item.fujianList = []);
+
+          //   if (item.fujian) {
+          //   if (item.fujian.indexOf("[") != -1) {
+          //     this.fu_jian = JSON.parse(item.fujian);
+          //   } else {
+          //     if (this.form.fujian.indexOf(",") != -1) {
+          //       this.fu_jian = this.form.fujian.split(",").map((ell) => {
+          //         return { url: ell, name: this.strhandle(ell, "/") };
+          //       });
+          //     } else {
+          //       this.fu_jian = [
+          //         {
+          //           url: this.form.fujian,
+          //           name: this.strhandle(this.form.fujian, "/"),
+          //         },
+          //       ];
+          //     }
+          //   }
+          // } else {
+          //   this.fu_jian = [];
+          // }
 
           if (item.isRead == 0) {
             item.isRead = "未读";
@@ -214,13 +240,12 @@ export default {
         this.$message.success("数据审核成功");
         this.loading = true;
         this.getData(this.$route.query.id);
-      }else{
-        this.$message.error(err)
+      } else {
+        this.$message.error(err);
       }
     },
 
     examine(row) {
-      console.log(0);
       this.type = 2;
       this.changeAudit(row.id);
     },
@@ -247,7 +272,6 @@ export default {
     // },
     // 批量通过
     async plPass() {
-      // console.log("000000000000000000");
       // this.form.map((item) => {
       //   item.statusShow == "审核未通过";
       // });
@@ -281,6 +305,9 @@ export default {
         case "close":
           this.$router.push({
             path: "/IssueRectification",
+            query: {
+              date: this.$route.query.date,
+            },
           });
           break;
         default:
