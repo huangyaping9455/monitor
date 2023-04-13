@@ -291,11 +291,14 @@
             label="未学人数"
             align="center"
           ></el-table-column>
-          <el-table-column label="操作" align="center" width="110">
+          <el-table-column label="操作" align="center" width="180">
             <template slot-scope="{ row }">
-              <el-button size="mini" type="primary" @click="learnView(row)"
-                >详情</el-button
-              >
+              <el-button size="mini" type="text" @click="learnView(row)">
+                详情
+              </el-button>
+              <el-button size="mini" type="text" @click="learnViewDept(row)">
+                企业月报
+              </el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -373,6 +376,7 @@
           </div>
         </div>
         <viewlearn ref="learnview"></viewlearn>
+        <view-dept ref="viewdept"></view-dept>
       </div>
     </div>
   </div>
@@ -383,8 +387,9 @@ import dataAnalysisApi from "@/api/modules/report";
 import { mapGetters } from "vuex";
 import viewlearn from "./view.vue";
 import { format } from "@/config/date";
+import ViewDept from "./viewDept.vue";
 export default {
-  components: { viewlearn },
+  components: { viewlearn, ViewDept },
   data() {
     return {
       loading: false,
@@ -492,6 +497,10 @@ export default {
       this.$refs.learnview.lmonths = row.learnmonth;
       this.$refs.learnview.selectPersonLearnInfoAll();
       this.$refs.learnview.learnVisible = true;
+    },
+    // 企业月报
+    learnViewDept(row) {
+      this.$refs.viewdept.open(row, this.form.month);
     },
   },
 };

@@ -8,6 +8,7 @@
     :close-on-click-modal="false"
     :visible.sync="learnVisible"
     width="70%"
+    :append-to-body="false"
   >
     <div class="learn_head">
       <span>姓名 : </span>
@@ -17,7 +18,7 @@
         v-model="usernames"
         placeholder="请输入姓名"
       ></el-input>
-      <span style="margin-left:0.8rem;">学习月份 : </span>
+      <span style="margin-left: 0.8rem">学习月份 : </span>
       <el-date-picker
         size="small"
         value-format="yyyy-MM"
@@ -26,7 +27,7 @@
         v-model="lmonths"
         placeholder="请选择学习月份"
       ></el-date-picker>
-      <span style="margin-left:0.8rem;">完成情况 : </span>
+      <span style="margin-left: 0.8rem">完成情况 : </span>
       <el-select
         size="small"
         placeholder="请选择完成情况"
@@ -38,7 +39,7 @@
         <el-option label="未达标" value="未达标"></el-option>
         <el-option label="未学习" value="未学习"></el-option>
       </el-select>
-      <span style="margin-left:0.8rem;">学习方式 : </span>
+      <span style="margin-left: 0.8rem">学习方式 : </span>
       <el-select
         size="small"
         placeholder="请选择学习方式"
@@ -74,7 +75,7 @@
       >
       </el-table-column>
       <el-table-column
-        prop="usercard"
+        prop="usercardShow"
         label="身份证号"
         show-overflow-tooltip
         align="center"
@@ -95,6 +96,18 @@
       >
       </el-table-column>
       <el-table-column
+        prop="chName"
+        label="学时名称"
+        show-overflow-tooltip
+        align="center"
+      >
+        <template slot-scope="{ row }">
+          <el-button type="text" @click="viewChName(row)">{{
+            row.chName
+          }}</el-button>
+        </template>
+      </el-table-column>
+      <el-table-column
         prop="lmonth"
         label="学习月份"
         show-overflow-tooltip
@@ -103,7 +116,7 @@
       </el-table-column>
       <el-table-column
         prop="learntime"
-        label="学习时长(分钟)"
+        label="学习时长(小时)"
         show-overflow-tooltip
         align="center"
       >
@@ -115,12 +128,22 @@
         align="center"
       >
       </el-table-column>
-      <el-table-column
-        prop="statusshow"
-        label="完成情况"
-        show-overflow-tooltip
-        align="center"
-      >
+      <el-table-column label="完成情况" show-overflow-tooltip align="center">
+        <template slot-scope="{ row }">
+          <span>{{
+            row.finishMark == 1
+              ? "已完成未签名"
+              : row.finishMark == 2
+              ? "已完成已签名"
+              : "未完成"
+          }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="操作" fixed="right" width="180" align="center">
+        <template slot-scope="{ row }">
+          <el-button type="text" @click="viewCard(row)">学习证明</el-button>
+          <el-button type="text" @click="viewMonth(row)">学习月报</el-button>
+        </template>
       </el-table-column>
     </el-table>
     <div class="page">
@@ -191,18 +214,21 @@
         取 消
       </el-button>
     </div>
+    <view-learn ref="viewlearn"></view-learn>
+    <view-list ref="viewlist"></view-list>
+    <view-month ref="viewmonth"></view-month>
   </el-dialog>
 </template>
 
 <script>
 import dataAnalysisApi from "@/api/modules/report";
 import { format } from "@/config/date";
+import viewLearn from "./viewLearn.vue";
+import ViewList from "./viewList.vue";
+import ViewMonth from "./viewMonth.vue";
+import dayjs from "dayjs";
 export default {
-  // props: {
-  //   rows: {
-  //     type: Object,
-  //   },
-  // },
+  components: { viewLearn, ViewList, ViewMonth },
   data() {
     return {
       learnVisible: false,
@@ -252,9 +278,9 @@ export default {
             el.lmonth = "";
           }
           if (el.usercard) {
-            el.usercard = el.usercard.replace(
+            el.usercardShow = el.usercard.replace(
               /^(.{6})(?:\d+)(.{4})$/,
-              "\$1****\$2"
+              "$1****$2"
             );
           }
           return el;
@@ -266,6 +292,18 @@ export default {
       } else {
         this.$message.error(err);
       }
+    },
+    // 学习证明
+    viewCard(row) {
+      this.$refs.viewlearn.open(row, dayjs(this.lmonths).format("YYYY-MM"));
+    },
+    // 从业人员月报
+    viewMonth(row) {
+      this.$refs.viewmonth.open(row, dayjs(this.lmonths).format("YYYY-MM"));
+    },
+    // 学习证明
+    viewChName(row) {
+      this.$refs.viewlist.open(row);
     },
   },
 };
@@ -308,7 +346,8 @@ export default {
       width: 100%;
       background: #0f1f40;
       border: 0.0714rem solid #0a3774;
-      &.el-table--enable-row-hover .el-table__body tr:hover > td {
+      &.el-table--enable-row-hover .el-table__body tr:hover > td,
+      .el-table__body tr.hover-row > td {
         background: #ffffff38;
       }
       thead.is-group th {

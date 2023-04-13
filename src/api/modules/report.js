@@ -252,5 +252,11 @@ export default {
       data
     );
   },
+  // 学习情况统计--课件明细
+  getCoursewareList(params) {
+    return $axios.get(`/blade-anbiao/anbiao/qiYeShouYe/getCoursewareList`, {
+      params,
+    });
+  },
   awaitWrap,
 };
