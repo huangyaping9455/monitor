@@ -172,9 +172,7 @@ export default {
         this.form = data.map((item) => {
           item.fujianList = [];
           item.fujian
-            ? item.fujian.indexOf("[") != -1
-              ? (item.fujianList = JSON.parse(item.fujian))
-              : item.fujian.indexOf(",") !== -1
+            ?item.fujian.indexOf('[') !=-1?item.fujianList = JSON.parse(item.fujian): item.fujian.indexOf(",") !== -1
               ? item.fujian.split(",").map((el) => {
                   item.fujianList.push({
                     name: this.strhandle(el, "/"),

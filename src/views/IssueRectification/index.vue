@@ -501,7 +501,7 @@ export default {
           id: row.id,
           btnType: 1,
           status: row.status,
-          date: this.form.riqishijian,
+          date:this.form.riqishijian,
           returnUrl: "/issueRectification",
         },
       });
