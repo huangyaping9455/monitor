@@ -132,12 +132,12 @@
               <span>数据分析</span>
             </div>
           </el-menu-item>
-          <el-menu-item index="home" @click="openMap">
+          <!-- <el-menu-item index="home" @click="openMap">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="map" />
               <span>地图监控</span>
             </div>
-          </el-menu-item>
+          </el-menu-item> -->
           <!-- <el-menu-item index="dataAnalysis_gz" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="shujvfenxi" />
@@ -320,14 +320,14 @@
               <span>安全台账明细</span>
             </div>
           </el-menu-item>
-          <el-menu-item index="safeStandardRank" @click="openMenu">
+          <!-- <el-menu-item index="safeStandardRank" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="shuju" />
               <span>合规台账排名</span>
             </div>
-          </el-menu-item>
+          </el-menu-item> -->
         </el-submenu>
-        <el-submenu index="7">
+        <!-- <el-submenu index="7">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="jiaoyu" />
@@ -340,8 +340,8 @@
               <span>学习情况统计</span>
             </div>
           </el-menu-item>
-        </el-submenu>
-        <el-submenu index="8">
+        </el-submenu> -->
+        <!-- <el-submenu index="8">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="anquanguanli" />
@@ -353,8 +353,8 @@
               <svg-icon class="icon" icon-class="yinhuanpaicha" />
               <span>隐患排查统计</span>
             </div>
-          </el-menu-item>
-          <!-- <el-menu-item index="dayHideDanger" @click="openMenu">
+          </el-menu-item> -->
+        <!-- <el-menu-item index="dayHideDanger" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="riyinhuan" />
               <span>日隐患排查统计</span>
@@ -396,14 +396,14 @@
               <span>综合排查</span>
             </div>
           </el-menu-item> -->
-          <el-menu-item index="risk" @click="openMenu">
+        <!-- <el-menu-item index="risk" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="fengxianguanli" />
               <span>风险管理</span>
             </div>
           </el-menu-item>
-        </el-submenu>
-        <el-submenu index="9">
+        </el-submenu> -->
+        <!-- <el-submenu index="9">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yiqing" />
@@ -428,7 +428,7 @@
               <span>车辆出/入区统计</span>
             </div>
           </el-menu-item>
-        </el-submenu>
+        </el-submenu> -->
         <el-submenu index="10">
           <template slot="title">
             <div class="menu-item">

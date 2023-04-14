@@ -230,7 +230,7 @@ li {
           <el-upload
             v-if="!eye"
             class="upload-demo"
-            action="/blade-upload/upload/upload"
+            action="/api/blade-upload/upload/upload"
             :data="uploadData"
             :headers="headers"
             :show-file-list="true"
@@ -246,7 +246,7 @@ li {
             v-else
             disabled
             class="upload-demo"
-            action="/blade-upload/upload/upload"
+            action="/api/blade-upload/upload/upload"
             :data="uploadData"
             :headers="headers"
             :show-file-list="true"
@@ -520,10 +520,11 @@ export default {
         zhenggaiduixiangid.push(el.deptId);
       });
       let fileList = [];
-      this.fu_jian.forEach((val) => {
-        const name = this.strhandle(val.url, "/");
-        fileList.push(name);
-      });
+      if (this.fu_jian.length > 0) {
+        this.fu_jian.forEach((val) => {
+          fileList.push(val.savename);
+        });
+      }
       this.operationOption.loading.save = true;
       let [err, data] = await governmentApi.awaitWrap(
         governmentApi.insert({
@@ -557,9 +558,11 @@ export default {
         songdadanweiid.push(el.deptId);
       });
       let fileList = [];
-      this.fu_jian.forEach((val) => {
-        fileList.push(val.url);
-      });
+      if (this.fu_jian.length > 0) {
+        this.fu_jian.forEach((val) => {
+          fileList.push(val.savename);
+        });
+      }
       this.operationOption.loading.save = true;
       let [err, data] = await governmentApi.awaitWrap(
         governmentApi.update({
