@@ -523,7 +523,7 @@ export const geooption1 = (name, mapData) => {
           val.data.cheliangshu ? val.data.cheliangshu : 0
         }</div>
         <div><span>企业数：</span>${
-          val.data.cheliangshu ? val.data.cheliangshu : 0
+          val.data.qiyeshu ? val.data.qiyeshu : 0
         }</div>`
             : `<div>${val.name}</div>`;
         return html;
