@@ -269,7 +269,6 @@
             style="height: calc(100%); width: 100%"
             trigger="click"
             indicator-position="none"
-            :interval="10000"
             arrow="always"
           >
             <el-carousel-item
@@ -309,7 +308,6 @@
                   trigger="click"
                   height="100%"
                   ref="carousel"
-                  :interval="10000"
                   indicator-position="none"
                   arrow="always"
                   @change="changeGps($event, 'isbtn')"
@@ -377,7 +375,6 @@
                   style="height: calc(100% - 50px)"
                   trigger="click"
                   height="100%"
-                  :interval="10000"
                   ref="carousel1"
                   indicator-position="none"
                   arrow="always"
@@ -672,15 +669,12 @@ export default {
     // 政府-超速报警次数、疲劳报警总数、夜间行驶报警次数、异常报警次数
     async getTwo(deptId, type = 0, areaName = "", isxiazhuan = true) {
       this.load.load = true;
-      if (type == 0) {
-        type = type + 1;
-        this.cengji = 0;
-      }
+      if (type == 0) this.cengji = 0;
       let [err, data] = await homeApi.awaitWrap(
         homeApi.getTwo({
           deptId: deptId,
           type: type,
-          size: this.cengji + 1,
+          size: this.cengji,
         })
       );
       let _this = this;
@@ -721,8 +715,6 @@ export default {
                 name: data.areaname === "重庆市" ? "重庆" : data.areaname,
                 value: data.baojingcishu,
                 zhengfuid: data.zhengfuid,
-                cheliangshu: data.cheliangshu,
-                qiyeshu: data.qiyeshu,
               },
             ];
           } else {
@@ -731,24 +723,19 @@ export default {
                 name: el.areaname,
                 value: el.baojingcishu,
                 zhengfuid: el.zhengfuid,
-                cheliangshu: el.cheliangshu,
-                qiyeshu: el.qiyeshu,
               };
             });
           }
           _this.mapData = mapData;
-          _this.areaName = data.areaname;
-          _this.areaName = areaName
-            ? areaName === "重庆"
-              ? "重庆市"
-              : areaName
-            : _this.userinfo.diqu === "重庆市"
-            ? "China"
-            : data.areaname
-            ? data.areaname
-            : _this.userinfo.diqu;
+          _this.areaName = areaName ? areaName : _this.userinfo.diqu;
           _this.chartOption.option9 = geooption.geooption(
-            _this.areaName,
+            areaName
+              ? areaName === "重庆"
+                ? "重庆市"
+                : areaName
+              : _this.userinfo.diqu === "重庆市"
+              ? "China"
+              : _this.userinfo.diqu,
             mapData
           );
         }

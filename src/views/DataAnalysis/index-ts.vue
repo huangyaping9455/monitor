@@ -299,9 +299,9 @@
         ></echart-base>
         <el-button
           class="ptevbtn"
-          v-show="ptevbtnShow"
+          v-show="cengji > 0 && !loading"
           size="mini"
-          @click="getZFBJMonthList"
+          @click="turnBack"
           >返回</el-button
         >
       </div>
@@ -312,7 +312,7 @@
           element-loading-background="rgba(0, 0, 0, 0.4)"
         >
           <div class="title">
-            <span>地区报警排名</span>
+            <span>地区单车报警比排名</span>
             <span class="more" @click="linkto('/ZFDQ')">更多>></span>
           </div>
           <div class="tablebox">
@@ -345,7 +345,7 @@
           element-loading-background="rgba(0, 0, 0, 0.4)"
         >
           <div class="title">
-            <span>企业报警排名</span>
+            <span>企业单车报警比排名</span>
             <span class="more" @click="linkto('/enterprise')">更多>></span>
           </div>
           <div class="tablebox">
@@ -458,6 +458,11 @@ export default {
       ptevbtnShow: false,
       adressList: [], //地区报警排名
       enterpriseList: [], //企业报警排名
+      cengji: 0,
+      areaName: "",
+      mapData: [],
+      g_clickTime: null,
+      g_TimeFn: "",
     };
   },
   components: {
@@ -507,56 +512,109 @@ export default {
     // 初始化
     init() {
       // 获取报警处理情况(月)
-      this.getZFBJMonthList();
+      this.getZFBJMonthList(this.userinfo.deptId, 0, "");
       //报警处理情况(年)
-      this.getZFBJYearList();
+      this.getZFBJYearList(this.userinfo.deptId);
       //当年报警、处警趋势(年)
-      this.getZFBJQSList();
+      this.getZFBJQSList(this.userinfo.deptId);
       //政府-企业报警占比
-      this.getZFBJQiYeList();
+      this.getZFBJQiYeList(this.userinfo.deptId);
       //地区报警排名
-      this.getZFDQBJPMList();
+      this.getZFDQBJPMList(this.userinfo.deptId);
       //企业报警排名
-      this.getZFQYBJPMList();
+      this.getZFQYBJPMList(this.userinfo.deptId);
     },
     // 获取报警处理情况(月)
-    async getZFBJMonthList(loading = this.loading) {
-      this.loading = loading;
+    async getZFBJMonthList(deptId, type = 0, areaName = "", isxiazhuan = true) {
+      this.loading = true;
+      if (type == 0) this.cengji = 0;
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getZFBJMonthList({
-          deptId: this.userinfo.deptId,
-          type: 0,
-          // deptId:5448
+          deptId: deptId,
+          type: type,
+          size: this.cengji,
         })
       );
       this.loading = false;
       if (data) {
+        // 判断下钻有无数据
+        if (type > 0 && data.xjlist.length <= 0 && isxiazhuan) {
+          this.cengji--;
+          return false;
+        }
+        // 判断是否下钻  单击
+        if (!isxiazhuan) {
+          this.cengji--;
+          this.alarmProcessing = {
+            ...this.alarmProcessing,
+            yuebaojingshu: data.baojingshu,
+            yueweichulishu: data.weichulishu,
+            yuechulilv: data.chulilv,
+          };
+          this.mapData = this.mapData.map((el) => {
+            return {
+              ...el,
+              itemStyle: {
+                borderWidth: el.name == areaName ? 4 : 1,
+              },
+            };
+          });
+          this.chartOption.option4 = geooption1(this.areaName, this.mapData);
+          return false;
+        }
+        let mapData;
+        if (type == 0) {
+          mapData = [
+            {
+              name: data.areaname,
+              value: data.baojingshu,
+              yueweichulishu: data.weichulishu,
+              yuechulilv: data.chulilv,
+              zhengfuid: data.zhengfuid,
+            },
+          ];
+        } else {
+          mapData = data.xjlist.map((el) => {
+            return {
+              name: el.areaname,
+              value: el.baojingshu,
+              yueweichulishu: el.weichulishu,
+              yuechulilv: el.chulilv,
+              zhengfuid: el.zhengfuid,
+            };
+          });
+        }
         this.alarmProcessing = {
           ...this.alarmProcessing,
           yuebaojingshu: data.baojingshu,
           yueweichulishu: data.weichulishu,
           yuechulilv: data.chulilv,
         };
-        let mapData = [
-          {
-            name: data.areaname,
-            value: data.baojingshu,
-            yueweichulishu: data.weichulishu,
-            yuechulilv: data.chulilv,
-            zhengfuid: data.zhengfuid,
-          },
-        ];
-        this.chartOption.option4 = geooption1(this.userinfo.diqu, mapData);
-        this.ptevbtnShow = false;
+        // let mapData = [
+        //   {
+        //     name: data.areaname,
+        //     value: data.baojingshu,
+        //     yueweichulishu: data.weichulishu,
+        //     yuechulilv: data.chulilv,
+        //     zhengfuid: data.zhengfuid,
+        //   },
+        // ];
+        this.mapData = mapData;
+        this.areaName = areaName ? areaName : this.userinfo.diqu;
+        this.chartOption.option4 = geooption1(
+          areaName ? areaName : this.userinfo.diqu,
+          mapData
+        );
+        // this.ptevbtnShow = false;
       } else {
         this.$message.error(err);
       }
     },
     //报警处理情况(年)
-    async getZFBJYearList() {
+    async getZFBJYearList(deptId) {
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getZFBJYearList({
-          deptId: this.userinfo.deptId,
+          deptId: deptId,
           // deptId:5448
         })
       );
@@ -572,10 +630,10 @@ export default {
       }
     },
     //政府-企业报警占比
-    async getZFBJQiYeList() {
+    async getZFBJQiYeList(deptId) {
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getZFBJQiYeList({
-          deptId: this.userinfo.deptId,
+          deptId: deptId,
           // deptId:5448
         })
       );
@@ -591,7 +649,7 @@ export default {
         });
         this.chartOption.option3 = {
           ...pieoption,
-          title: { ...pieoption.title, show: true, text: "企业警报占比" },
+          title: { ...pieoption.title, show: true, text: "企业报警占比(月)" },
           legend: { show: false },
           series: {
             ...pieoption.series,
@@ -607,40 +665,40 @@ export default {
       }
     },
     //当年报警、处警趋势(年)
-    async getZFBJQSList() {
+    async getZFBJQSList(deptId) {
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getZFBJQSList({
-          deptId: this.userinfo.deptId,
+          deptId: deptId,
           // deptId:5448
         })
       );
       this.loading4 = false;
       if (data) {
         // 处理数据
-        let dataArr = [];
-        this.months.some((el) => {
-          let tempObj = data.some((el1) => {
-            if (el == el1.yue) {
-              dataArr.push(el1);
-              return el1;
-            } else {
-              return false;
-            }
-          });
-          // 如果前面月份没有数据赋值0
-          if (!tempObj) {
-            dataArr.push({
-              yue: el,
-              gpsbaojingshu: 0,
-              shebeibaojingshu: 0,
-              gpschulishu: 0,
-              shebeichulishu: 0,
-            });
-          }
-          if (el == data[data.length - 1].yue) {
-            return true;
-          }
-        });
+        let dataArr = data;
+        // this.months.some((el) => {
+        // let tempObj = data.some((el1) => {
+        // if (el == el1.yue) {
+        // dataArr.push(el1);
+        // return el1;
+        // } else {
+        // return false;
+        // }
+        // });
+        // 如果前面月份没有数据赋值0
+        // if (!tempObj) {
+        //   dataArr.push({
+        //     yue: 0,
+        //     gpsbaojingshu: 0,
+        //     shebeibaojingshu: 0,
+        //     gpschulishu: 0,
+        //     shebeichulishu: 0,
+        //   });
+        // }
+        // if (el == data[data.length - 1].yue) {
+        //   return true;
+        // }
+        // });
         let bgData = new Array(dataArr.length).fill(100);
         // 当年报警趋势
         this.chartOption.option1 = {
@@ -652,7 +710,9 @@ export default {
             top: "20%",
             data: ["北斗报警数", "主动安全报警"],
           },
-          dataset: { source: dataArr },
+          dataset: {
+            source: dataArr,
+          },
           grid: { ...baroption.grid, top: "33%", left: "6%", right: "3%" },
           xAxis: [
             { ...baroption.xAxis },
@@ -724,10 +784,10 @@ export default {
       }
     },
     //地区报警排名
-    async getZFDQBJPMList() {
+    async getZFDQBJPMList(deptId) {
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getZFDQBJPMList({
-          deptId: this.userinfo.deptId,
+          deptId: deptId,
           // deptId:5448
         })
       );
@@ -743,10 +803,10 @@ export default {
       }
     },
     // 企业报警排名
-    async getZFQYBJPMList() {
+    async getZFQYBJPMList(deptId) {
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getZFQYBJPMList({
-          deptId: this.userinfo.deptId,
+          deptId: deptId,
           // deptId:5448
         })
       );
@@ -765,31 +825,43 @@ export default {
       this.$router.push(url);
     },
     // 地图下钻
-    async echartclick(el) {
+    echartdblclick(el, isxiazhuan) {
+      this.cengji++;
+      this.getZFBJMonthList(el.data.zhengfuid, 1, el.name, isxiazhuan);
+      this.getZFBJQiYeList(el.data.zhengfuid);
+      this.getZFQYBJPMList(el.data.zhengfuid);
+      this.getZFBJYearList(el.data.zhengfuid);
+      this.getZFDQBJPMList(el.data.zhengfuid);
+      this.getZFBJQSList(el.data.zhengfuid);
+    },
+    echartclick(el) {
       if (!el.value) return false;
-      this.loading = true;
-      let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.getZFBJMonthList({
-          xiaJiDeptId: el.data.zhengfuid,
-        })
-      );
-      this.loading = false;
-      if (data.length > 0) {
-        let mapData = data.map((element) => {
-          return {
-            name: element.areaname,
-            value: element.baojingshu,
-            yueweichulishu: element.weichulishu,
-            yuechulilv: element.chulilv,
-            zhengfuid: element.zhengfuid,
-          };
-        });
-        this.chartOption.option4 = geooption1(el.name, mapData);
-        this.ptevbtnShow = true;
+      let myDate = new Date();
+      if (this.g_clickTime == null) {
+        //第一次进来
+        this.g_clickTime = myDate.getMilliseconds();
+        //起一个定时器，进行重置
+        this.g_TimeFn = setTimeout(() => {
+          this.echartdblclick(el, false);
+          this.g_clickTime = null;
+        }, 300);
+      } else {
+        clearTimeout(this.g_TimeFn);
+        //第二次进来，
+        if (Math.abs(myDate.getMilliseconds() - this.g_clickTime) < 300) {
+          //是双击操作
+          this.echartdblclick(el, true);
+        }
+        this.g_clickTime = null;
       }
-      if (err) {
-        this.$message.error(err);
-      }
+    },
+    turnBack() {
+      this.getZFBJMonthList(this.userinfo.deptId, 0, "");
+      this.getZFBJQiYeList(this.userinfo.deptId);
+      this.getZFQYBJPMList(this.userinfo.deptId);
+      this.getZFBJYearList(this.userinfo.deptId);
+      this.getZFDQBJPMList(this.userinfo.deptId);
+      this.getZFBJQSList(this.userinfo.deptId);
     },
   },
 };

@@ -132,12 +132,12 @@
               <span>数据分析</span>
             </div>
           </el-menu-item>
-          <el-menu-item index="home" @click="openMap">
+          <!-- <el-menu-item index="home" @click="openMap">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="map" />
               <span>地图监控</span>
             </div>
-          </el-menu-item>
+          </el-menu-item> -->
           <!-- <el-menu-item index="dataAnalysis_gz" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="shujvfenxi" />
@@ -320,12 +320,12 @@
               <span>安全台账明细</span>
             </div>
           </el-menu-item>
-          <el-menu-item index="safeStandardRank" @click="openMenu">
+          <!-- <el-menu-item index="safeStandardRank" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="shuju" />
               <span>合规台账排名</span>
             </div>
-          </el-menu-item>
+          </el-menu-item> -->
         </el-submenu>
         <el-submenu index="7">
           <template slot="title">
@@ -479,7 +479,7 @@
             </div>
           </el-menu-item>
         </el-submenu>
-        <!-- <el-submenu index="11">
+        <el-submenu index="11">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="fengxian" />
@@ -492,7 +492,7 @@
               <span slot="title">广东</span>
             </div>
           </el-menu-item>
-        </el-submenu> -->
+        </el-submenu>
         <!-- <el-submenu index="12">
           <template slot="title">
             <div class="menu-item">
@@ -513,7 +513,7 @@
             </div>
           </el-menu-item>
         </el-submenu> -->
-        <!-- <el-submenu index="13">
+        <el-submenu index="13">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="kaohe" />
@@ -579,14 +579,14 @@
               <svg-icon class="icon" icon-class="piaoyi" />
               <span slot="title">轨迹漂移率</span>
             </div>
-          </el-menu-item> -->
-        <!-- <el-menu-item index="YYSSafetyInspection" @click="openMenu">
+          </el-menu-item>
+          <!-- <el-menu-item index="YYSSafetyInspection" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="anquan" />
               <span>运营商查岗</span>
             </div>
           </el-menu-item> -->
-        <!-- </el-submenu> -->
+        </el-submenu>
       </el-menu>
     </scroll>
     <div
