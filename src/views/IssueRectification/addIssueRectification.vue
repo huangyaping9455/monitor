@@ -468,7 +468,11 @@ export default {
           this.$router.push({
             path: this.returnUrl,
             query: {
-              date: this.$route.query.date,
+              // date: this.$route.query.date,
+              beginDate: this.$route.query.beginDate, //限期整改时间
+              endDate: this.$route.query.endDate,
+              createBeginTime: this.$route.query.createBeginTime, //通知时间
+              createEndTime: this.$route.query.createEndTime,
             },
           });
           break;

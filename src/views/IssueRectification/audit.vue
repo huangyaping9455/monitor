@@ -172,7 +172,9 @@ export default {
         this.form = data.map((item) => {
           item.fujianList = [];
           item.fujian
-            ?item.fujian.indexOf('[') !=-1?item.fujianList = JSON.parse(item.fujian): item.fujian.indexOf(",") !== -1
+            ? item.fujian.indexOf("[") != -1
+              ? (item.fujianList = JSON.parse(item.fujian))
+              : item.fujian.indexOf(",") !== -1
               ? item.fujian.split(",").map((el) => {
                   item.fujianList.push({
                     name: this.strhandle(el, "/"),
@@ -285,7 +287,11 @@ export default {
           this.$router.push({
             path: "/IssueRectification",
             query: {
-              date: this.$route.query.date,
+              // date: this.$route.query.date,
+              beginDate: this.$route.query.beginDate, //限期整改时间
+              endDate: this.$route.query.endDate,
+              createBeginTime: this.$route.query.createBeginTime, //通知时间
+              createEndTime: this.$route.query.createEndTime,
             },
           });
           break;

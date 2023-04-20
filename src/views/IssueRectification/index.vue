@@ -146,36 +146,78 @@
 .tablePopper {
   max-width: 400px;
 }
+.search {
+  .el-form-item {
+    .el-input {
+      width: 170px;
+    }
+  }
+  .el-date-editor.el-input,
+  .el-date-editor.el-input__inner {
+    width: 123px;
+  }
+}
 </style>
 <template>
   <div class="main">
     <el-form :inline="true" size="mini" :model="form" class="search">
-      <el-form-item label="标题">
+      <el-form-item label="标题:">
         <el-input
           v-model="form.biaoti"
           placeholder="请输入标题"
           clearable
         ></el-input>
       </el-form-item>
-      <el-form-item label="限期整改时间">
+      <el-form-item class="ztime" label="限期整改时间:">
         <el-date-picker
           class="time"
           size="mini"
-          v-model="form.riqishijian"
+          v-model="form.beginDate"
+          value-format="yyyy-MM-dd"
+          type="date"
+          placeholder="选择日期时间"
+        >
+        </el-date-picker>
+        <span>-</span>
+        <el-date-picker
+          class="time"
+          size="mini"
+          v-model="form.endDate"
           value-format="yyyy-MM-dd"
           type="date"
           placeholder="选择日期时间"
         >
         </el-date-picker>
       </el-form-item>
-      <el-form-item label="运输企业">
+      <el-form-item label="通知时间：">
+        <el-date-picker
+          class="time"
+          size="mini"
+          v-model="form.createBeginTime"
+          value-format="yyyy-MM-dd"
+          type="date"
+          placeholder="选择日期时间"
+        >
+        </el-date-picker>
+        <span>-</span>
+        <el-date-picker
+          class="time"
+          size="mini"
+          v-model="form.createEndTime"
+          value-format="yyyy-MM-dd"
+          type="date"
+          placeholder="选择日期时间"
+        >
+        </el-date-picker>
+      </el-form-item>
+      <el-form-item label="运输企业:">
         <el-input
           v-model="form.yunshuqiye"
           placeholder="请输入企业"
           clearable
         ></el-input>
       </el-form-item>
-      <el-form-item label="审核状态">
+      <el-form-item label="审核状态:">
         <!-- <el-input
           v-model="form.shenhezhuangtai"
           placeholder="请输入状态"
@@ -242,6 +284,11 @@
         prop="deptName"
         show-overflow-tooltip
         label="整改对象"
+      ></el-table-column>
+      <el-table-column
+        prop="createTime"
+        show-overflow-tooltip
+        label="通知时间"
       ></el-table-column>
       <el-table-column
         prop="rectificationTime"
@@ -394,6 +441,14 @@ export default {
         riqishijian: dayjs().format("YYYY-MM-DD"),
         yunshuqiye: "",
         shenhezhuangtai: "",
+        tongzhishijian: dayjs().format("YYYY-MM-DD"),
+
+        beginDate: dayjs(this.chooseMonth)
+          .startOf("month")
+          .format("YYYY-MM-DD"), //限期整改时间
+        endDate: dayjs().format("YYYY-MM-DD"),
+        createBeginTime: '', //通知时间
+        createEndTime: '',
       }, // 搜索参数
       defaultdDate: "",
       // expireTimeOption: {
@@ -410,9 +465,24 @@ export default {
     this.getdata();
   },
   created() {
-    this.form.riqishijian = this.$route.query.date
-      ? this.$route.query.date
+    // this.form.riqishijian = this.$route.query.date
+    //   ? this.$route.query.date
+    //   : dayjs().format("YYYY-MM-DD");
+    this.form.beginDate = this.$route.query.beginDate
+      ? this.$route.query.beginDate
+      : dayjs(this.chooseMonth).startOf("month").format("YYYY-MM-DD");
+
+    this.form.endDate = this.$route.query.endDate
+      ? this.$route.query.endDate
       : dayjs().format("YYYY-MM-DD");
+
+    this.form.createBeginTime = this.$route.query.createBeginTime
+      ? this.$route.query.createBeginTime
+      : '';
+
+    this.form.createEndTime = this.$route.query.createEndTime
+      ? this.$route.query.createEndTime
+      : '';
   },
 
   computed: {
@@ -444,6 +514,10 @@ export default {
           date: this.form.riqishijian,
           deptName: this.form.yunshuqiye,
           status: this.form.shenhezhuangtai,
+          beginDate: this.form.beginDate, //限期整改时间
+          endDate: this.form.endDate,
+          createBeginTime: this.form.createBeginTime, //通知时间
+          createEndTime: this.form.createEndTime,
         })
       );
       this.loading = false;
@@ -501,7 +575,11 @@ export default {
           id: row.id,
           btnType: 1,
           status: row.status,
-          date:this.form.riqishijian,
+          // date: this.form.riqishijian,
+          beginDate: this.form.beginDate, //限期整改时间
+          endDate: this.form.endDate,
+          createBeginTime: this.form.createBeginTime, //通知时间
+          createEndTime: this.form.createEndTime,
           returnUrl: "/issueRectification",
         },
       });
@@ -512,7 +590,11 @@ export default {
         path: "/audit",
         query: {
           id: row.id,
-          date: this.form.riqishijian,
+          // date: this.form.riqishijian,
+          beginDate: this.form.beginDate, //限期整改时间
+          endDate: this.form.endDate,
+          createBeginTime: this.form.createBeginTime, //通知时间
+          createEndTime: this.form.createEndTime,
           returnUrl: "/issueRectification",
         },
       });
