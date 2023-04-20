@@ -527,15 +527,12 @@ export default {
     // 获取报警处理情况(月)
     async getZFBJMonthList(deptId, type = 0, areaName = "", isxiazhuan = true) {
       this.loading = true;
-      if (type == 0) {
-        type = type + 1;
-        this.cengji = 0;
-      }
+      if (type == 0) this.cengji = 0;
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getZFBJMonthList({
           deptId: deptId,
           type: type,
-          size: this.cengji + 1,
+          size: this.cengji,
         })
       );
       this.loading = false;
@@ -574,8 +571,6 @@ export default {
               yueweichulishu: data.weichulishu,
               yuechulilv: data.chulilv,
               zhengfuid: data.zhengfuid,
-              cheliangshu: data.cheliangshu,
-              qiyeshu: data.qiyeshu,
             },
           ];
         } else {
@@ -586,8 +581,6 @@ export default {
               yueweichulishu: el.weichulishu,
               yuechulilv: el.chulilv,
               zhengfuid: el.zhengfuid,
-              cheliangshu: el.cheliangshu,
-              qiyeshu: el.qiyeshu,
             };
           });
         }
@@ -607,18 +600,11 @@ export default {
         //   },
         // ];
         this.mapData = mapData;
-        // this.areaName = areaName ? areaName : this.userinfo.diqu;
-        this.areaName = data.areaname;
-        this.areaName = areaName
-          ? areaName === "重庆"
-            ? "重庆市"
-            : areaName
-          : this.userinfo.diqu === "重庆市"
-          ? "China"
-          : data.areaname
-          ? data.areaname
-          : this.userinfo.diqu;
-        this.chartOption.option4 = geooption1(this.areaName, mapData);
+        this.areaName = areaName ? areaName : this.userinfo.diqu;
+        this.chartOption.option4 = geooption1(
+          areaName ? areaName : this.userinfo.diqu,
+          mapData
+        );
         // this.ptevbtnShow = false;
       } else {
         this.$message.error(err);
