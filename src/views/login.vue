@@ -107,11 +107,11 @@
   <div class="login">
     <div class="logo">
       <!-- <img src="@/assets/img/zkgt.png" /> -->
-      <!-- <img src="@/assets/img/logo-22.png" /> -->
+      <img src="@/assets/img/logo-22.png" />
       <!-- <img src="@/assets/img/youbifei.png" /> -->
       <!-- <img src="@/assets/img/fuqing.png" /> -->
       <!-- <img src="@/assets/img/fuqing2.png" /> -->
-      <img src="@/assets/img/guizhoulogo.png" />
+      <!-- <img src="@/assets/img/guizhoulogo.png" /> -->
       <!-- <img class="yjlogo" src="@/assets/img/yj-logo.png" /> -->
       <!-- <img src="@/assets/img/logo_changzhou.png" /> -->
       <!-- <img src="@/assets/img/xvzhoulogo.png" /> -->
