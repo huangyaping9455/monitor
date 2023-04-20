@@ -290,7 +290,7 @@
           >
             <template scope="scope">
               <span
-                style="color: #01f8ff;cursor: pointer;"
+                style="color: #01f8ff; cursor: pointer"
                 @click="detailView(scope.row)"
                 >{{ scope.row.name }}</span
               >
@@ -496,7 +496,7 @@ export default {
         this.$message.error(err);
       }
     },
-    
+
     changeSearch() {
       this.searchshow
         ? (this.enterpriseListH = "calc(100vh - 13.5714rem)")

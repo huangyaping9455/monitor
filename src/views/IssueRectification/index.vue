@@ -149,12 +149,12 @@
 .search {
   .el-form-item {
     .el-input {
-      width: 170px;
+      width: 6vw;
     }
   }
   .el-date-editor.el-input,
   .el-date-editor.el-input__inner {
-    width: 123px;
+    width: 6vw;
   }
 }
 </style>
