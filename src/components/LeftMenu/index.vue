@@ -301,7 +301,7 @@
             </div>
           </el-menu-item> -->
         </el-submenu>
-        <!-- <el-submenu index="6">
+        <el-submenu index="6">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="tongzhi" />
@@ -319,14 +319,14 @@
               <svg-icon class="icon" icon-class="zhenggai" />
               <span>安全台账明细</span>
             </div>
-          </el-menu-item> -->
-        <!-- <el-menu-item index="safeStandardRank" @click="openMenu">
+          </el-menu-item>
+          <!-- <el-menu-item index="safeStandardRank" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="shuju" />
               <span>合规台账排名</span>
             </div>
           </el-menu-item> -->
-        <!-- </el-submenu> -->
+        </el-submenu>
         <!-- <el-submenu index="7">
           <template slot="title">
             <div class="menu-item">
@@ -429,7 +429,7 @@
             </div>
           </el-menu-item>
         </el-submenu> -->
-        <!-- <el-submenu index="10">
+        <el-submenu index="10">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="dangan" />
@@ -454,12 +454,12 @@
               <span>驾驶员档案</span>
             </div>
           </el-menu-item>
-          <el-menu-item index="YYSArchives" @click="openMenu">
+          <!-- <el-menu-item index="YYSArchives" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yunyingshangkaohe" />
               <span>运营商档案</span>
             </div>
-          </el-menu-item>
+          </el-menu-item> -->
           <el-menu-item index="vehicleMaintain" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="weihu" />
@@ -478,7 +478,7 @@
               <span>法律法规</span>
             </div>
           </el-menu-item>
-        </el-submenu> -->
+        </el-submenu>
         <!-- <el-submenu index="11">
           <template slot="title">
             <div class="menu-item">
