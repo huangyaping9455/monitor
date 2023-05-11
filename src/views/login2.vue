@@ -9,16 +9,15 @@
   background-size: cover;
 }
 .logo {
-  align-self: flex-end;
+  align-self: flex-start;
   margin-top: 5.5rem;
   // width: 50.1429rem; //福清市
   // width: 58.1429rem;
   // height: 7.7857rem;
   // margin-left: 38.0714rem; //徐州
-  margin-right: 15.0714rem; //默认\
-  margin-top: 13rem;
-  height: 6.7857rem; //默认
-  width: 45.1429rem; //默认
+  margin-left: 9.0714rem; //默认
+  height: 4.7857rem; //默认
+  width: 54.1429rem; //默认
   // width: 45.1429rem; //优必飞
   img {
     width: 100%;
@@ -37,33 +36,27 @@
 }
 .loginbox {
   width: 27.1429rem;
-  height: 30.8571rem;
-  // background-image: url("~@/assets/img/loginbox.png");
-  // background-size: 100% 100%;
+  height: 32.8571rem;
+  background-image: url("~@/assets/img/loginbox.png");
+  background-size: 100% 100%;
   // margin-top: 7.8571vh;
-  background-color: white;
-  border-radius: 10px;
-  margin-top: 6.8571vh;
-  margin-right: 19vw;
+  margin-top: 9.8571vh;
+  margin-right: 15vw;
   display: flex;
   flex-direction: column;
   padding: 1.4286rem 2.8571rem;
   box-sizing: border-box;
   .title {
-    font-size: 1.5rem;
-    // color: #ffffff;
-    color: #19489f;
+    font-size: 2rem;
+    color: #ffffff;
     text-align: center;
     margin: 1.0714rem 0 1.4286rem;
   }
   .inputbox {
     height: 2.8571rem;
     line-height: 2.8571rem;
-    background-color: #ffffff;
     .icon {
       margin-top: 9px;
-      fill: currentColor;
-      color: red !important;
     }
   }
   .verification {
@@ -82,9 +75,7 @@
     margin-top: 0.7143rem;
     width: 21.9286rem;
     height: 3.2143rem;
-    border-radius: 20px;
-    // background-image: linear-gradient(0deg, #0080de 0%, #00c8f5 100%);
-    background: linear-gradient(to right, #123f97, #0a90f9);
+    background-image: linear-gradient(0deg, #0080de 0%, #00c8f5 100%);
     outline: none;
     border: 0.0714rem solid #199fcd;
     font-size: 1.2857rem;
@@ -98,24 +89,16 @@
   .el-form-item {
     margin-bottom: 2.5rem;
   }
-  // .el-input.is-disabled ::v-deep .el-input__inner {
-  //   color: #606266;
-  //   background-color: white;
-  // }
   .inputbox {
     input {
-      // background: #112e4d;
-      // border-color: #004b77;
-      // color: #ffffff;
-      // background-color: white !important;
-      // border-bottom: 3px solid #bad6fc;
-      border-radius: none;
-      // border-bottom: 1px solid #e4e4e4;
+      background: #112e4d;
+      border-color: #004b77;
+      color: #ffffff;
       height: 2.8571rem;
       font-size: 1rem;
-      // &:focus {
-      //   border-color: #00d2ff;
-      // }
+      &:focus {
+        border-color: #00d2ff;
+      }
     }
   }
 }
@@ -125,8 +108,7 @@
   <div class="login">
     <div class="logo">
       <!-- <img src="@/assets/img/zkgt.png" /> -->
-      <!-- <img src="@/assets/img/logo-22.png" /> -->
-      <img src="@/assets/img/newLogo.png" />
+      <img src="@/assets/img/logo-22.png" />
       <!-- <img src="@/assets/img/youbifei.png" /> -->
       <!-- <img src="@/assets/img/fuqing.png" /> -->
       <!-- <img src="@/assets/img/fuqing2.png" /> -->
@@ -146,7 +128,7 @@
       <span>云南中流科技有限公司</span>
     </div> -->
     <div class="loginbox">
-      <p class="title">用户登录</p>
+      <p class="title">登 录</p>
       <el-form ref="ruleForm" :rules="rules" :model="form">
         <el-form-item prop="name">
           <el-input
