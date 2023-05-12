@@ -15,10 +15,10 @@
   // width: 58.1429rem;
   // height: 7.7857rem;
   // margin-left: 38.0714rem; //徐州
-  margin-right: 15.0714rem; //默认\
-  margin-top: 13rem;
+  margin-right: 20.0714rem; //默认\
+  margin-top: 10rem;
   height: 6.7857rem; //默认
-  width: 45.1429rem; //默认
+  width: 40.1429rem; //默认
   // width: 45.1429rem; //优必飞
   img {
     width: 100%;
@@ -116,7 +116,6 @@
         border-color: #bad6fc;
       }
     }
-    
   }
 }
 </style>
