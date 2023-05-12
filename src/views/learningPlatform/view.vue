@@ -141,8 +141,18 @@
       </el-table-column>
       <el-table-column label="操作" fixed="right" width="180" align="center">
         <template slot-scope="{ row }">
-          <el-button type="text" @click="viewCard(row)">学习证明</el-button>
-          <el-button type="text" @click="viewMonth(row)">学习月报</el-button>
+          <el-button
+            type="text"
+            @click="viewCard(row)"
+            :disabled="row.finishMark == ''"
+            >学习证明</el-button
+          >
+          <el-button
+            type="text"
+            @click="viewMonth(row)"
+            :disabled="row.finishMark == ''"
+            >学习月报</el-button
+          >
         </template>
       </el-table-column>
     </el-table>

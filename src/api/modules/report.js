@@ -258,5 +258,14 @@ export default {
       params,
     });
   },
+  // 驾运宝 学习地址前缀
+  getLearnRecordUrl(params) {
+    return $axios.get(
+      `/blade-anbiao/anbiao/jiaYunBaoStudyInfo/getLearnRecordUrl`,
+      {
+        params,
+      }
+    );
+  },
   awaitWrap,
 };
