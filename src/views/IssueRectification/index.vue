@@ -9,7 +9,7 @@
   padding: 20px;
   box-sizing: border-box;
   height: 100%;
-  .search {
+  .search_iss {
     color: #ffffff;
     .sbtn {
       height: 2.1429rem;
@@ -94,7 +94,7 @@
 }
 </style>
 <style lang="scss">
-.search {
+.search_iss {
   .el-form-item__label {
     color: #d3d4d6;
   }
@@ -146,21 +146,25 @@
 .tablePopper {
   max-width: 400px;
 }
-.search {
+.search_iss {
   .el-form-item {
     .el-input {
       width: 6vw;
     }
-  }
-  .el-date-editor.el-input,
-  .el-date-editor.el-input__inner {
-    width: 6vw;
+    .el-date-editor.el-input {
+      width: 6.4vw;
+    }
+    .el-select {
+      .el-input {
+        width: 4vw;
+      }
+    }
   }
 }
 </style>
 <template>
   <div class="main">
-    <el-form :inline="true" size="mini" :model="form" class="search">
+    <el-form :inline="true" size="mini" :model="form" class="search_iss">
       <el-form-item label="标题:">
         <el-input
           v-model="form.biaoti"
@@ -175,7 +179,7 @@
           v-model="form.beginDate"
           value-format="yyyy-MM-dd"
           type="date"
-          placeholder="选择日期时间"
+          placeholder="选择日期"
         >
         </el-date-picker>
         <span>-</span>
@@ -185,7 +189,7 @@
           v-model="form.endDate"
           value-format="yyyy-MM-dd"
           type="date"
-          placeholder="选择日期时间"
+          placeholder="选择日期"
         >
         </el-date-picker>
       </el-form-item>
@@ -196,7 +200,7 @@
           v-model="form.createBeginTime"
           value-format="yyyy-MM-dd"
           type="date"
-          placeholder="选择日期时间"
+          placeholder="选择日期"
         >
         </el-date-picker>
         <span>-</span>
@@ -206,7 +210,7 @@
           v-model="form.createEndTime"
           value-format="yyyy-MM-dd"
           type="date"
-          placeholder="选择日期时间"
+          placeholder="选择日期"
         >
         </el-date-picker>
       </el-form-item>
@@ -447,8 +451,8 @@ export default {
           .startOf("month")
           .format("YYYY-MM-DD"), //限期整改时间
         endDate: dayjs().format("YYYY-MM-DD"),
-        createBeginTime: '', //通知时间
-        createEndTime: '',
+        createBeginTime: "", //通知时间
+        createEndTime: "",
       }, // 搜索参数
       defaultdDate: "",
       // expireTimeOption: {
@@ -478,11 +482,11 @@ export default {
 
     this.form.createBeginTime = this.$route.query.createBeginTime
       ? this.$route.query.createBeginTime
-      : '';
+      : "";
 
     this.form.createEndTime = this.$route.query.createEndTime
       ? this.$route.query.createEndTime
-      : '';
+      : "";
   },
 
   computed: {

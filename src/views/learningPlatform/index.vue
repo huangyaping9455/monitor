@@ -196,15 +196,17 @@
             size="mini"
             class="btn"
             icon="el-icon-search"
-            >查询</el-button
           >
+            查询
+          </el-button>
           <el-button
             @click="refresh"
             size="mini"
             class="btn"
             icon="el-icon-refresh"
-            >刷新</el-button
           >
+            刷新
+          </el-button>
         </div>
         <!-- 查询 -->
         <el-form

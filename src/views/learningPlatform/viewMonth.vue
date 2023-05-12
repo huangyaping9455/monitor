@@ -16,7 +16,7 @@
         name="iframe"
         class="w100"
         style="height: 100%; width: 100%"
-        :src="`http://jxjy.jiayunbao.cn/userMstatT/fgnMonth?sign=${sign}&channel=440000001&timestamp=${timestamp}&statYm=${month}&bcNo=${rows.bcNo}&idcNo=${rows.usercard}`"
+        :src="`${studyUrl}/userMstatT/fgnMonth?sign=${sign}&channel=440000001&timestamp=${timestamp}&statYm=${month}&bcNo=${rows.bcNo}&idcNo=${rows.usercard}`"
         frameborder=""
         scrolling="auto"
       ></iframe>
@@ -32,6 +32,7 @@
 <script>
 import md5 from "js-md5";
 import dayjs from "dayjs";
+import dataAnalysisApi from "@/api/modules/report";
 export default {
   data() {
     return {
@@ -39,6 +40,7 @@ export default {
       iLoading: true,
       rows: {},
       month: "",
+      studyUrl: "",
     };
   },
   computed: {
@@ -73,7 +75,19 @@ export default {
       this.rows = row;
       this.month = month;
       this.iLoading = true;
+      this.getLearnRecordUrl();
       this.learnVisible = true;
+    },
+    //驾运宝 地址前缀
+    async getLearnRecordUrl() {
+      let [err, data] = await dataAnalysisApi.awaitWrap(
+        dataAnalysisApi.getLearnRecordUrl()
+      );
+      if (data) {
+        this.studyUrl = data;
+      } else {
+        this.$message.error(err);
+      }
     },
   },
 };
