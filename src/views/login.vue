@@ -62,8 +62,8 @@
     background-color: #ffffff;
     .icon {
       margin-top: 9px;
-      fill: currentColor;
-      color: red !important;
+      // fill: currentColor;
+      color: #19489f !important;
     }
   }
   .verification {
@@ -103,20 +103,20 @@
   //   background-color: white;
   // }
   .inputbox {
-    input {
-      // background: #112e4d;
-      // border-color: #004b77;
-      // color: #ffffff;
+    .el-input__inner {
       // background-color: white !important;
-      // border-bottom: 3px solid #bad6fc;
-      border-radius: none;
-      // border-bottom: 1px solid #e4e4e4;
+      background-color: rgba(255, 255, 255, 0.247);
+      border: none;
+      border-bottom: 2px solid #bad6fc;
+      border-radius: 0px;
       height: 2.8571rem;
       font-size: 1rem;
-      // &:focus {
-      //   border-color: #00d2ff;
-      // }
+      caret-color:#bad6fc;
+      &:focus {
+        border-color: #bad6fc;
+      }
     }
+    
   }
 }
 </style>
@@ -154,8 +154,9 @@
             type="text"
             v-model="form.name"
             placeholder="用户名"
+            prefix-icon="el-icon-user"
           >
-            <svg-icon slot="prefix" class="icon" icon-class="name" />
+            <!-- <svg-icon slot="prefix" class="icon" icon-class="name" /> -->
           </el-input>
         </el-form-item>
         <el-form-item prop="pass">
@@ -164,8 +165,9 @@
             type="password"
             v-model="form.pass"
             placeholder="密码"
+            prefix-icon="el-icon-goods"
           >
-            <svg-icon slot="prefix" class="icon" icon-class="pass" />
+            <!-- <svg-icon slot="prefix" class="icon" icon-class="pass" /> -->
           </el-input>
         </el-form-item>
         <el-form-item prop="code">
