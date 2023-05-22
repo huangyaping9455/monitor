@@ -132,12 +132,12 @@
               <span>数据分析</span>
             </div>
           </el-menu-item>
-          <!-- <el-menu-item index="home" @click="openMap">
+          <el-menu-item index="home" @click="openMap">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="map" />
               <span>地图监控</span>
             </div>
-          </el-menu-item> -->
+          </el-menu-item>
           <!-- <el-menu-item index="dataAnalysis_gz" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="shujvfenxi" />
@@ -308,24 +308,30 @@
               <span>安全达标</span>
             </div>
           </template>
-          <el-menu-item index="safeStandard" @click="openMenu">
+          <!-- <el-menu-item index="safeStandard" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="zhenggai" />
               <span>企业达标明细</span>
             </div>
-          </el-menu-item>
+          </el-menu-item> -->
           <el-menu-item index="safeDocument" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="zhenggai" />
               <span>安全台账明细</span>
             </div>
           </el-menu-item>
-          <!-- <el-menu-item index="safeStandardRank" @click="openMenu">
+          <el-menu-item index="safeStandardRank" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="shuju" />
               <span>合规台账排名</span>
             </div>
-          </el-menu-item> -->
+          </el-menu-item>
+          <el-menu-item index="infomationRank" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="wanzheng" />
+              <span>资料完整率统计</span>
+            </div>
+          </el-menu-item>
         </el-submenu>
         <el-submenu index="7">
           <template slot="title">
@@ -472,12 +478,12 @@
               <span>车辆事故</span>
             </div>
           </el-menu-item>
-          <!-- <el-menu-item index="law" @click="openMenu">
+          <el-menu-item index="law" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="falv" />
               <span>法律法规</span>
             </div>
-          </el-menu-item> -->
+          </el-menu-item>
         </el-submenu>
         <!-- <el-submenu index="11">
           <template slot="title">

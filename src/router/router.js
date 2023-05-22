@@ -20,7 +20,7 @@ export const constantRouterMap = [
   {
     path: "/",
     // redirect: '/home'
-    redirect: function () {
+    redirect: function() {
       if (window.location.search === "") {
         return "/home";
       } else {
@@ -696,6 +696,15 @@ export const constantRouterMap = [
           requiresAuth: true,
         },
         component: () => import("@/views/YYSSafetyInspection/index"),
+      },
+      {
+        path: "/infomationRank",
+        name: "infomationRank",
+        meta: {
+          title: "资料完整率统计",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/infomationRank/index"),
       },
     ],
   },

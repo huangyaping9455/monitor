@@ -267,5 +267,12 @@ export default {
       }
     );
   },
+  // 档案信息完整率列表列表
+  getDeptFullRateTJ(data) {
+    return $axios.post(
+      "/blade-anbiao/anbiao/deptFullRate/getDeptFullRateTJ",
+      data
+    );
+  },
   awaitWrap,
 };
