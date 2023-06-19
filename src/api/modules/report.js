@@ -54,6 +54,10 @@ export default {
       data
     );
   },
+  // 道路运输企业联网联控考核评分 成都
+  getCDDayTJ(data) {
+    return $axios.post("/blade-anbiao/anbiao/lwlkDeptDay/getCDDayTJ", data);
+  },
   // 道路运输运营商联网联控考核评分
   getFWSLWLKTJ(data) {
     return $axios.post(

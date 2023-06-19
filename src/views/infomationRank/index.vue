@@ -277,6 +277,9 @@
                 @click="
                   $router.push({
                     path: '/vehicleArchives',
+                    query: {
+                      deptName: scope.row.deptName,
+                    },
                   })
                 "
                 >{{ scope.row.vehFullRate }}</span
@@ -299,6 +302,9 @@
                 @click="
                   $router.push({
                     path: '/driverArchives',
+                    query: {
+                      deptName: scope.row.deptName,
+                    },
                   })
                 "
                 >{{ scope.row.jsyFullRate }}</span
@@ -321,6 +327,9 @@
                 @click="
                   $router.push({
                     path: '/QYvehicle',
+                    query: {
+                      deptName: scope.row.deptName,
+                    },
                   })
                 "
                 >{{ scope.row.deptFullRate }}</span

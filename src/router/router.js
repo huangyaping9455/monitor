@@ -19,14 +19,14 @@ Router.prototype.replace = function replace(location) {
 export const constantRouterMap = [
   {
     path: "/",
-    // redirect: '/home'
-    redirect: function() {
-      if (window.location.search === "") {
-        return "/home";
-      } else {
-        return "wel";
-      }
-    },
+    redirect: "/home",
+    // redirect: function() {
+    //   if (window.location.search === "") {
+    //     return "/home";
+    //   } else {
+    //     return "wel";
+    //   }
+    // },
   },
   {
     path: "/login",
@@ -218,7 +218,16 @@ export const constantRouterMap = [
     },
     component: () => import("@/views/YYSEnterprise/index.vue"),
   },
-  // 道路运输企业联网联控考核评分
+  //  联网联控业户考核（日）列表（成都）
+  {
+    path: "/LWLKStatic_cd",
+    name: "LWLKStatic_cd",
+    meta: {
+      requiresAuth: true,
+    },
+    component: () => import("@/views/LWLKStatic/index-cd"),
+  },
+  //道路运输企业联网联控考核评分
   {
     path: "/LWLKStatic",
     name: "LWLKStatic",

@@ -269,7 +269,7 @@
             <template slot-scope="{ row }">
               <el-button
                 size="mini"
-                style="color:#00c8f5;"
+                style="color: #00c8f5"
                 type="text"
                 @click="viewShow(row)"
                 >详情</el-button
@@ -386,6 +386,9 @@ export default {
     };
   },
   created() {
+    if (this.$route.query.deptName) {
+      this.form.deptName = this.$route.query.deptName;
+    }
     this.selectZFPersonLearnInfoAll();
   },
   computed: {
@@ -475,7 +478,7 @@ export default {
           if (i.shenfenzhenghao) {
             i.shenfenzhenghao = i.shenfenzhenghao.replace(
               /^(.{6})(?:\d+)(.{4})$/,
-              "\$1****\$2"
+              "$1****$2"
             );
           }
           return i;

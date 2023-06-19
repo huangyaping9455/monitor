@@ -1,6 +1,6 @@
 <style lang="scss" scoped>
 .enterprise {
-  height: 90vh;
+  height: 100vh;
   background: #0b122e;
   .main {
     height: calc(100vh - 7rem);
@@ -8,8 +8,8 @@
     padding: 0 10px 10px 10px;
     box-sizing: border-box;
     .main-r {
-      //   margin-left: 1.0714rem;
-      width: calc(100%);
+      margin-left: 1.0714rem;
+      width: calc(100% - 24rem);
     }
     .btns {
       margin-top: 0.3571rem;
@@ -41,7 +41,7 @@
       width: 59.9998px;
       background-image: linear-gradient(0deg, #0080de 0%, #00c8f5 100%);
     }
-    .vehicleTable {
+    .mainTable {
       width: 100%;
       background: #0f1f40;
       border: 0.0714rem solid #0a3774;
@@ -57,6 +57,9 @@
       .numerical {
         margin: 0;
         white-space: nowrap;
+        /* span{
+          color: rgb(255,217,47)
+        } */
         &.ccur span {
           cursor: pointer;
           color: rgb(255, 217, 47);
@@ -121,9 +124,6 @@
   .el-form-item__label {
     color: #01f8ff;
   }
-  .inputW {
-    width: 10.7143rem;
-  }
   input {
     background: #112e4d;
     border-color: #004b77;
@@ -138,9 +138,8 @@
     margin-bottom: 0.8rem;
   }
 }
-.vehicleTable {
-  &.el-table--enable-row-hover .el-table__body tr:hover > td,
-  .el-table__body tr.hover-row > td {
+.mainTable {
+  &.el-table--enable-row-hover .el-table__body tr:hover > td {
     background: #ffffff38;
   }
   thead.is-group th {
@@ -177,11 +176,6 @@
   .el-table__body-wrapper {
     height: calc(100% - 92px);
   }
-  .el-table__fixed-right {
-    background: #0f1f40;
-    border-left: 1px solid #0a3774;
-    height: calc(100% - 9px) !important;
-  }
 }
 .pagesize {
   .el-input__inner {
@@ -193,7 +187,9 @@
 
 <template>
   <div class="enterprise">
+    <all-header></all-header>
     <div class="main">
+      <statistics-aside></statistics-aside>
       <div class="main-r">
         <!-- 操作按钮 -->
         <div class="btns">
@@ -204,6 +200,18 @@
             icon="el-icon-search"
             >查询</el-button
           >
+          <el-button
+            size="mini"
+            :loading="downloading"
+            @click="downtable"
+            class="btn"
+          >
+            <svg-icon
+              class="icon"
+              v-show="!downloading"
+              icon-class="down"
+            />下载
+          </el-button>
           <el-button
             @click="refresh"
             size="mini"
@@ -225,39 +233,23 @@
               v-model="form.deptName"
               placeholder="请输入企业名称"
               clearable
-              class="inputW"
             ></el-input>
           </el-form-item>
-          <el-form-item label="车辆牌照">
-            <el-input
-              v-model="form.cheliangpaizhao"
-              placeholder="请输入车辆牌照"
-              clearable
-              class="inputW"
-            ></el-input>
+          <el-form-item label="开始日期">
+            <el-date-picker
+              v-model="form.beginTime"
+              type="date"
+              value-format="yyyy-MM-dd"
+              placeholder="选择结束日期"
+            ></el-date-picker>
           </el-form-item>
-          <el-form-item label="终端ID">
-            <el-input
-              v-model="form.zongduanid"
-              placeholder="请输入终端ID"
-              clearable
-              class="inputW"
-            ></el-input>
-          </el-form-item>
-          <el-form-item label="运营类型">
-            <el-select
-              v-model="form.shiyongxingzhi"
-              clearable
-              class="inputW"
-              placeholder="请选择运营类型"
-            >
-              <el-option label="道路危险货物运输" value="道路危险货物运输">
-              </el-option>
-              <el-option label="道路旅客运输" value="道路旅客运输"> </el-option>
-              <el-option label="道路货物运输" value="道路货物运输"> </el-option>
-              <el-option label="出租车" value="出租车"> </el-option>
-              <el-option label="其他" value="其他"> </el-option>
-            </el-select>
+          <el-form-item label="结束日期">
+            <el-date-picker
+              v-model="form.endTime"
+              type="date"
+              value-format="yyyy-MM-dd"
+              placeholder="选择结束日期"
+            ></el-date-picker>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" class="sbtn" @click="getDate(1)"
@@ -265,37 +257,145 @@
             >
           </el-form-item>
         </el-form>
+        <!-- mainTable -->
         <el-table
           v-loading="loading"
           element-loading-background="rgba(0, 0, 0, 0.4)"
           size="mini"
-          class="vehicleTable"
+          class="mainTable"
           :height="enterpriseListH"
           border
           :data="enterpriseList"
         >
-          <el-table-column
-            :prop="item.prop"
-            :label="item.label"
-            :align="item.align"
-            :show-overflow-tooltip="true"
-            :width="item.width"
-            v-for="(item, index) in formItemList"
-            :key="index"
-          >
-          </el-table-column>
-          <el-table-column label="操作" align="center" width="80" fixed="right">
-            <template slot-scope="{ row }">
-              <el-button
-                size="mini"
-                style="color: #00c8f5"
-                type="text"
-                @click="ViewClick(row)"
-                >详情</el-button
-              >
+          <el-table-column type="index" label="排名" width="50" align="center">
+            <template scope="scope">
+              <span>{{
+                (current - 1) * pagesizeactive + scope.$index + 1
+              }}</span>
             </template>
           </el-table-column>
+          <el-table-column
+            label="企业名称"
+            prop="deptName"
+            min-width="200"
+            :show-overflow-tooltip="true"
+            align="center"
+          >
+          </el-table-column>
+          <el-table-column
+            label="考核得分"
+            prop="totalScore"
+            width="80"
+            align="center"
+            show-overflow-tooltip
+          >
+          </el-table-column>
+          <el-table-column
+            label="上线车辆数"
+            prop="olVehCount"
+            align="center"
+            width="90"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="入网车辆数"
+            prop="joinVehCount"
+            align="center"
+            width="90"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="上线率(%)"
+            prop="onlineRateShow"
+            align="center"
+            width="80"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="得分"
+            prop="onlineScore"
+            align="center"
+            width="60"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="轨迹完整总里程(km)"
+            prop="continuationMile"
+            align="center"
+            width="140"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="轨迹总里程(km)"
+            prop="sumMile"
+            align="center"
+            width="110"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="轨迹完整率"
+            prop="continuationRateShow"
+            align="center"
+            width="90"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="得分"
+            prop="continuationScore"
+            align="center"
+            width="60"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="静态数据合格率(%)"
+            prop="avgFullRate"
+            align="center"
+            width="140"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="得分"
+            prop="avgFullScore"
+            align="center"
+            width="60"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="动态数据合格率(%)"
+            prop="qualifyRateShow"
+            align="center"
+            width="140"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="得分"
+            prop="qualifyScore"
+            width="60"
+            align="center"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="漂移车辆数"
+            prop="driftingVehCount"
+            width="110"
+            align="center"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="卫星漂移率(%)"
+            prop="driftingRateShow"
+            align="center"
+            width="120"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="得分"
+            prop="driftingScore"
+            align="center"
+            show-overflow-tooltip
+          ></el-table-column>
         </el-table>
+        <!-- page -->
         <div class="page">
           <div class="page-l">
             <span>
@@ -368,77 +468,54 @@
             </div>
           </div>
         </div>
-        <view-detail
-          ref="viewShow"
-          :vehiclemsgList="vehiclemsgList"
-        ></view-detail>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import allHeader from "@/components/Header/index";
+import statisticsAside from "@/components/StatisticsAside/index";
 import dataAnalysisApi from "@/api/modules/report";
 import { mapGetters } from "vuex";
 import { format } from "@/config/date";
-import { vehicleList } from "@/config/vehicleList";
-import viewDetail from "./viewDetail.vue";
+import { export_json_to_excel } from "@/config/Export2Excel";
 export default {
-  components: { viewDetail },
+  components: {
+    "statistics-aside": statisticsAside,
+    "all-header": allHeader,
+  },
   data() {
     return {
       loading: false,
+      downloading: false,
       searchshow: false,
       total: 0, //消息总数
       current: 1, //当前页数
       pageTotal: 1, //总页数
-      pagesize: [10, 20, 30, 50, 100], //每页显示列表
+      pagesize: [20, 30, 50, 100, 200], //每页显示列表
       pagesizeactive: 20, //当前每页显示
       enterpriseListH: "calc(100vh - 14.6814rem)",
       form: {
+        beginTime: format(
+          new Date().getTime() - 3600 * 1000 * 24,
+          "YYYY-MM-DD"
+        ),
+        endTime: format(new Date(), "YYYY-MM-DD"),
         deptName: "",
-        cheliangpaizhao: "",
-        zongduanid: "",
-        shiyongxingzhi: "",
       },
       enterpriseList: [],
       zhengfuId: "", //地区id
-      vehiclemsgList: {},
     };
   },
-  created() {
-    if (this.$route.query.deptName) {
-      this.form.deptName = this.$route.query.deptName;
-    }
-    this.getZFVehiclePage();
+  mounted() {
+    this.getCDDayTJ();
   },
   computed: {
     ...mapGetters({
       zhuzzhiId: "government/fasongdanwei",
       xuanzhongchengshi: "government/xuanzhongchengshi",
     }),
-    formItemList() {
-      let List = [];
-      vehicleList().map((el) => {
-        if (el.hide == undefined || el.hide == false) {
-          List.push(el);
-        }
-      });
-      let b = 0; //设置用来调换位置的值
-      let a = List; //冒泡排序
-      for (let i = 0; i < a.length; i++) {
-        for (let j = 0; j < a.length - i; j++) {
-          if (a[j + 1] != undefined) {
-            if (a[j].sort > a[j + 1].sort) {
-              b = a[j];
-              a[j] = a[j + 1];
-              a[j + 1] = b;
-            }
-          }
-        }
-      }
-      return a;
-    },
   },
   watch: {
     zhuzzhiId(newid) {
@@ -452,23 +529,25 @@ export default {
   methods: {
     refresh() {
       this.form = {
+        beginTime: format(
+          new Date().getTime() - 3600 * 1000 * 24,
+          "YYYY-MM-DD"
+        ),
+        endTime: format(new Date(), "YYYY-MM-DD"),
         deptName: "",
-        cheliangpaizhao: "",
-        zongduanid: "",
-        shiyongxingzhi: "",
       };
       this.getDate(1);
     },
     // 请求数据判断
     getDate(page) {
-      this.getZFVehiclePage(page);
+      this.getCDDayTJ(page);
     },
     //地区报警处理率
-    async getZFVehiclePage(current = 1) {
+    async getCDDayTJ(current = 1) {
       current = Number(current);
       this.loading = true;
       let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.getZFVehiclePage({
+        dataAnalysisApi.getCDDayTJ({
           deptId: this.zhuzzhiId,
           current: current,
           size: this.pagesizeactive,
@@ -477,39 +556,7 @@ export default {
       );
       this.loading = false;
       if (data) {
-        this.enterpriseList = data.records.map((el) => {
-          if (el.zhongduanleixing == "0") {
-            el.zhongduanleixing = "主动安全设备";
-          } else if (el.zhongduanleixing == "1") {
-            el.zhongduanleixing = "2G设备";
-          } else {
-            el.zhongduanleixing = "";
-          }
-          if (el.platformconnectiontype == "1") {
-            el.platformconnectiontype = "直连";
-          } else if (el.platformconnectiontype == "2") {
-            el.platformconnectiontype = "转发";
-          }
-          if (el.cheliangzhuangtai == 0) {
-            el.cheliangzhuangtai = "营运";
-          } else if (el.cheliangzhuangtai == 1) {
-            el.cheliangzhuangtai = "停用";
-          } else if (el.cheliangzhuangtai == 2) {
-            el.cheliangzhuangtai = "报废";
-          }
-          if (el.jiashiyuanxingming.indexOf(",") != -1) {
-            el.jiashiyuanxingming2 = el.jiashiyuanxingming.split(",")[1];
-            el.jiashiyuanxingming = el.jiashiyuanxingming.split(",")[0];
-          }
-          if (el.jiashiyuandianhua.indexOf(",") != -1) {
-            el.jiashiyuandianhua2 = el.jiashiyuandianhua.split(",")[1];
-            el.jiashiyuandianhua = el.jiashiyuandianhua.split(",")[0];
-          }
-          el.videochannelnum = el.videochannelnum
-            ? el.videochannelnum + "路"
-            : "";
-          return el;
-        });
+        this.enterpriseList = data.records;
         //分页处理
         this.current = data.current;
         this.total = data.total;
@@ -524,9 +571,113 @@ export default {
         : (this.enterpriseListH = "calc(100vh - 16.8571rem)");
       this.searchshow = !this.searchshow;
     },
-    ViewClick(item) {
-      this.vehiclemsgList = item;
-      this.$refs.viewShow.vehicleVisible = true;
+    // 统计下载
+    async downtable() {
+      this.downloading = true;
+      let req, url;
+      url = "getCDDayTJ";
+      req = {
+        deptId: this.zhuzzhiId,
+        // };
+      };
+      let [err, data] = await dataAnalysisApi.awaitWrap(
+        dataAnalysisApi[url]({
+          ...req,
+          current: 0,
+          size: 0,
+          ...this.form,
+        })
+      );
+      this.downloading = false;
+      if (data) {
+        data = data.records.map((el, index) => {
+          return {
+            ...el,
+            index: index + 1,
+          };
+        });
+        this.export2Excel(data);
+      } else {
+        this.$message.error(err);
+      }
+    },
+    //处理下载数据
+    formatJson(filterVal, jsonData) {
+      return jsonData.map((v) => filterVal.map((j) => v[j]));
+    },
+    export2Excel(list) {
+      require.ensure([], () => {
+        let multiHeader, filterVal, merges, filename;
+        multiHeader = [
+          "排名",
+          "企业名称",
+          "考核得分",
+          "上线车辆数",
+          "入网车辆数",
+          "上线率(%)",
+          "得分",
+          "轨迹完整总里程(km)",
+          "轨迹总里程(km)",
+          "轨迹完整率",
+          "得分",
+          "静态数据合格率(%)",
+          "得分",
+          "动态数据合格率(%)",
+          "得分",
+          "漂移车辆数",
+          "卫星漂移率(%)",
+          "得分",
+        ];
+        filterVal = [
+          "index",
+          "deptName",
+          "totalScore",
+          "olVehCount",
+          "joinVehCount",
+          "onlineRateShow",
+          "onlineScore",
+          "continuationMile",
+          "sumMile",
+          "continuationRateShow",
+          "continuationScore",
+          "avgFullRate",
+          "avgFullScore",
+          "qualifyRateShow",
+          "qualifyScore",
+          "driftingVehCount",
+          "driftingRateShow",
+          "driftingScore",
+        ];
+        merges = [
+          "A1:A2",
+          "B1:B2",
+          "C1:C2",
+          "D1:D2",
+          "E1:E2",
+          "F1:F2",
+          "G1:G2",
+          "H1:H2",
+          "I1:I2",
+          "J1:J2",
+          "K1:K2",
+          "L1:L2",
+          "M1:M2",
+          "N1:N2",
+          "O1:O2",
+          "P1:P2",
+          "Q1:Q2",
+          "R1:R2",
+        ];
+        filename = "企业质量达标考核";
+        const data = this.formatJson(filterVal, list);
+        export_json_to_excel({
+          multiHeader,
+          header: multiHeader,
+          data,
+          filename: filename,
+          merges,
+        });
+      });
     },
   },
 };

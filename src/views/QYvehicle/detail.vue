@@ -14,7 +14,7 @@
         ref="form"
         :model="vehiclemsgList"
         label-width="170px"
-        style="overflow:auto;"
+        style="overflow: auto"
       >
         <el-col :span="8">
           <el-form-item label="企业名称：">
@@ -45,7 +45,7 @@
               type="date"
               disabled
               v-model="vehiclemsgList.jingyingxukezhengchulingriqi"
-              style="width: 100%;"
+              style="width: 100%"
               value-format="yyyy-MM-dd"
             ></el-date-picker>
           </el-form-item>
@@ -56,7 +56,7 @@
               type="date"
               disabled
               v-model="vehiclemsgList.jingyingxukezhengyouxiaoqi"
-              style="width: 100%;"
+              style="width: 100%"
               value-format="yyyy-MM-dd"
             ></el-date-picker>
           </el-form-item>
@@ -97,9 +97,8 @@
         <el-col :span="12">
           <el-form-item label="道路运输许可证：">
             <el-upload
-              :action="
-                '/api/blade-upload/upload/upload?fileId=profilePhoto&table=company'
-              "
+              disabled
+              :action="'/api/blade-upload/upload/upload?fileId=profilePhoto&table=company'"
               list-type="picture-card"
               :file-list="
                 !vehiclemsgList.profilePhoto ||
@@ -119,9 +118,8 @@
         <el-col :span="12">
           <el-form-item label="营业许可证：">
             <el-upload
-              :action="
-                '/api/blade-upload/upload/upload?fileId=logoPhoto&table=company'
-              "
+              disabled
+              :action="'/api/blade-upload/upload/upload?fileId=logoPhoto&table=company'"
               list-type="picture-card"
               :file-list="
                 !vehiclemsgList.logoPhoto || vehiclemsgList.logoPhoto === ''
@@ -140,9 +138,8 @@
         <el-col :span="12">
           <el-form-item label="企业安全负责人：">
             <el-upload
-              :action="
-                '/api/blade-upload/upload/upload?fileId=logoRizhi&table=company'
-              "
+              disabled
+              :action="'/api/blade-upload/upload/upload?fileId=logoRizhi&table=company'"
               list-type="picture-card"
               :file-list="
                 !vehiclemsgList.logoRizhi || vehiclemsgList.logoRizhi === ''
@@ -161,9 +158,8 @@
         <el-col :span="12">
           <el-form-item label="经营许可证：">
             <el-upload
-              :action="
-                '/api/blade-upload/upload/upload?fileId=homePhotoApp&table=company'
-              "
+              disabled
+              :action="'/api/blade-upload/upload/upload?fileId=homePhotoApp&table=company'"
               list-type="picture-card"
               :file-list="
                 !vehiclemsgList.homePhotoApp ||
@@ -183,9 +179,8 @@
         <el-col :span="12">
           <el-form-item label="工商营业执照：">
             <el-upload
-              :action="
-                '/api/blade-upload/upload/upload?fileId=loginPhotoApp&table=company'
-              "
+              disabled
+              :action="'/api/blade-upload/upload/upload?fileId=loginPhotoApp&table=company'"
               list-type="picture-card"
               :file-list="
                 !vehiclemsgList.loginPhotoApp ||
@@ -206,9 +201,8 @@
         <el-col :span="12">
           <el-form-item label="法人代表：">
             <el-upload
-              :action="
-                '/api/blade-upload/upload/upload?fileId=fujian&table=company'
-              "
+              disabled
+              :action="'/api/blade-upload/upload/upload?fileId=fujian&table=company'"
               list-type="picture-card"
               :file-list="
                 !vehiclemsgList.fujian || vehiclemsgList.fujian === ''

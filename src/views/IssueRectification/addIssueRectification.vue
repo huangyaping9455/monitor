@@ -230,7 +230,7 @@ li {
           <el-upload
             v-if="!eye"
             class="upload-demo"
-            action="/blade-upload/upload/upload"
+            action="/api/blade-upload/upload/upload"
             :data="uploadData"
             :headers="headers"
             :show-file-list="true"

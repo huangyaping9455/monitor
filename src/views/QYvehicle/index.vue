@@ -243,7 +243,7 @@
               v-model="form.deptName"
               placeholder="请输入企业名称"
               clearable
-              style="width:180px;"
+              style="width: 180px"
             ></el-input>
           </el-form-item>
           <el-form-item label="机构类型">
@@ -252,7 +252,7 @@
               clearable
               placeholder="请选择机构类型"
               @change="ZFjigou"
-              style="width:180px;"
+              style="width: 180px"
             >
               <el-option
                 v-for="item in jigouleix"
@@ -268,7 +268,7 @@
               v-model="form.farendaibiao"
               placeholder="请输入法人代表"
               clearable
-              style="width:180px;"
+              style="width: 180px"
             ></el-input>
           </el-form-item>
           <el-form-item label="所属交通局">
@@ -276,7 +276,7 @@
               v-model="form.yunguanmingcheng"
               placeholder="请输入所属交通局"
               clearable
-              style="width:180px;"
+              style="width: 180px"
             ></el-input>
           </el-form-item>
           <el-form-item label="经营范围">
@@ -284,7 +284,7 @@
               v-model="form.jigouzizhi"
               placeholder="请输入经营范围"
               clearable
-              style="width:180px;"
+              style="width: 180px"
             ></el-input>
           </el-form-item>
           <el-form-item>
@@ -403,7 +403,7 @@
             <template slot-scope="{ row }">
               <el-button
                 size="mini"
-                style="color:#00c8f5;"
+                style="color: #00c8f5"
                 type="text"
                 @click="viewShow(row)"
                 >详情</el-button
@@ -543,6 +543,9 @@ export default {
     };
   },
   mounted() {
+    if (this.$route.query.deptName) {
+      this.form.deptName = this.$route.query.deptName;
+    }
     this.getZFDQBJCLLVTJ();
   },
   computed: {

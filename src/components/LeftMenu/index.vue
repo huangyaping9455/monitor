@@ -159,7 +159,7 @@
           <el-menu-item index="vehicle" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="cheliang" />
-              <span>车辆统计</span>
+              <span>车辆状态统计</span>
             </div>
           </el-menu-item>
           <!-- <el-menu-item index="QYvehicle" @click="openMenu">
@@ -180,6 +180,7 @@
               <span>企业日运行统计</span>
             </div>
           </el-menu-item>
+
           <!-- <el-menu-item index="YYSDayStatistics_qd" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yunyingshang" />
@@ -292,6 +293,12 @@
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yuebao" />
               <span>月报</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="LWLKStatic_cd" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="qiyekaohe" />
+              <span>企业质量达标考核</span>
             </div>
           </el-menu-item>
           <!-- <el-menu-item index="quarterReport" @click="openMenu">
@@ -409,7 +416,7 @@
             </div>
           </el-menu-item>
         </el-submenu>
-        <el-submenu index="9">
+        <!-- <el-submenu index="9">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yiqing" />
@@ -434,7 +441,7 @@
               <span>车辆出/入区统计</span>
             </div>
           </el-menu-item>
-        </el-submenu>
+        </el-submenu> -->
         <el-submenu index="10">
           <template slot="title">
             <div class="menu-item">
@@ -445,7 +452,7 @@
           <el-menu-item index="QYvehicle" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="zhengqi" />
-              <span>企业统计</span>
+              <span>企业档案</span>
             </div>
           </el-menu-item>
           <el-menu-item index="vehicleArchives" @click="openMenu">
@@ -469,19 +476,19 @@
           <el-menu-item index="vehicleMaintain" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="weihu" />
-              <span>车辆维护</span>
+              <span>车辆维护档案</span>
             </div>
           </el-menu-item>
           <el-menu-item index="accident" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="shigu" />
-              <span>车辆事故</span>
+              <span>车辆事故档案</span>
             </div>
           </el-menu-item>
           <el-menu-item index="law" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="falv" />
-              <span>法律法规</span>
+              <span>法律法规档案</span>
             </div>
           </el-menu-item>
         </el-submenu>
