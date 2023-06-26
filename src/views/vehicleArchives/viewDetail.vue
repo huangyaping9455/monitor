@@ -30,13 +30,19 @@
         @click="cardChange(3)"
         >设备信息</span
       >
+      <span
+        :class="['cehicleCard_b', { isChange: ischanged === 4 }]"
+        @click="cardChange(4)"
+        >保险信息</span
+      >
     </div>
     <div class="cehicleCard_form">
       <el-form
         ref="form"
         :model="vehicleDetailList"
         label-width="170px"
-        style="overflow:auto;"
+        style="overflow: auto"
+        v-if="ischanged !== 4"
       >
         <div
           v-show="ischanged === indexs"
@@ -47,7 +53,7 @@
             checkList4,
           ]"
           :key="indexs"
-          style="display:flex;flex-wrap:wrap;"
+          style="display: flex; flex-wrap: wrap"
         >
           <el-col
             :span="item.span ? item.span : 8"
@@ -58,16 +64,17 @@
               :label="item.label"
               :prop="item.required == true ? item.prop : ''"
             >
+              <!-- :disabled="item.editDisabled ? item.editDisabled : false" -->
               <el-input
                 v-if="item.type === 'input'"
                 v-model="vehicleDetailList[item.prop]"
-                :disabled="item.editDisabled ? item.editDisabled : false"
+                disabled
               />
               <el-select
                 v-model="vehicleDetailList[item.prop]"
-                style="width:100%;"
+                style="width: 100%"
                 v-if="item.type === 'select'"
-                :disabled="item.editDisabled ? item.editDisabled : false"
+                disabled
               >
                 <el-option
                   :label="vall.label"
@@ -81,18 +88,18 @@
                 type="date"
                 placeholder="选择日期"
                 v-model="vehicleDetailList[item.prop]"
-                style="width: 100%;"
+                style="width: 100%"
                 value-format="yyyy-MM-dd"
                 format="yyyy-MM-dd"
-                :disabled="item.editDisabled ? item.editDisabled : false"
+                disabled
               ></el-date-picker>
               <el-upload
                 v-if="item.type === 'upload'"
                 :action="
                   '/api/blade-upload/upload/upload?fileId=' +
-                    item.prop +
-                    '&table=' +
-                    item.table
+                  item.prop +
+                  '&table=' +
+                  item.table
                 "
                 list-type="picture-card"
                 :on-success="
@@ -113,7 +120,7 @@
                     ? vehicleDetailList[item.prop]
                     : JSON.parse(vehicleDetailList[item.prop])
                 "
-                :disabled="item.editDisabled ? item.editDisabled : false"
+                disabled
               >
                 <i class="el-icon-plus"></i>
               </el-upload>
@@ -122,12 +129,140 @@
                 v-model="vehicleDetailList[item.prop]"
                 controls-position="right"
                 :min="0"
-                style="width: 100%;"
-                :disabled="item.editDisabled ? item.editDisabled : false"
+                style="width: 100%"
+                disabled
               ></el-input-number>
             </el-form-item>
           </el-col>
         </div>
+      </el-form>
+      <el-form
+        ref="form"
+        :model="insuranceDetailList"
+        label-width="170px"
+        style="overflow: auto"
+        v-else
+      >
+        <el-col :span="12">
+          <el-form-item label="交强险到期日期" prop="jiaoqiangxianshijian">
+            <el-date-picker
+              type="date"
+              placeholder="选择日期"
+              v-model="insuranceDetailList.jiaoqiangxianshijian"
+              style="width: 100%"
+              value-format="yyyy-MM-dd"
+              format="yyyy-MM-dd"
+              disabled
+            ></el-date-picker>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="商业险到期日期" prop="shangyexianshijian">
+            <el-date-picker
+              type="date"
+              placeholder="选择日期"
+              v-model="insuranceDetailList.shangyexianshijian"
+              style="width: 100%"
+              value-format="yyyy-MM-dd"
+              format="yyyy-MM-dd"
+              disabled
+            ></el-date-picker>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="超赔险到期日期" prop="">
+            <el-date-picker
+              type="date"
+              placeholder="选择日期"
+              v-model="insuranceDetailList.chaopeixianshijian"
+              style="width: 100%"
+              value-format="yyyy-MM-dd"
+              format="yyyy-MM-dd"
+              disabled
+            ></el-date-picker>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="雇主险到期日期" prop="guzhuxianshijian">
+            <el-date-picker
+              type="date"
+              placeholder="选择日期"
+              v-model="insuranceDetailList.guzhuxianshijian"
+              style="width: 100%"
+              value-format="yyyy-MM-dd"
+              format="yyyy-MM-dd"
+              disabled
+            ></el-date-picker>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="交强险附件" prop="">
+            <el-upload
+              action=""
+              :on-preview="handlePictureCardPreview"
+              :file-list="
+                insuranceDetailList.jiaoqiangxianfujian != '' &&
+                typeof insuranceDetailList.jiaoqiangxianfujian == typeof [1]
+                  ? insuranceDetailList.jiaoqiangxianfujian
+                  : []
+              "
+              disabled
+            >
+              <el-button size="small" type="primary">点击上传</el-button>
+            </el-upload>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="商业险附件" prop="">
+            <el-upload
+              action=""
+              :on-preview="handlePictureCardPreview"
+              :file-list="
+                insuranceDetailList.shangyexianfujian != '' &&
+                typeof insuranceDetailList.shangyexianfujian == typeof [1]
+                  ? insuranceDetailList.shangyexianfujian
+                  : []
+              "
+              disabled
+            >
+              <el-button size="small" type="primary">点击上传</el-button>
+            </el-upload>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="超赔险附件" prop="">
+            <el-upload
+              action=""
+              :on-preview="handlePictureCardPreview"
+              :file-list="
+                insuranceDetailList.chaopeixianfujian != '' &&
+                typeof insuranceDetailList.chaopeixianfujian == typeof [1]
+                  ? insuranceDetailList.chaopeixianfujian
+                  : []
+              "
+              disabled
+            >
+              <el-button size="small" type="primary">点击上传</el-button>
+            </el-upload>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="雇主险附件" prop="">
+            <el-upload
+              action=""
+              :on-preview="handlePictureCardPreview"
+              :file-list="
+                insuranceDetailList.guzhuxianfujian != '' &&
+                typeof insuranceDetailList.guzhuxianfujian == typeof [1]
+                  ? insuranceDetailList.guzhuxianfujian
+                  : []
+              "
+              disabled
+            >
+              <el-button size="small" type="primary">点击上传</el-button>
+            </el-upload>
+          </el-form-item>
+        </el-col>
       </el-form>
     </div>
     <div slot="footer">
@@ -162,6 +297,16 @@ export default {
       checkList3: "",
       checkList4: "",
       vehicleDetailList: {},
+      insuranceDetailList: {
+        jiaoqiangxianfujian: "",
+        jiaoqiangxianshijian: "",
+        shangyexianfujian: "",
+        shangyexianshijian: "",
+        chaopeixianfujian: "",
+        chaopeixianshijian: "",
+        guzhuxianfujian: "",
+        guzhuxianshijian: "",
+      },
     };
   },
   computed: {},
@@ -215,6 +360,43 @@ export default {
         if (this.vehicleDetailList.zhongduanleixing == "-1") {
           this.vehicleDetailList.zhongduanleixing = "";
         }
+
+        // 交强险
+        this.insuranceDetailList.jiaoqiangxianfujian =
+          this.vehicleDetailList.jiaoqiangxianfujian.indexOf("[") != -1
+            ? JSON.parse(this.vehicleDetailList.jiaoqiangxianfujian)
+            : "";
+        this.insuranceDetailList.jiaoqiangxianid =
+          this.vehicleDetailList.jiaoqiangxianid;
+        this.insuranceDetailList.jiaoqiangxianshijian =
+          this.vehicleDetailList.jiaoqiangxianshijian;
+        // 商业险
+        this.insuranceDetailList.shangyexianfujian =
+          this.vehicleDetailList.shangyexianfujian.indexOf("[") != -1
+            ? JSON.parse(this.vehicleDetailList.shangyexianfujian)
+            : "";
+        this.insuranceDetailList.shangyexianid =
+          this.vehicleDetailList.shangyexianid;
+        this.insuranceDetailList.shangyexianshijian =
+          this.vehicleDetailList.shangyexianshijian;
+        // 超赔险
+        this.insuranceDetailList.chaopeixianfujian =
+          this.vehicleDetailList.chaopeixianfujian.indexOf("[") != -1
+            ? JSON.parse(this.vehicleDetailList.chaopeixianfujian)
+            : "";
+        this.insuranceDetailList.chaopeixianid =
+          this.vehicleDetailList.chaopeixianid;
+        this.insuranceDetailList.chaopeixianshijian =
+          this.vehicleDetailList.chaopeixianshijian;
+        // 雇主险
+        this.insuranceDetailList.guzhuxianfujian =
+          this.vehicleDetailList.guzhuxianfujian.indexOf("[") != -1
+            ? JSON.parse(this.vehicleDetailList.guzhuxianfujian)
+            : "";
+        this.insuranceDetailList.guzhuxianid =
+          this.vehicleDetailList.guzhuxianid;
+        this.insuranceDetailList.guzhuxianshijian =
+          this.vehicleDetailList.guzhuxianshijian;
       } else {
         this.$message.error(err);
       }
@@ -277,6 +459,10 @@ export default {
     // 标签卡切换
     cardChange(index) {
       this.ischanged = index;
+    },
+    // 预览
+    handlePictureCardPreview(file) {
+      window.open(file.url, "_blank");
     },
   },
 };

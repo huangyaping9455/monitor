@@ -14,31 +14,29 @@
         ref="form"
         :model="driverDetailList"
         label-width="170px"
-        style="overflow:auto;"
+        style="overflow: auto"
       >
         <el-col :span="8">
           <el-form-item label="车辆牌照">
-            <el-input
-              v-model="driverDetailList.cheliangpaizhao"
-              :disabled="true"
-            />
+            <el-input v-model="driverDetailList.cheliangpaizhao" disabled />
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="车牌颜色">
-            <el-input v-model="driverDetailList.chepaiyanse" :disabled="true" />
+            <el-input v-model="driverDetailList.chepaiyanse" disabled />
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="车辆维护单位：" prop="cheliangweihudanwei">
-            <el-input v-model="driverDetailList.cheliangweihudanwei" />
+            <el-input v-model="driverDetailList.cheliangweihudanwei" disabled />
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="维护类别：">
             <el-select
               v-model="driverDetailList.weihuleibie"
-              style="width:100%;"
+              style="width: 100%"
+              disabled
             >
               <el-option
                 :label="item.label"
@@ -54,14 +52,18 @@
             <el-date-picker
               type="date"
               v-model="driverDetailList.jinchangriqi"
-              style="width: 100%;"
+              style="width: 100%"
               value-format="yyyy-MM-dd"
+              disabled
             ></el-date-picker>
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="进厂里程：">
-            <el-input v-model="driverDetailList.jinchanglichengdushu" />
+            <el-input
+              v-model="driverDetailList.jinchanglichengdushu"
+              disabled
+            />
           </el-form-item>
         </el-col>
         <el-col :span="8">
@@ -69,14 +71,15 @@
             <el-date-picker
               type="date"
               v-model="driverDetailList.chuchangriqi"
-              style="width: 100%;"
+              style="width: 100%"
               value-format="yyyy-MM-dd"
+              disabled
             ></el-date-picker>
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="维护/维修金额：">
-            <el-input v-model="driverDetailList.weihujine" />
+            <el-input v-model="driverDetailList.weihujine" disabled />
           </el-form-item>
         </el-col>
         <el-col :span="8">
@@ -84,21 +87,26 @@
             <el-date-picker
               type="date"
               v-model="driverDetailList.xiaciweihuriqi"
-              style="width: 100%;"
+              style="width: 100%"
               value-format="yyyy-MM-dd"
+              disabled
             ></el-date-picker>
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="下次进厂里程：">
-            <el-input v-model="driverDetailList.xiacijinchanglicheng" />
+            <el-input
+              v-model="driverDetailList.xiacijinchanglicheng"
+              disabled
+            />
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="是否合格：">
             <el-select
               v-model="driverDetailList.shifouhege"
-              style="width:100%;"
+              style="width: 100%"
+              disabled
             >
               <el-option label="是" value="是"></el-option>
               <el-option label="否" value="否"></el-option>
@@ -107,12 +115,12 @@
         </el-col>
         <el-col :span="8">
           <el-form-item label="认定维修点：" prop="rendingweixiudian">
-            <el-input v-model="driverDetailList.rendingweixiudian" />
+            <el-input v-model="driverDetailList.rendingweixiudian" disabled />
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="维护合同编号：" prop="weihuhetongbianhao">
-            <el-input v-model="driverDetailList.weihuhetongbianhao" />
+            <el-input v-model="driverDetailList.weihuhetongbianhao" disabled />
           </el-form-item>
         </el-col>
         <el-col :span="8">
@@ -120,14 +128,19 @@
             <el-date-picker
               type="date"
               v-model="driverDetailList.lurushijian"
-              style="width: 100%;"
+              style="width: 100%"
               value-format="yyyy-MM-dd"
+              disabled
             ></el-date-picker>
           </el-form-item>
         </el-col>
         <el-col :span="24">
           <el-form-item label="维护类容：">
-            <el-input type="textarea" v-model="driverDetailList.weihuneirong" />
+            <el-input
+              type="textarea"
+              v-model="driverDetailList.weihuneirong"
+              disabled
+            />
           </el-form-item>
         </el-col>
       </el-form>

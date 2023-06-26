@@ -24,6 +24,7 @@
     "sass": "^1.54.8",
     "vue": "^2.6.10",
     "vue-baidu-map": "^0.21.22",
+    "vue-drag-resize": "^1.5.4",
     "vue-pdf": "^4.3.0",
     "vue-router": "^3.0.3",
     "vue-seamless-scroll": "^1.1.21",

@@ -31,13 +31,13 @@
         ref="form"
         :model="driverDetailList"
         label-width="170px"
-        style="overflow:auto;"
+        style="overflow: auto"
       >
         <div
           v-show="ischanged === indexs"
           v-for="(el, indexs) in [checkList1, checkList2, checkList3]"
           :key="indexs"
-          style="display:flex;flex-wrap:wrap;"
+          style="display: flex; flex-wrap: wrap"
         >
           <el-col
             :span="item.span ? item.span : 8"
@@ -48,16 +48,17 @@
               :label="item.label"
               :prop="item.required == true ? item.prop : ''"
             >
+              <!-- :disabled="item.editDisabled ? item.editDisabled : false" -->
               <el-input
                 v-if="item.type === 'input'"
                 v-model="driverDetailList[item.prop]"
-                :disabled="item.editDisabled ? item.editDisabled : false"
+                disabled
               />
               <el-select
                 v-model="driverDetailList[item.prop]"
-                style="width:100%;"
+                style="width: 100%"
                 v-if="item.type === 'select'"
-                :disabled="item.editDisabled ? item.editDisabled : false"
+                disabled
               >
                 <el-option
                   :label="vall.label"
@@ -71,18 +72,18 @@
                 type="date"
                 placeholder="选择日期"
                 v-model="driverDetailList[item.prop]"
-                style="width: 100%;"
+                style="width: 100%"
                 value-format="yyyy-MM-dd"
                 format="yyyy-MM-dd"
-                :disabled="item.editDisabled ? item.editDisabled : false"
+                disabled
               ></el-date-picker>
               <el-upload
                 v-if="item.type === 'upload'"
                 :action="
                   '/api/blade-upload/upload/upload?fileId=' +
-                    item.prop +
-                    '&table=' +
-                    item.table
+                  item.prop +
+                  '&table=' +
+                  item.table
                 "
                 list-type="picture-card"
                 :on-success="
@@ -105,7 +106,7 @@
                     ? JSON.parse(driverDetailList[item.prop])
                     : driverDetailList[item.prop]
                 "
-                :disabled="item.editDisabled ? item.editDisabled : false"
+                disabled
               >
                 <i class="el-icon-plus"></i>
               </el-upload>
@@ -114,15 +115,15 @@
                 v-model="driverDetailList[item.prop]"
                 controls-position="right"
                 :min="0"
-                style="width: 100%;"
-                :disabled="item.editDisabled ? item.editDisabled : false"
+                style="width: 100%"
+                disabled
               ></el-input-number>
               <el-input
                 v-if="item.type === 'textarea'"
                 v-model="driverDetailList[item.prop]"
-                style="width: 100%;"
+                style="width: 100%"
                 type="textarea"
-                :disabled="item.editDisabled ? item.editDisabled : false"
+                disabled
               ></el-input>
             </el-form-item>
           </el-col>
@@ -189,11 +190,11 @@ export default {
       this.msgloading = false;
       if (data) {
         if (data.shenfenzhenghao) {
-            data.shenfenzhenghao = data.shenfenzhenghao.replace(
-              /^(.{6})(?:\d+)(.{4})$/,
-              "\$1****\$2"
-            );
-          }
+          data.shenfenzhenghao = data.shenfenzhenghao.replace(
+            /^(.{6})(?:\d+)(.{4})$/,
+            "$1****$2"
+          );
+        }
         this.driverDetailList = data;
       } else {
         this.$message.error(err);

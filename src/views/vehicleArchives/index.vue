@@ -291,7 +291,7 @@
                 style="color: #00c8f5"
                 type="text"
                 @click="ViewClick(row)"
-                >详情</el-button
+                >查看</el-button
               >
             </template>
           </el-table-column>

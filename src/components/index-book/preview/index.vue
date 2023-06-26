@@ -14,13 +14,14 @@
           <i class="el-icon-download" />
         </div>
       </div>
-      <!-- <div class="icons">
-        <el-tooltip :content="move ? '取消滑动预览' : '滑动预览'">
+      <div class="icons" @click="$refs.pmodel.previewVisible = true">
+        <!-- <el-tooltip :content="move ? '取消滑动预览' : '滑动预览'">
           <i class="md-move" :class="{ active: move }" @click="toogelMove" />
-        </el-tooltip>
-      </div> -->
+        </el-tooltip> -->
+        <i class="el-icon-full-screen"></i>
+      </div>
     </div>
-    <div :class="['body', { 'move-cursor': move }]" v-loading="loading">
+    <div class="body">
       <scroll ref="scroll" :ops="scrollOps">
         <div class="printConent wh100">
           <div
@@ -29,10 +30,8 @@
           >
             <el-image
               v-for="(src, index) in files"
-              v-show="!loading"
               :src="src"
               :key="index"
-              :style="printStyle"
               :preview-src-list="[src]"
               style="padding-top: 2px"
             />
@@ -85,6 +84,14 @@
         <span>最新访问时间：{{ active.lastPreviewTime }}</span>
       </div>
     </div>
+    <preview-modal
+      ref="pmodel"
+      :scrollOps="scrollOps"
+      :active="active"
+      :files="files"
+      :pdfUrl="pdfUrl"
+      :numPages="numPages"
+    ></preview-modal>
   </div>
 </template>
 
@@ -94,9 +101,10 @@ import axios from "axios";
 import DocPreview from "./docPreview.vue";
 import ExcelPreview from "./excelPreview.vue";
 import pdf from "vue-pdf";
+import PreviewModal from "./previewModal.vue";
 export default {
   name: "preview-doc",
-  components: { DocPreview, ExcelPreview, pdf },
+  components: { DocPreview, ExcelPreview, pdf, PreviewModal },
   props: {
     active: {
       type: Object,
@@ -148,6 +156,7 @@ export default {
           },
         },
       },
+      numPages: 0,
     };
   },
   computed: {
@@ -157,6 +166,9 @@ export default {
     ...mapGetters({
       userinfo: "userinfo",
     }),
+    pdfUrl() {
+      return pdf.createLoadingTask("/previewapi/" + this.files[0]);
+    },
   },
   watch: {
     active() {
@@ -338,6 +350,7 @@ export default {
     .icons {
       display: flex;
       font-size: 18px;
+      cursor: pointer;
       i {
         margin-left: 10px;
       }
