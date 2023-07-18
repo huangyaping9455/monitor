@@ -292,21 +292,27 @@ export default {
               this.$set(this.active, "fType", "doc");
               this.$set(this.active, "_fileList", [
                 data.isMuban && data.isMuban == 1
-                  ? data.mubanPath + "/" + data.name
+                  ? data.mubanPath.indexOf(".pdf") != -1
+                    ? data.mubanPath
+                    : data.mubanPath + "/" + data.name
                   : data.path,
               ]);
             } else if (data.name.indexOf(".xls") != -1) {
               this.$set(this.active, "fType", "xls");
               this.$set(this.active, "_fileList", [
                 data.isMuban && data.isMuban == 1
-                  ? data.mubanPath + "/" + data.name
+                  ? data.mubanPath.indexOf(".pdf") != -1
+                    ? data.mubanPath
+                    : data.mubanPath + "/" + data.name
                   : data.path,
               ]);
             } else if (data.name.indexOf(".pdf") != -1) {
               this.$set(this.active, "fType", "pdf");
               this.$set(this.active, "_fileList", [
                 data.isMuban && data.isMuban == 1
-                  ? data.mubanPath + "/" + data.name
+                  ? data.mubanPath.indexOf(".pdf") != -1
+                    ? data.mubanPath
+                    : data.mubanPath + "/" + data.name
                   : data.path,
               ]);
               // 获取pdf分页
