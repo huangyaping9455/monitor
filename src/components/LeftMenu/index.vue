@@ -499,7 +499,7 @@
             </div>
           </el-menu-item>
         </el-submenu> -->
-        <!-- <el-submenu index="12">
+        <el-submenu index="12">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="fengxian" />
@@ -518,7 +518,7 @@
               <span slot="title">视频监控</span>
             </div>
           </el-menu-item>
-        </el-submenu> -->
+        </el-submenu>
         <!-- <el-submenu index="13">
           <template slot="title">
             <div class="menu-item">
