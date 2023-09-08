@@ -514,11 +514,11 @@ export default {
       },
       enterpriseList: [],
       pickerOptions: {
-        disabledDate: (time) => {
-          let nowData = new Date();
-          nowData = new Date(nowData.setDate(nowData.getDate() - 1));
-          return time > nowData;
-        },
+        // disabledDate: (time) => {
+        //   let nowData = new Date();
+        //   nowData = new Date(nowData.setDate(nowData.getDate() - 1));
+        //   return time > nowData;
+        // },
       },
       orderColumns: "", //排序字段
       order: "", //正序/倒序

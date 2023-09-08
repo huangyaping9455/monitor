@@ -495,12 +495,12 @@ export default {
         endtime: format(new Date().getTime(), "YYYY-MM-DD"),
       },
       pickerOptions: {
-        disabledDate(time) {
-          return (
-            time.getTime() > Date.now() ||
-            time.getTime() < Date.now() - 24 * 60 * 60 * 1000 * 30
-          );
-        },
+        // disabledDate(time) {
+        //   return (
+        //     time.getTime() > Date.now() ||
+        //     time.getTime() < Date.now() - 24 * 60 * 60 * 1000 * 30
+        //   );
+        // },
       },
       enterpriseList: [],
       enterpriseCount: [],

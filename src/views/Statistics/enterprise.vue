@@ -212,9 +212,14 @@
           :model="form"
           class="search"
         >
-          <!-- <el-form-item label="所属企业">
-            <el-input v-model="formInline.company"></el-input>
-          </el-form-item>-->
+          <el-form-item label="所属企业:">
+            <el-input
+              v-model="form.deptName"
+              class="search-input"
+              placeholder="请输入所属企业"
+              clearable
+            ></el-input>
+          </el-form-item>
           <el-form-item label="时间">
             <el-col :span="11" class="timetype">
               <el-form-item>
@@ -483,6 +488,7 @@ export default {
       pagesizeactive: 20, //当前每页显示
       enterpriseListH: "calc(100vh - 13.5714rem)",
       form: {
+        deptName: "",
         begintime: format(
           new Date().getTime() - 24 * 60 * 60 * 1000,
           "YYYY-MM-DD"
@@ -494,11 +500,11 @@ export default {
       },
       enterpriseList: [],
       pickerOptions: {
-        disabledDate: (time) => {
-          let nowData = new Date();
-          nowData = new Date(nowData.setDate(nowData.getDate() - 1));
-          return time > nowData;
-        },
+        // disabledDate: (time) => {
+        //   let nowData = new Date();
+        //   nowData = new Date(nowData.setDate(nowData.getDate() - 1));
+        //   return time > nowData;
+        // },
       },
       orderColumns: "", //排序字段
       order: "", //正序/倒序
@@ -541,6 +547,7 @@ export default {
           order: this.order,
           begintime: this.form.begintime,
           endtime: this.form.endtime,
+          deptName: this.form.deptName,
         })
       );
       this.loading = false;
@@ -580,6 +587,7 @@ export default {
           order: this.order,
           begintime: this.form.begintime,
           endtime: this.form.endtime,
+          deptName: this.form.deptName,
         })
       );
       this.downloading = false;

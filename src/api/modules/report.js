@@ -147,6 +147,13 @@ export default {
       data
     );
   },
+  // 获取隐患排查列表
+  getZFYHFLPageList(data) {
+    return $axios.post(
+      "/blade-anbiao/anbiao/anbiaoYinhuanpaichaXiangDeptInfoDeptInfo/getZFYHFLPageList",
+      data
+    );
+  },
   // 获取隐患排查 数
   getTroublelistCount(params) {
     return $axios.get("/blade-anbiao/anbiao/trouble/buiness/listCount", {
@@ -156,7 +163,8 @@ export default {
   // 获取首页隐患排查 数
   getTroubleCountNum(comId) {
     return $axios.get(
-      `/blade-anbiao/anbiao/trouble/buiness/countNumZF?yunguanid=${comId}`
+      // `/blade-anbiao/anbiao/trouble/buiness/countNumZF?yunguanid=${comId}`
+      `/blade-anbiao/anbiao/anbiaoYinhuanpaichaXiangDeptInfoDeptInfo/getZFCountScore?deptId=${comId}`
     );
   },
   // 政府-联网考核五率统计

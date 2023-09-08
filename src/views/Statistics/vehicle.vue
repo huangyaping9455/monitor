@@ -225,7 +225,7 @@
           <el-option label="未上线" :value="3"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="车辆状态:">
+      <!-- <el-form-item label="车辆状态:">
         <el-select
           v-model="from.zhuangtai"
           placeholder="请选择"
@@ -236,7 +236,7 @@
           <el-option label="停用" :value="3"></el-option>
           <el-option label="在用" :value="4"></el-option>
         </el-select>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item label="使用性质:">
         <el-select v-model="from.shiyongxingzhi" class="search-input">
           <el-option label="全部" value=""></el-option>
@@ -307,13 +307,13 @@
               src="@/assets/img/huifang.png"
               @click="getTraject(scope.row)"
               alt=""
-              style="width:20px;height:17px;cursor: pointer;"
+              style="width: 20px; height: 17px; cursor: pointer"
             />
           </el-tooltip>
         </template>
       </el-table-column>
       <el-table-column prop="vehicleColor" label="车牌颜色"></el-table-column>
-      <el-table-column prop="zhuangtai" label="车辆状态"></el-table-column>
+      <!-- <el-table-column prop="zhuangtai" label="车辆状态"></el-table-column> -->
       <el-table-column prop="zaixian" label="在线状态"></el-table-column>
       <el-table-column prop="shiyongxingzhi" label="使用性质"></el-table-column>
     </el-table>

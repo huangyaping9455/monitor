@@ -11,7 +11,8 @@
   padding-left: 20px;
   padding-right: 20px;
   .car-item {
-    width: 19%;
+    // width: 19%;
+    width: 24%;
     // width: 11.6%;
     height: 10.7143rem;
     border-radius: 0.7143rem;
@@ -208,13 +209,17 @@
         <span>{{ overview.zcvehnumb }}</span>
       </div>
       <div class="car-item" @click="linkto('/hidDanger')">
+        <span>安全风险</span>
+        <span>{{ troubleNum.zhenggai }}</span>
+      </div>
+      <!--<div class="car-item" @click="linkto('/hidDanger')">
         <span>隐患因子</span>
         <span>{{ troubleNum.zhenggai }}</span>
       </div>
       <div class="car-item" @click="linkto('/risk')">
         <span>风险值</span>
         <span>{{ overview.riskCount }}</span>
-      </div>
+      </div>-->
       <div class="car-item" @click="linkto('/QYDayStatistics')">
         <span>考核指标分数</span>
         <span>{{ overview.assessmentScore }}</span>
@@ -715,6 +720,8 @@ export default {
                 name: data.areaname === "重庆市" ? "重庆" : data.areaname,
                 value: data.baojingcishu,
                 zhengfuid: data.zhengfuid,
+                cheliangshu: data.cheliangshu,
+                qiyeshu: data.qiyeshu,
               },
             ];
           } else {
@@ -723,6 +730,8 @@ export default {
                 name: el.areaname,
                 value: el.baojingcishu,
                 zhengfuid: el.zhengfuid,
+                cheliangshu: el.cheliangshu,
+                qiyeshu: el.qiyeshu,
               };
             });
           }
@@ -1069,7 +1078,16 @@ export default {
         dataAnalysisApi.getTroubleCountNum(this.userinfo.deptId)
       );
       if (data) {
-        this.troubleNum = data;
+        // this.troubleNum = data;
+        let zongshu = 0;
+        let finish = 0;
+        if (data.length > 0) {
+          data.map((el) => {
+            zongshu += el.countscore;
+            finish += el.finshcountscore;
+          });
+        }
+        this.troubleNum = { zongshu: zongshu, zhenggai: zongshu - finish };
       } else {
         this.$message.error(err);
       }

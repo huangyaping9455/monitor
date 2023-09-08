@@ -4,28 +4,28 @@
       <div class="car-item">
         <img src="~@/assets/img/cao.png" alt="" />
         <span>人的不安全行为</span>
-        <span>{{ listCount.num1 }}</span>
+        <span>{{ listCount.num1 ? listCount.num1 : 0 }}</span>
       </div>
       <div class="car-item">
         <img src="~@/assets/img/cao.png" alt="" />
         <span>物的不安全状态</span>
-        <span>{{ listCount.num2 }}</span>
+        <span>{{ listCount.num2 ? listCount.num2 : 0 }}</span>
       </div>
       <div class="car-item">
         <img src="~@/assets/img/cao.png" alt="" />
         <span>环境的不安全因素</span>
-        <span>{{ listCount.num3 }}</span>
+        <span>{{ listCount.num3 ? listCount.num3 : 0 }}</span>
       </div>
       <div class="car-item">
         <img src="~@/assets/img/cao.png" alt="" />
         <span>管理缺陷</span>
-        <span>{{ listCount.num4 }}</span>
+        <span>{{ listCount.num4 ? listCount.num4 : 0 }}</span>
       </div>
-      <!-- <div class="car-item">
+      <div class="car-item">
         <img src="~@/assets/img/cao.png" alt="" />
         <span>风险因子</span>
-        <span>{{ listCount.num5 }}</span>
-      </div> -->
+        <span>{{ listCount.num5 ? listCount.num5 : 0 }}</span>
+      </div>
     </div>
     <el-form :inline="true" size="mini" class="hide-search">
       <el-form-item label="公司名称">
@@ -35,8 +35,8 @@
           clearable
         ></el-input>
       </el-form-item>
-      <el-form-item label="时间">
-        <div style="display:flex;align-items:center;">
+      <!-- <el-form-item label="时间">
+        <div style="display: flex; align-items: center">
           <el-date-picker
             style="width: 90%"
             type="date"
@@ -44,7 +44,7 @@
             v-model="begintime"
             value-format="yyyy-MM-dd"
           ></el-date-picker>
-          <span style="color:#fff;margin:0 5px;"> - </span>
+          <span style="color: #fff; margin: 0 5px"> - </span>
           <el-date-picker
             style="width: 90%"
             type="date"
@@ -53,7 +53,7 @@
             v-model="endtime"
           ></el-date-picker>
         </div>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item>
         <el-button type="primary" class="sbtn" @click="getDate(1)"
           >搜索</el-button
@@ -77,82 +77,100 @@
       >
       </el-table-column>
       <el-table-column
-        label="人的不安全行为"
+        label="行管名称"
+        prop="zhengfuname"
         show-overflow-tooltip
+        width="120"
         align="center"
       >
-        <template slot-scope="{ row }">
-          <span v-if="row.num1 > 0" class="spancolor" @click="hidView(row, 1)">
-            {{ row.num1 }}
-          </span>
-          <span v-else>{{ row.num1 }}</span>
-        </template>
       </el-table-column>
       <el-table-column
-        label="物的不安全状态"
+        label="隐患分类"
+        prop="typeShow"
         show-overflow-tooltip
         align="center"
+        :width="150"
       >
-        <template slot-scope="{ row }">
-          <span v-if="row.num2 > 0" class="spancolor" @click="hidView(row, 2)">
-            {{ row.num2 }}
-          </span>
-          <span v-else>{{ row.num2 }}</span>
-        </template>
       </el-table-column>
       <el-table-column
-        label="环境的不安全因素"
+        label="隐患类型"
+        prop="tixingleixing"
         show-overflow-tooltip
         align="center"
-      >
-        <template slot-scope="{ row }">
-          <span v-if="row.num3 > 0" class="spancolor" @click="hidView(row, 3)">
-            {{ row.num3 }}
-          </span>
-          <span v-else>{{ row.num3 }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="管理缺陷" show-overflow-tooltip align="center">
-        <template slot-scope="{ row }">
-          <span v-if="row.num4 > 0" class="spancolor" @click="hidView(row, 4)">
-            {{ row.num4 }}
-          </span>
-          <span v-else>{{ row.num4 }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="总隐患数" show-overflow-tooltip align="center">
-        <template slot-scope="{ row }">
-          <span
-            v-if="row.totlenums > 0"
-            class="spancolor"
-            @click="hidView(row, '')"
-          >
-            {{ row.totlenums }}
-          </span>
-          <span v-else>{{ row.totlenums }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column
-        prop="dorate"
-        label="整改率"
-        show-overflow-tooltip
-        align="center"
+        :width="100"
       >
       </el-table-column>
       <!-- <el-table-column
-        prop="num5"
-        label="风险因子"
+        label="严重程度"
+        prop="statusShow"
         show-overflow-tooltip
         align="center"
+        :width="100"
       >
       </el-table-column> -->
-      <el-table-column label="操作" align="center" width="110">
+      <el-table-column
+        label="隐患详情"
+        prop="tixingxiangqing"
+        show-overflow-tooltip
+      >
+      </el-table-column>
+      <el-table-column
+        label="统计日期"
+        prop="tongjiriqi"
+        show-overflow-tooltip
+        align="center"
+        :width="160"
+        sortable
+      >
+      </el-table-column>
+      <el-table-column
+        label="已消除隐患项分值"
+        prop="finshcountscore"
+        show-overflow-tooltip
+        align="center"
+        :width="160"
+        sortable
+      >
+      </el-table-column>
+      <el-table-column
+        label="剩余隐患项分值"
+        prop="countscore"
+        show-overflow-tooltip
+        align="center"
+        :width="150"
+        sortable
+      >
+      </el-table-column>
+      <el-table-column
+        label="剩余隐患数量"
+        show-overflow-tooltip
+        :width="140"
+        align="center"
+        sortable
+      >
+        <template slot-scope="{ row }">
+          <!-- <span v-if="row.counts > 0" class="spancolor" @click="hidView(row)">
+            {{ row.counts }}
+          </span> -->
+          <span>{{ row.counts }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="整改率"
+        prop="finshRate"
+        show-overflow-tooltip
+        align="center"
+        :width="120"
+        sortable
+      >
+      </el-table-column>
+      <!-- <el-table-column label="操作" align="center" width="110">
         <template slot-scope="{ row }">
           <el-button size="mini" type="primary" @click="sendZG(row)">
             催办
           </el-button>
         </template>
-      </el-table-column>
+      </el-table-column> -->
     </el-table>
     <div class="page">
       <div class="page-l">
@@ -276,10 +294,10 @@ export default {
       current = Number(current);
       this.msgloading = true;
       let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.getTroubleList({
+        dataAnalysisApi.getZFYHFLPageList({
           current: current,
           size: this.pagesizeactive,
-          yunguanid: this.zhengfuId,
+          deptId: this.zhengfuId,
           deptName: this.deptName,
         })
       );
@@ -297,12 +315,39 @@ export default {
     //获取整改数
     async getTroublelistCount() {
       let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.getTroublelistCount({
-          yunguanid: this.zhengfuId,
-        })
+        dataAnalysisApi.getTroubleCountNum(this.zhengfuId)
       );
       if (data) {
-        this.listCount = data;
+        let zongshu = 0;
+        let finish = 0;
+        let num1 = 0;
+        let num2 = 0;
+        let num3 = 0;
+        let num4 = 0;
+        this.listCount = {};
+        data.map((el) => {
+          if (el.type == 1) {
+            num1 += el.countscore - el.finshcountscore;
+          }
+          if (el.type == 2) {
+            num2 += el.countscore - el.finshcountscore;
+          }
+          if (el.type == 4) {
+            num3 += el.countscore - el.finshcountscore;
+          }
+          if (el.type == 3) {
+            num4 += el.countscore - el.finshcountscore;
+          }
+          zongshu += el.countscore;
+          finish += el.finshcountscore;
+        });
+        this.listCount = {
+          num: zongshu - finish,
+          num1: num1,
+          num2: num2,
+          num3: num3,
+          num4: num4,
+        };
       } else {
         this.$message.error(err);
       }
@@ -340,8 +385,8 @@ export default {
     padding-right: 20px;
     margin-bottom: 10px;
     .car-item {
-      // width: 19%;
-      width: 24%;
+      width: 19%;
+      // width: 24%;
       height: 10.7143rem;
       border-radius: 0.7143rem;
       box-sizing: border-box;

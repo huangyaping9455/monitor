@@ -228,6 +228,14 @@
           :model="form"
           class="search"
         >
+          <el-form-item label="所属企业:">
+            <el-input
+              v-model="form.deptName"
+              class="search-input"
+              placeholder="请输入所属企业"
+              clearable
+            ></el-input>
+          </el-form-item>
           <el-form-item label="开始时间">
             <el-date-picker
               v-model="form.begintime"
@@ -420,6 +428,7 @@ export default {
       pagesizeactive: 20, //当前每页显示
       enterpriseListH: "calc(100vh - 14.6814rem)",
       form: {
+        deptName: "",
         begintime: format(
           new Date().getTime() - 3600 * 1000 * 24,
           "YYYY-MM-DD"
@@ -427,12 +436,12 @@ export default {
         endtime: format(new Date().getTime(), "YYYY-MM-DD"),
       },
       pickerOptions: {
-        disabledDate(time) {
-          return (
-            time.getTime() > Date.now() ||
-            time.getTime() < Date.now() - 24 * 60 * 60 * 1000 * 30
-          );
-        },
+        // disabledDate(time) {
+        //   return (
+        //     time.getTime() > Date.now() ||
+        //     time.getTime() < Date.now() - 24 * 60 * 60 * 1000 * 30
+        //   );
+        // },
       },
       enterpriseList: [],
       zhengfuId: "", //地区id
@@ -459,6 +468,7 @@ export default {
   methods: {
     refresh() {
       this.form = {
+        deptName: "",
         begintime: format(
           new Date().getTime() - 3600 * 1000 * 24,
           "YYYY-MM-DD"
@@ -482,6 +492,7 @@ export default {
           size: this.pagesizeactive,
           begintime: this.form.begintime,
           endtime: this.form.endtime,
+          deptName: this.form.deptName,
         })
       );
       this.loading = false;
@@ -517,6 +528,7 @@ export default {
           size: 0,
           begintime: this.form.begintime,
           endtime: this.form.endtime,
+          deptName: this.form.deptName,
         })
       );
       this.downloading = false;

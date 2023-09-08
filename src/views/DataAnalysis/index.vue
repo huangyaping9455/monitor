@@ -352,6 +352,7 @@
             <div class="tr">
               <span class="tdl">排名</span>
               <span class="tdc">名称</span>
+              <span class="tdr">单车报警比</span>
               <span class="tdr">报警数(次)</span>
             </div>
             <vueSeamlessScroll
@@ -376,6 +377,7 @@
                 >
                   <span class="tdc">{{ item.deptName }}</span>
                 </el-tooltip>
+                <span class="tdr">{{ item.danchebaojingbi }}</span>
                 <span class="tdr">{{ item.baojingshu }}</span>
               </div>
             </vueSeamlessScroll>
@@ -571,6 +573,8 @@ export default {
               yueweichulishu: data.weichulishu,
               yuechulilv: data.chulilv,
               zhengfuid: data.zhengfuid,
+              cheliangshu: data.cheliangshu,
+              qiyeshu: data.qiyeshu,
             },
           ];
         } else {
@@ -581,6 +585,8 @@ export default {
               yueweichulishu: el.weichulishu,
               yuechulilv: el.chulilv,
               zhengfuid: el.zhengfuid,
+              cheliangshu: el.cheliangshu,
+              qiyeshu: el.qiyeshu,
             };
           });
         }
