@@ -2,6 +2,7 @@ import echarts from "echarts";
 import * as maps from "@/assets/map/index";
 
 export const geooption = (name, mapData) => {
+  console.log(name);
   echarts.registerMap(name, maps[name]);
   return {
     title: {

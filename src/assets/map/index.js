@@ -19,6 +19,7 @@ import 贵州 from "./贵州省/贵州省.json";
 import 浙江 from "./浙江省/浙江省.json";
 import 宁夏 from "./宁夏/宁夏回族自治区.json";
 import 陕西 from "./陕西省/陕西省.json";
+import 河北 from "./河北/河北省.json";
 
 // 河南
 import 三门峡市 from "./河南/三门峡市.json";
@@ -2777,7 +2778,7 @@ export {
   兰坪白族普米族自治县,
   福贡县,
   贡山独龙族怒族自治县,
-  // 河北,
+  河北,
   保定市,
   沧州市,
   承德市,
