@@ -140,6 +140,13 @@ export default {
   getTroubleSetList(data) {
     return $axios.post("/blade-anbiao/anbiao/trouble/buiness/list", data);
   },
+  // 获取隐患排查 明细 列表
+  getYHFLPageList(data) {
+    return $axios.post(
+      "/blade-anbiao/anbiao/anbiaoYinhuanpaichaXiangDeptInfoDeptInfo/getYHFLPageList",
+      data
+    );
+  },
   // 获取隐患排查列表
   getTroubleList(data) {
     return $axios.post(

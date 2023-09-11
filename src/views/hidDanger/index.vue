@@ -1,35 +1,61 @@
 <template>
   <div class="hide">
     <div class="hide-top">
-      <div class="car-item">
-        <img src="~@/assets/img/cao.png" alt="" />
-        <span>人的不安全行为</span>
-        <span>{{ listCount.num1 ? listCount.num1 : 0 }}</span>
+      <div
+        :class="['car-item', { boxsd1: hideType == 0 }]"
+        @click="hideTypeClick('')"
+      >
+        <img src="@/assets/img/hide/icon1.png" alt="" srcset="" />
+        <div>
+          <span>隐患分值</span>
+          <span>{{ listCount.num }}</span>
+        </div>
       </div>
-      <div class="car-item">
-        <img src="~@/assets/img/cao.png" alt="" />
-        <span>物的不安全状态</span>
-        <span>{{ listCount.num2 ? listCount.num2 : 0 }}</span>
+      <div
+        :class="['car-item', { boxsd2: hideType == 1 }]"
+        @click="hideTypeClick(1)"
+      >
+        <img src="@/assets/img/hide/icon2.png" alt="" srcset="" />
+        <div>
+          <span>人的不安全行为</span>
+          <span>{{ listCount.num1 }}</span>
+        </div>
       </div>
-      <div class="car-item">
-        <img src="~@/assets/img/cao.png" alt="" />
-        <span>环境的不安全因素</span>
-        <span>{{ listCount.num3 ? listCount.num3 : 0 }}</span>
+      <div
+        :class="['car-item', { boxsd3: hideType == 2 }]"
+        @click="hideTypeClick(2)"
+      >
+        <img src="@/assets/img/hide/icon3.png" alt="" srcset="" />
+        <div>
+          <span>物的不安全状态</span>
+          <span>{{ listCount.num2 }}</span>
+        </div>
       </div>
-      <div class="car-item">
-        <img src="~@/assets/img/cao.png" alt="" />
-        <span>管理缺陷</span>
-        <span>{{ listCount.num4 ? listCount.num4 : 0 }}</span>
+      <div
+        :class="['car-item', { boxsd5: hideType == 5 }]"
+        @click="hideTypeClick(5)"
+      >
+        <img src="@/assets/img/hide/icon5.png" alt="" srcset="" />
+        <div>
+          <span>环境的不安全因素</span>
+          <span>{{ listCount.num3 }}</span>
+        </div>
       </div>
-      <div class="car-item">
-        <img src="~@/assets/img/cao.png" alt="" />
-        <span>风险因子</span>
-        <span>{{ listCount.num5 ? listCount.num5 : 0 }}</span>
+      <div
+        :class="['car-item', { boxsd4: hideType == 3 }]"
+        @click="hideTypeClick(3)"
+      >
+        <img src="@/assets/img/hide/icon4.png" alt="" srcset="" />
+        <div>
+          <span>管理缺陷</span>
+          <span>{{ listCount.num4 }}</span>
+        </div>
       </div>
     </div>
     <el-form :inline="true" size="mini" class="hide-search">
       <el-form-item label="公司名称">
         <el-input
+          size="small"
           v-model="deptName"
           placeholder="请输入公司名称"
           clearable
@@ -71,35 +97,32 @@
       <el-table-column
         prop="deptName"
         label="公司名称"
-        width="210"
         show-overflow-tooltip
         align="center"
       >
       </el-table-column>
-      <el-table-column
+      <!-- <el-table-column
         label="行管名称"
         prop="zhengfuname"
         show-overflow-tooltip
-        width="120"
         align="center"
       >
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column
         label="隐患分类"
         prop="typeShow"
         show-overflow-tooltip
         align="center"
-        :width="150"
       >
       </el-table-column>
-      <el-table-column
+      <!-- <el-table-column
         label="隐患类型"
         prop="tixingleixing"
         show-overflow-tooltip
         align="center"
         :width="100"
       >
-      </el-table-column>
+      </el-table-column> -->
       <!-- <el-table-column
         label="严重程度"
         prop="statusShow"
@@ -108,7 +131,7 @@
         :width="100"
       >
       </el-table-column> -->
-      <el-table-column
+      <!-- <el-table-column
         label="隐患详情"
         prop="tixingxiangqing"
         show-overflow-tooltip
@@ -122,13 +145,12 @@
         :width="160"
         sortable
       >
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column
         label="已消除隐患项分值"
         prop="finshcountscore"
         show-overflow-tooltip
         align="center"
-        :width="160"
         sortable
       >
       </el-table-column>
@@ -137,22 +159,20 @@
         prop="countscore"
         show-overflow-tooltip
         align="center"
-        :width="150"
         sortable
       >
       </el-table-column>
       <el-table-column
         label="剩余隐患数量"
         show-overflow-tooltip
-        :width="140"
         align="center"
         sortable
       >
         <template slot-scope="{ row }">
-          <!-- <span v-if="row.counts > 0" class="spancolor" @click="hidView(row)">
+          <span v-if="row.counts > 0" class="spancolor" @click="hidView(row)">
             {{ row.counts }}
-          </span> -->
-          <span>{{ row.counts }}</span>
+          </span>
+          <span v-else>{{ row.counts }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -160,17 +180,16 @@
         prop="finshRate"
         show-overflow-tooltip
         align="center"
-        :width="120"
         sortable
       >
       </el-table-column>
-      <!-- <el-table-column label="操作" align="center" width="110">
+      <el-table-column label="操作" align="center" width="110">
         <template slot-scope="{ row }">
           <el-button size="mini" type="primary" @click="sendZG(row)">
             催办
           </el-button>
         </template>
-      </el-table-column> -->
+      </el-table-column>
     </el-table>
     <div class="page">
       <div class="page-l">
@@ -243,6 +262,7 @@
 import dataAnalysisApi from "@/api/modules/report";
 import { mapGetters } from "vuex";
 import hideview from "./view";
+import standardApi from "@/api/modules/standard";
 export default {
   components: {
     hideview,
@@ -262,9 +282,12 @@ export default {
       deptName: "",
       begintime: "",
       endtime: "",
+      hideDangerTypeList: [],
+      hideType: "",
     };
   },
   created() {
+    this.getHideDangerType();
     this.getTroublelistCount();
     this.getTroubleList();
   },
@@ -299,11 +322,18 @@ export default {
           size: this.pagesizeactive,
           deptId: this.zhengfuId,
           deptName: this.deptName,
+          type: this.hideType,
         })
       );
       this.msgloading = false;
       if (data) {
-        this.tableData = data.records;
+        console.log(this.hideDangerTypeList);
+        this.tableData = data.records.map((el) => {
+          if (this.hideDangerTypeList.length > 0) {
+            el.typeShow = this.hideDangerTypeList[el.type - 1].label;
+          }
+          return el;
+        });
         //分页处理
         this.current = data.current;
         this.total = data.total;
@@ -362,6 +392,15 @@ export default {
       this.$refs.hidev.getTroubleSetList();
       this.$refs.hidev.hidVisible = true;
     },
+    // 隐患类别
+    async getHideDangerType() {
+      let [err, data] = await standardApi.awaitWrap(
+        standardApi.getDicData("hideDangerType")
+      );
+      if (data) {
+        this.hideDangerTypeList = data;
+      }
+    },
     // 下发整改
     sendZG(row) {
       this.$router.push({
@@ -369,9 +408,14 @@ export default {
         query: {
           type: "add",
           returnUrl: "/hidDanger",
-          comId: row.comId,
+          comId: row.deptId,
         },
       });
+    },
+    // 图标切换
+    hideTypeClick(index) {
+      this.hideType = index;
+      this.getDate(1);
     },
   },
 };
@@ -381,77 +425,64 @@ export default {
   .hide-top {
     display: flex;
     justify-content: space-between;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-bottom: 10px;
+    padding-top: 10px;
+    height: 10.7143rem;
     .car-item {
-      width: 19%;
-      // width: 24%;
-      height: 10.7143rem;
+      width: 19.3%;
+      height: 100%;
       border-radius: 0.7143rem;
       box-sizing: border-box;
       padding: 2.4286rem;
       color: #ffffff;
       font-size: 1.1429rem;
-      background-size: 100% 100%;
-      cursor: pointer;
       overflow: hidden;
       position: relative;
+      display: flex;
+      background-size: 100% 100%;
       span:last-of-type {
         display: block;
         font-size: 2.8571rem;
         font-weight: bold;
       }
       &:nth-of-type(1) {
-        background: linear-gradient(
-          270deg,
-          rgb(197, 39, 39) 0%,
-          rgb(254, 126, 111) 100%
-        );
-        cursor: pointer;
+        background-image: url("~@/assets/img/hide/check1.png");
       }
       &:nth-of-type(2) {
-        background: linear-gradient(
-          270deg,
-          rgb(225, 98, 7) 0%,
-          rgb(255, 156, 40) 100%
-        );
-        cursor: pointer;
+        background-image: url("~@/assets/img/hide/check2.png");
       }
       &:nth-of-type(3) {
-        background: linear-gradient(
-          270deg,
-          rgb(249, 165, 37) 0%,
-          rgb(255, 207, 51) 100%
-        );
-        cursor: pointer;
-      }
-      &:nth-of-type(4) {
-        background: linear-gradient(
-          270deg,
-          rgb(39, 78, 214) 0%,
-          rgb(85, 162, 255) 100%
-        );
-        cursor: pointer;
+        background-image: url("~@/assets/img/hide/check3.png");
       }
       &:nth-of-type(5) {
-        background: linear-gradient(
-          270deg,
-          rgb(255, 85, 85) 0%,
-          rgb(247, 167, 198) 100%
-        );
-        cursor: pointer;
+        background-image: url("~@/assets/img/hide/check4.png");
+      }
+      &:nth-of-type(4) {
+        background-image: url("~@/assets/img/hide/check5.png");
       }
       img {
-        width: 50%;
-        height: 100%;
-        position: absolute;
-        right: 0;
-        top: 0;
+        width: 38px;
+        height: 38px;
+        margin-right: 20px;
       }
+    }
+    .boxsd1 {
+      background-image: url("~@/assets/img/hide/isCheck1.png") !important;
+    }
+    .boxsd2 {
+      background-image: url("~@/assets/img/hide/isCheck2.png") !important;
+    }
+    .boxsd3 {
+      background-image: url("~@/assets/img/hide/isCheck3.png") !important;
+    }
+    .boxsd4 {
+      background-image: url("~@/assets/img/hide/isCheck4.png") !important;
+    }
+    .boxsd5 {
+      background-image: url("~@/assets/img/hide/isCheck5.png") !important;
     }
   }
   .hide-search {
+    margin-top: 10px;
     display: flex;
     align-items: center;
     ::v-deep.el-form-item__label {
@@ -461,8 +492,8 @@ export default {
       background: #112e4d;
       border-color: #004b77;
       color: #ffffff;
-      height: 2.8571rem;
-      font-size: 1rem;
+      // height: 2.8571rem;
+      // font-size: 1rem;
       &:focus {
         border-color: #00d2ff;
       }

@@ -10,12 +10,26 @@
     width="70%"
   >
     <div class="learn_head">
-      <span>车辆牌照 : </span>
+      <span>隐患名称 : </span>
       <el-input
         size="small"
         clearable
         v-model="troubleMc"
-        placeholder="请输入车辆牌照"
+        placeholder="请输入隐患名称"
+      ></el-input>
+      <span style="margin-left:0.8rem;">隐患来源 : </span>
+      <el-input
+        size="small"
+        clearable
+        v-model="troubleLy"
+        placeholder="请输入隐患名称"
+      ></el-input>
+      <span style="margin-left:0.8rem;">隐患描述 : </span>
+      <el-input
+        size="small"
+        clearable
+        v-model="troubleYhms"
+        placeholder="请输入隐患描述"
       ></el-input>
       <el-button size="small" type="primary" @click="getDateMsg(1)"
         >搜索</el-button
@@ -23,83 +37,84 @@
     </div>
     <el-table
       class="learnTable"
-      :data="tableDataMsg"
+      :data="tableData"
       border
       height="500"
       v-loading="msgloading"
       element-loading-background="rgba(0, 0, 0, 0.4)"
     >
-      <el-table-column
-        prop="cheliangpaizhao"
-        label="车辆牌照"
+      <!-- <el-table-column
+        prop="dengji"
+        label="隐患等级"
+        width="90"
         show-overflow-tooltip
         align="center"
-        v-if="tableDataMsg.length > 0 && tableDataMsg[0].cheliangid"
+      >
+      </el-table-column> -->
+      <el-table-column
+        prop="troubleBh"
+        label="隐患编号"
+        show-overflow-tooltip
+        align="center"
+        width="120"
       >
       </el-table-column>
       <el-table-column
-        prop="chepaiyanse"
-        label="车辆颜色"
+        prop="troubleMc"
+        label="隐患名称"
         show-overflow-tooltip
         align="center"
-        v-if="tableDataMsg.length > 0 && tableDataMsg[0].cheliangid"
+        width="90"
       >
       </el-table-column>
       <el-table-column
-        prop="shiyongxingzhi"
-        label="使用性质"
-        show-overflow-tooltip
-        align="center"
-        v-if="tableDataMsg.length > 0 && tableDataMsg[0].cheliangid"
-      >
-      </el-table-column>
-      <el-table-column
-        prop="jiashiyuanxingming"
-        label="驾驶员"
-        show-overflow-tooltip
-        align="center"
-        v-if="tableDataMsg.length > 0 && tableDataMsg[0].jiashiyuanid"
-      >
-      </el-table-column>
-      <el-table-column
-        prop="shoujihaoma"
-        label="手机号码"
-        show-overflow-tooltip
-        align="center"
-        v-if="tableDataMsg.length > 0 && tableDataMsg[0].jiashiyuanid"
-      >
-      </el-table-column>
-      <el-table-column
-        prop="tixingleixing"
-        label="隐患类型"
+        prop="troubleLy"
+        label="隐患来源"
         show-overflow-tooltip
         align="center"
       >
       </el-table-column>
       <el-table-column
-        prop="tixingxiangqing"
-        label="隐患详情"
+        prop="troubleYhms"
+        label="隐患描述"
         show-overflow-tooltip
         align="center"
       >
       </el-table-column>
       <el-table-column
-        prop="tongjiriqi"
+        prop="createTime"
         label="发现日期"
         show-overflow-tooltip
         align="center"
       >
       </el-table-column>
       <el-table-column
-        prop="youxiaoqi"
-        label="有效期"
+        prop="troubleFxr"
+        label="发现人"
         show-overflow-tooltip
         align="center"
-        v-if="
-          tableDataMsg.length > 0 &&
-          tableDataMsg[0].youxiaoqi &&
-          (tableDataMsg[0].cheliangid || tableDataMsg[0].jiashiyuanid)
-        "
+        width="90"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="troubleXqzgsj"
+        label="限期整改时间"
+        show-overflow-tooltip
+        align="center"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="jindu"
+        label="整改进度"
+        show-overflow-tooltip
+        align="center"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="troubleZgwcrq"
+        label="整改完成日期"
+        show-overflow-tooltip
+        align="center"
       >
       </el-table-column>
     </el-table>
@@ -198,7 +213,7 @@ export default {
       troubleMc: "",
       troubleLy: "",
       troubleYhms: "",
-      tableDataMsg: [],
+      tableData: [],
       rows: {},
       troubleDJ: "",
     };
@@ -215,7 +230,7 @@ export default {
       current = Number(current);
       this.msgloading = true;
       let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.getYHFLPageList({
+        dataAnalysisApi.getTroubleSetList({
           comId: this.rows.comId,
           current: current,
           size: this.pagesizeactive,
@@ -227,7 +242,7 @@ export default {
       );
       this.msgloading = false;
       if (data) {
-        this.tableDataMsg = data.records.map((el) => {
+        this.tableData = data.records.map((el) => {
           if (el.troubleDj == 1) {
             el.dengji = "一级";
           } else if (el.troubleDj == 2) {
