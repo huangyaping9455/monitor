@@ -4,140 +4,140 @@
  * 折线图配置
  */
 export const lineoption = {
-  color: ['#fffc00', '#ff7800'],
+  color: ["#fffc00", "#ff7800"],
   tooltip: {
-    trigger: 'axis',
+    trigger: "axis",
     axisPointer: {
-      type: 'shadow',
+      type: "shadow",
       label: {
-        formatter: '{value}月'
-      }
+        formatter: "{value}月",
+      },
     },
-    confine: true
+    confine: true,
   },
   legend: {
     textStyle: {
-      color: '#56e6ff',
-      fontFamily: 'Microsoft YaHei'
+      color: "#56e6ff",
+      fontFamily: "Microsoft YaHei",
     },
-    bottom: '1%',
+    bottom: "1%",
     itemGap: 16,
-    left: 'center',
-    data: ['超速处理', '超速']
+    left: "center",
+    data: ["超速处理", "超速"],
   },
   grid: {
-    left: '11%',
-    right: '5%',
-    top: '5%',
-    bottom: '19%'
+    left: "11%",
+    right: "5%",
+    top: "5%",
+    bottom: "19%",
   },
   xAxis: {
-    type: 'category',
+    type: "category",
     boundaryGap: false,
     // data:['1月','2月','3月','4月','5月','6月','7月'],
     axisLabel: {
       textStyle: {
-        color: '#56e6ff',
-        fontFamily: 'Microsoft YaHei'
-      }
+        color: "#56e6ff",
+        fontFamily: "Microsoft YaHei",
+      },
     },
     axisLine: {
       lineStyle: {
-        color: 'rgba(86, 230, 255, 0.4)'
-      }
+        color: "rgba(86, 230, 255, 0.4)",
+      },
     },
     splitLine: {
       show: true,
       interval: 1,
       lineStyle: {
-        color: 'rgba(86, 230, 255, 0.4)'
-      }
+        color: "rgba(86, 230, 255, 0.4)",
+      },
     },
     axisTick: {
-      show: false
-    }
+      show: false,
+    },
   },
   yAxis: {
     axisLabel: {
       textStyle: {
-        color: '#56e6ff',
-        fontFamily: 'Microsoft YaHei'
-      }
+        color: "#56e6ff",
+        fontFamily: "Microsoft YaHei",
+      },
     },
     axisLine: {
       lineStyle: {
-        color: 'rgba(86, 230, 255, 0.4)'
-      }
+        color: "rgba(86, 230, 255, 0.4)",
+      },
     },
     axisTick: {
-      show: false
+      show: false,
     },
     splitLine: {
       lineStyle: {
-        color: 'rgba(86, 230, 255, 0.4)'
-      }
-    }
+        color: "rgba(86, 230, 255, 0.4)",
+      },
+    },
   },
   series: {
-    name: '超速处理',
-    type: 'line',
+    name: "超速处理",
+    type: "line",
     smooth: true,
-  }
-}
+  },
+};
 export const lineName = new Map()
-  .set('chaosu', {
-    legendDate: ['超速处理', '超速'],
-    yOne: 'chaosucl',
-    yTow: 'chaosu'
+  .set("chaosu", {
+    legendDate: ["超速处理", "超速"],
+    yOne: "chaosucl",
+    yTow: "chaosu",
   })
-  .set('pilao', {
-    legendDate: ['疲劳处理', '疲劳'],
-    yOne: 'pilaocl',
-    yTow: 'pilao'
+  .set("pilao", {
+    legendDate: ["疲劳处理", "疲劳"],
+    yOne: "pilaocl",
+    yTow: "pilao",
   })
-  .set('yejian', {
-    legendDate: ['夜间处理', '夜间'],
-    yOne: 'yejiancl',
-    yTow: 'yejian'
+  .set("yejian", {
+    legendDate: ["夜间处理", "夜间"],
+    yOne: "yejiancl",
+    yTow: "yejian",
   })
-  .set('yichang', {
-    legendDate: ['异常处理', '异常'],
-    yOne: 'yichangcl',
-    yTow: 'yichang'
+  .set("yichang", {
+    legendDate: ["异常处理", "异常"],
+    yOne: "yichangcl",
+    yTow: "yichang",
   })
-  .set('dadianhua', {
-    legendDate: ['打电话处理', '打电话'],
-    yOne: 'dadianhuacl',
-    yTow: 'dadianhua'
+  .set("dadianhua", {
+    legendDate: ["打电话处理", "打电话"],
+    yOne: "dadianhuacl",
+    yTow: "dadianhua",
   })
-  .set('fenshen', {
-    legendDate: ['分神处理', '分神'],
-    yOne: 'fenshencl',
-    yTow: 'fenshen'
+  .set("fenshen", {
+    legendDate: ["分神处理", "分神"],
+    yOne: "fenshencl",
+    yTow: "fenshen",
   })
-  .set('chouyan', {
-    legendDate: ['抽烟处理', '抽烟'],
-    yOne: 'chouyancl',
-    yTow: 'chouyan'
+  .set("chouyan", {
+    legendDate: ["抽烟处理", "抽烟"],
+    yOne: "chouyancl",
+    yTow: "chouyan",
   })
-  .set('zhudongbj', {
-    legendDate: ['疲劳处理', '疲劳'],
-    yOne: 'pilaoshipincl',
-    yTow: 'pilaoshipin'
+  .set("zhudongbj", {
+    legendDate: ["疲劳处理", "疲劳"],
+    yOne: "pilaoshipincl",
+    yTow: "pilaoshipin",
   })
-  .set('risk', {
-    legendDate: ['一级', '二级', '三级'],
-    riskOne: 'riskOne',
-    riskTwo: 'riskTwo',
-    riskThree: 'riskThree'
+  .set("risk", {
+    legendDate: ["一级", "二级", "三级"],
+    riskOne: "riskOne",
+    riskTwo: "riskTwo",
+    riskThree: "riskThree",
   })
-  .set('inspect', {
-    legendDate: ['一级', '二级', '三级', '四级'],
-    riskOne: 'troubleOne',
-    riskTwo: 'troubleTwo',
-    riskThree: 'troubleThree',
-    riskFour: 'troubleFour'
-  })
+  .set("inspect", {
+    legendDate: ["一级", "二级", "三级", "四级"],
+    riskOne: "troubleOne",
+    riskTwo: "troubleTwo",
+    riskThree: "troubleThree",
+    riskFour: "troubleFour",
+  });
 
 // export const geooption = (name, mapData) => {
 //   echarts.registerMap(name, maps[name]);
@@ -217,132 +217,151 @@ export const lineName = new Map()
 // }
 /**废弃 */
 //折线图颜色
-export const barcolor = [{
-    type: 'linear',
+export const barcolor = [
+  {
+    type: "linear",
     x: 0,
     y: 0,
     x2: 0,
     y2: 1,
-    colorStops: [{
-      offset: 0,
-      color: '#40ecc7'
-    }, {
-      offset: 1,
-      color: '#15cad4'
-    }]
+    colorStops: [
+      {
+        offset: 0,
+        color: "#40ecc7",
+      },
+      {
+        offset: 1,
+        color: "#15cad4",
+      },
+    ],
   },
   {
-    type: 'linear',
+    type: "linear",
     x: 0,
     y: 0,
     x2: 0,
     y2: 1,
-    colorStops: [{
-      offset: 0,
-      color: '#00c8f5'
-    }, {
-      offset: 1,
-      color: '#0080de'
-    }]
+    colorStops: [
+      {
+        offset: 0,
+        color: "#00c8f5",
+      },
+      {
+        offset: 1,
+        color: "#0080de",
+      },
+    ],
   },
   {
-    type: 'linear',
+    type: "linear",
     x: 0,
     y: 0,
     x2: 0,
     y2: 1,
-    colorStops: [{
-      offset: 0,
-      color: '#ffe78d'
-    }, {
-      offset: 1,
-      color: '#e3b725'
-    }]
+    colorStops: [
+      {
+        offset: 0,
+        color: "#ffe78d",
+      },
+      {
+        offset: 1,
+        color: "#e3b725",
+      },
+    ],
   },
   {
-    type: 'linear',
+    type: "linear",
     x: 0,
     y: 0,
     x2: 0,
     y2: 1,
-    colorStops: [{
-      offset: 0,
-      color: '#00c8f5'
-    }, {
-      offset: 1,
-      color: '#0080de'
-    }]
+    colorStops: [
+      {
+        offset: 0,
+        color: "#00c8f5",
+      },
+      {
+        offset: 1,
+        color: "#0080de",
+      },
+    ],
   },
   {
-    type: 'linear',
+    type: "linear",
     x: 0,
     y: 0,
     x2: 0,
     y2: 1,
-    colorStops: [{
-      offset: 0,
-      color: 'rgba(24,185,73, 0.3)'
-    }, {
-      offset: 1,
-      color: 'rgba(24,185,73, 0)'
-    }]
-  }
-]
+    colorStops: [
+      {
+        offset: 0,
+        color: "rgba(24,185,73, 0.3)",
+      },
+      {
+        offset: 1,
+        color: "rgba(24,185,73, 0)",
+      },
+    ],
+  },
+];
 
 /**
  * 饼图配置
  */
 export const pieoption = {
-  color: ['#fffc00', '#c23733'],
+  color: ["#fffc00", "#c23733"],
   title: {
     show: false,
-    text: '未审核各类型报警数',
+    text: "未审核各类型报警数",
     textStyle: {
-      color: '#01f8ff',
+      color: "#01f8ff",
       fontSize: 16,
-      fontWeight: '300',
-      fontFamily: 'Microsoft YaHei'
+      fontWeight: "300",
+      fontFamily: "Microsoft YaHei",
     },
-    left: 'center',
-    top: 18
+    left: "center",
+    top: 18,
   },
   legend: {
     textStyle: {
-      color: '#fff',
-      fontFamily: 'Microsoft YaHei'
+      color: "#fff",
+      fontFamily: "Microsoft YaHei",
     },
     top: 25,
     itemGap: 16,
-    left: 'center',
-    data: ['注册企业', '监控企业']
+    left: "center",
+    data: ["注册企业", "监控企业"],
   },
   series: {
-    name: '',
-    type: 'pie',
+    name: "",
+    type: "pie",
     radius: [40, 80],
-    center: ['50%', '60%'],
+    center: ["50%", "60%"],
     itemStyle: {
       borderWidth: 10,
-      borderColor: '#0b122e'
+      borderColor: "#0b122e",
     },
     label: {
       show: true,
-      formatter: '{d}%',
-      padding: [-20, -36, 0, -36]
+      formatter: "{d}%",
+      padding: [-20, -36, 0, -36],
     },
     labelLine: {
       length: 35,
-      length2: 36
+      length2: 36,
     },
-    data: [{
-      name: '监控企业',
-      value: 250
-    }, {
-      name: '注册企业',
-      value: 750
-    }]
-  }
-}
+    data: [
+      {
+        name: "监控企业",
+        value: 250,
+      },
+      {
+        name: "注册企业",
+        value: 750,
+      },
+    ],
+  },
+};
 
 // export const geooption1 = (name, data) => {
 //   echarts.registerMap(name, maps[name]);
@@ -400,3 +419,78 @@ export const pieoption = {
 //     }
 //   }
 // }
+
+export const alarmChartNew = (speed, scale) => {
+  return {
+    grid: {
+      top: "20px",
+      left: "70px",
+      right: "30px",
+      bottom: "65px",
+    },
+    // 鼠标移入 显示数据
+    tooltip: {
+      trigger: "axis",
+      confine: true, //是否将 tooltip 框限制在图表的区域内
+      formatter: "<p>速度:{c}(km/h)</p><p>时间:{b}</p>",
+      position: function(pt) {
+        return [pt[0], "10%"];
+      },
+    },
+    xAxis: {
+      type: "category",
+      boundaryGap: false,
+      data: scale,
+      axisLine: {
+        lineStyle: {
+          color: "#fff",
+        },
+      },
+    },
+    dataZoom: [
+      {
+        type: "inside",
+        start: 0,
+        end: 100,
+      },
+      {
+        start: 0,
+        end: 100,
+      },
+    ],
+    yAxis: {
+      type: "value",
+      boundaryGap: [0, "100%"],
+      axisLine: {
+        lineStyle: {
+          color: "#fff",
+        },
+      },
+    },
+    series: [
+      {
+        data: speed,
+        smooth: true,
+        type: "line",
+        // symbol: 'circle',//折线点设置为实心点
+        symbolSize: 10, //折线点的大小
+        sampling: "lttb",
+        smooth: 0.4, //弧度
+        areaStyle: {
+          color: "#fee9ae",
+        },
+        lineStyle: {
+          color: "#f3a328",
+          width: 7,
+        },
+        color: "#fff",
+        itemStyle: {
+          opacity: 0.7,
+          normal: {
+            show: true,
+          },
+        },
+      },
+    ],
+  };
+};

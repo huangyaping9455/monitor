@@ -308,9 +308,9 @@
       </el-table-column>
       <el-table-column prop="fasongdanwei" label="操作">
         <template slot-scope="{ row }">
-          <el-button size="mini" @click="examine(row)" class="operate"
-            >查看</el-button
-          >
+          <el-button size="mini" @click="examine(row)" class="operate">
+            查看
+          </el-button>
           <el-button
             size="mini"
             v-if="row.status == '待审核' && row.ydcount !== 0"

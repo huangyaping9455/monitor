@@ -53,18 +53,18 @@
           >
         </template>
       </el-table-column>
-      <el-table-column label="操作" v-if="!btnType">
+      <el-table-column label="操作">
         <template slot-scope="{ row }">
           <el-button
             size="mini"
             @click="examine(row)"
             class="operate"
-            v-if="row.status == 1"
+            v-if="row.status == 1 && !btnType"
             >通过</el-button
           >
           <el-button
             size="mini"
-            v-if="row.status == 1"
+            v-if="row.status == 1 && !btnType"
             @click="
               () => {
                 dialogVisible = true;
@@ -72,8 +72,12 @@
               }
             "
             class="operate"
-            >不通过</el-button
           >
+            不通过
+          </el-button>
+          <el-button size="mini" @click="print(row)" class="operate">
+            打印
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -105,17 +109,25 @@
         </el-button>
       </div>
     </el-dialog>
+    <issue-print ref="print"></issue-print>
   </div>
 </template>
 
 <script>
 import operationGroup from "@/components/0perationGroup/index";
 import governmentApi from "@/api/modules/government";
+import IssuePrint from "./issuePrint.vue";
 export default {
   components: {
     "operation-group": operationGroup,
+    IssuePrint,
   },
-
+  props: {
+    formData: {
+      type: Object,
+      default: {},
+    },
+  },
   data() {
     return {
       message: "",
@@ -208,6 +220,10 @@ export default {
       }
     },
 
+    // 打印
+    print(row) {
+      this.$refs.print.open(row, this.formData);
+    },
     // 审核
     async changeAudit(id) {
       let [err, data] = await governmentApi.awaitWrap(

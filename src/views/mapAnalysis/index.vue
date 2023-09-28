@@ -16,7 +16,7 @@
       height: 100%;
     }
     .mapSearch {
-      width: 15%;
+      width: 22%;
       position: absolute;
       top: 15px;
       right: 15px;
@@ -81,16 +81,16 @@
             />
           </bm-marker>
         </bml-marker-clusterer>
+        <!-- @close="infoWindowClose(mapInfo)"
+          @open="infoWindowOpen(mapInfo)" -->
         <bm-info-window
           :position="{ lng: mapInfo.longitude, lat: mapInfo.latitude }"
           :show="mapInfo.show"
-          @close="infoWindowClose(mapInfo)"
-          @open="infoWindowOpen(mapInfo)"
         >
           <p>所属企业：{{ mapInfo.DeptName }}</p>
-          <p>当前位置：{{ mapInfo.latitude }}-{{ mapInfo.longitude }}</p>
+          <p>当前位置：{{ mapInfo.roadName }}</p>
           <p>卫星定位速度：{{ mapInfo.velocity }}</p>
-          <p>运营商：{{ mapInfo.yunguanmingcheng }}</p>
+          <p>运营商：{{ mapInfo.yunyingshangmingcheng }}</p>
           <p>使用性质：{{ mapInfo.shiyongxingzhi }}</p>
           <p>在线状态：{{ mapInfo.zaixian }}</p>
           <p>行政区划：{{ mapInfo.area }}</p>
@@ -130,13 +130,30 @@
             size="small"
             v-model="fromLine.deptName"
             placeholder="请选择企业"
-            style="margin-right: 10px"
+            style="margin-right: 10px; width: 100%"
+            @change="deptChange"
           >
             <el-option
               v-for="(item, index) in deptsList"
               :key="index"
               :label="item.deptName"
               :value="item.deptName"
+            >
+            </el-option>
+          </el-select>
+          <el-select
+            filterable
+            clearable
+            size="small"
+            v-model="fromLine.cheliangpaizhao"
+            placeholder="请选择车辆"
+            style="margin-right: 10px; width: 250px"
+          >
+            <el-option
+              v-for="(item, index) in carList"
+              :key="index"
+              :label="item.cheliangpaizhao"
+              :value="item.cheliangpaizhao"
             >
             </el-option>
           </el-select>
@@ -233,13 +250,14 @@ export default {
       mapInfo: {},
       show: false,
       deptsList: [],
-      fromLine: { deptName: "" },
+      fromLine: { deptName: "", cheliangpaizhao: "" },
       emptrMark: [],
       vehicleList: [],
       loading: false,
       countMsg: {},
       visible: false,
       index: 1,
+      carList: [],
     };
   },
   created() {
@@ -260,14 +278,45 @@ export default {
       this.index++;
     },
     // 打开信息窗体
-    infoWindowOpen(item) {
+    async infoWindowOpen(item) {
+      item.roadName = await this.getPointDataShow(
+        item.latitude,
+        item.longitude
+      );
       this.mapInfo = item;
       this.mapInfo.show = true;
     },
     // 关闭信息窗体
-    infoWindowClose(item) {
+    async infoWindowClose(item) {
+      item.roadName = await this.getPointDataShow(
+        item.latitude,
+        item.longitude
+      );
       this.mapInfo.show = false;
       this.mapInfo = item;
+    },
+    // 获取获取送达企业列表
+    async getPointDataShow(latitude, longitude) {
+      let [err, data] = await governmentApi.awaitWrap(
+        governmentApi.getPointDataShow({
+          latitude: latitude,
+          longitude: longitude,
+        })
+      );
+      if (data) {
+        return data.roadName;
+      }
+    },
+    // 获取车辆列表
+    async getByIdYWVehicleList(deptId) {
+      let [err, data] = await governmentApi.awaitWrap(
+        governmentApi.getByIdYWVehicleList({
+          deptId: deptId,
+        })
+      );
+      if (data) {
+        this.carList = data;
+      }
     },
     // 获取获取送达企业列表
     async getQiYe() {
@@ -280,6 +329,7 @@ export default {
       if (data) {
         this.deptsList = data;
         this.fromLine.deptName = this.deptsList[0].deptName;
+        this.getByIdYWVehicleList(this.deptsList[0].deptId);
         // 上线率统计
         this.selectGetZFJk();
         //获取统计车辆数据
@@ -310,7 +360,7 @@ export default {
         governmentApi.getVehicleList({
           dept: this.zhuzzhiId,
           page: 0,
-          cph: "",
+          cph: this.fromLine.cheliangpaizhao,
           deptname: this.fromLine.deptName,
           pagesize: 0,
           zaixian: 1,
@@ -322,10 +372,24 @@ export default {
       this.loading = false;
       if (data) {
         this.vehicleList = data.records;
+        if (data.records.length == 1) {
+          this.center = {
+            lng: data.records[0].longitude,
+            lat: data.records[0].latitude,
+          };
+        }
       } else {
         this.vehicleList = [];
         this.$message.error(err);
       }
+    },
+    // 企业 change
+    deptChange(val) {
+      console.log(val);
+      let label = this.deptsList.find((el) => {
+        return el.deptName == val;
+      });
+      if (label) this.getByIdYWVehicleList(label.deptId);
     },
   },
 };

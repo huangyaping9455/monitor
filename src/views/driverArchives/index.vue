@@ -209,6 +209,15 @@
             >查询</el-button
           >
           <el-button
+            size="mini"
+            :loading="downloading"
+            @click="downLoadList"
+            class="btn"
+          >
+            <svg-icon class="icon" v-show="!downloading" icon-class="down" />
+            下载
+          </el-button>
+          <el-button
             @click="refresh"
             size="mini"
             class="btn"
@@ -364,6 +373,7 @@ import { mapGetters } from "vuex";
 import { format } from "@/config/date";
 import { driverList } from "@/config/vehicleList";
 import viewDetail from "./viewDetail.vue";
+import { export_json_to_excel } from "@/config/Export2Excel";
 export default {
   components: { viewDetail },
   data() {
@@ -383,6 +393,7 @@ export default {
       enterpriseList: [],
       zhengfuId: "", //地区id
       vehiclemsgList: {},
+      downloading: false,
     };
   },
   created() {
@@ -501,6 +512,84 @@ export default {
     viewShow(item) {
       this.vehiclemsgList = item;
       this.$refs.viewShow.vehicleVisible = true;
+    },
+    // 下载
+    async downLoadList() {
+      this.downloading = true;
+      let [err, data] = await dataAnalysisApi.awaitWrap(
+        dataAnalysisApi.getZFJSYPageList({
+          deptId: this.zhuzzhiId,
+          current: 0,
+          size: 0,
+          ...this.form,
+        })
+      );
+      this.downloading = false;
+      if (data) {
+        data = data.records.map((el) => {
+          if (el.xingbie == "2") {
+            el.xingbie = "女";
+          } else if (el.xingbie == "1") {
+            el.xingbie = "男";
+          } else {
+            el.xingbie = el.xingbie;
+          }
+          if (el.congyeleibie == "0") {
+            el.congyeleibie = "经营性道路旅客运输驾驶员";
+          } else if (el.congyeleibie == "1") {
+            el.congyeleibie = "经营性道路货物运输驾驶员";
+          } else if (el.congyeleibie == "2") {
+            el.congyeleibie = "危险货物运输驾驶员";
+          } else if (el.congyeleibie == "3") {
+            el.congyeleibie = "道路危险货物运输押运员";
+          } else if (el.congyeleibie == "4") {
+            el.congyeleibie = "道路危险货物运输装卸管理人员";
+          } else {
+            el.congyeleibie = el.congyeleibie;
+          }
+          if (el.shenfenzhenghao) {
+            el.shenfenzhenghao = el.shenfenzhenghao.replace(
+              /^(.{6})(?:\d+)(.{4})$/,
+              "$1****$2"
+            );
+          }
+          return {
+            ...el,
+          };
+        });
+        this.export2Excel(data);
+      } else {
+        this.$message.error(err);
+      }
+    }, //处理下载数据
+    formatJson(filterVal, jsonData) {
+      return jsonData.map((v) => filterVal.map((j) => v[j]));
+    },
+    export2Excel(list) {
+      require.ensure([], () => {
+        const tHeader = [
+          "企业名称",
+          "驾驶员姓名",
+          "性别",
+          "身份证号",
+          "手机号码",
+          "发证机关",
+          "从业资格证号",
+          "备注",
+        ];
+        const filterVal = [
+          "deptName",
+          "jiashiyuanxingming",
+          "xingbie",
+          "shenfenzhenghao",
+          "shoujihaoma",
+          "fazhengjiguan",
+          "congyezigezheng",
+          "beizhu",
+        ];
+        const data = this.formatJson(filterVal, list);
+        export_json_to_excel({ header: tHeader, data, filename: "驾驶员档案" });
+      });
     },
   },
 };

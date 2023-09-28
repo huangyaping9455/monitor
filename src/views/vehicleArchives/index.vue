@@ -202,15 +202,26 @@
             size="mini"
             class="btn"
             icon="el-icon-search"
-            >查询</el-button
           >
+            查询
+          </el-button>
+          <el-button
+            size="mini"
+            :loading="downloading"
+            @click="downLoadList"
+            class="btn"
+          >
+            <svg-icon class="icon" v-show="!downloading" icon-class="down" />
+            下载
+          </el-button>
           <el-button
             @click="refresh"
             size="mini"
             class="btn"
             icon="el-icon-refresh"
-            >刷新</el-button
           >
+            刷新
+          </el-button>
         </div>
         <!-- 查询 -->
         <el-form
@@ -383,6 +394,7 @@ import { mapGetters } from "vuex";
 import { format } from "@/config/date";
 import { vehicleList } from "@/config/vehicleList";
 import viewDetail from "./viewDetail.vue";
+import { export_json_to_excel } from "@/config/Export2Excel";
 export default {
   components: { viewDetail },
   data() {
@@ -404,6 +416,7 @@ export default {
       enterpriseList: [],
       zhengfuId: "", //地区id
       vehiclemsgList: {},
+      downloading: false,
     };
   },
   created() {
@@ -527,6 +540,97 @@ export default {
     ViewClick(item) {
       this.vehiclemsgList = item;
       this.$refs.viewShow.vehicleVisible = true;
+    },
+    // 下载
+    async downLoadList() {
+      this.downloading = true;
+      let [err, data] = await dataAnalysisApi.awaitWrap(
+        dataAnalysisApi.getZFVehiclePage({
+          deptId: this.zhuzzhiId,
+          current: 0,
+          size: 0,
+          ...this.form,
+        })
+      );
+      this.downloading = false;
+      if (data) {
+        console.log(data);
+        data = data.records.map((el) => {
+          if (el.zhongduanleixing == "0") {
+            el.zhongduanleixing = "主动安全设备";
+          } else if (el.zhongduanleixing == "1") {
+            el.zhongduanleixing = "2G设备";
+          } else {
+            el.zhongduanleixing = "";
+          }
+          if (el.platformconnectiontype == "1") {
+            el.platformconnectiontype = "直连";
+          } else if (el.platformconnectiontype == "2") {
+            el.platformconnectiontype = "转发";
+          }
+          if (el.cheliangzhuangtai == 0) {
+            el.cheliangzhuangtai = "营运";
+          } else if (el.cheliangzhuangtai == 1) {
+            el.cheliangzhuangtai = "停用";
+          } else if (el.cheliangzhuangtai == 2) {
+            el.cheliangzhuangtai = "报废";
+          }
+          if (el.jiashiyuanxingming.indexOf(",") != -1) {
+            el.jiashiyuanxingming2 = el.jiashiyuanxingming.split(",")[1];
+            el.jiashiyuanxingming = el.jiashiyuanxingming.split(",")[0];
+          }
+          if (el.jiashiyuandianhua.indexOf(",") != -1) {
+            el.jiashiyuandianhua2 = el.jiashiyuandianhua.split(",")[1];
+            el.jiashiyuandianhua = el.jiashiyuandianhua.split(",")[0];
+          }
+          el.videochannelnum = el.videochannelnum
+            ? el.videochannelnum + "路"
+            : "";
+          return {
+            ...el,
+          };
+        });
+        this.export2Excel(data);
+      } else {
+        this.$message.error(err);
+      }
+    }, //处理下载数据
+    formatJson(filterVal, jsonData) {
+      return jsonData.map((v) => filterVal.map((j) => v[j]));
+    },
+    export2Excel(list) {
+      require.ensure([], () => {
+        const tHeader = [
+          "所属地市",
+          "企业名称",
+          "车辆牌照",
+          "车牌颜色",
+          "使用性质",
+          "运营状态",
+          "车辆技术等级",
+          "车辆类型",
+          "道路运输证编号",
+          "保险到期时间",
+          "下次年审日期",
+          "车辆技术评定日期",
+        ];
+        const filterVal = [
+          "area",
+          "deptName",
+          "cheliangpaizhao",
+          "chepaiyanse",
+          "shiyongxingzhi",
+          "cheliangzhuangtai",
+          "cheliangjishudengji",
+          "xinghao",
+          "daoluyunshuzheng",
+          "baoxiandaoqishijian",
+          "xiacinianshenriqi",
+          "bencijipingriqi",
+        ];
+        const data = this.formatJson(filterVal, list);
+        export_json_to_excel({ header: tHeader, data, filename: "车辆档案" });
+      });
     },
   },
 };

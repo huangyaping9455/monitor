@@ -264,7 +264,7 @@ li {
     <p class="errmsg">{{ errmsg }}</p>
     <p v-if="type !== 'add'" class="main-title">下发整改审核</p>
     <!-- && showStatus !=='待处理' -->
-    <audit style="height: 50%" v-if="type !== 'add'"></audit>
+    <audit style="height: 50%" v-if="type !== 'add'" :formData="form"></audit>
   </div>
 </template>
 
