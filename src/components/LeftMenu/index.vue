@@ -542,7 +542,7 @@
             </div>
           </el-menu-item>
         </el-submenu> -->
-        <!-- <el-submenu index="13">
+        <el-submenu index="13">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="kaohe" />
@@ -608,14 +608,14 @@
               <svg-icon class="icon" icon-class="piaoyi" />
               <span slot="title">轨迹漂移率</span>
             </div>
-          </el-menu-item> -->
+          </el-menu-item>
         <!-- <el-menu-item index="YYSSafetyInspection" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="anquan" />
               <span>运营商查岗</span>
             </div>
           </el-menu-item> -->
-        <!-- </el-submenu> -->
+        </el-submenu>
       </el-menu>
     </scroll>
     <div class="movebtn" :class="ismenuShow ? 'el-icon-d-arrow-left' : 'el-icon-d-arrow-right'" @click="changeleftMenu">
