@@ -1,17 +1,18 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router/router'
-import store from './store/index'
 import echarts from 'echarts'
 import echartsGL from 'echarts-gl'
 import ElementUI from 'element-ui'
+import Vue from 'vue'
+import VueAnimateNumber from 'vue-animate-number'
 import BaiduMap from 'vue-baidu-map'
-import vuescroll from 'vuescroll';
+import vuescroll from 'vuescroll'
+import App from './App.vue'
+import router from './router/router'
+import store from './store/index'
 // import vueSeamlessScroll from 'vue-seamless-scroll'
 
+import '@/assets/css/theme/index.scss'; //element
+import './assets/icons'; // icon
 import './router/index'
-import './assets/icons' // icon
-import '@/assets/css/theme/index.scss' //element
 
 // scorll
 Vue.prototype.$echarts = echarts
@@ -20,6 +21,7 @@ Vue.prototype.$echartsGL = echartsGL
 
 // console.log(maps)
 // Vue.use(vueSeamlessScroll)
+Vue.use(VueAnimateNumber)
 
 Vue.use(BaiduMap, {
   ak: 'yM7IUbMIzcPoqRXUsi3h6m9kreZR794W'

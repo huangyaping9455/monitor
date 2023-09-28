@@ -5,6 +5,7 @@
   background-image: url("~@/assets/img/bg.png");
   background-size: 100% 100%;
   position: relative;
+  font-weight: bold;
 
   .head {
     background-image: url("~@/assets/img/bg_head.png");
@@ -16,15 +17,26 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
-    font-weight: bold;
     color: #fff;
+    position: relative;
+
+    .tit {
+      font-size: 3.2vmin;
+      letter-spacing: 28px;
+    }
+
+    .time {
+      position: absolute;
+      right: 2vmin;
+      top: 20%;
+      font-size: 1.5vmin;
+    }
+
   }
 
   .center {
     height: 90%;
-    margin-top: 4%;
-    padding: 30px;
+    padding: 15px 30px;
     color: #fff;
 
     .nav {
@@ -38,12 +50,13 @@
         display: flex;
         justify-content: space-evenly;
         width: 100%;
+        font-size: 1.8vmin;
 
         .btn {
           background-image: url("~@/assets/img/nav_btn.png");
           background-size: 100% 100%;
           width: calc(64% / 8);
-          padding: 13px 0;
+          padding: 15px 0;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -52,7 +65,7 @@
 
       .jiance {
         width: 50%;
-        height: 35%;
+        height: 29%;
         position: absolute;
         left: 0;
         right: 0;
@@ -60,8 +73,8 @@
         margin: auto;
         display: flex;
         justify-content: space-evenly;
-        font-size: 18px;
-        font-weight: 800;
+        font-size: 2.3vmin;
+        letter-spacing: 6px;
 
         .car {
           background-image: url("~@/assets/img/nav_dept.png");
@@ -110,34 +123,34 @@
           .bg1 {
             background-image: url("~@/assets/img/contentLeft1.png");
             background-size: 100% 100%;
-            width: 43%;
-            height: 10%;
+            width: 45%;
+            height: 13%;
             display: flex;
             justify-content: center;
             align-items: center;
-
+            font-size: 1.8vmin;
+            letter-spacing: 5px;
           }
 
           .bg2 {
-            margin-top: 6%;
+            margin-top: 3%;
             background-image: url("~@/assets/img/contentLeft2.png");
             background-size: 100% 100%;
             width: 100%;
-            height: 20%;
+            height: 23%;
 
             .tit {
               padding-left: 18%;
               padding-top: 2%;
-              font-size: 15px;
-              font-weight: 400;
+              font-size: 18px;
             }
 
             .item {
               display: flex;
               justify-content: space-evenly;
-              margin-top: 10px;
+              margin-top: 17px;
               padding-left: 10px;
-              height: 50%;
+              height: 46%;
 
               div {
                 display: flex;
@@ -155,7 +168,7 @@
               }
 
               .span {
-                font-size: 22px;
+                font-size: 2.2vmin;
               }
 
             }
@@ -166,13 +179,12 @@
             background-image: url("~@/assets/img/contentLeft3.png");
             background-size: 100% 100%;
             width: 100%;
-            height: 55%;
+            height: 50%;
 
             .tit {
               padding-left: 18%;
               padding-top: 2%;
-              font-size: 15px;
-              font-weight: 400;
+              font-size: 18px;
             }
 
             .list {
@@ -180,20 +192,20 @@
               display: flex;
               flex-wrap: wrap;
               padding-left: 8%;
-              margin-top: 20px;
+              margin-top: 14px;
 
               div {
                 width: 40%;
-                height: 23%;
+                height: 25%;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
                 justify-content: space-between;
+                align-items: center;
                 margin-left: 5%;
               }
 
               .span {
-                font-size: 22px;
+                font-size: 2.2vmin;
               }
             }
           }
@@ -216,14 +228,14 @@
         .tit {
           background-image: url("~@/assets/img/contentCenter1.png");
           background-size: 100% 100%;
-          width: 50%;
-          height: 8%;
-          margin-top: 2%;
+          width: 60%;
+          height: 9%;
+          margin-top: 4%;
           display: flex;
           justify-content: center;
           align-items: center;
-          font-size: 16px;
-          font-weight: 800;
+          font-size: 2vmin;
+          letter-spacing: 8px;
         }
 
         .ball {
@@ -245,43 +257,48 @@
 
         .bg {
           height: 100%;
-          padding: 10px 40px;
+          padding: 0 40px;
 
           .tit {
             display: flex;
             justify-content: space-around;
             width: 100%;
-            height: 10%;
+            height: 13%;
 
             .control {
               background-image: url("~@/assets/img/contentLeft1.png");
               background-size: 100% 100%;
-              width: 40%;
+              width: 45%;
               display: flex;
               justify-content: center;
               align-items: center;
+              font-size: 1.8vmin;
+              letter-spacing: 5px;
             }
 
             .manage {
               background-image: url("~@/assets/img/contentLeft1.png");
               background-size: 100% 100%;
-              width: 40%;
+              width: 45%;
               display: flex;
               justify-content: center;
               align-items: center;
+              font-size: 1.8vmin;
+              letter-spacing: 5px;
             }
           }
 
           .action {
-            margin-top: 20px;
+            margin-top: 10px;
 
             .action_bg {
               background-image: url("~@/assets/img/contentRight_action.png");
               background-size: 100% 100%;
-              padding: 6px 0 6px 40px;
+              padding: 8px 0 8px 45px;
               margin-bottom: 10px;
               display: flex;
               align-items: center;
+              font-size: 1.6vmin;
             }
 
             .actionList {
@@ -292,16 +309,17 @@
               .item {
                 width: calc(90% / 2);
                 padding: 10px 0;
-                margin-bottom: 10px;
+                margin-bottom: 5px;
                 display: flex;
                 justify-content: center;
 
                 .text {
                   display: flex;
                   flex-direction: column;
+                  margin-bottom: 6px;
 
                   .span {
-                    font-size: 20px;
+                    font-size: 2vmin;
                     color: #00b6e2;
                   }
                 }
@@ -360,10 +378,11 @@
             .handle_bg {
               background-image: url("~@/assets/img/contentRight_action.png");
               background-size: 100% 100%;
-              padding: 6px 0 6px 40px;
+              padding: 8px 0 8px 45px;
               margin-bottom: 10px;
               display: flex;
               align-items: center;
+              font-size: 1.6vmin;
             }
 
             .handleList {
@@ -433,7 +452,8 @@
 <template>
   <div class="home">
     <div class="head">
-      <span>综合治理数字监管平台</span>
+      <span class="tit">综合治理数字监管平台</span>
+      <span class="time">{{ newtime }}</span>
     </div>
     <div class="center">
       <div class="nav">
@@ -456,10 +476,16 @@
               <div class="tit">数据接入</div>
               <div class="item">
                 <div class="item1">
-                  <span class="span">{{ oneList.zcvehnumb }}</span><span>车辆总数</span>
+                  <!-- <span class="span">{{ oneList.zcvehnumb }}</span> -->
+                  <animate-number class="span" ref="reNum" from="0" :to="oneList.zcvehnumb" :key="oneList.zcvehnumb"
+                    duration="5000"></animate-number>
+                  <span>车辆总数</span>
                 </div>
                 <div class="item2">
-                  <span class="span">{{ oneList.qiyeshu }}</span><span>企业总数</span>
+                  <!-- <span class="span">{{ oneList.qiyeshu }}</span> -->
+                  <animate-number class="span" ref="reNum" from="0" :to="oneList.qiyeshu" :key="oneList.qiyeshu"
+                    duration="5000"></animate-number>
+                  <span>企业总数</span>
                 </div>
               </div>
             </div>
@@ -467,19 +493,28 @@
               <div class="tit">平台安全标准</div>
               <div class="list">
                 <div>
-                  <span class="span">{{ alarmCount.csclnum }}</span><span>超速报警</span>
+                  <!-- <span class="span">{{ alarmCount.csclnum }}</span> -->
+                  <animate-number class="span" ref="reNum" from="0" :to="alarmCount.csclnum" :key="alarmCount.csclnum"
+                    duration="5000"></animate-number>
+                  <span>超速报警</span>
                 </div>
                 <div>
-                  <span class="span">{{ alarmCount.plclnum }}</span><span>疲劳驾驶报警</span>
+                  <!-- <span class="span">{{ alarmCount.plclnum }}</span> -->
+                  <animate-number class="span" ref="reNum" from="0" :to="alarmCount.csclnum" :key="alarmCount.csclnum"
+                    duration="5000"></animate-number>
+                  <span>疲劳驾驶报警</span>
                 </div>
                 <div>
-                  <span class="span">{{ alarmCount.yjclnum }}</span><span>夜间行驶报警</span>
+                  <!-- <span class="span">{{ alarmCount.yjclnum }}</span> -->
+                  <animate-number class="span" ref="reNum" from="0" :to="alarmCount.yjclnum" :key="alarmCount.yjclnum"
+                    duration="5000"></animate-number>
+                  <span>夜间行驶报警</span>
                 </div>
                 <div>
-                  <span class="span">{{ alarmCount.ycclnum }}</span><span>异常车辆报警</span>
-                </div>
-                <div>
-                  <span class="span">86</span><span>企业安全标准化</span>
+                  <!-- <span class="span">{{ alarmCount.ycclnum }}</span> -->
+                  <animate-number class="span" ref="reNum" from="0" :to="alarmCount.ycclnum" :key="alarmCount.ycclnum"
+                    duration="5000"></animate-number>
+                  <span>异常车辆报警</span>
                 </div>
               </div>
             </div>
@@ -500,49 +535,65 @@
               <div class="actionList">
                 <div class="item item1">
                   <div class="text">
-                    <span class="span">{{ monitor.gpschaosu }}</span>
+                    <!-- <span class="span">{{ monitor.gpschaosu }}</span> -->
+                    <animate-number class="span" ref="reNum" from="0" :to="monitor.gpschaosu" :key="monitor.gpschaosu"
+                      duration="5000"></animate-number>
                     <span>超速报警</span>
                   </div>
                 </div>
                 <div class="item item2">
                   <div class="text">
-                    <span class="span">{{ monitor.gpspilao }}</span>
+                    <!-- <span class="span">{{ monitor.gpspilao }}</span> -->
+                    <animate-number class="span" ref="reNum" from="0" :to="monitor.gpspilao" :key="monitor.gpspilao"
+                      duration="5000"></animate-number>
                     <span>疲劳驾驶</span>
                   </div>
                 </div>
                 <div class="item item3">
                   <div class="text">
-                    <span class="span">{{ monitor.gpsyejian }}</span>
+                    <!-- <span class="span">{{ monitor.gpsyejian }}</span> -->
+                    <animate-number class="span" ref="reNum" from="0" :to="monitor.gpsyejian" :key="monitor.gpsyejian"
+                      duration="5000"></animate-number>
                     <span>夜间行驶</span>
                   </div>
                 </div>
                 <div class="item item4">
                   <div class="text">
-                    <span class="span">{{ monitor.gpsyichang }}</span>
+                    <!-- <span class="span">{{ monitor.gpsyichang }}</span> -->
+                    <animate-number class="span" ref="reNum" from="0" :to="monitor.gpsyichang" :key="monitor.gpsyichang"
+                      duration="5000"></animate-number>
                     <span>异常车辆</span>
                   </div>
                 </div>
                 <div class="item item5">
                   <div class="text">
-                    <span class="span">{{ monitor.dmsjiedadianhua }}</span>
+                    <!-- <span class="span">{{ monitor.dmsjiedadianhua }}</span> -->
+                    <animate-number class="span" ref="reNum" from="0" :to="monitor.dmsjiedadianhua"
+                      :key="monitor.dmsjiedadianhua" duration="5000"></animate-number>
                     <span>接打电话</span>
                   </div>
                 </div>
                 <div class="item item6">
                   <div class="text">
-                    <span class="span">{{ monitor.dmsfenshen }}</span>
+                    <!-- <span class="span">{{ monitor.dmsfenshen }}</span> -->
+                    <animate-number class="span" ref="reNum" from="0" :to="monitor.dmsfenshen" :key="monitor.dmsfenshen"
+                      duration="5000"></animate-number>
                     <span>分神驾驶</span>
                   </div>
                 </div>
                 <div class="item item7">
                   <div class="text">
-                    <span class="span">{{ monitor.dmschouyan }}</span>
+                    <!-- <span class="span">{{ monitor.dmschouyan }}</span> -->
+                    <animate-number class="span" ref="reNum" from="0" :to="monitor.dmschouyan" :key="monitor.dmschouyan"
+                      duration="5000"></animate-number>
                     <span>抽烟报警</span>
                   </div>
                 </div>
                 <div class="item item8">
                   <div class="text">
-                    <span class="span">{{ monitor.dmspilao }}</span>
+                    <!-- <span class="span">{{ monitor.dmspilao }}</span> -->
+                    <animate-number class="span" ref="reNum" from="0" :to="monitor.dmspilao" :key="monitor.dmspilao"
+                      duration="5000"></animate-number>
                     <span>生理疲劳</span>
                   </div>
                 </div>
@@ -554,7 +605,7 @@
                 <div class="item">
                   <img src="@/assets/img/contentRight_handle2.png">
                   <div>
-                    <span>TIS下发</span>
+                    <span>TTS下发</span>
                     <span>9863个</span>
                   </div>
                 </div>
@@ -596,6 +647,7 @@
 
 <script>
 import homeApi from "@/api/modules/newHome";
+import { format } from "@/config/date";
 import { mapGetters } from "vuex";
 export default {
   data() {
@@ -635,7 +687,8 @@ export default {
       // 平台安全标准
       alarmCount: {},
       // 监控行为
-      monitor: {}
+      monitor: {},
+      newtime: "",
     }
   },
   created() {
@@ -646,7 +699,29 @@ export default {
       userinfo: "userinfo",
     }),
   },
+  mounted() {
+    let _this = this
+    const timer = setInterval(() => {
+      // 某些定时器操作
+      _this.setNewTime();
+    }, 1000);
+    // 通过$once来监听定时器，在beforeDestroy钩子可以被清除。
+    this.$once("hook:beforeDestroy", () => {
+      clearInterval(timer);
+    });
+
+    const timerData = setInterval(() => {
+      _this.init();
+    }, 90000);
+    this.$once("hook:beforeDestroy", () => {
+      clearInterval(timerData);
+    });
+  },
   methods: {
+    setNewTime() {
+      this.newtime = format(new Date(), "YYYY-MM-DD HH:mm:ss dddd");
+    },
+
     init() {
       this.getOne(this.userinfo.deptId);
       this.getVehAlarmCount(this.userinfo.deptId);
@@ -655,6 +730,10 @@ export default {
 
     // 数据接入
     async getOne(deptId) {
+      this.oneList = {
+        zcvehnumb: 0,
+        qiyeshu: 0
+      }
       let [err, data] = await homeApi.awaitWrap(
         homeApi.getOne({
           deptId: deptId,
@@ -669,6 +748,12 @@ export default {
 
     // 平台安全标准
     async getVehAlarmCount(deptId) {
+      this.alarmCount = {
+        csclnum: 0,
+        plclnum: 0,
+        yjclnum: 0,
+        ycclnum: 0
+      }
       let [err, data] = await homeApi.awaitWrap(
         homeApi.getVehAlarmCount({
           deptId: deptId,
@@ -685,6 +770,16 @@ export default {
 
     // 监控行为
     async getAlarmCount(deptId) {
+      this.monitor = {
+        gpschaosu: 0,
+        gpspilao: 0,
+        gpsyejian: 0,
+        gpsyichang: 0,
+        dmsjiedadianhua: 0,
+        dmsfenshen: 0,
+        dmschouyan: 0,
+        dmspilao: 0,
+      }
       let [err, data] = await homeApi.awaitWrap(
         homeApi.getAlarmCount({
           deptId: deptId,
@@ -697,7 +792,6 @@ export default {
       } else {
         this.monitor = data
       }
-
     }
 
   }
