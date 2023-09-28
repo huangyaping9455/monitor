@@ -1,6 +1,6 @@
+import Layout from "@/layout/index";
 import Vue from "vue";
 import Router from "vue-router";
-import Layout from "@/layout/index";
 
 Vue.use(Router);
 
@@ -69,6 +69,14 @@ export const constantRouterMap = [
     },
     component: () => import("@/views/DataAnalysis/index"),
     // component: () => import('@/views/DataAnalysis/index_new')
+  },
+  {
+    path: "/dataBoard",
+    meta: {
+      title: "数据看板",
+      requiresAuth: true,
+    },
+    component: () => import("@/views/dataBoard/index"),
   },
   {
     path: "/dataAnalysis_gz",

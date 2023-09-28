@@ -547,7 +547,7 @@
 <script>
 import echartBase from "@/components/EChart/index";
 import allHeader from "@/components/Header/index";
-import homeApi from "@/api/modules/home";
+import homeApi from "@/api/modules/home"; 
 import dataAnalysisApi from "@/api/modules/report";
 // import { lineoption, lineName, geooption } from "@/config/echartoption";
 import { lineoption, lineName } from "@/config/echartoption-new";
