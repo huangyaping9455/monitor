@@ -143,6 +143,17 @@
             />
           </el-form-item>
         </el-col>
+        <el-col :span="24">
+          <el-form-item label="保单附件：">
+            <el-image
+              :src="item.url"
+              v-for="(item, index) in fileList"
+              :key="index"
+              style="width: 120px; height: 120px; margin-right: 10px"
+              :preview-src-list="[item.url]"
+            />
+          </el-form-item>
+        </el-col>
       </el-form>
     </div>
     <div slot="footer">
@@ -172,6 +183,7 @@ export default {
       msgloading: false,
       driverDetailList: {},
       weihuleibieList: [],
+      fileList: [],
     };
   },
   computed: {},
@@ -179,6 +191,7 @@ export default {
     vehicleVisible: {
       handler(val) {
         if (val === true) {
+          this.fileList = [];
           this.getDicData();
           this.getvehicleWHrDetail();
         }
@@ -196,6 +209,15 @@ export default {
       this.msgloading = false;
       if (data) {
         this.driverDetailList = data;
+        if (data.fuyinjian) {
+          if (data.fuyinjian.indexOf(",") != -1) {
+            this.fileList = data.fuyinjian.split(",").map((el) => {
+              return { url: el };
+            });
+          } else {
+            this.fileList = [{ url: data.fuyinjian }];
+          }
+        }
       } else {
         this.$message.error(err);
       }

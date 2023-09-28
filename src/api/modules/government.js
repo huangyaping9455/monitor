@@ -147,5 +147,29 @@ export default {
       },
     });
   },
+  // 地址解析
+  getPointDataShow(params) {
+    return $axios.get(
+      "/blade-gps/gps/gpsdata/getPointDataShow",
+      { params },
+      {
+        headers: {
+          "blade-auth": "Bearer " + Cookies.get("accessToken"),
+        },
+      }
+    );
+  },
+  // 车辆列表
+  getByIdYWVehicleList(params) {
+    return $axios.get(
+      "/blade-anbiao/anbiao/vehicle/getByIdYWVehicleList",
+      { params },
+      {
+        headers: {
+          "blade-auth": "Bearer " + Cookies.get("accessToken"),
+        },
+      }
+    );
+  },
   awaitWrap,
 };

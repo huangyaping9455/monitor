@@ -1,5 +1,6 @@
 import { $axios, awaitWrap } from "../api";
 import qs from "qs";
+import Cookies from "js-cookie";
 /** 数据分析模块 */
 export default {
   //政府报警统计-报警统计结算
@@ -144,7 +145,12 @@ export default {
   getYHFLPageList(data) {
     return $axios.post(
       "/blade-anbiao/anbiao/anbiaoYinhuanpaichaXiangDeptInfoDeptInfo/getYHFLPageList",
-      data
+      data,
+      {
+        headers: {
+          "blade-auth": "Bearer " + Cookies.get("accessToken"),
+        },
+      }
     );
   },
   // 获取隐患排查列表

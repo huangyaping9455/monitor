@@ -158,5 +158,17 @@ export default {
       }
     );
   },
+  // 根据车辆、日期获取车辆行驶里程及行驶时间
+  getVehTravel(params) {
+    return $axios.get(
+      "/blade-gps/gps/gpsdata/getVehTravel",
+      { params },
+      {
+        headers: {
+          "blade-auth": "Bearer " + Cookies.get("accessToken"),
+        },
+      }
+    );
+  },
   awaitWrap,
 };

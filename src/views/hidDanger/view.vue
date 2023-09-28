@@ -17,9 +17,9 @@
         v-model="troubleMc"
         placeholder="请输入车辆牌照"
       ></el-input>
-      <el-button size="small" type="primary" @click="getDateMsg(1)"
-        >搜索</el-button
-      >
+      <el-button size="small" type="primary" @click="getDateMsg(1)">
+        搜 索
+      </el-button>
     </div>
     <el-table
       class="learnTable"
@@ -219,10 +219,7 @@ export default {
           comId: this.rows.comId,
           current: current,
           size: this.pagesizeactive,
-          troubleDj: this.troubleDJ,
-          troubleMc: this.troubleMc,
-          troubleLy: this.troubleLy,
-          troubleYhms: this.troubleYhms,
+          ...this.rows,
         })
       );
       this.msgloading = false;

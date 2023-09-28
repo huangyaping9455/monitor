@@ -262,6 +262,15 @@
               class="inputW"
             ></el-date-picker>
           </el-form-item>
+          <el-form-item label="企业名称">
+            <el-input
+              class="inline-input inputW"
+              clearable
+              placeholder="请输入企业名称"
+              v-model="deptName"
+            >
+            </el-input>
+          </el-form-item>
           <el-form-item label="车辆总数">
             <el-autocomplete
               class="inline-input inputW"
@@ -506,6 +515,7 @@ export default {
       enterpriseCount: [],
       zhengfuId: "", //地区id
       vehicleCount: "1",
+      deptName: "",
     };
   },
   mounted() {
@@ -579,6 +589,7 @@ export default {
           begintime: this.form.begintime,
           endtime: this.form.endtime,
           vehiclecount: this.vehicleCount,
+          deptName: this.deptName,
         })
       );
       this.loading = false;
@@ -622,6 +633,7 @@ export default {
           begintime: this.form.begintime,
           endtime: this.form.endtime,
           vehiclecount: this.vehicleCount,
+          deptName: this.deptName,
         })
       );
       this.downloading = false;
