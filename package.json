@@ -13,7 +13,7 @@
     "crypto-js": "^4.0.0",
     "dayjs": "^1.11.7",
     "docx-preview": "^0.1.16",
-    "echarts": "^4.8.0",
+    "echarts": "^4.9.0",
     "echarts-gl": "^1.1.1",
     "element-ui": "^2.13.2",
     "file-saver": "^2.0.2",

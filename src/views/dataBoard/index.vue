@@ -238,13 +238,181 @@
           letter-spacing: 8px;
         }
 
-        .ball {
-          background-image: url("~@/assets/img/contentCenter2.png");
+        .ball_bg {
+          background-image: url("~@/assets/img/ball_bg.png");
           background-size: 100% 100%;
           width: 78%;
           height: 70%;
           position: absolute;
           bottom: 20px;
+          transform: rotateZ(0.65deg);
+        }
+
+        .animate {
+          width: 100%;
+          height: 65%;
+          position: absolute;
+          bottom: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 2vmin;
+
+
+          .plane {
+            width: 78%;
+            height: 60%;
+            position: relative;
+
+            .orbital {
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+              border: 1px solid transparent;
+              position: absolute;
+              top: 0;
+              left: 0;
+            }
+
+            .ball1 {
+              // width: 4px;
+              // height: 4px;
+              // box-shadow: 0 0 4px 2px #1cf3fe;
+              // background-color: #34d88e;
+              position: absolute;
+              top: 0;
+              left: 0;
+              animation: aniX 6s 0s cubic-bezier(0.36, 0, 0.68, 1) infinite alternate,
+                aniY 6s -3s cubic-bezier(0.36, 0, 0.68, 1) infinite alternate,
+                opacity 6s -3s cubic-bezier(0.36, 0, 0.68, 1) infinite alternate;
+            }
+
+            .ball2 {
+              position: absolute;
+              top: 0;
+              left: 43%;
+              animation: aniX 6s -4s cubic-bezier(0.36, 0, 0.68, 1) infinite alternate,
+                aniY 6s -7s cubic-bezier(0.36, 0, 0.68, 1) infinite alternate,
+                opacity 6s -7s cubic-bezier(0.36, 0, 0.68, 1) infinite alternate;
+            }
+
+            .ball3 {
+              position: absolute;
+              top: 0;
+              right: 0;
+              animation: aniX 6s -8s cubic-bezier(0.36, 0, 0.68, 1) infinite alternate,
+                aniY 6s -11s cubic-bezier(0.36, 0, 0.68, 1) infinite alternate,
+                opacity 6s -11s cubic-bezier(0.36, 0, 0.68, 1) infinite alternate;
+            }
+
+
+            @keyframes aniX {
+              0% {
+                left: -8%
+              }
+
+              100% {
+                left: 92%
+              }
+            }
+
+            @keyframes aniY {
+              0% {
+                top: -25%
+              }
+
+              100% {
+                top: 75%
+              }
+            }
+
+            @keyframes opacity {
+
+              0% {
+                opacity: 0;
+              }
+
+              10% {
+                opacity: 0;
+              }
+
+              100% {
+                opacity: 1;
+              }
+            }
+
+            .medium1 {
+              background-image: url("~@/assets/img/ball2.png");
+              background-size: 100% 100%;
+              width: 18%;
+              height: 53%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+
+            .medium2 {
+              background-image: url("~@/assets/img/ball1.png");
+              background-size: 100% 100%;
+              width: 18%;
+              height: 53%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin-bottom: -16vmin;
+            }
+          }
+
+        }
+
+        .carousel {
+          width: 130%;
+          height: 60%;
+          position: absolute;
+          bottom: 0;
+          font-size: 2vmin;
+
+
+          .el-carousel {
+            width: 100%;
+            height: 100%;
+
+            .el-carousel__container {
+              height: 100%;
+            }
+          }
+
+
+          .el-carousel__item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+            .medium1 {
+              background-image: url("~@/assets/img/ball2.png");
+              background-size: 100% 100%;
+              width: 21%;
+              height: 40%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+
+            .medium2 {
+              background-image: url("~@/assets/img/ball1.png");
+              background-size: 100% 100%;
+              width: 21%;
+              height: 40%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+
+          .is-active {
+            margin-top: 10vmin;
+          }
         }
       }
 
@@ -448,6 +616,20 @@
 
 }
 </style>
+<style>
+.contentCenter {
+  .carousel {
+    .el-carousel__mask {
+      display: none !important;
+    }
+  }
+}
+</style>
+<style>
+.el-carousel--horizontal {
+  overflow: hidden !important;
+}
+</style>
 
 <template>
   <div class="home">
@@ -522,7 +704,33 @@
         </div>
         <div class="contentCenter">
           <div class="tit"><span>安全过程管理</span></div>
-          <div class="ball"></div>
+          <div class="ball_bg"></div>
+          <!-- 走马灯 -->
+          <!-- <div class="carousel">
+            <el-carousel :interval="4000" type="card" indicator-position="none" arrow="never">
+              <el-carousel-item>
+                <div class="medium1">事前严防</div>
+              </el-carousel-item>
+              <el-carousel-item>
+                <div class="medium2">事中严控</div>
+              </el-carousel-item>
+              <el-carousel-item>
+                <div class="medium1">事后严管</div>
+              </el-carousel-item>
+            </el-carousel>
+          </div> -->
+          <div class="animate">
+            <div class="plane">
+              <div class="orbital">
+                <div class="medium1 ball1">事前严防</div>
+                <div class="medium2 ball2">事中严控</div>
+                <div class="medium1 ball3">事后严管</div>
+              </div>
+              <!-- <div class="medium1 ball1">事前严防</div>
+              <div class="medium2 ball2">事中严控</div>
+              <div class="medium1 ball3">事后严管</div> -->
+            </div>
+          </div>
         </div>
         <div class="contentRight">
           <div class="bg">

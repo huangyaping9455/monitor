@@ -3136,12 +3136,12 @@
     "claygl" "^1.2.1"
     "zrender" "^4.0.4"
 
-"echarts@^4.8.0":
-  "integrity" "sha512-YwShpug8fWngj/RlgxDaYrLBoD+LsZUArrusjNPHpAF+is+gGe38xx4W848AwWMGoi745t3OXM52JedNrv+F6g=="
-  "resolved" "https://registry.npmjs.org/echarts/-/echarts-4.8.0.tgz"
-  "version" "4.8.0"
+"echarts@^4.9.0":
+  "integrity" "sha512-+ugizgtJ+KmsJyyDPxaw2Br5FqzuBnyOWwcxPKO6y0gc5caYcfnEUIlNStx02necw8jmKmTafmpHhGo4XDtEIA=="
+  "resolved" "https://registry.npmmirror.com/echarts/-/echarts-4.9.0.tgz"
+  "version" "4.9.0"
   dependencies:
-    "zrender" "4.3.1"
+    "zrender" "4.3.2"
 
 "ee-first@1.1.1":
   "integrity" "sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0="
@@ -9123,7 +9123,7 @@
     "normalize-path" "^1.0.0"
     "strip-indent" "^2.0.0"
 
-"zrender@^4.0.4", "zrender@4.3.1":
-  "integrity" "sha512-CeH2TpJeCdG0TAGYoPSAcFX2ogdug1K7LIn9UO/q9HWqQ54gWhrMAlDP9AwWYMUDhrPe4VeazQ4DW3msD96nUQ=="
-  "resolved" "https://registry.npmjs.org/zrender/-/zrender-4.3.1.tgz"
-  "version" "4.3.1"
+"zrender@^4.0.4", "zrender@4.3.2":
+  "integrity" "sha512-bIusJLS8c4DkIcdiK+s13HiQ/zjQQVgpNohtd8d94Y2DnJqgM1yjh/jpDb8DoL6hd7r8Awagw8e3qK/oLaWr3g=="
+  "resolved" "https://registry.npmmirror.com/zrender/-/zrender-4.3.2.tgz"
+  "version" "4.3.2"
