@@ -147,6 +147,18 @@ export default {
       },
     });
   },
+  // 查看回复企业(安全查岗、通知公告)
+  getHFO(params) {
+    return $axios.get(
+      "/blade-anbiao/anbiao/xinxijiaohuzhuti/getHFQY",
+      { params },
+      {
+        headers: {
+          "blade-auth": "Bearer " + Cookies.get("accessToken"),
+        },
+      }
+    );
+  },
   // 地址解析
   getPointDataShow(params) {
     return $axios.get(

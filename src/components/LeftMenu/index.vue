@@ -142,12 +142,12 @@
               <span>数据分析</span>
             </div>
           </el-menu-item>
-          <el-menu-item index="dataBoard" @click="openMenu">
+          <!-- <el-menu-item index="dataBoard" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="zhenggai" />
               <span>数据看板</span>
             </div>
-          </el-menu-item>
+          </el-menu-item> -->
           <el-menu-item index="home" @click="openMap">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="map" />
