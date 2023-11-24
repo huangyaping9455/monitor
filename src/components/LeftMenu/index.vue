@@ -233,7 +233,7 @@
               <span>运营商考核评分</span>
             </div>
           </el-menu-item> -->
-          <el-menu-item index="gpsAlarmAll" @click="openMenu">
+          <!-- <el-menu-item index="gpsAlarmAll" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yunyingshangkaohe" />
               <span>企业月报警统计</span>
@@ -250,7 +250,7 @@
               <svg-icon class="icon" icon-class="yunyingshangkaohe" />
               <span>企业月报警分析</span>
             </div>
-          </el-menu-item>
+          </el-menu-item> -->
         </el-submenu>
         <el-submenu index="3">
           <template slot="title">
@@ -315,12 +315,12 @@
               <span>下发整改</span>
             </div>
           </el-menu-item>
-          <el-menu-item index="yysInspect" @click="openMenu">
+          <!-- <el-menu-item index="yysInspect" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="tongzhi" />
               <span>运营商查岗</span>
             </div>
-          </el-menu-item>
+          </el-menu-item> -->
         </el-submenu>
         <el-submenu index="5">
           <template slot="title">
@@ -332,22 +332,22 @@
           <el-menu-item index="weekReport" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="zhoubao" />
-              <!-- <span>周报</span> -->
-              <span>周通报</span>
+              <span>周报</span>
+              <!-- <span>周通报</span> -->
             </div>
           </el-menu-item>
           <el-menu-item index="monthReport" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yuebao" />
-              <!-- <span>月报</span> -->
-              <span>月排名</span>
+              <span>月报</span>
+              <!-- <span>月排名</span> -->
             </div>
           </el-menu-item>
           <el-menu-item index="quarterReport" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="jibao" />
-              <!-- <span>季报</span> -->
-              <span>季考核</span>
+              <span>季报</span>
+              <!-- <span>季考核</span> -->
             </div>
           </el-menu-item>
           <el-menu-item index="LWLKStatic_cd" @click="openMenu">
@@ -555,7 +555,7 @@
             </div>
           </el-menu-item>
         </el-submenu> -->
-        <el-submenu index="12">
+        <!-- <el-submenu index="12">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="fengxian" />
@@ -598,7 +598,7 @@
               <span slot="title">风控云屏</span>
             </div>
           </el-menu-item>
-        </el-submenu>
+        </el-submenu> -->
         <el-submenu index="13">
           <template slot="title">
             <div class="menu-item">
