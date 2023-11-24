@@ -253,6 +253,33 @@ export const constantRouterMap = [
     },
     component: () => import("@/views/YYSStatic/index"),
   },
+  // 主动安全报警 统计
+  {
+    path: "/gpsAlarmReport",
+    name: "gpsAlarmReport",
+    meta: {
+      requiresAuth: true,
+    },
+    component: () => import("@/views/gpsAlarmReport/index"),
+  },
+  // 主动安全报警 统计
+  {
+    path: "/gpsAlarmLv",
+    name: "gpsAlarmLv",
+    meta: {
+      requiresAuth: true,
+    },
+    component: () => import("@/views/gpsAlarmLv/index"),
+  },
+  // 主动安全报警 统计
+  {
+    path: "/gpsAlarmAll",
+    name: "gpsAlarmAll",
+    meta: {
+      requiresAuth: true,
+    },
+    component: () => import("@/views/gpsAlarmAll/index"),
+  },
   {
     path: "/YYSArchives",
     name: "YYSArchives",
@@ -365,6 +392,15 @@ export const constantRouterMap = [
           requiresAuth: true,
         },
         component: () => import("@/views/DocumentFile/index"),
+      },
+      {
+        path: "/yysInspect",
+        name: "yysInspect",
+        meta: {
+          title: "运营商查岗",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/yysInspect/index"),
       },
 
       {

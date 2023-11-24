@@ -299,5 +299,33 @@ export default {
       data
     );
   },
+  // 报警统计分析--列表
+  getSafetyDeptScore(data) {
+    return $axios.post(
+      "/blade-anbiao/anbiao/lwlkSafetyDept/getSafetyDeptScore",
+      data
+    );
+  },
+  // 下发查岗--列表
+  getPlatformQuery(data) {
+    return $axios.post(
+      "/blade-anbiao/anbiao/platformQuery/getPlatformQuery",
+      data
+    );
+  },
+  // 下发查岗--新增
+  platformQueryInsert(data) {
+    return $axios.post("/blade-anbiao/anbiao/platformQuery/insert", data);
+  },
+  // 下发查岗--详情
+  platformQueryDetail(params) {
+    return $axios.get("/blade-anbiao/anbiao/platformQuery/detail", { params });
+  },
+  // 运营商列表
+  getOperatorInfo(params) {
+    return $axios.get("/blade-anbiao/anbiao/operatorInfo/getOperatorInfo", {
+      params,
+    });
+  },
   awaitWrap,
 };
