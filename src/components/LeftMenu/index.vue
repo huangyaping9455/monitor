@@ -91,7 +91,6 @@
 </style>
 <style lang="scss">
 .leftMenu {
-
   .el-submenu__title,
   .el-menu-item {
     background: transparent !important;
@@ -121,8 +120,15 @@
 <template>
   <aside class="leftMenu" :class="ismenuShow ? 'show' : 'noshow'">
     <scroll style="height: 69%; width: 170px">
-      <el-menu :default-active="urlName" class="leftMenu-menu" active-text-color="#ffffff" router
-        background-color="transparent" text-color="#01f8ff" :unique-opened="true">
+      <el-menu
+        :default-active="urlName"
+        class="leftMenu-menu"
+        active-text-color="#ffffff"
+        router
+        background-color="transparent"
+        text-color="#01f8ff"
+        :unique-opened="true"
+      >
         <el-menu-item index="home" @click="openMenu">
           <div class="menu-item">
             <svg-icon class="icon" icon-class="home" />
@@ -227,6 +233,24 @@
               <span>运营商考核评分</span>
             </div>
           </el-menu-item> -->
+          <el-menu-item index="gpsAlarmAll" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="yunyingshangkaohe" />
+              <span>企业月报警统计</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="gpsAlarmLv" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="yunyingshangkaohe" />
+              <span>企业月平均报警率</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="gpsAlarmReport" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="yunyingshangkaohe" />
+              <span>企业月报警分析</span>
+            </div>
+          </el-menu-item>
         </el-submenu>
         <el-submenu index="3">
           <template slot="title">
@@ -291,6 +315,12 @@
               <span>下发整改</span>
             </div>
           </el-menu-item>
+          <el-menu-item index="yysInspect" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="tongzhi" />
+              <span>运营商查岗</span>
+            </div>
+          </el-menu-item>
         </el-submenu>
         <el-submenu index="5">
           <template slot="title">
@@ -302,13 +332,22 @@
           <el-menu-item index="weekReport" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="zhoubao" />
-              <span>周报</span>
+              <!-- <span>周报</span> -->
+              <span>周通报</span>
             </div>
           </el-menu-item>
           <el-menu-item index="monthReport" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yuebao" />
-              <span>月报</span>
+              <!-- <span>月报</span> -->
+              <span>月排名</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="quarterReport" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="jibao" />
+              <!-- <span>季报</span> -->
+              <span>季考核</span>
             </div>
           </el-menu-item>
           <el-menu-item index="LWLKStatic_cd" @click="openMenu">
@@ -317,12 +356,6 @@
               <span>企业质量达标考核</span>
             </div>
           </el-menu-item>
-          <!-- <el-menu-item index="quarterReport" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="jibao" />
-              <span>季报</span>
-            </div>
-          </el-menu-item> -->
         </el-submenu>
         <el-submenu index="6">
           <template slot="title">
@@ -489,12 +522,12 @@
               <span>运营商档案</span>
             </div>
           </el-menu-item> -->
-          <el-menu-item index="vehicleMaintain" @click="openMenu">
+          <!-- <el-menu-item index="vehicleMaintain" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="weihu" />
               <span>车辆维护档案</span>
             </div>
-          </el-menu-item>
+          </el-menu-item> -->
           <el-menu-item index="accident" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="shigu" />
@@ -522,7 +555,7 @@
             </div>
           </el-menu-item>
         </el-submenu> -->
-        <!-- <el-submenu index="12">
+        <el-submenu index="12">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="fengxian" />
@@ -541,7 +574,31 @@
               <span slot="title">视频监控</span>
             </div>
           </el-menu-item>
-        </el-submenu> -->
+          <el-menu-item index="">
+            <div class="menu-item" @click="openThree5">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span slot="title">监控巡查</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="">
+            <div class="menu-item" @click="openThree5">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span slot="title">核警抽查</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="">
+            <div class="menu-item" @click="openThree6">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span slot="title">基础资料管理</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhenggai" />
+              <span slot="title">风控云屏</span>
+            </div>
+          </el-menu-item>
+        </el-submenu>
         <el-submenu index="13">
           <template slot="title">
             <div class="menu-item">
@@ -609,7 +666,7 @@
               <span slot="title">轨迹漂移率</span>
             </div>
           </el-menu-item>
-        <!-- <el-menu-item index="YYSSafetyInspection" @click="openMenu">
+          <!-- <el-menu-item index="YYSSafetyInspection" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="anquan" />
               <span>运营商查岗</span>
@@ -618,7 +675,11 @@
         </el-submenu>
       </el-menu>
     </scroll>
-    <div class="movebtn" :class="ismenuShow ? 'el-icon-d-arrow-left' : 'el-icon-d-arrow-right'" @click="changeleftMenu">
+    <div
+      class="movebtn"
+      :class="ismenuShow ? 'el-icon-d-arrow-left' : 'el-icon-d-arrow-right'"
+      @click="changeleftMenu"
+    >
       <span class="movebtn-info"></span>
       <span class="movebtn-info two"></span>
       <span class="movebtn-info three"></span>
@@ -700,6 +761,25 @@ export default {
       window.open(
         `http://aimonitoring.rybsj.cn/webgis/data/tsredRiskDataScreen.action?userName=${userName}&password=${passWord}`
       );
+    },
+    openThree5() {
+      // let userName = config.Encrypt(
+      //   "FZQY-001",
+      //   "abcdefgabcdefg12",
+      //   "abcdefgabcdefg12"
+      // );
+      // let passWord = config.Encrypt(
+      //   "ts123456",
+      //   "abcdefgabcdefg12",
+      //   "abcdefgabcdefg12"
+      // );
+      window.open(
+        // `http://120.35.12.85:3330/monitor-web/loginAuthAjax.action?username=${userName}&password=${passWord}`
+        `http://120.35.12.85:3330/monitor-web/login.action`
+      );
+    },
+    openThree6() {
+      window.open(`http://120.35.12.85:3321/#/loginOn`);
     },
     // 地图监控
     openMap() {

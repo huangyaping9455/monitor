@@ -34,7 +34,7 @@ $axios.interceptors.response.use((response) => {
         console.log("跳转到首页");
         break;
       case 500:
-        return Promise.reject("失败了");
+        return Promise.reject(msg);
       default:
         return Promise.reject(msg);
     }

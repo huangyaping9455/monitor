@@ -547,7 +547,7 @@
 <script>
 import echartBase from "@/components/EChart/index";
 import allHeader from "@/components/Header/index";
-import homeApi from "@/api/modules/home"; 
+import homeApi from "@/api/modules/home";
 import dataAnalysisApi from "@/api/modules/report";
 // import { lineoption, lineName, geooption } from "@/config/echartoption";
 import { lineoption, lineName } from "@/config/echartoption-new";
@@ -668,7 +668,7 @@ export default {
       if (err) {
         this.$message.error(err);
       } else {
-        this.overview = data[0];
+        this.overview = data.length > 0 ? data[0] : {};
       }
     },
     // 政府-超速报警次数、疲劳报警总数、夜间行驶报警次数、异常报警次数
@@ -737,6 +737,7 @@ export default {
           }
           _this.mapData = mapData;
           _this.areaName = areaName ? areaName : _this.userinfo.diqu;
+          console.log(areaName);
           _this.chartOption.option9 = geooption.geooption(
             areaName
               ? areaName === "重庆"
