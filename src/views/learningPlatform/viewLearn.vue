@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    title="学习证明"
+    :title="title"
     class="learns"
     center
     top="10vh"
@@ -16,9 +16,10 @@
         name="iframe"
         class="w100"
         style="height: 100%; width: 100%"
-        :src="`${studyUrl}/userTcClassHour/fgnGrad?sign=${sign}&channel=440000001&timestamp=${timestamp}&statYm=${month}&bcNo=${rows.bcNo}&idcNo=${rows.usercard}`"
+        :src="studyUrl"
         frameborder=""
         scrolling="auto"
+        @load="endLoad"
       ></iframe>
     </div>
     <div slot="footer">
@@ -41,6 +42,7 @@ export default {
       rows: {},
       month: "",
       studyUrl: "",
+      title: "学习证明",
     };
   },
   computed: {
@@ -54,29 +56,30 @@ export default {
     },
   },
   // vue生命周期钩子函数 -- 更新之后
-  updated() {
-    if (this.$refs.iframe) {
-      // IE
-      if (this.$refs.iframe.attachEvent) {
-        this.$refs.iframe.attachEvent("onload", () => {
-          // 加载成功
-          this.iLoading = false;
-        });
-      } else {
-        this.$refs.iframe.onload = () => {
-          // 加载成功
-          this.iLoading = false;
-        };
-      }
-    }
-  },
+  updated() {},
   methods: {
-    open(row, month) {
+    open(row, month, type) {
+      this.studyUrl = "";
       this.rows = row;
       this.month = month;
       this.iLoading = true;
-      this.getLearnRecordUrl();
+      if (row.luser == "替比") {
+        if (type == "学习证明") {
+          this.studyUrl = row.recordurl;
+        } else if (type == "结业证书") {
+          this.studyUrl = row.certificateurl;
+        } else if (type == "考试记录") {
+          this.studyUrl = row.examurl;
+        }
+      } else {
+        this.getLearnRecordUrl();
+      }
       this.learnVisible = true;
+    },
+    // iframe 加载完成
+    endLoad() {
+      // 加载成功
+      this.iLoading = false;
     },
     //驾运宝 地址前缀
     async getLearnRecordUrl() {
@@ -84,7 +87,8 @@ export default {
         dataAnalysisApi.getLearnRecordUrl()
       );
       if (data) {
-        this.studyUrl = data;
+        // this.studyUrl = data;
+        this.studyUrl = `${data}/userTcClassHour/fgnGrad?sign=${this.sign}&channel=440000001&timestamp=${this.timestamp}&statYm=${this.month}&bcNo=${this.rows.bcNo}&idcNo=${this.rows.usercard}`;
       } else {
         this.$message.error(err);
       }

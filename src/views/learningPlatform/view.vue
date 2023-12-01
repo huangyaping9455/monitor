@@ -143,16 +143,33 @@
         <template slot-scope="{ row }">
           <el-button
             type="text"
-            @click="viewCard(row)"
-            :disabled="row.finishMark == ''"
+            @click="viewCard(row, '学习证明')"
+            :disabled="row.finishMark == '' || row.finishMark == 0"
             >学习证明</el-button
           >
           <el-button
+            v-if="row.luser != '替比'"
             type="text"
             @click="viewMonth(row)"
-            :disabled="row.finishMark == ''"
+            :disabled="row.finishMark == '' || row.finishMark == 0"
             >学习月报</el-button
           >
+          <el-button
+            v-if="row.luser == '替比'"
+            type="text"
+            @click="viewCard(row, '结业证书')"
+            :disabled="row.finishMark == '' || row.finishMark == 0"
+          >
+            结业证书
+          </el-button>
+          <el-button
+            v-if="row.luser == '替比' && row.examurl"
+            type="text"
+            @click="viewCard(row, '考试记录')"
+            :disabled="row.finishMark == '' || row.finishMark == 0"
+          >
+            考试记录
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -304,8 +321,12 @@ export default {
       }
     },
     // 学习证明
-    viewCard(row) {
-      this.$refs.viewlearn.open(row, dayjs(this.lmonths).format("YYYY-MM"));
+    viewCard(row, type) {
+      this.$refs.viewlearn.open(
+        row,
+        dayjs(this.lmonths).format("YYYY-MM"),
+        type
+      );
     },
     // 从业人员月报
     viewMonth(row) {
@@ -313,13 +334,16 @@ export default {
     },
     // 学习证明
     viewChName(row) {
-      this.$refs.viewlist.open(row);
+      // this.$refs.viewlist.open(row);
     },
   },
 };
 </script>
 
 <style lang="scss">
+.el-tooltip__popper {
+  max-width: 500px;
+}
 .learns {
   .el-dialog {
     background-image: url("~@/assets/img/bg_14.png");

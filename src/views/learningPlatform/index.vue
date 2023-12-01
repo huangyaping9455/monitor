@@ -298,9 +298,9 @@
               <el-button size="mini" type="text" @click="learnView(row)">
                 详情
               </el-button>
-              <el-button size="mini" type="text" @click="learnViewDept(row)">
+              <!-- <el-button size="mini" type="text" @click="learnViewDept(row)">
                 企业月报
-              </el-button>
+              </el-button> -->
             </template>
           </el-table-column>
         </el-table>
