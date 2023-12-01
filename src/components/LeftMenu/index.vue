@@ -763,19 +763,10 @@ export default {
       );
     },
     openThree5() {
-      // let userName = config.Encrypt(
-      //   "FZQY-001",
-      //   "abcdefgabcdefg12",
-      //   "abcdefgabcdefg12"
-      // );
-      // let passWord = config.Encrypt(
-      //   "ts123456",
-      //   "abcdefgabcdefg12",
-      //   "abcdefgabcdefg12"
-      // );
+      let userName = config.aesEncrypt("FZQY-001");
+      let passWord = config.aesEncrypt("ts123456");
       window.open(
-        // `http://120.35.12.85:3330/monitor-web/loginAuthAjax.action?username=${userName}&password=${passWord}`
-        `http://120.35.12.85:3330/monitor-web/login.action`
+        `http://120.35.12.85:3330/monitor-web/loginAuth.action?username=${userName}&password=${passWord}`
       );
     },
     openThree6() {
