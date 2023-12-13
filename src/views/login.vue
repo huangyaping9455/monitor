@@ -13,13 +13,13 @@
   margin-top: 5.5rem;
   // width: 50.1429rem; //福清市
   // width: 58.1429rem;
-  height: 7.7857rem;
+  // height: 7.7857rem;
   // margin-left: 38.0714rem; //徐州
   margin-left: 9.0714rem; //默认
   // height: 4.7857rem; //默认
-  // height: 4.2857rem; //默认
-  width: 54.1429rem; //默认
-  // width: 45.1429rem; //优必飞
+  height: 4.2857rem; //默认
+  // width: 54.1429rem; //默认
+  width: 45.1429rem; //优必飞
   img {
     width: 100%;
     height: 100%;
@@ -118,7 +118,8 @@
       <!-- <img src="@/assets/img/guizhoulogo.png" /> -->
       <!-- <img class="yjlogo" src="@/assets/img/yj-logo.png" /> -->
       <!-- <img src="@/assets/img/logo_changzhou.png" /> -->
-      <img src="@/assets/img/xiajin.png" />
+      <!-- <img src="@/assets/img/xiajin.png" /> -->
+      <img src="@/assets/img/qdcclogo.png" />
       <!-- <img src="@/assets/img/xvzhoulogo.png" /> -->
       <!-- <img src="@/assets/img/liuzhou.png" /> -->
       <!-- <img src="@/assets/img/cd_zflogo.png" /> -->
