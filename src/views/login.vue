@@ -197,7 +197,6 @@ export default {
   },
   mounted() {
     this.redirect = this.$route.query.redirect;
-    console.log(this.redirect);
     this.getCode();
   },
   methods: {
