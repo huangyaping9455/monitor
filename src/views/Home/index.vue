@@ -270,7 +270,7 @@
           </div>
         </div>
         <div class="content-center">
-          <el-carousel
+          <!-- <el-carousel
             style="height: calc(100%); width: 100%"
             trigger="click"
             indicator-position="none"
@@ -278,145 +278,145 @@
           >
             <el-carousel-item
               style="display: flex; justify-content: space-between"
+            > -->
+          <div
+            class="linebox"
+            v-loading="load.load1"
+            element-loading-background="rgba(0, 0, 0, 0.4)"
+          >
+            <span class="title">北斗报警统计</span>
+            <div class="btns">
+              <span
+                @click="changeCar('carousel', 'chaosu')"
+                :class="isbtn == 0 ? 'active' : ''"
+                >超速报警</span
+              >
+              <span
+                @click="changeCar('carousel', 'pilao')"
+                :class="isbtn == 1 ? 'active' : ''"
+                >疲劳驾驶</span
+              >
+              <span
+                @click="changeCar('carousel', 'yejian')"
+                :class="isbtn == 2 ? 'active' : ''"
+                >夜间行驶</span
+              >
+              <span
+                @click="changeCar('carousel', 'yichang')"
+                :class="isbtn == 3 ? 'active' : ''"
+                >异常车辆</span
+              >
+            </div>
+            <el-carousel
+              class="gpsCarousel"
+              style="height: calc(100% - 50px); width: 100%"
+              trigger="click"
+              height="100%"
+              ref="carousel"
+              indicator-position="none"
+              arrow="always"
+              @change="changeGps($event, 'isbtn')"
             >
-              <div
-                class="linebox"
-                v-loading="load.load1"
-                element-loading-background="rgba(0, 0, 0, 0.4)"
-              >
-                <span class="title">北斗报警统计</span>
-                <div class="btns">
-                  <span
-                    @click="changeCar('carousel', 'chaosu')"
-                    :class="isbtn == 0 ? 'active' : ''"
-                    >超速报警</span
-                  >
-                  <span
-                    @click="changeCar('carousel', 'pilao')"
-                    :class="isbtn == 1 ? 'active' : ''"
-                    >疲劳驾驶</span
-                  >
-                  <span
-                    @click="changeCar('carousel', 'yejian')"
-                    :class="isbtn == 2 ? 'active' : ''"
-                    >夜间行驶</span
-                  >
-                  <span
-                    @click="changeCar('carousel', 'yichang')"
-                    :class="isbtn == 3 ? 'active' : ''"
-                    >异常车辆</span
-                  >
-                </div>
-                <el-carousel
-                  class="gpsCarousel"
-                  style="height: calc(100% - 50px); width: 100%"
-                  trigger="click"
+              <el-carousel-item name="chaosu">
+                <echart-base
                   height="100%"
-                  ref="carousel"
-                  indicator-position="none"
-                  arrow="always"
-                  @change="changeGps($event, 'isbtn')"
-                >
-                  <el-carousel-item name="chaosu">
-                    <echart-base
-                      height="100%"
-                      width="100%"
-                      :chart-option="chartOption.option1"
-                    ></echart-base>
-                  </el-carousel-item>
-                  <el-carousel-item name="pilao">
-                    <echart-base
-                      height="100%"
-                      width="100%"
-                      :chart-option="chartOption.option2"
-                    ></echart-base>
-                  </el-carousel-item>
-                  <el-carousel-item name="yejian">
-                    <echart-base
-                      height="100%"
-                      width="100%"
-                      :chart-option="chartOption.option3"
-                    ></echart-base>
-                  </el-carousel-item>
-                  <el-carousel-item name="yichang">
-                    <echart-base
-                      height="100%"
-                      width="100%"
-                      :chart-option="chartOption.option4"
-                    ></echart-base>
-                  </el-carousel-item>
-                </el-carousel>
-              </div>
-              <div
-                class="linebox"
-                v-loading="load.load1"
-                element-loading-background="rgba(0, 0, 0, 0.4)"
-              >
-                <span class="title">主动安全设备报警</span>
-                <div class="btns">
-                  <span
-                    @click="changeCar('carousel1', 'dadianhua')"
-                    :class="isbtn1 == 0 ? 'active' : ''"
-                    >接打电话</span
-                  >
-                  <span
-                    @click="changeCar('carousel1', 'fenshen')"
-                    :class="isbtn1 == 1 ? 'active' : ''"
-                    >分神驾驶</span
-                  >
-                  <span
-                    @click="changeCar('carousel1', 'chouyan')"
-                    :class="isbtn1 == 2 ? 'active' : ''"
-                    >抽烟报警</span
-                  >
-                  <span
-                    @click="changeCar('carousel1', 'zhudongbj')"
-                    :class="isbtn1 == 3 ? 'active' : ''"
-                    >生理疲劳</span
-                  >
-                </div>
-                <el-carousel
-                  class="gpsCarousel"
-                  style="height: calc(100% - 50px)"
-                  trigger="click"
+                  width="100%"
+                  :chart-option="chartOption.option1"
+                ></echart-base>
+              </el-carousel-item>
+              <el-carousel-item name="pilao">
+                <echart-base
                   height="100%"
-                  ref="carousel1"
-                  indicator-position="none"
-                  arrow="always"
-                  @change="changeGps($event, 'isbtn1')"
-                >
-                  <el-carousel-item name="dadianhua">
-                    <echart-base
-                      height="100%"
-                      width="100%"
-                      :chart-option="chartOption.option5"
-                    ></echart-base>
-                  </el-carousel-item>
-                  <el-carousel-item name="fenshen">
-                    <echart-base
-                      height="100%"
-                      width="100%"
-                      :chart-option="chartOption.option6"
-                    ></echart-base>
-                  </el-carousel-item>
-                  <el-carousel-item name="chouyan">
-                    <echart-base
-                      height="100%"
-                      width="100%"
-                      :chart-option="chartOption.option7"
-                    ></echart-base>
-                  </el-carousel-item>
-                  <el-carousel-item name="zhudongbj">
-                    <echart-base
-                      height="100%"
-                      width="100%"
-                      :chart-option="chartOption.option8"
-                    ></echart-base>
-                  </el-carousel-item>
-                </el-carousel>
-              </div>
-            </el-carousel-item>
-            <el-carousel-item
+                  width="100%"
+                  :chart-option="chartOption.option2"
+                ></echart-base>
+              </el-carousel-item>
+              <el-carousel-item name="yejian">
+                <echart-base
+                  height="100%"
+                  width="100%"
+                  :chart-option="chartOption.option3"
+                ></echart-base>
+              </el-carousel-item>
+              <el-carousel-item name="yichang">
+                <echart-base
+                  height="100%"
+                  width="100%"
+                  :chart-option="chartOption.option4"
+                ></echart-base>
+              </el-carousel-item>
+            </el-carousel>
+          </div>
+          <div
+            class="linebox"
+            v-loading="load.load1"
+            element-loading-background="rgba(0, 0, 0, 0.4)"
+          >
+            <span class="title">主动安全设备报警</span>
+            <div class="btns">
+              <span
+                @click="changeCar('carousel1', 'dadianhua')"
+                :class="isbtn1 == 0 ? 'active' : ''"
+                >接打电话</span
+              >
+              <span
+                @click="changeCar('carousel1', 'fenshen')"
+                :class="isbtn1 == 1 ? 'active' : ''"
+                >分神驾驶</span
+              >
+              <span
+                @click="changeCar('carousel1', 'chouyan')"
+                :class="isbtn1 == 2 ? 'active' : ''"
+                >抽烟报警</span
+              >
+              <span
+                @click="changeCar('carousel1', 'zhudongbj')"
+                :class="isbtn1 == 3 ? 'active' : ''"
+                >生理疲劳</span
+              >
+            </div>
+            <el-carousel
+              class="gpsCarousel"
+              style="height: calc(100% - 50px)"
+              trigger="click"
+              height="100%"
+              ref="carousel1"
+              indicator-position="none"
+              arrow="always"
+              @change="changeGps($event, 'isbtn1')"
+            >
+              <el-carousel-item name="dadianhua">
+                <echart-base
+                  height="100%"
+                  width="100%"
+                  :chart-option="chartOption.option5"
+                ></echart-base>
+              </el-carousel-item>
+              <el-carousel-item name="fenshen">
+                <echart-base
+                  height="100%"
+                  width="100%"
+                  :chart-option="chartOption.option6"
+                ></echart-base>
+              </el-carousel-item>
+              <el-carousel-item name="chouyan">
+                <echart-base
+                  height="100%"
+                  width="100%"
+                  :chart-option="chartOption.option7"
+                ></echart-base>
+              </el-carousel-item>
+              <el-carousel-item name="zhudongbj">
+                <echart-base
+                  height="100%"
+                  width="100%"
+                  :chart-option="chartOption.option8"
+                ></echart-base>
+              </el-carousel-item>
+            </el-carousel>
+          </div>
+          <!-- </el-carousel-item> -->
+          <!-- <el-carousel-item
               style="display: flex; justify-content: space-between"
             >
               <div class="linebox">
@@ -435,8 +435,8 @@
                   :chart-option="chartOption.option11"
                 ></echart-base>
               </div>
-            </el-carousel-item>
-          </el-carousel>
+            </el-carousel-item> -->
+          <!-- </el-carousel> -->
         </div>
         <div class="content-bottom">
           <span class="title">各地区详细数据表</span>
