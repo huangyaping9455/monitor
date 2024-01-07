@@ -322,7 +322,7 @@
             </div>
           </el-menu-item> -->
         </el-submenu>
-        <!-- <el-submenu index="5">
+        <el-submenu index="5">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="anquanbaogao" />
@@ -332,45 +332,42 @@
           <el-menu-item index="weekReport" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="zhoubao" />
-              <span>周报</span> -->
-        <!-- <span>周通报</span> -->
-        <!-- </div>
+              <span>周报</span>
+            </div>
           </el-menu-item>
-          <el-menu-item index="monthReport" @click="openMenu">
+          <!-- <el-menu-item index="monthReport" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yuebao" />
-              <span>月报</span> -->
-        <!-- <span>月排名</span> -->
-        <!-- </div>
+              <span>月报</span>
+              </div>
           </el-menu-item>
           <el-menu-item index="quarterReport" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="jibao" />
-              <span>季报</span> -->
-        <!-- <span>季考核</span> -->
-        <!-- </div>
-          </el-menu-item>
+              <span>季报</span>
+            </div>
+          </el-menu-item> -->
           <el-menu-item index="LWLKStatic_cd" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="qiyekaohe" />
               <span>企业质量达标考核</span>
             </div>
           </el-menu-item>
-        </el-submenu> -->
-        <!-- <el-submenu index="6">
+        </el-submenu>
+        <el-submenu index="6">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="tongzhi" />
               <span>安全达标</span>
             </div>
-          </template> -->
-        <!-- <el-menu-item index="safeStandard" @click="openMenu">
+          </template>
+          <!-- <el-menu-item index="safeStandard" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="zhenggai" />
               <span>企业达标明细</span>
             </div>
           </el-menu-item> -->
-        <!-- <el-menu-item index="safeDocument" @click="openMenu">
+          <el-menu-item index="safeDocument" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="zhenggai" />
               <span>安全台账明细</span>
@@ -388,7 +385,7 @@
               <span>资料完整率统计</span>
             </div>
           </el-menu-item>
-        </el-submenu> -->
+        </el-submenu>
         <!-- <el-submenu index="7">
           <template slot="title">
             <div class="menu-item">

@@ -68,9 +68,9 @@ export default {
     deepOrder(index) {
       return `${this.order}.${index + 1}`;
     },
-    // loadNode(data) {
-    //   this.$emit('loadNode', data);
-    // },
+    loadNode(data) {
+      this.$emit("loadNode", data);
+    },
     contextmenu(data) {
       this.$emit("contextmenu", data);
     },

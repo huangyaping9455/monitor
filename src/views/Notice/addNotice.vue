@@ -245,12 +245,12 @@
       <el-table
         class="mainTable"
         :data="msgData"
-        max-height="500"
+        max-height="300"
         style="width: 100%"
       >
         <el-table-column prop="deptName" label="企业名称" align="center">
         </el-table-column>
-        <el-table-column prop="isBack" label="是否回复" align="center">
+        <el-table-column prop="status" label="是否回复" align="center">
         </el-table-column>
         <el-table-column prop="huifuzhengwen" label="回复内容" align="center">
         </el-table-column>

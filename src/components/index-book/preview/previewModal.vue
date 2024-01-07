@@ -44,7 +44,7 @@
             :isResizable="false"
           >
             <div ref="pdfview" style="position: relative" @mousewheel="bbimg">
-              <pdf
+              <!-- <pdf
                 :src="pdfUrl"
                 style="
                   width: 553.95pt;
@@ -56,7 +56,8 @@
                 v-for="i in numPages"
                 :key="i"
                 :page="i"
-              ></pdf>
+              ></pdf> -->
+              <vue-office-pdf :src="pdfUrl" class="docx-calss" />
             </div>
           </VueDragResize>
         </div>
@@ -77,8 +78,16 @@ import ExcelPreview from "./excelPreview.vue";
 import pdf from "vue-pdf";
 import PreviewModal from "./previewModal.vue";
 import VueDragResize from "vue-drag-resize";
+import VueOfficePdf from "@vue-office/pdf";
 export default {
-  components: { DocPreview, ExcelPreview, pdf, PreviewModal, VueDragResize },
+  components: {
+    DocPreview,
+    ExcelPreview,
+    pdf,
+    PreviewModal,
+    VueDragResize,
+    VueOfficePdf,
+  },
   props: {
     files: {
       type: Array,
@@ -93,9 +102,9 @@ export default {
       },
     },
     pdfUrl: {
-      type: Object,
+      type: String,
       default: () => {
-        return {};
+        return "";
       },
     },
     active: {
@@ -154,6 +163,10 @@ export default {
       margin-top: 54px;
       height: calc(100%);
       overflow: auto;
+      .content-container {
+        width: 100% !important;
+        height: 100% !important;
+      }
     }
   }
 }

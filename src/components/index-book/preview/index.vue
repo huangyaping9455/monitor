@@ -39,16 +39,20 @@
           <doc-preview
             v-else-if="active.fType && active.fType == 'doc'"
             :file="files[0]"
+            :key="files"
           ></doc-preview>
           <excel-preview
             v-else-if="active.fType && active.fType == 'xls'"
             :file="files[0]"
+            :key="files[0]"
           ></excel-preview>
           <div
             v-else-if="active.fType && active.fType == 'pdf'"
-            style="width: 100%; height: 100%"
+            style="width: 100%; height: 100%; min-height: 200px"
+            v-loading="pdfLoading"
+            element-loading-background="rgba(0, 0, 0, 0.4)"
           >
-            <pdf
+            <!-- <pdf
               :src="pdfUrl"
               style="
                 width: 100%;
@@ -60,7 +64,13 @@
               v-for="i in numPages"
               :key="i"
               :page="i"
-            ></pdf>
+              @page-loaded="pdfLoading = false"
+            ></pdf> -->
+            <vue-office-pdf
+              :src="pdfUrl"
+              class="docx-calss"
+              @rendered="pdfLoading = false"
+            />
           </div>
           <iframe
             v-else
@@ -101,10 +111,11 @@ import axios from "axios";
 import DocPreview from "./docPreview.vue";
 import ExcelPreview from "./excelPreview.vue";
 import pdf from "vue-pdf";
+import VueOfficePdf from "@vue-office/pdf";
 import PreviewModal from "./previewModal.vue";
 export default {
   name: "preview-doc",
-  components: { DocPreview, ExcelPreview, pdf, PreviewModal },
+  components: { DocPreview, ExcelPreview, pdf, PreviewModal, VueOfficePdf },
   props: {
     active: {
       type: Object,
@@ -134,7 +145,6 @@ export default {
     return {
       loading: false,
       move: false,
-
       printStyle: {
         "page-break-after": "always",
         width: "100%",
@@ -157,6 +167,7 @@ export default {
         },
       },
       numPages: 0,
+      pdfLoading: false,
     };
   },
   computed: {
@@ -167,7 +178,8 @@ export default {
       userinfo: "userinfo",
     }),
     pdfUrl() {
-      return pdf.createLoadingTask("/previewapi/" + this.files[0]);
+      // return pdf.createLoadingTask("/previewapi/" + this.files[0]);
+      return "/previewapi/" + this.files[0];
     },
   },
   watch: {
@@ -268,7 +280,6 @@ export default {
       if (this.action) {
         this.action()
           .then((res) => {
-            console.log(res);
             let data = res[1];
             this.imgData = data;
             this.active.path = res[1].path;
@@ -286,7 +297,7 @@ export default {
             ) {
               this.$set(this.active, "fType", "img");
               this.$set(this.active, "_fileList", [
-                this.$store.getters.userInfo.urlPrefix + data.path,
+                this.$store.getters.userinfo.urlPrefix + data.path,
               ]);
             } else if (data.name.indexOf(".doc") != -1) {
               this.$set(this.active, "fType", "doc");
@@ -307,6 +318,7 @@ export default {
                   : data.path,
               ]);
             } else if (data.name.indexOf(".pdf") != -1) {
+              this.pdfLoading = true;
               this.$set(this.active, "fType", "pdf");
               this.$set(this.active, "_fileList", [
                 data.isMuban && data.isMuban == 1
@@ -316,9 +328,9 @@ export default {
                   : data.path,
               ]);
               // 获取pdf分页
-              this.pdfUrl.promise.then((pdf) => {
-                this.numPages = pdf.numPages;
-              });
+              // this.pdfUrl.promise.then((pdf) => {
+              //   this.numPages = pdf.numPages;
+              // });
             } else {
               this.$set(this.active, "fType", "qita");
               this.$set(this.active, "_fileList", [

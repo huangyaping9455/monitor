@@ -336,20 +336,18 @@
               <!-- <span>周通报</span> -->
             </div>
           </el-menu-item>
-          <el-menu-item index="monthReport" @click="openMenu">
+          <!-- <el-menu-item index="monthReport" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yuebao" />
               <span>月报</span>
-              <!-- <span>月排名</span> -->
             </div>
-          </el-menu-item>
-          <el-menu-item index="quarterReport" @click="openMenu">
+          </el-menu-item> -->
+          <!-- <el-menu-item index="quarterReport" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="jibao" />
               <span>季报</span>
-              <!-- <span>季考核</span> -->
             </div>
-          </el-menu-item>
+          </el-menu-item> -->
           <el-menu-item index="LWLKStatic_cd" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="qiyekaohe" />

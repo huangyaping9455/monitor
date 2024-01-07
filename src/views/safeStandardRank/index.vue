@@ -402,8 +402,8 @@ export default {
       enterpriseListH: "calc(100vh - 14.6814rem)",
       form: {
         begintime: format(
-          new Date().getTime() - 3600 * 1000 * 24,
-          "YYYY-03-01"
+          new Date().getTime() - 3600 * 1000 * 24 * 30,
+          "YYYY-MM-DD"
         ),
         endtime: format(new Date().getTime(), "YYYY-MM-DD"),
       },
@@ -432,10 +432,7 @@ export default {
   methods: {
     refresh() {
       this.form = {
-        begintime: format(
-          new Date().getTime() - 3600 * 1000 * 24,
-          "YYYY-03-01"
-        ),
+        begintime: format(new Date().getTime(), "YYYY-MM-01"),
         endtime: format(new Date().getTime(), "YYYY-MM-DD"),
       };
       this.getDate(1);

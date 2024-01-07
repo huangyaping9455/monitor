@@ -283,11 +283,11 @@
             label="达标人数"
             align="center"
           ></el-table-column>
-          <el-table-column
+          <!-- <el-table-column
             prop="wdbnum"
             label="未达标人数"
             align="center"
-          ></el-table-column>
+          ></el-table-column> -->
           <el-table-column
             prop="wxnum"
             label="未学人数"

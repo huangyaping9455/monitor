@@ -776,6 +776,11 @@
   resolved "https://registry.npm.taobao.org/@types/q/download/@types/q-1.5.4.tgz"
   integrity sha1-FZJUFOCtLNdlv+9YhC9+JqesyyQ=
 
+"@vue-office/pdf@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.npmmirror.com/@vue-office/pdf/-/pdf-1.6.0.tgz#647aeff8108fb49c2ccb8dad011660c638a53739"
+  integrity sha512-SRv+gOhHlk2J+SdivvVvum93FuI4sU3XIh6u1jFkNr3+cXxRjMT2PTSxQO9b/1NmGB50oc+p+C+DrgNmMW4/vQ==
+
 "@vue/babel-helper-vue-jsx-merge-props@^1.0.0":
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/@vue/babel-helper-vue-jsx-merge-props/download/@vue/babel-helper-vue-jsx-merge-props-1.0.0.tgz"
@@ -985,6 +990,11 @@
     vue-template-es2015-compiler "^1.9.0"
   optionalDependencies:
     prettier "^1.18.2"
+
+"@vue/composition-api@^1.7.2":
+  version "1.7.2"
+  resolved "https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz#0b656f3ec39fefc2cf40aaa8c12426bcfeae1b44"
+  integrity sha512-M8jm9J/laYrYT02665HkZ5l2fWTK4dcVg3BsDHm/pfz+MjDYwX+9FUaZyGwEyXEDonQYRCo0H7aLgdklcIELjw==
 
 "@vue/preload-webpack-plugin@^1.1.0":
   version "1.1.1"
@@ -8456,6 +8466,11 @@ vue-baidu-map@^0.21.22:
     bmaplib.lushu "^1.0.7"
     bmaplib.markerclusterer "^1.0.13"
     markdown-it "^8.4.0"
+
+vue-demi@^0.14.6:
+  version "0.14.6"
+  resolved "https://registry.npmmirror.com/vue-demi/-/vue-demi-0.14.6.tgz#dc706582851dc1cdc17a0054f4fec2eb6df74c92"
+  integrity sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==
 
 vue-drag-resize@^1.5.0-rc3, vue-drag-resize@^1.5.4:
   version "1.5.4"

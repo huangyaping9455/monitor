@@ -787,7 +787,11 @@ export default {
       if (err) {
         this.$message.error(err);
       } else {
-        this.tableData = data;
+        this.tableData = data.map((el) => {
+          // el.baojingclcishu = el.baojingcishu;
+          // el.baojingcishuchulilv = "100%";
+          return el;
+        });
       }
     },
     //风险月趋势
