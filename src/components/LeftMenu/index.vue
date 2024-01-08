@@ -360,7 +360,7 @@
               <span>隐患排查统计</span>
             </div>
           </el-menu-item> -->
-          <!-- <el-menu-item index="dayHideDanger" @click="openMenu">
+        <!-- <el-menu-item index="dayHideDanger" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="riyinhuan" />
               <span>日隐患排查统计</span>
@@ -402,7 +402,7 @@
               <span>综合排查</span>
             </div>
           </el-menu-item> -->
-          <!-- <el-menu-item index="risk" @click="openMenu">
+        <!-- <el-menu-item index="risk" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="fengxianguanli" />
               <span>风险管理</span>
@@ -499,7 +499,7 @@
             </div>
           </el-menu-item>
         </el-submenu> -->
-        <!-- <el-submenu index="12">
+        <el-submenu index="12">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="fengxian" />
@@ -518,7 +518,7 @@
               <span slot="title">视频监控</span>
             </div>
           </el-menu-item>
-        </el-submenu> -->
+        </el-submenu>
         <!-- <el-submenu index="13">
           <template slot="title">
             <div class="menu-item">
@@ -652,8 +652,8 @@ export default {
     },
     openThree3() {
       let userName = config.Encrypt(
-        // "NDJTJ-001",
-        "FZFQ-001",
+        "NDJTJ-001",
+        // "FZFQ-001",
         "abcdefgabcdefg12",
         "abcdefgabcdefg12"
       );
@@ -668,8 +668,8 @@ export default {
     },
     openThree4() {
       let userName = config.Encrypt(
-        // "NDJTJ-001",
-        "FZFQ-001",
+        "NDJTJ-001",
+        // "FZFQ-001",
         "abcdefgabcdefg12",
         "abcdefgabcdefg12"
       );

@@ -10,8 +10,9 @@ router.beforeEach((to, from, next) => {
     // document.title = to.meta.title
     // document.title = "道路运输安全管理第三方监测平台";
     // document.title = "数字交通综合管理平台";
-    document.title = "智慧叉车安全管理检测平台";
+    // document.title = "智慧叉车安全管理检测平台";
     // document.title = "宁东基地物流公共信息管理平台";
+    document.title = "宁东道路运输安全管理监测平台";
     // document.title = "贵州省道路货物运输车辆安全管理平台";//鹰驾
     // document.title = "柳州市交通运输卫星定位政府监管平台"; //柳州
   }
