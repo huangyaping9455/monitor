@@ -509,6 +509,10 @@ export default {
             el.cheliangzhuangtai = "停用";
           } else if (el.cheliangzhuangtai == 2) {
             el.cheliangzhuangtai = "报废";
+          } else if (el.cheliangzhuangtai == 3) {
+            el.cheliangzhuangtai = "停运";
+          } else if (el.cheliangzhuangtai == 4) {
+            el.cheliangzhuangtai = "转出";
           }
           if (el.jiashiyuanxingming.indexOf(",") != -1) {
             el.jiashiyuanxingming2 = el.jiashiyuanxingming.split(",")[1];
@@ -574,6 +578,10 @@ export default {
             el.cheliangzhuangtai = "停用";
           } else if (el.cheliangzhuangtai == 2) {
             el.cheliangzhuangtai = "报废";
+          } else if (el.cheliangzhuangtai == 3) {
+            el.cheliangzhuangtai = "停运";
+          } else if (el.cheliangzhuangtai == 4) {
+            el.cheliangzhuangtai = "转出";
           }
           if (el.jiashiyuanxingming.indexOf(",") != -1) {
             el.jiashiyuanxingming2 = el.jiashiyuanxingming.split(",")[1];
