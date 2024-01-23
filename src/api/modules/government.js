@@ -24,6 +24,12 @@ export default {
       params: params,
     });
   },
+  // 获取绑定运营商的企业列表
+  getOperatorDept(params) {
+    return $axios.get("/blade-anbiao/anbiao/operatorInfo/getOperatorDept", {
+      params: params,
+    });
+  },
   // 政府-获取统计车辆数据
   getVehicleList(params) {
     return $axios.get("/blade-anbiao/anbiao/gpsVehicle/getVehicleList", {

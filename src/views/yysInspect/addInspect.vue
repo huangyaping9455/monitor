@@ -18,7 +18,34 @@
         style="overflow: auto"
       >
         <el-col :span="12">
-          <el-form-item label="运营商：" prop="gnsscenter_id">
+          <el-form-item label="对象类型：" prop="object_type">
+            <el-select
+              clearable
+              v-model="dataForm.object_type"
+              placeholder="请选择对象类型"
+              style="width: 100%"
+              @change="typeChange"
+            >
+              <el-option label="当前连接的下级平台" :value="1"></el-option>
+              <el-option label="下级平台所属单一业户" :value="2"></el-option>
+              <el-option label="下级平台所属所有业户" :value="3"></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item
+            label="运营商："
+            prop="gnsscenter_id"
+            :rules="
+              dataForm.object_type == 1
+                ? {
+                    required: true,
+                    message: '运营商不能为空',
+                    trigger: 'blur',
+                  }
+                : {}
+            "
+          >
             <el-select
               v-model="dataForm.gnsscenter_id"
               class="search-input"
@@ -26,6 +53,7 @@
               clearable
               style="width: 100%"
               placeholder="请选择运营商"
+              @change="yysChange"
             >
               <el-option
                 v-for="(item, index) in yunyingshangList"
@@ -36,14 +64,26 @@
             </el-select>
           </el-form-item>
         </el-col>
-        <el-col :span="12">
-          <el-form-item label="企业：" prop="object_id">
+        <el-col :span="12" v-if="dataForm.object_type !== 1">
+          <el-form-item
+            label="企业："
+            prop="object_id"
+            :rules="
+              dataForm.object_type !== 1
+                ? {
+                    required: true,
+                    message: '企业不能为空',
+                    trigger: 'blur',
+                  }
+                : {}
+            "
+          >
             <el-select
               filterable
-              multiple
+              :multiple="dataForm.object_type !== 2"
               clearable
               value-key="deptId"
-              collapse-tags
+              :collapse-tags="dataForm.object_type !== 2"
               placeholder="请选择企业"
               v-model="dataForm.object_id"
               style="width: 100%"
@@ -55,20 +95,6 @@
                 :value="item"
               >
               </el-option>
-            </el-select>
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="对象类型：" prop="object_type">
-            <el-select
-              clearable
-              v-model="dataForm.object_type"
-              placeholder="请选择事故等级"
-              style="width: 100%"
-            >
-              <el-option label="当前连接的下级平台" :value="1"></el-option>
-              <el-option label="下级平台所属单一业户" :value="2"></el-option>
-              <el-option label="下级平台所属所有业户" :value="3"></el-option>
             </el-select>
           </el-form-item>
         </el-col>
@@ -117,10 +143,10 @@ export default {
       dataForm: {},
       subLoading: false,
       rules: {
-        gnsscenter_id: [
-          { required: true, message: "请选择运营商", trigger: "blur" },
-        ],
-        object_id: [{ required: true, message: "请选择企业", trigger: "blur" }],
+        // gnsscenter_id: [
+        //   { required: true, message: "请选择运营商", trigger: "blur" },
+        // ],
+        // object_id: [{ required: true, message: "请选择企业", trigger: "blur" }],
         object_type: [
           { required: true, message: "请选择对象类型", trigger: "blur" },
         ],
@@ -142,10 +168,9 @@ export default {
       this.yunyingshangList = [];
       this.enterpriseList = [];
       this.driverDetailList = {};
-      this.dataForm = {};
+      this.dataForm = { object_id: [] };
       this.rows = {};
       this.getVehicleYunYingShang();
-      this.getYYSZFVehiclePage();
       this.rows = row;
       this.titleType = type;
       console.log(type);
@@ -157,6 +182,18 @@ export default {
         this.dataForm = row;
       }
       this.vehicleVisible = true;
+    },
+    // 运营商 change
+    yysChange(e) {
+      this.getYYSZFVehiclePage(e);
+    },
+    // 对象类型 change
+    typeChange(v) {
+      if (v == 2) {
+        this.dataForm.object_id = {};
+      } else {
+        this.dataForm.object_id = [];
+      }
     },
     //地区报警处理率
     async getDetail(row) {
@@ -186,11 +223,10 @@ export default {
       }
     },
     // 企业
-    async getYYSZFVehiclePage() {
+    async getYYSZFVehiclePage(e) {
       let [err, data] = await governmentApi.awaitWrap(
-        governmentApi.getQiYe({
-          deptId: this.userinfo.deptId,
-          deptName: this.userinfo.deptName,
+        governmentApi.getOperatorDept({
+          opCode: e,
         })
       );
       if (data) {
@@ -205,10 +241,14 @@ export default {
         if (valid) {
           this.subLoading = true;
           let dept = [];
-          if (this.dataForm.object_id.length > 0) {
-            dept = this.dataForm.object_id.map((el) => {
-              return el.deptId;
-            });
+          if (Array.isArray(this.dataForm.object_id)) {
+            if (this.dataForm.object_id.length > 0) {
+              dept = this.dataForm.object_id.map((el) => {
+                return el.deptId;
+              });
+            }
+          } else {
+            dept = this.dataForm.object_id.deptId;
           }
           let [err, data] = await dataAnalysisApi.awaitWrap(
             dataAnalysisApi.platformQueryInsert({

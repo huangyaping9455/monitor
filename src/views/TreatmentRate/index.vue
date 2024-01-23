@@ -376,7 +376,7 @@
                 </p>
               </template>
             </el-table-column>
-            <el-table-column
+            <!-- <el-table-column
               label="处理/夜间行驶"
               align="center"
               min-width="140"
@@ -419,7 +419,7 @@
                   / {{ row.gpsyichangcllv }}
                 </p>
               </template>
-            </el-table-column>
+            </el-table-column> -->
           </el-table-column>
           <el-table-column label="DMS设备报警" align="center">
             <el-table-column
@@ -444,7 +444,7 @@
                 </p>
               </template>
             </el-table-column>
-            <el-table-column label="处理/抽烟" align="center" min-width="140">
+            <!-- <el-table-column label="处理/抽烟" align="center" min-width="140">
               <template slot-scope="{ row }">
                 <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
                   <span
@@ -461,7 +461,7 @@
                   / {{ row.dmschouyancllv }}
                 </p>
               </template>
-            </el-table-column>
+            </el-table-column> -->
             <el-table-column
               label="处理/分神驾驶"
               align="center"
@@ -484,7 +484,7 @@
                 </p>
               </template>
             </el-table-column>
-            <el-table-column
+            <!-- <el-table-column
               label="处理/生理疲劳"
               align="center"
               min-width="140"
@@ -503,6 +503,30 @@
                     >{{ row.dmspilao }}</span
                   >
                   / {{ row.dmspilaocllv }}
+                </p>
+              </template>
+            </el-table-column> -->
+            <el-table-column
+              label="处理/驾驶员异常"
+              align="center"
+              min-width="140"
+            >
+              <template slot-scope="{ row }">
+                <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
+                  <span
+                    @click="
+                      goinfo(2, '驾驶员异常报警', '主动安全报警', '已处理', row)
+                    "
+                    >{{ row.driveryichangcl }}</span
+                  >
+                  /
+                  <span
+                    @click="
+                      goinfo(2, '驾驶员异常报警', '主动安全报警', '', row)
+                    "
+                    >{{ row.driveryichang }}</span
+                  >
+                  / {{ row.driveryichangcllv }}
                 </p>
               </template>
             </el-table-column>
@@ -677,7 +701,7 @@ export default {
       }
     },
     "form.begintime"(val) {
-      this.pickerEnd.disabledDate = function(time) {
+      this.pickerEnd.disabledDate = function (time) {
         let over = new Date(val).getTime() + 1000 * 60 * 60 * 24 * 5;
         return (
           time.getTime() > over || time.getTime() < new Date(val).getTime()
@@ -685,7 +709,7 @@ export default {
       };
     },
     "form.endtime"(val) {
-      this.pickerBegin.disabledDate = function(time) {
+      this.pickerBegin.disabledDate = function (time) {
         let over = new Date(val).getTime() - 1000 * 60 * 60 * 24 * 5;
         return (
           time.getTime() < over || time.getTime() > new Date(val).getTime()

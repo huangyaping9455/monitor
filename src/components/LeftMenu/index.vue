@@ -251,6 +251,12 @@
               <span>企业月报警分析</span>
             </div>
           </el-menu-item>
+          <el-menu-item index="weekReportRank" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhoubao" />
+              <span>周通报(评分排名)</span>
+            </div>
+          </el-menu-item>
         </el-submenu>
         <el-submenu index="3">
           <template slot="title">

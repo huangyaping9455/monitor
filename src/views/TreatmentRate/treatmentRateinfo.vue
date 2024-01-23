@@ -242,7 +242,7 @@
                 label="疲劳驾驶报警"
                 value="疲劳驾驶报警"
               ></el-option>
-              <el-option
+              <!-- <el-option
                 label="夜间行驶报警"
                 value="夜间行驶报警"
                 v-if="GPS"
@@ -251,26 +251,31 @@
                 label="异常车辆报警"
                 value="异常车辆报警"
                 v-if="GPS"
-              ></el-option>
+              ></el-option> -->
               <el-option
                 label="接打电话报警"
                 value="接打电话报警"
                 v-if="zhudong"
               ></el-option>
-              <el-option
+              <!-- <el-option
                 label="抽烟报警"
                 value="抽烟报警"
                 v-if="zhudong"
-              ></el-option>
+              ></el-option> -->
               <el-option
                 label="分神驾驶报警"
                 value="分神驾驶报警"
                 v-if="zhudong"
               ></el-option>
-              <el-option
+              <!-- <el-option
                 v-if="zhudong"
                 label="生理疲劳报警"
                 value="生理疲劳报警"
+              ></el-option> -->
+              <el-option
+                v-if="zhudong"
+                label="驾驶员异常报警"
+                value="驾驶员异常报警"
               ></el-option>
             </el-select>
           </el-form-item>
