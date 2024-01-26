@@ -449,6 +449,7 @@ export default {
         query: {
           type: type,
           id: row.id,
+          deptId: row.fasongdanweiid,
           returnUrl: "/documentFile",
         },
       });

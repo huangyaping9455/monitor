@@ -7,7 +7,7 @@
     @contextmenu="contextmenu($event)"
     class="com-tree-item2X"
   >
-    <div class="title " :style="spaceStyle">
+    <div class="title" :style="spaceStyle">
       <div class="title-text text-ellipsis" :title="name" v-loading="isLoading">
         <img
           v-if="isFolder"
@@ -42,7 +42,8 @@ export default {
 .com-tree-item2X {
   .title-text {
     display: inline-block;
-    width: 15vw !important;
+    // width: 15vw !important;
+    width: 100%;
   }
   .title {
     max-width: initial !important;

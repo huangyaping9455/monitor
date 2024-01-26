@@ -334,21 +334,25 @@ export default {
       let fasdw = [];
       this.getQiYe().then(() => {
         this.depts.map((el) => {
-          if (el.deptId === this.$route.query.comId) {
+          if (el.deptId == this.$route.query.comId) {
             fasdw.push(el);
           }
         });
       });
       if (this.$route.query.comId) {
         this.form = {
-          zhutimingcheng: "下发隐患排查整改通知",
+          // zhutimingcheng: "下发隐患排查整改通知",
+          // biaotimigcheng: "下发隐患排查整改通知",
+          biaotimigcheng: "",
           wenjianleixing: "紧急文件",
           songdadanwei: fasdw,
+          zhenggaiduixiang: fasdw,
           zhuangtai: true,
           faqishijian: new Date(),
           zhenggaishijian: new Date(new Date() + 1000 * 60 * 60 * 24),
           huifuyouxiaoqi: 5,
           zhutizhengwen: "请尽快整改",
+          zhenggaiyaoqiu: "请尽快整改",
         };
       }
     } else if (this.type == "edit") {

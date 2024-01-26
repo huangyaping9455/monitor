@@ -297,6 +297,7 @@
                       query: {
                         type: 'add',
                         returnUrl: '/safeStandardRank',
+                        comId: row.deptId,
                       },
                     });
                   }

@@ -66,11 +66,49 @@
 .errmsg {
   color: red;
 }
+.msglist {
+  margin-top: 40px;
+}
 </style>
 <style lang="scss">
 .mainTable {
   .el-checkbox {
     color: #ffffff;
+  }
+}
+.msglist {
+  .mainTable {
+    &.el-table--enable-row-hover .el-table__body tr:hover > td {
+      background: #ffffff38;
+    }
+    tr {
+      background: #1e2e3e;
+    }
+    td {
+      border-right: 1px solid #58626e;
+      border-bottom: 1px solid #58626e;
+      color: #ffffff;
+    }
+    th.is-leaf {
+      border-bottom: 0.5px solid #58626e;
+    }
+    th {
+      background: #1e2e3e;
+      border-right: 1px solid #58626e;
+      color: #ffffff;
+    }
+    &::before {
+      background-color: #58626e;
+    }
+    &::after {
+      background-color: #58626e;
+    }
+    .el-table__body-wrapper {
+      height: calc(100% - 63px);
+    }
+    &.el-table th.gutter {
+      display: table-cell !important;
+    }
   }
 }
 </style>
@@ -219,6 +257,26 @@
     </table>
 
     <p class="errmsg">{{ errmsg }}</p>
+    <div class="msglist" v-if="eye">
+      <p class="main-title">信息详情</p>
+      <el-table
+        class="mainTable"
+        :data="msgData"
+        max-height="300"
+        style="width: 100%"
+      >
+        <el-table-column prop="deptName" label="企业名称" align="center">
+        </el-table-column>
+        <el-table-column prop="status" label="是否回复" align="center">
+        </el-table-column>
+        <el-table-column prop="huifuzhengwen" label="回复内容" align="center">
+        </el-table-column>
+        <el-table-column prop="huifushijian" label="回复时间" align="center">
+        </el-table-column>
+        <el-table-column prop="userName" label="回复用户" align="center">
+        </el-table-column>
+      </el-table>
+    </div>
   </div>
 </template>
 
@@ -270,6 +328,7 @@ export default {
       headers: {
         "blade-auth": "Bearer " + Cookies.get("accessToken"),
       },
+      msgData: [],
     };
   },
   created() {
@@ -289,6 +348,7 @@ export default {
       this.title = "查看文件下发";
       // 根据ID查询文件下发详情
       this.getOne(this.$route.query.id);
+      this.getHFO(this.$route.query.id);
       this.eye = true;
       this.loading = true;
     }
@@ -347,6 +407,21 @@ export default {
       );
       if (data) {
         this.SET_DEPTS(data);
+      } else {
+        this.$message.error(err);
+      }
+    },
+    // 回复企业
+    async getHFO(id) {
+      let [err, data] = await governmentApi.awaitWrap(
+        governmentApi.getHFO({
+          Id: id,
+          type: 3,
+          deptId: this.$route.query.deptId,
+        })
+      );
+      if (data) {
+        this.msgData = data;
       } else {
         this.$message.error(err);
       }
