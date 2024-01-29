@@ -51,11 +51,11 @@
             padding: 3px 2rem;
             cursor: pointer;
           }
-          p:hover{
+          p:hover {
             background-color: #0a3774;
             color: white;
             box-shadow: 2px 3px 10px black;
-            border-radius:10px;
+            border-radius: 10px;
           }
         }
       }
@@ -92,10 +92,9 @@
           p {
             flex: 0 0 50%;
             margin: 5px 0;
-            overflow:hidden;
+            overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            
           }
         }
         .video {
@@ -126,9 +125,9 @@
         }
       }
     }
-    .main-bottom{
+    .main-bottom {
       // display: flex;
-      .bottom-item-head{
+      .bottom-item-head {
         display: flex;
         background-color: #0f1f40;
         border: solid 1px #0a3774;
@@ -148,7 +147,7 @@
           border-right: solid 1px #0a3774;
           flex: 0 0 60%;
           padding: 5px;
-          span{
+          span {
             padding: 7px 0px;
             margin: 0 4px;
             width: 50%;
@@ -159,8 +158,8 @@
             border-right: solid 1px #0a3774;
             background-color: #0a3774;
           }
-          span:hover{
-            background-color:#0f1f40;
+          span:hover {
+            background-color: #0f1f40;
             cursor: pointer;
           }
         }
@@ -217,56 +216,56 @@
       p {
         // display: flex;
         // flex: 0 0 4%;
-        margin:8px;
-      //   .pingzheng {
-      //     cursor: pointer;
-      //     width: 30px;
-      //     height: 30px;
-      //     margin: -10px 0;
-      //   }
-      //   .fujian {
-      //     height: 180px;
-      //   }
-      // }
-      p:nth-of-type(6),
-      p:nth-of-type(7) {
-        // flex: 0 0 12%;
-        display: flex;
+        margin: 8px;
+        //   .pingzheng {
+        //     cursor: pointer;
+        //     width: 30px;
+        //     height: 30px;
+        //     margin: -10px 0;
+        //   }
+        //   .fujian {
+        //     height: 180px;
+        //   }
+        // }
+        p:nth-of-type(6),
+        p:nth-of-type(7) {
+          // flex: 0 0 12%;
+          display: flex;
+          span:first-of-type {
+            // flex: 0 0 70px;
+          }
+        }
         span:first-of-type {
-          // flex: 0 0 70px;
+          color: #395da8;
         }
       }
-      span:first-of-type {
-        color: #395da8;
-      }
     }
-    }
-    .item-list{
+    .item-list {
       background-color: #0f1f40;
       border-right: solid 1px #0a3774;
     }
-    .item-msg{
+    .item-msg {
       display: flex;
       flex-wrap: wrap;
       flex-direction: column;
       align-content: space-between;
       border-right: solid 1px #0a3774;
-        p{
-          margin: 8px;
-          .pingzheng {
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
-            margin: -10px 0;
-          }
-          // .fujian {
-          //   height: 180px;
-          // }
+      p {
+        margin: 8px;
+        .pingzheng {
+          cursor: pointer;
+          width: 30px;
+          height: 30px;
+          margin: -10px 0;
         }
-        // .fujian{
-        //   height: 100px;
+        // .fujian {
+        //   height: 180px;
         // }
       }
+      // .fujian{
+      //   height: 100px;
+      // }
+    }
   }
 }
 </style>
@@ -324,9 +323,9 @@
             :stroke-opacity="1"
             :stroke-weight="4"
           ></bm-polyline>
-           <bm-polyline
+          <bm-polyline
             :path="path2"
-            v-if="vehicleoption.alarmType =='疲劳驾驶报警'"
+            v-if="vehicleoption.alarmType == '疲劳驾驶报警'"
             :stroke-opacity="1"
             :stroke-weight="4"
           ></bm-polyline>
@@ -339,23 +338,29 @@
             :auto-viewport="true"
           ></bm-driving> -->
           <!-- 开始行驶时间 -->
-          <bm-marker :top="true" :position="kaishiline"  v-if="vehicleoption.alarmType =='疲劳驾驶报警'">
+          <bm-marker
+            :top="true"
+            :position="kaishiline"
+            v-if="vehicleoption.alarmType == '疲劳驾驶报警'"
+          >
             <bm-label
-              :content="`开始行驶时间: ${time2.start}`+`<br>`+`地址：${kaishidi}`"
-             :labelStyle="labelOpt.styleks"
+              :content="
+                `开始行驶时间: ${time2.start}` + `<br>` + `地址：${kaishidi}`
+              "
+              :labelStyle="labelOpt.styleks"
               :offset="{ width: 10, height: 30 }"
             />
           </bm-marker>
           <bm-marker :top="true" :position="startline">
             <bm-label
-              :content="`起点 ${time.start}`+`<br>`+`地址：${qidian}`"
-             :labelStyle="labelOpt.style"
+              :content="`起点 ${time.start}` + `<br>` + `地址：${qidian}`"
+              :labelStyle="labelOpt.style"
               :offset="{ width: 10, height: 30 }"
             />
           </bm-marker>
-          <bm-marker :top="true" :position="endline" >
+          <bm-marker :top="true" :position="endline">
             <bm-label
-              :content="`终点 ${time.end}`+`<br>`+`地址：${zhongdian}`"
+              :content="`终点 ${time.end}` + `<br>` + `地址：${zhongdian}`"
               :labelStyle="{ color: 'red', fontSize: '12px' }"
               :offset="{ width: 10, height: 30 }"
             />
@@ -363,7 +368,13 @@
         </baidu-map>
         <div class="top-r means">
           <div class="title">
-            <p @click="CarMsg" ref="ziliao" style="background-color:#0080de;border-radius:10px;">车辆资料</p>
+            <p
+              @click="CarMsg"
+              ref="ziliao"
+              style="background-color: #0080de; border-radius: 10px"
+            >
+              车辆资料
+            </p>
             <p @click="getImageData" ref="shipin">实时视频</p>
           </div>
           <div class="means-top" v-if="ziliao">
@@ -380,23 +391,29 @@
             <div>
               <p class="means-name">{{ vehicleoption.plate }}</p>
               <p class="means-txt">车牌颜色：{{ cheliang.chepaiyanse }}</p>
-              <p class="means-txt">运营类型：{{ cheliang.shiyongxingzhi}}</p>
+              <p class="means-txt">运营类型：{{ cheliang.shiyongxingzhi }}</p>
               <!-- <p class="means-txt">使用性质：{{ cheliang.shiyongxingzhi }}</p>
               <p class="means-txt">核定载客：{{ cheliang.hedingzaike }}</p>
               <p class="means-txt">车辆状态：{{ cheliang.cheliangzhuangtai }}</p> -->
             </div>
           </div>
           <div class="means-bottom" v-if="ziliao">
-            <p>驾&nbsp;&nbsp;驶&nbsp;&nbsp;员：{{ cheliang.jiashiyuanxingming }}</p>
+            <p>
+              驾&nbsp;&nbsp;驶&nbsp;&nbsp;员：{{ cheliang.jiashiyuanxingming }}
+            </p>
             <p>驾驶员电话：{{ cheliang.jiashiyuandianhua }}</p>
             <p>押&nbsp; 运&nbsp; 员：{{ cheliang.yayunyuanxingming }}</p>
             <p>押运员电话：{{ cheliang.yayunyuandianhua }}</p>
             <p>车&emsp;&emsp;主：{{ cheliang.chezhu }}</p>
             <p>车 主 电 话：{{ cheliang.chezhudianhua }}</p>
-            <p>终端型号：{{ cheliang.zongduanxinghao }}</p> 
+            <p>终端型号：{{ cheliang.zongduanxinghao }}</p>
             <p>车 &nbsp;&nbsp;架 &nbsp;&nbsp;号：{{ cheliang.chejiahao }}</p>
             <p>厂&emsp;&emsp;牌：{{ cheliang.changpai }}</p>
-            <p>运 &nbsp;&nbsp;营 &nbsp;&nbsp;商：{{ cheliang.yunyingshangmingcheng }}</p>
+            <p>
+              运 &nbsp;&nbsp;营 &nbsp;&nbsp;商：{{
+                cheliang.yunyingshangmingcheng
+              }}
+            </p>
           </div>
           <div class="video" v-if="showVideo" v-loading="videoLoading">
             <video :src="video" controls="controls"></video>
@@ -410,9 +427,19 @@
       <div class="main-bottom">
         <div class="bottom-item-head">
           <div>
-            <span @click="QKclick" ref="fenxi" style="background-color:#0080de;">情况分析</span>
+            <span @click="QKclick" ref="fenxi" style="background-color: #0080de"
+              >情况分析</span
+            >
             <span @click="TXclick" ref="xiaoxi">提醒消息</span>
-            <span @click="dealMsg" v-if="vehicleoption.chulizhuangtai=='已处理'||vehicleoption.shensuzhuangtai=='已申诉'" ref="dealmsg">处理信息</span>
+            <span
+              @click="dealMsg"
+              v-if="
+                vehicleoption.chulizhuangtai == '已处理' ||
+                vehicleoption.shensuzhuangtai == '已申诉'
+              "
+              ref="dealmsg"
+              >处理信息</span
+            >
           </div>
           <div>{{ vehicleoption.alarmType }}-标准判断</div>
         </div>
@@ -434,15 +461,15 @@
               <span>超速等级：</span>
               <span>{{ vehicleoption.alarmlevel }}</span>
             </p> -->
-            <p v-if="vehicleoption.alarmType =='超速报警'">
+            <p v-if="vehicleoption.alarmType == '超速报警'">
               <span>最高速度：</span>
               <span>{{ vehicleoption.maxSpeed }}(km/h)</span>
             </p>
-            <p v-if="vehicleoption.alarmType =='超速报警'">
+            <p v-if="vehicleoption.alarmType == '超速报警'">
               <span>超速百分比：</span>
               <span>{{ vehicleoption.chaoSuBiShow }}</span>
             </p>
-            <p v-if="vehicleoption.alarmType =='超速报警'">
+            <p v-if="vehicleoption.alarmType == '超速报警'">
               <span>限速数值：</span>
               <span>{{ vehicleoption.roadLimited }}(km/h)</span>
             </p>
@@ -450,18 +477,29 @@
               <span>移动距离：</span>
               <span>{{ vehicleoption.distance }}km</span>
             </p>
-            <p v-if="vehicleoption.alarmType =='疲劳驾驶报警'">
+            <p v-if="vehicleoption.alarmType == '疲劳驾驶报警'">
               <span>开始行驶时间：</span>
               <span>{{ vehicleoption.calctime }}</span>
             </p>
             <p>
               <span>违规时间：</span>
-              <span v-if="vehicleoption.alarmType =='抽烟报警'||vehicleoption.alarmType =='分神驾驶报警'||vehicleoption.alarmType =='接打电话报警'||vehicleoption.alarmType =='生理疲劳报警'"
+              <span
+                v-if="
+                  vehicleoption.alarmType == '抽烟报警' ||
+                  vehicleoption.alarmType == '分神驾驶报警' ||
+                  vehicleoption.alarmType == '接打电话报警' ||
+                  vehicleoption.alarmType == '生理疲劳报警'
+                "
                 >{{ vehicleoption.beginTime }}--{{ vehicleoption.endTime }}(
-                  3分钟
-                )</span
+                3分钟 )</span
               >
-              <span v-else-if="vehicleoption.alarmType !='抽烟报警'||vehicleoption.alarmType !='分神驾驶报警'||vehicleoption.alarmType !='接打电话报警'||vehicleoption.alarmType !='生理疲劳报警'"
+              <span
+                v-else-if="
+                  vehicleoption.alarmType != '抽烟报警' ||
+                  vehicleoption.alarmType != '分神驾驶报警' ||
+                  vehicleoption.alarmType != '接打电话报警' ||
+                  vehicleoption.alarmType != '生理疲劳报警'
+                "
                 >{{ vehicleoption.beginTime }}--{{ vehicleoption.endTime }}({{
                   vehicleoption.keeptimeShow
                 }})</span
@@ -504,36 +542,43 @@
             <el-table
               :data="tableData"
               class="mainTable"
-              style="background-color: #0f1f40;border: 0.0714rem solid #0a3774;padding:0;position:inherit;">
+              style="
+                background-color: #0f1f40;
+                border: 0.0714rem solid #0a3774;
+                padding: 0;
+                position: inherit;
+              "
+            >
               <el-table-column
                 align="center"
                 label="序号"
                 type="index"
-                width="50">
+                width="50"
+              >
               </el-table-column>
               <el-table-column
                 prop="time"
                 align="center"
-                :show-overflow-tooltip="showOverflowTooltip=true"
+                :show-overflow-tooltip="(showOverflowTooltip = true)"
                 width="180"
-                label="时间">
+                label="时间"
+              >
               </el-table-column>
               <el-table-column
                 prop="lastSpeed"
                 align="center"
                 width="100"
-                label="速度(km/h)">
+                label="速度(km/h)"
+              >
               </el-table-column>
-              <el-table-column
-                prop="messageType"
-                 align="center"
-                label="类型">
+              <el-table-column prop="messageType" align="center" label="类型">
               </el-table-column>
               <el-table-column
                 prop="message"
                 align="center"
-                :show-overflow-tooltip="showOverflowTooltip=true"
-                label="内容">
+                :show-overflow-tooltip="(showOverflowTooltip = true)"
+                label="内容"
+              >
               </el-table-column>
             </el-table>
           </div>
@@ -556,7 +601,7 @@
             </p>
             <p>
               <span>处理凭证：</span>
-              <span v-if="vehicleoption.fujian!==''">
+              <span v-if="vehicleoption.fujian !== ''">
                 <el-popover placement="top-start" trigger="click">
                   <img
                     src="../../assets/img/ping.png"
@@ -566,14 +611,14 @@
                   />
                   <div class="fujian">
                     <!-- <img :src="vehicleoption.fujian" style="max-height:180px;" alt /> -->
-                      <img
-                        v-for="(item, index) in arryImg"
-                        :key="index"
-                        class="fujian"
-                        :src="arryImg[index]"
-                        style="max-height:180px;"
-                        alt
-                      />
+                    <img
+                      v-for="(item, index) in arryImg"
+                      :key="index"
+                      class="fujian"
+                      :src="arryImg[index]"
+                      style="max-height: 180px"
+                      alt
+                    />
                   </div>
                 </el-popover>
               </span>
@@ -598,7 +643,7 @@
             </p>
             <p>
               <span>处理凭证：</span>
-              <span v-if="vehicleoption.fujian!==''">
+              <span v-if="vehicleoption.fujian !== ''">
                 <el-popover placement="top-start" trigger="click">
                   <img
                     src="../../assets/img/ping.png"
@@ -609,13 +654,13 @@
                   <div class="fujian">
                     <!-- <img :src="vehicleoption.fujian" style="max-height:180px;" alt /> -->
                     <img
-                        v-for="(item, index) in arryImg"
-                        :key="index"
-                        class="fujian"
-                        :src="arryImg[index]"
-                        style="max-height:180px;"
-                        alt
-                      />
+                      v-for="(item, index) in arryImg"
+                      :key="index"
+                      class="fujian"
+                      :src="arryImg[index]"
+                      style="max-height: 180px"
+                      alt
+                    />
                   </div>
                 </el-popover>
               </span>
@@ -668,12 +713,12 @@ export default {
       center: { lng: 116.404, lat: 39.915 },
       startline: { lng: 116.404, lat: 39.915 },
       endline: { lng: 116.404, lat: 39.915 },
-      kaishiline:{lng: "", lat: ""},
+      kaishiline: { lng: "", lat: "" },
       time: { start: "", end: "" },
-      time2:{ start: "", end: "" },
-      kaishidi:"",
-      qidian:"",
-      zhongdian:"",
+      time2: { start: "", end: "" },
+      kaishidi: "",
+      qidian: "",
+      zhongdian: "",
       // labelStyles:{ color: 'red', fontSize: '12px' },
       begintime: format(
         new Date().getTime() - 60 * 1000,
@@ -697,12 +742,12 @@ export default {
       noVideo: false,
       src: [],
       videoLoading: false,
-      tableData:[],
-      QKFX:true,
-      TXXX:false,
-      CLXX:false,
-      CLXXX:false,
-      arryImg:"",
+      tableData: [],
+      QKFX: true,
+      TXXX: false,
+      CLXX: false,
+      CLXXX: false,
+      arryImg: "",
       zoom: 12,
     };
   },
@@ -737,9 +782,21 @@ export default {
     getData() {
       this.selectByCPYS();
       this.getAlarmGuIdList();
-      if((this.vehicleoption.beginTime===this.vehicleoption.endTime) &&(this.vehicleoption.alarmType =="抽烟报警"||this.vehicleoption.alarmType =="分神驾驶报警"||this.vehicleoption.alarmType =="接打电话报警"||this.vehicleoption.alarmType =="生理疲劳报警")){
-        this.vehicleoption.beginTime=format(new Date(this.vehicleoption.beginTime).getTime()- 60 * 1000,"YYYY-MM-DD HH:mm:ss");
-        this.vehicleoption.endTime=format(new Date(this.vehicleoption.endTime).getTime() + 2 * 60 * 1000,"YYYY-MM-DD HH:mm:ss");
+      if (
+        this.vehicleoption.beginTime === this.vehicleoption.endTime &&
+        (this.vehicleoption.alarmType == "抽烟报警" ||
+          this.vehicleoption.alarmType == "分神驾驶报警" ||
+          this.vehicleoption.alarmType == "接打电话报警" ||
+          this.vehicleoption.alarmType == "生理疲劳报警")
+      ) {
+        this.vehicleoption.beginTime = format(
+          new Date(this.vehicleoption.beginTime).getTime() - 60 * 1000,
+          "YYYY-MM-DD HH:mm:ss"
+        );
+        this.vehicleoption.endTime = format(
+          new Date(this.vehicleoption.endTime).getTime() + 2 * 60 * 1000,
+          "YYYY-MM-DD HH:mm:ss"
+        );
       }
       // console.log(this.vehicleoption);
     },
@@ -752,12 +809,18 @@ export default {
         })
       );
       if (data) {
-        if(data.cheliang.jiashiyuandianhua ==-1||data.cheliang.yayunyuandianhua ==-1||data.cheliang.chezhudianhua ==-1||data.cheliang.changpai =="null"||data.cheliang.chejiahao =="null"){
-          data.cheliang.jiashiyuandianhua =""
-          data.cheliang.yayunyuandianhua =""
-          data.cheliang.chezhudianhua =""
-          data.cheliang.changpai =""
-          data.cheliang.chejiahao =""
+        if (
+          data.cheliang.jiashiyuandianhua == -1 ||
+          data.cheliang.yayunyuandianhua == -1 ||
+          data.cheliang.chezhudianhua == -1 ||
+          data.cheliang.changpai == "null" ||
+          data.cheliang.chejiahao == "null"
+        ) {
+          data.cheliang.jiashiyuandianhua = "";
+          data.cheliang.yayunyuandianhua = "";
+          data.cheliang.chezhudianhua = "";
+          data.cheliang.changpai = "";
+          data.cheliang.chejiahao = "";
         }
         this.cheliang = data.cheliang;
         this.jiashiyuan = data.jiashiyuan;
@@ -775,55 +838,65 @@ export default {
     },
     //获取点位数据
     async getPointDataNew() {
-     if(this.vehicleoption.alarmType =="疲劳驾驶报警"){
+      if (this.vehicleoption.alarmType == "疲劳驾驶报警") {
         // 开始行驶时间
-      let [err2, data2] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.getPointDataNew({
-          beginTime: this.vehicleoption.calctime,
-          endTime: this.vehicleoption.beginTime,
-          mark: this.vehicleoption.type - 1,
-          vehid: this.cheliang.id,
-        })
-      );
-      // this.loading = false;
-      if (data2) {
-        if (data2.length > 0) {
-          this.path2 = this.mapPoints(data2);
-          this.kaishiline = {
-            lng: data2[0].longitude,
-            lat: data2[0].latitude,
-          };
-          // this.endline = {
-          //   lng: data2[data2.length - 1].longitude,
-          //   lat: data2[data2.length - 1].latitude,
-          // };
-          this.time2 = {
-            start: data2[0].GpsTime,
-            end: data2[data2.length - 1].GpsTime,
-          };
-          // js解析经纬度为地理位置
-          let pointkaishidi = new BMap.Point(this.kaishiline.lng,this.kaishiline.lat);
-          let gc= new BMap.Geocoder();
-          let kaishidi;
-          let _this =this
-          gc.getLocation(pointkaishidi,function(rs){
-            kaishidi =rs.address;
-          _this.kaishidi =kaishidi;
+        let [err2, data2] = await dataAnalysisApi.awaitWrap(
+          dataAnalysisApi.getPointDataNew({
+            beginTime: this.vehicleoption.calctime,
+            endTime: this.vehicleoption.beginTime,
+            // mark: this.vehicleoption.type - 1,
+            mark: 0,
+            vehid: this.cheliang.id,
           })
+        );
+        // this.loading = false;
+        if (data2) {
+          if (data2.length > 0) {
+            this.path2 = this.mapPoints(data2);
+            this.kaishiline = {
+              lng: data2[0].longitude,
+              lat: data2[0].latitude,
+            };
+            // this.endline = {
+            //   lng: data2[data2.length - 1].longitude,
+            //   lat: data2[data2.length - 1].latitude,
+            // };
+            this.time2 = {
+              start: data2[0].GpsTime,
+              end: data2[data2.length - 1].GpsTime,
+            };
+            // js解析经纬度为地理位置
+            let pointkaishidi = new BMap.Point(
+              this.kaishiline.lng,
+              this.kaishiline.lat
+            );
+            let gc = new BMap.Geocoder();
+            let kaishidi;
+            let _this = this;
+            gc.getLocation(pointkaishidi, function (rs) {
+              kaishidi = rs.address;
+              _this.kaishidi = kaishidi;
+            });
+          }
+        } else {
+          this.$message.error(err2);
         }
-      } else {
-        this.$message.error(err2);
       }
-     }
-     if(this.vehicleoption.alarmType =="抽烟报警"||this.vehicleoption.alarmType =="分神驾驶报警"||this.vehicleoption.alarmType =="接打电话报警"||this.vehicleoption.alarmType =="生理疲劳报警"){
+      if (
+        this.vehicleoption.alarmType == "抽烟报警" ||
+        this.vehicleoption.alarmType == "分神驾驶报警" ||
+        this.vehicleoption.alarmType == "接打电话报警" ||
+        this.vehicleoption.alarmType == "生理疲劳报警"
+      ) {
         // this.vehicleoption.endTime = this.endtime;
         // this.vehicleoption.beginTime=this.begintime;
-     }
+      }
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getPointDataNew({
           beginTime: this.vehicleoption.beginTime,
           endTime: this.vehicleoption.endTime,
-          mark: this.vehicleoption.type - 1,
+          // mark: this.vehicleoption.type - 1,
+          mark: 0,
           vehid: this.cheliang.id,
         })
       );
@@ -848,20 +921,26 @@ export default {
             end: data[data.length - 1].GpsTime,
           };
           // js解析经纬度为地理位置
-          let pointqidian = new BMap.Point(this.startline.lng,this.startline.lat);
-          let pointzhongdian = new BMap.Point(this.endline.lng,this.endline.lat);
-          let gc= new BMap.Geocoder();
+          let pointqidian = new BMap.Point(
+            this.startline.lng,
+            this.startline.lat
+          );
+          let pointzhongdian = new BMap.Point(
+            this.endline.lng,
+            this.endline.lat
+          );
+          let gc = new BMap.Geocoder();
           let qidian;
           let zhongdian;
-          let _this =this
-          gc.getLocation(pointqidian,function(rs){
-            qidian =rs.address;
-          _this.qidian =qidian;
-          })
-          gc.getLocation(pointzhongdian,function(rs){
-            zhongdian =rs.address;
-          _this.zhongdian =zhongdian;
-          })
+          let _this = this;
+          gc.getLocation(pointqidian, function (rs) {
+            qidian = rs.address;
+            _this.qidian = qidian;
+          });
+          gc.getLocation(pointzhongdian, function (rs) {
+            zhongdian = rs.address;
+            _this.zhongdian = zhongdian;
+          });
         }
       } else {
         this.$message.error(err);
@@ -871,66 +950,66 @@ export default {
     async getAlarmGuIdList() {
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getAlarmGuIdList({
-          alarmGuId:this.vehicleoption.alarmGuid
+          alarmGuId: this.vehicleoption.alarmGuid,
         })
       );
-      if(data){
-        let tabledatas =data.map(el=>{
-          el.time=el.time.replace(/\.0$/g,'')
-          return el
-        })
-        this.tableData =tabledatas;
+      if (data) {
+        let tabledatas = data.map((el) => {
+          el.time = el.time.replace(/\.0$/g, "");
+          return el;
+        });
+        this.tableData = tabledatas;
       }
     },
     // 情况分析 点击
-    QKclick(){
-      if(this.$refs.fenxi){
-        this.$refs.fenxi.style.backgroundColor ="#0080de";
+    QKclick() {
+      if (this.$refs.fenxi) {
+        this.$refs.fenxi.style.backgroundColor = "#0080de";
       }
-      if(this.$refs.xiaoxi){
-        this.$refs.xiaoxi.style.backgroundColor="";
+      if (this.$refs.xiaoxi) {
+        this.$refs.xiaoxi.style.backgroundColor = "";
       }
-      if(this.$refs.dealmsg){
-        this.$refs.dealmsg.style.backgroundColor ="";
+      if (this.$refs.dealmsg) {
+        this.$refs.dealmsg.style.backgroundColor = "";
       }
-     this.QKFX =true;
-     this.TXXX =false;
-     this.CLXX =false;
-     this.CLXXX =false;
+      this.QKFX = true;
+      this.TXXX = false;
+      this.CLXX = false;
+      this.CLXXX = false;
     },
     // 提醒消息 点击
-    TXclick(){
-      if(this.$refs.fenxi){
-        this.$refs.fenxi.style.backgroundColor ="";
+    TXclick() {
+      if (this.$refs.fenxi) {
+        this.$refs.fenxi.style.backgroundColor = "";
       }
-      if(this.$refs.xiaoxi){
-        this.$refs.xiaoxi.style.backgroundColor="#0080de";
+      if (this.$refs.xiaoxi) {
+        this.$refs.xiaoxi.style.backgroundColor = "#0080de";
       }
-      if(this.$refs.dealmsg){
-        this.$refs.dealmsg.style.backgroundColor ="";
+      if (this.$refs.dealmsg) {
+        this.$refs.dealmsg.style.backgroundColor = "";
       }
-      this.QKFX =false;
-      this.TXXX =true;
-      this.CLXX =false;
-      this.CLXXX=false;
+      this.QKFX = false;
+      this.TXXX = true;
+      this.CLXX = false;
+      this.CLXXX = false;
     },
     // 处理信息
-    dealMsg(){
-      let arry = this.vehicleoption.fujian.replace(/\,$/g,"").split(",");
-      this.arryImg =arry;
-      if(this.$refs.fenxi||this.$refs.xiaoxi||this.$refs.dealmsg){
-        this.$refs.fenxi.style.backgroundColor ="";
-        this.$refs.xiaoxi.style.backgroundColor="";
-        this.$refs.dealmsg.style.backgroundColor ="#0080de";
+    dealMsg() {
+      let arry = this.vehicleoption.fujian.replace(/\,$/g, "").split(",");
+      this.arryImg = arry;
+      if (this.$refs.fenxi || this.$refs.xiaoxi || this.$refs.dealmsg) {
+        this.$refs.fenxi.style.backgroundColor = "";
+        this.$refs.xiaoxi.style.backgroundColor = "";
+        this.$refs.dealmsg.style.backgroundColor = "#0080de";
       }
-      this.QKFX =false;
-      this.TXXX =false;
-      if(this.vehicleoption.chulizhuangtai =="已处理"){
-        this.CLXX =true;
-        this.CLXXX =false
-      }else{
-        this.CLXX =false;
-        this.CLXXX =true;
+      this.QKFX = false;
+      this.TXXX = false;
+      if (this.vehicleoption.chulizhuangtai == "已处理") {
+        this.CLXX = true;
+        this.CLXXX = false;
+      } else {
+        this.CLXX = false;
+        this.CLXXX = true;
       }
       // this.selectBJDetail();
     },
@@ -948,10 +1027,10 @@ export default {
     // },
     // 车辆资料
     CarMsg() {
-      if(this.$refs.ziliao||this.$refs.shipin){
-         this.$refs.ziliao.style.backgroundColor ='#0080de';
-         this.$refs.ziliao.style.color='#fff'
-         this.$refs.shipin.style.backgroundColor ='';
+      if (this.$refs.ziliao || this.$refs.shipin) {
+        this.$refs.ziliao.style.backgroundColor = "#0080de";
+        this.$refs.ziliao.style.color = "#fff";
+        this.$refs.shipin.style.backgroundColor = "";
       }
       this.ziliao = true;
       this.showVideo = false;
@@ -961,10 +1040,10 @@ export default {
     async getImageData() {
       this.ziliao = false;
       this.videoLoading = true;
-      this.$refs.shipin.style.backgroundColor ='#0080de';
-      this.$refs.shipin.style.color='#fff';
-      this.$refs.shipin.style.borderRadius=10+"px";
-      this.$refs.ziliao.style.backgroundColor='';
+      this.$refs.shipin.style.backgroundColor = "#0080de";
+      this.$refs.shipin.style.color = "#fff";
+      this.$refs.shipin.style.borderRadius = 10 + "px";
+      this.$refs.ziliao.style.backgroundColor = "";
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getImageData({
           alarmNumber: this.vehicleoption.alarmReportID,
@@ -1016,10 +1095,10 @@ export default {
   // }
 }
 .mainTable th.is-leaf {
-    border-bottom: 1px solid #0a3774;
+  border-bottom: 1px solid #0a3774;
 }
-.mainTable th{
-    border-right: 1px solid #0a3774;
-    padding: 6px 0;
+.mainTable th {
+  border-right: 1px solid #0a3774;
+  padding: 6px 0;
 }
 </style>

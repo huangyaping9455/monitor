@@ -195,9 +195,6 @@
   <div class="main">
     <!-- 操作按钮 -->
     <div class="btns">
-      <el-button @click="viewShow" size="mini" class="btn" icon="el-icon-plus">
-        新增
-      </el-button>
       <el-button
         @click="changeSearch"
         size="mini"
@@ -292,26 +289,6 @@
         :show-overflow-tooltip="true"
       >
       </el-table-column>
-      <el-table-column label="操作" align="center" width="80" fixed="right">
-        <template slot-scope="{ row }">
-          <el-button
-            size="mini"
-            style="color: #00c8f5"
-            type="text"
-            @click="detailShow(row)"
-          >
-            详情
-          </el-button>
-          <!-- <el-button
-            size="mini"
-            style="color: #00c8f5"
-            type="text"
-            @click="delInspect(row)"
-          >
-            删除
-          </el-button> -->
-        </template>
-      </el-table-column>
     </el-table>
     <div class="page">
       <div class="page-l">
@@ -376,7 +353,6 @@
         </div>
       </div>
     </div>
-    <add-inspect ref="viewshow" :vehiclemsgList="vehiclemsgList"></add-inspect>
   </div>
 </template>
 
@@ -384,9 +360,7 @@
 import dataAnalysisApi from "@/api/modules/report";
 import { mapGetters } from "vuex";
 import { format } from "@/config/date";
-import AddInspect from "./addInspect.vue";
 export default {
-  components: { AddInspect },
   data() {
     return {
       loading: false,
@@ -446,8 +420,8 @@ export default {
       current = Number(current);
       this.loading = true;
       let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.getPlatformQuery({
-          deptId: this.zhuzzhiId,
+        dataAnalysisApi.getZDPlatformQuery({
+          deptId: 1,
           current: current,
           size: this.pagesizeactive,
           ...this.form,
@@ -469,32 +443,6 @@ export default {
         ? (this.enterpriseListH = "calc(100vh - 13.5714rem)")
         : (this.enterpriseListH = "calc(100vh - 16.8571rem)");
       this.searchshow = !this.searchshow;
-    },
-    // 新增
-    viewShow() {
-      this.$refs.viewshow.open({}, "新增查岗");
-    },
-    // 查看详情
-    detailShow(item) {
-      this.$refs.viewshow.open(item, "查岗详情");
-    },
-    // 删除
-    delInspect(row) {
-      this.$confirm("确定将选择数据删除?", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
-      }).then(async () => {
-        let [err, data] = await dataAnalysisApi.awaitWrap(
-          dataAnalysisApi.getPlatformQuery({
-            ...row,
-          })
-        );
-        if (data) {
-          this.$message.success(data.msg);
-          this.getPlatformQuery();
-        }
-      });
     },
   },
 };

@@ -313,6 +313,13 @@ export default {
       data
     );
   },
+  // 自动查岗--列表
+  getZDPlatformQuery(data) {
+    return $axios.post(
+      "/blade-anbiao/anbiao/platformQuery/getZDPlatformQuery",
+      data
+    );
+  },
   // 下发查岗--新增
   platformQueryInsert(data) {
     return $axios.post("/blade-anbiao/anbiao/platformQuery/insert", data);

@@ -523,7 +523,7 @@ export default {
         dataAnalysisApi.getPointDataNew({
           beginTime: this.begintime,
           endTime: this.endtime,
-          mark: this.vehicleoption.alarmtype ? this.vehicleoption.alarmtype : 0,
+          mark: 0,
           vehid: this.vehicleoption.vehicleID,
         })
       );

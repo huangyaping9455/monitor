@@ -251,12 +251,6 @@
               <span>企业月报警分析</span>
             </div>
           </el-menu-item>
-          <el-menu-item index="weekReportRank" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="zhoubao" />
-              <span>周通报(评分排名)</span>
-            </div>
-          </el-menu-item>
         </el-submenu>
         <el-submenu index="3">
           <template slot="title">
@@ -325,6 +319,12 @@
             <div class="menu-item">
               <svg-icon class="icon" icon-class="tongzhi" />
               <span>运营商查岗</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="yysInspectRank" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="tongzhi" />
+              <span>运营商自动查岗</span>
             </div>
           </el-menu-item>
         </el-submenu>
@@ -615,19 +615,19 @@
           <el-menu-item index="dayExamine" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="rikaohe" />
-              <span slot="title">业户日考核查询</span>
+              <span slot="title">企业日考核查询</span>
             </div>
           </el-menu-item>
           <el-menu-item index="weekExamine" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="zhoukaohe" />
-              <span slot="title">业户周考核查询</span>
+              <span slot="title">企业周考核查询</span>
             </div>
           </el-menu-item>
           <el-menu-item index="monthExamine" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yuekaohe" />
-              <span slot="title">业户月考核查询</span>
+              <span slot="title">企业月考核查询</span>
             </div>
           </el-menu-item>
           <el-menu-item index="dayExamineOper" @click="openMenu">
@@ -670,6 +670,12 @@
             <div class="menu-item">
               <svg-icon class="icon" icon-class="piaoyi" />
               <span slot="title">轨迹漂移率</span>
+            </div>
+          </el-menu-item>
+          <el-menu-item index="weekReportRank" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhoubao" />
+              <span>周通报(评分排名)</span>
             </div>
           </el-menu-item>
           <!-- <el-menu-item index="YYSSafetyInspection" @click="openMenu">
