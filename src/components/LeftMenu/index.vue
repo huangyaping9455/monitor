@@ -142,12 +142,12 @@
               <span>动态监管分析</span>
             </div>
           </template>
-          <!-- <el-menu-item index="dataAnalysis" @click="openMenu">
+          <el-menu-item index="dataAnalysis" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="shujvfenxi" />
               <span>数据分析</span>
             </div>
-          </el-menu-item> -->
+          </el-menu-item>
           <!-- <el-menu-item index="dataBoard" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="zhenggai" />
@@ -172,12 +172,12 @@
             <span>OBD数据分析</span>
           </div>
         </el-menu-item> -->
-          <!-- <el-menu-item index="treatmentRate" @click="openMenu">
+          <el-menu-item index="treatmentRate" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="chulilv" />
               <span>处理率统计</span>
             </div>
-          </el-menu-item> -->
+          </el-menu-item>
           <el-menu-item index="vehicle" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="cheliang" />
@@ -252,7 +252,7 @@
             </div>
           </el-menu-item> -->
         </el-submenu>
-        <!-- <el-submenu index="3">
+        <el-submenu index="3">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="chulilv" />
@@ -276,14 +276,14 @@
               <svg-icon class="icon" icon-class="cheliang" />
               <span>车辆报警排名</span>
             </div>
-          </el-menu-item> -->
-        <!-- <el-menu-item index="YYSEnterprise" @click="openMenu">
+          </el-menu-item>
+          <!-- <el-menu-item index="YYSEnterprise" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yunyingshang" />
               <span>运营商报警排名</span>
             </div>
           </el-menu-item> -->
-        <!-- </el-submenu> -->
+        </el-submenu>
         <el-submenu index="4">
           <template slot="title">
             <div class="menu-item">
@@ -333,15 +333,16 @@
             <div class="menu-item">
               <svg-icon class="icon" icon-class="zhoubao" />
               <span>周报</span>
+              <!-- <span>周通报</span> -->
             </div>
           </el-menu-item>
           <!-- <el-menu-item index="monthReport" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yuebao" />
               <span>月报</span>
-              </div>
-          </el-menu-item>
-          <el-menu-item index="quarterReport" @click="openMenu">
+            </div>
+          </el-menu-item> -->
+          <!-- <el-menu-item index="quarterReport" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="jibao" />
               <span>季报</span>
@@ -386,7 +387,7 @@
             </div>
           </el-menu-item>
         </el-submenu>
-        <!-- <el-submenu index="7">
+        <el-submenu index="7">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="jiaoyu" />
@@ -399,7 +400,7 @@
               <span>学习情况统计</span>
             </div>
           </el-menu-item>
-        </el-submenu> -->
+        </el-submenu>
         <el-submenu index="8">
           <template slot="title">
             <div class="menu-item">
@@ -488,7 +489,7 @@
             </div>
           </el-menu-item>
         </el-submenu> -->
-        <!-- <el-submenu index="10">
+        <el-submenu index="10">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="dangan" />
@@ -512,20 +513,20 @@
               <svg-icon class="icon" icon-class="jiashiyuan" />
               <span>驾驶员档案</span>
             </div>
-          </el-menu-item> -->
-        <!-- <el-menu-item index="YYSArchives" @click="openMenu">
+          </el-menu-item>
+          <!-- <el-menu-item index="YYSArchives" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yunyingshangkaohe" />
               <span>运营商档案</span>
             </div>
           </el-menu-item> -->
-        <!-- <el-menu-item index="vehicleMaintain" @click="openMenu">
+          <!-- <el-menu-item index="vehicleMaintain" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="weihu" />
               <span>车辆维护档案</span>
             </div>
           </el-menu-item> -->
-        <!-- <el-menu-item index="accident" @click="openMenu">
+          <el-menu-item index="accident" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="shigu" />
               <span>车辆事故档案</span>
@@ -537,7 +538,7 @@
               <span>法律法规档案</span>
             </div>
           </el-menu-item>
-        </el-submenu> -->
+        </el-submenu>
         <!-- <el-submenu index="11">
           <template slot="title">
             <div class="menu-item">
