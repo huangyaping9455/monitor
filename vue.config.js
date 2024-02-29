@@ -67,7 +67,7 @@ module.exports = {
       //   },
       // },
       "/previewapi": {
-        target: "http://125.64.5.2:8204",
+        target: "http://120.35.12.85:3324",
         ws: true,
         pathRewrite: {
           "^/previewapi": "",

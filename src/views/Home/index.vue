@@ -253,12 +253,16 @@
             <span>超速次数</span>
           </div>
           <div class="chaosufocu" @click="gochaosu">
-            <span>{{ statistics.pilao }}</span>
-            <span>疲劳次数</span>
+            <span>{{ statistics.dadianhua }}</span>
+            <span>接打电话次数</span>
           </div>
           <div class="chaosufocu" @click="gochaosu">
-            <span>{{ statistics.yejian }}</span>
-            <span>夜间行驶</span>
+            <span>{{ statistics.fenshen }}</span>
+            <span>分神次数</span>
+          </div>
+          <div class="chaosufocu" @click="gochaosu">
+            <span>{{ statistics.pilao }}</span>
+            <span>疲劳次数</span>
           </div>
           <div class="chaosufocu" @click="gochaosu">
             <span>{{ statistics.yichang }}</span>
@@ -291,7 +295,7 @@
                 :class="isbtn == 0 ? 'active' : ''"
                 >超速报警</span
               >
-              <span
+              <!-- <span
                 @click="changeCar('carousel', 'pilao')"
                 :class="isbtn == 1 ? 'active' : ''"
                 >疲劳驾驶</span
@@ -305,7 +309,7 @@
                 @click="changeCar('carousel', 'yichang')"
                 :class="isbtn == 3 ? 'active' : ''"
                 >异常车辆</span
-              >
+              > -->
             </div>
             <el-carousel
               class="gpsCarousel"
@@ -324,7 +328,7 @@
                   :chart-option="chartOption.option1"
                 ></echart-base>
               </el-carousel-item>
-              <el-carousel-item name="pilao">
+              <!-- <el-carousel-item name="pilao">
                 <echart-base
                   height="100%"
                   width="100%"
@@ -344,7 +348,7 @@
                   width="100%"
                   :chart-option="chartOption.option4"
                 ></echart-base>
-              </el-carousel-item>
+              </el-carousel-item> -->
             </el-carousel>
           </div>
           <div
@@ -365,9 +369,9 @@
                 >分神驾驶</span
               >
               <span
-                @click="changeCar('carousel1', 'chouyan')"
+                @click="changeCar('carousel1', 'yichang')"
                 :class="isbtn1 == 2 ? 'active' : ''"
-                >抽烟报警</span
+                >异常报警</span
               >
               <span
                 @click="changeCar('carousel1', 'zhudongbj')"
@@ -399,7 +403,7 @@
                   :chart-option="chartOption.option6"
                 ></echart-base>
               </el-carousel-item>
-              <el-carousel-item name="chouyan">
+              <el-carousel-item name="yichang">
                 <echart-base
                   height="100%"
                   width="100%"
@@ -771,7 +775,7 @@ export default {
         this.setEchart("option4", "yichang");
         this.setEchart("option5", "dadianhua");
         this.setEchart("option6", "fenshen");
-        this.setEchart("option7", "chouyan");
+        this.setEchart("option7", "yichang");
         this.setEchart("option8", "zhudongbj");
       }
     },

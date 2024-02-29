@@ -237,11 +237,11 @@
                 value="超速报警"
                 v-if="GPS"
               ></el-option>
-              <el-option
+              <!-- <el-option
                 v-if="GPS"
                 label="疲劳驾驶报警"
                 value="疲劳驾驶报警"
-              ></el-option>
+              ></el-option> -->
               <!-- <el-option
                 label="夜间行驶报警"
                 value="夜间行驶报警"
@@ -267,11 +267,11 @@
                 value="分神驾驶报警"
                 v-if="zhudong"
               ></el-option>
-              <!-- <el-option
+              <el-option
                 v-if="zhudong"
                 label="生理疲劳报警"
                 value="生理疲劳报警"
-              ></el-option> -->
+              ></el-option>
               <el-option
                 v-if="zhudong"
                 label="驾驶员异常报警"

@@ -478,6 +478,15 @@ export const constantRouterMap = [
         component: () => import("@/views/monthReport/index"),
       },
       {
+        path: "/weekReportYYS",
+        name: "weekReportYYS",
+        meta: {
+          title: "运营商周报",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/weekReportYYS/index"),
+      },
+      {
         path: "/safeStandard",
         name: "safeStandard",
         meta: {

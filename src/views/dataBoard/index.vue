@@ -617,15 +617,6 @@
 }
 </style>
 <style>
-.contentCenter {
-  .carousel {
-    .el-carousel__mask {
-      display: none !important;
-    }
-  }
-}
-</style>
-<style>
 .el-carousel--horizontal {
   overflow: hidden !important;
 }

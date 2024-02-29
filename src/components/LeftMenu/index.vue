@@ -342,6 +342,12 @@
               <span>周通报</span>
             </div>
           </el-menu-item>
+          <el-menu-item index="weekReportYYS" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="zhoubao" />
+              <span>运营商周报</span>
+            </div>
+          </el-menu-item>
           <el-menu-item index="monthReport" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yuebao" />

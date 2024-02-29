@@ -354,7 +354,7 @@
                 </p>
               </template>
             </el-table-column>
-            <el-table-column
+            <!-- <el-table-column
               label="处理/疲劳驾驶"
               align="center"
               min-width="140"
@@ -375,7 +375,7 @@
                   / {{ row.gpspilaocllv }}
                 </p>
               </template>
-            </el-table-column>
+            </el-table-column> -->
             <!-- <el-table-column
               label="处理/夜间行驶"
               align="center"
@@ -484,7 +484,7 @@
                 </p>
               </template>
             </el-table-column>
-            <!-- <el-table-column
+            <el-table-column
               label="处理/生理疲劳"
               align="center"
               min-width="140"
@@ -505,7 +505,7 @@
                   / {{ row.dmspilaocllv }}
                 </p>
               </template>
-            </el-table-column> -->
+            </el-table-column>
             <el-table-column
               label="处理/驾驶员异常"
               align="center"
