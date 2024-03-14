@@ -117,7 +117,8 @@
       <!-- <img src="@/assets/img/logo_changzhou.png" /> -->
       <!-- <img src="@/assets/img/xvzhoulogo.png" /> -->
       <!-- <img src="@/assets/img/liuzhou.png" /> -->
-      <img src="@/assets/img/cd_logonew.png" />
+      <!-- <img src="@/assets/img/cd_logonew.png" /> -->
+      <img src="@/assets/img/sdlogo.png" />
       <!-- <img src="@/assets/img/logo_yulin.png" /> -->
       <!-- <img src="@/assets/img/logo_ybf.png" /> -->
       <!-- <img src="@/assets/img/logo3.png" /> -->
@@ -131,22 +132,12 @@
       <p class="title">登 录</p>
       <el-form ref="ruleForm" :rules="rules" :model="form">
         <el-form-item prop="name">
-          <el-input
-            class="inputbox"
-            type="text"
-            v-model="form.name"
-            placeholder="用户名"
-          >
+          <el-input class="inputbox" type="text" v-model="form.name" placeholder="用户名">
             <svg-icon slot="prefix" class="icon" icon-class="name" />
           </el-input>
         </el-form-item>
         <el-form-item prop="pass">
-          <el-input
-            class="inputbox"
-            type="password"
-            v-model="form.pass"
-            placeholder="密码"
-          >
+          <el-input class="inputbox" type="password" v-model="form.pass" placeholder="密码">
             <svg-icon slot="prefix" class="icon" icon-class="pass" />
           </el-input>
         </el-form-item>
@@ -162,9 +153,7 @@
           </div>
         </el-form-item>
       </el-form>
-      <el-button class="loginbtn" :loading="loading" @click="login"
-        >登 录</el-button
-      >
+      <el-button class="loginbtn" :loading="loading" @click="login">登 录</el-button>
     </div>
   </div>
 </template>

@@ -718,14 +718,10 @@ export default {
       SET_FASONGDANWEI: "government/SET_FASONGDANWEI",
     }),
     openThree() {
-      window.open(
-        "http://139.155.45.177/dashboard/analysis?username=shaanxi&password=SS@123456"
-      );
+      window.open("http://139.155.45.177/dashboard/analysis?username=shaanxi&password=SS@123456");
     },
     openThree1() {
-      window.open(
-        "http://219.153.12.86:6600/dualMechanismData/safeBrain/SafeBrain?type=sp"
-      );
+      window.open("http://219.153.12.86:6600/dualMechanismData/safeBrain/SafeBrain?type=sp");
     },
     openThree3() {
       let userName = config.Encrypt(
@@ -734,11 +730,7 @@ export default {
         "abcdefgabcdefg12",
         "abcdefgabcdefg12"
       );
-      let passWord = config.Encrypt(
-        "123456",
-        "abcdefgabcdefg12",
-        "abcdefgabcdefg12"
-      );
+      let passWord = config.Encrypt("123456", "abcdefgabcdefg12", "abcdefgabcdefg12");
       window.open(
         `http://aimonitoring.rybsj.cn/webgis/data/tsriskhandlePage.action?userName=${userName}&password=${passWord}`
       );
@@ -750,11 +742,7 @@ export default {
         "abcdefgabcdefg12",
         "abcdefgabcdefg12"
       );
-      let passWord = config.Encrypt(
-        "123456",
-        "abcdefgabcdefg12",
-        "abcdefgabcdefg12"
-      );
+      let passWord = config.Encrypt("123456", "abcdefgabcdefg12", "abcdefgabcdefg12");
       window.open(
         `http://aimonitoring.rybsj.cn/webgis/data/tsredRiskDataScreen.action?userName=${userName}&password=${passWord}`
       );

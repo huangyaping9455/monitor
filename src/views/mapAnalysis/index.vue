@@ -279,19 +279,15 @@ export default {
     },
     // 打开信息窗体
     async infoWindowOpen(item) {
-      item.roadName = await this.getPointDataShow(
-        item.latitude,
-        item.longitude
-      );
+      console.log(item);
+      item.roadName = await this.getPointDataShow(item.latitude, item.longitude);
       this.mapInfo = item;
       this.mapInfo.show = true;
     },
     // 关闭信息窗体
     async infoWindowClose(item) {
-      item.roadName = await this.getPointDataShow(
-        item.latitude,
-        item.longitude
-      );
+      console.log(item);
+      item.roadName = await this.getPointDataShow(item.latitude, item.longitude);
       this.mapInfo.show = false;
       this.mapInfo = item;
     },
