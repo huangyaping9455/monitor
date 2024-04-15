@@ -227,6 +227,7 @@
     </div>
     <div class="home-bottom">
       <div
+        v-if="!showCarMap"
         class="map"
         v-loading="load.load"
         element-loading-background="rgba(0, 0, 0, 0.4)"
@@ -237,14 +238,18 @@
           class="returnBtn"
           type="info"
           size="mini"
-          >返回</el-button
         >
+          返回
+        </el-button>
         <echart-base
           height="100%"
           width="100%"
           @click="echartclick"
           :chart-option="chartOption.option9"
         ></echart-base>
+      </div>
+      <div class="map" v-else>
+        <car-map @return="returnMap"></car-map>
       </div>
       <div class="home-content">
         <div class="content-top">
@@ -290,9 +295,7 @@
           >
             <span class="title">北斗报警统计</span>
             <div class="btns">
-              <span
-                @click="changeCar('carousel', 'chaosu')"
-                :class="isbtn == 0 ? 'active' : ''"
+              <span @click="changeCar('carousel', 'chaosu')" :class="isbtn == 0 ? 'active' : ''"
                 >超速报警</span
               >
               <!-- <span
@@ -363,14 +366,10 @@
                 :class="isbtn1 == 0 ? 'active' : ''"
                 >接打电话</span
               >
-              <span
-                @click="changeCar('carousel1', 'fenshen')"
-                :class="isbtn1 == 1 ? 'active' : ''"
+              <span @click="changeCar('carousel1', 'fenshen')" :class="isbtn1 == 1 ? 'active' : ''"
                 >分神驾驶</span
               >
-              <span
-                @click="changeCar('carousel1', 'yichang')"
-                :class="isbtn1 == 2 ? 'active' : ''"
+              <span @click="changeCar('carousel1', 'yichang')" :class="isbtn1 == 2 ? 'active' : ''"
                 >异常报警</span
               >
               <span
@@ -496,11 +495,7 @@
                   align="center"
                   :show-overflow-tooltip="true"
                 ></el-table-column>
-                <el-table-column
-                  prop="cheliangshu"
-                  label="车辆数"
-                  align="center"
-                ></el-table-column>
+                <el-table-column prop="cheliangshu" label="车辆数" align="center"></el-table-column>
                 <el-table-column
                   prop="bjcheliangshu"
                   label="报警车辆数"
@@ -540,9 +535,7 @@
         z-index: 9;
       "
     >
-      <span style="margin-right: 40px">
-        版权所有：{{ userinfo.copyrighter }}
-      </span>
+      <span style="margin-right: 40px"> 版权所有：{{ userinfo.copyrighter }} </span>
       <span>技术支持：{{ userinfo.technicalsupport }}</span>
     </div>
   </div>
@@ -558,6 +551,7 @@ import { lineoption, lineName } from "@/config/echartoption-new";
 import { mapGetters } from "vuex";
 import { format } from "@/config/date";
 import vueSeamlessScroll from "vue-seamless-scroll";
+import CarMap from "./carMap.vue";
 export default {
   data() {
     return {
@@ -592,12 +586,14 @@ export default {
       areaName: "",
       zhengfuindex: "",
       troubleNum: "",
+      showCarMap: false,
     };
   },
   components: {
     "echart-base": echartBase,
     "all-header": allHeader,
     vueSeamlessScroll,
+    CarMap,
   },
   created() {
     this.init();
@@ -687,7 +683,7 @@ export default {
         })
       );
       let _this = this;
-      setTimeout(function () {
+      setTimeout(function() {
         _this.load.load = false;
         if (err) {
           _this.$message.error(err);
@@ -696,6 +692,7 @@ export default {
           // 判断下钻有无数据
           if (type > 0 && data.xjlist.length <= 0 && isxiazhuan) {
             _this.cengji--;
+            _this.showCarMap = true;
             return false;
           }
           // 判断是否下钻  单击
@@ -710,10 +707,7 @@ export default {
                 },
               };
             });
-            _this.chartOption.option9 = geooption.geooption(
-              _this.areaName,
-              _this.mapData
-            );
+            _this.chartOption.option9 = geooption.geooption(_this.areaName, _this.mapData);
             return false;
           }
           let mapData;
@@ -840,6 +834,7 @@ export default {
     /**操作 */
     // 地图返回
     returnMap() {
+      this.showCarMap = false;
       this.zhengfuindex = "";
       // 政府-超速报警次数、疲劳报警总数、夜间行驶报警次数、异常报警次数
       this.getTwo(this.userinfo.deptId, 0, "");
