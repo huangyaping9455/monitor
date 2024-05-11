@@ -15,10 +15,11 @@
   // width: 58.1429rem;
   // height: 7.7857rem;
   // margin-left: 38.0714rem; //徐州
-  margin-right: 20.0714rem; //默认\
+  margin-right: 24.5714rem; //默认\
   margin-top: 10rem;
-  height: 6.7857rem; //默认
-  width: 40.1429rem; //默认
+  height: 7.5857rem; //默认
+  // width: 40.1429rem; //默认
+  width: 35.1429rem; //默认
   // width: 45.1429rem; //优必飞
   img {
     width: 100%;
@@ -43,7 +44,7 @@
   // margin-top: 7.8571vh;
   background-color: white;
   border-radius: 10px;
-  margin-top: 6.8571vh;
+  margin-top: 4.1571vh;
   margin-right: 19vw;
   display: flex;
   flex-direction: column;
@@ -111,7 +112,7 @@
       border-radius: 0px;
       height: 2.8571rem;
       font-size: 1rem;
-      caret-color:#bad6fc;
+      caret-color: #bad6fc;
       &:focus {
         border-color: #bad6fc;
       }
@@ -125,7 +126,8 @@
     <div class="logo">
       <!-- <img src="@/assets/img/zkgt.png" /> -->
       <!-- <img src="@/assets/img/logo-22.png" /> -->
-      <img src="@/assets/img/newLogo.png" />
+      <!-- <img src="@/assets/img/newLogo.png" /> -->
+      <img src="@/assets/img/newlogo2.png" />
       <!-- <img src="@/assets/img/youbifei.png" /> -->
       <!-- <img src="@/assets/img/fuqing.png" /> -->
       <!-- <img src="@/assets/img/fuqing2.png" /> -->
@@ -181,9 +183,7 @@
           </div>
         </el-form-item>
       </el-form>
-      <el-button class="loginbtn" :loading="loading" @click="login"
-        >登 录</el-button
-      >
+      <el-button class="loginbtn" :loading="loading" @click="login">登 录</el-button>
     </div>
   </div>
 </template>
