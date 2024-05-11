@@ -745,35 +745,44 @@ export default {
       window.open("http://219.153.12.86:6600/dualMechanismData/safeBrain/SafeBrain?type=sp");
     },
     openThree3() {
-      let userName = config.Encrypt("yanshi", "abcdefgabcdefg12", "abcdefgabcdefg12");
-      let passWord = config.Encrypt("ubfyanshi", "abcdefgabcdefg12", "abcdefgabcdefg12");
-      console.log(userName, passWord);
+      let userName = config.Encrypt(
+        // "NDJTJ-001",
+        "FZFQ-001",
+        "abcdefgabcdefg12",
+        "abcdefgabcdefg12"
+      );
+      let passWord = config.Encrypt("123456", "abcdefgabcdefg12", "abcdefgabcdefg12");
       window.open(
-        `http://222.75.204.17:12503/webgis/report/riskhandlePage.action?userName=${userName}&password=${passWord}`
+        `http://aimonitoring.rybsj.cn/webgis/data/tsriskhandlePage.action?userName=${userName}&password=${passWord}`
       );
     },
     openThree4() {
-      let userName = config.Encrypt("yanshi", "abcdefgabcdefg12", "abcdefgabcdefg12");
-      let passWord = config.Encrypt("ubfyanshi", "abcdefgabcdefg12", "abcdefgabcdefg12");
+      let userName = config.Encrypt(
+        // "NDJTJ-001",
+        "FZFQ-001",
+        "abcdefgabcdefg12",
+        "abcdefgabcdefg12"
+      );
+      let passWord = config.Encrypt("123456", "abcdefgabcdefg12", "abcdefgabcdefg12");
       window.open(
-        `http://222.75.204.17:12503/webgis/main.action?userName=${userName}&password=${passWord}`
+        `http://aimonitoring.rybsj.cn/webgis/data/tsredRiskDataScreen.action?userName=${userName}&password=${passWord}`
       );
     },
     openThree5() {
-      let userName = config.aesEncrypt("NDJC-001");
-      let passWord = config.aesEncrypt("TS123456");
-      // let userName = config.aesEncrypt("FZQY-001");
-      // let passWord = config.aesEncrypt("ts123456");
-      // window.open(
-      // `http://120.35.12.85:3330/monitor-web/loginAuth.action?username=${userName}&password=${passWord}`
-      // );
+      // let userName = config.aesEncrypt("NDJC-001");
+      // let passWord = config.aesEncrypt("TS123456");
+      let userName = config.aesEncrypt("FZQY-001");
+      let passWord = config.aesEncrypt("ts123456");
       window.open(
-        `http://222.75.204.88:8203/monitor-web/loginAuth.action?username=${userName}&password=${passWord}`
+        `http://120.35.12.85:3330/monitor-web/loginAuth.action?username=${userName}&password=${passWord}`
       );
+      // window.open(
+      //   `http://222.75.204.88:8203/monitor-web/loginAuth.action?username=${userName}&password=${passWord}`
+      // );
     },
     openThree6() {
-      // window.open(`http://120.35.12.85:3321/#/loginOn`);
-      window.open(`http://222.75.204.88:8201/#/loginOn`);
+      window.open(`http://120.35.12.85:3321/#/loginOn`);
+      // window.open(`http://222.75.204.88:8201/#/loginOn`);
     },
     // 地图监控
     openMap() {

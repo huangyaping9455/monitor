@@ -179,12 +179,7 @@
         value-format="yyyy-MM-dd HH:mm:ss"
         placeholder="选择结束日期"
       ></el-date-picker>
-      <el-button
-        type="primary"
-        size="mini"
-        class="sbtn"
-        @click="getPointDataNew"
-      >
+      <el-button type="primary" size="mini" class="sbtn" @click="getPointDataNew">
         搜索
       </el-button>
     </div>
@@ -233,16 +228,8 @@
       </bml-lushu>
     </baidu-map>
     <div class="play-box">
-      <img
-        v-show="!bmllushus.play"
-        src="@/assets/img/paly.png"
-        @click="bmllushus.play = true"
-      />
-      <img
-        v-show="bmllushus.play"
-        src="@/assets/img/pause.png"
-        @click="bmllushus.play = false"
-      />
+      <img v-show="!bmllushus.play" src="@/assets/img/paly.png" @click="bmllushus.play = true" />
+      <img v-show="bmllushus.play" src="@/assets/img/pause.png" @click="bmllushus.play = false" />
     </div>
     <div class="vehdetail">
       <div class="detail_list">
@@ -263,24 +250,18 @@
       </div>
       <div class="detail_list">
         <span>运 营 商 ：</span>
-        <span>{{ vehicleoption.yunguanmingcheng }}</span>
+        <!--<span>{{ vehicleoption.yunguanmingcheng }}</span>-->
+        <span>{{ vehicleoption.yunyingshangmingcheng }}</span>
       </div>
       <div class="detail_list">
         <span>使用性质：</span>
         <span>{{ vehicleoption.shiyongxingzhi }}</span>
       </div>
     </div>
-    <div
-      class="map_b"
-      v-loading="loading"
-      element-loading-background="rgba(0, 0, 0, 0.8)"
-    >
+    <div class="map_b" v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.8)">
       <el-calendar v-model="dateNow">
         <template slot="dateCell" slot-scope="{ data }">
-          <div
-            :class="[{ 'is-selected': data.isSelected }]"
-            style="padding: 3px"
-          >
+          <div :class="[{ 'is-selected': data.isSelected }]" style="padding: 3px">
             <span style="font-size: 14px">
               {{ data.day.split("-").slice(1)[1] }}
             </span>
@@ -371,11 +352,7 @@
                 show-overflow-tooltip
               >
               </el-table-column>
-              <el-table-column
-                label="地点"
-                align="center"
-                show-overflow-tooltip
-              >
+              <el-table-column label="地点" align="center" show-overflow-tooltip>
                 <template slot-scope="scope">
                   <span
                     v-if="!scope.row.roadName"
@@ -430,10 +407,7 @@ export default {
       kaishidi: "",
       qidian: "",
       zhongdian: "",
-      begintime: format(
-        new Date().getTime() - 30 * 60 * 1000,
-        "YYYY-MM-DD HH:mm:ss"
-      ),
+      begintime: format(new Date().getTime() - 30 * 60 * 1000, "YYYY-MM-DD HH:mm:ss"),
       endtime: format(new Date().getTime(), "YYYY-MM-DD HH:mm:ss"),
       path: [],
       labelOpt: {
@@ -461,10 +435,10 @@ export default {
   },
   computed: {
     dialogVisible: {
-      get: function () {
+      get: function() {
         return this.visible;
       },
-      set: function (newValue) {
+      set: function(newValue) {
         this.$emit("close");
       },
     },
@@ -505,9 +479,7 @@ export default {
       this.begintime = dayjs(this.vehicleoption.gpstime)
         .subtract(5, "minute")
         .format("YYYY-MM-DD HH:mm:ss");
-      this.endtime = dayjs(this.vehicleoption.gpstime).format(
-        "YYYY-MM-DD HH:mm:ss"
-      );
+      this.endtime = dayjs(this.vehicleoption.gpstime).format("YYYY-MM-DD HH:mm:ss");
       this.getPointDataNew();
     },
     // 路书的方法
@@ -554,23 +526,17 @@ export default {
             end: data[data.length - 1].GpsTime,
           };
           // js解析经纬度为地理位置
-          let pointqidian = new BMap.Point(
-            this.startline.lng,
-            this.startline.lat
-          );
-          let pointzhongdian = new BMap.Point(
-            this.endline.lng,
-            this.endline.lat
-          );
+          let pointqidian = new BMap.Point(this.startline.lng, this.startline.lat);
+          let pointzhongdian = new BMap.Point(this.endline.lng, this.endline.lat);
           let gc = new BMap.Geocoder();
           let qidian;
           let zhongdian;
           let _this = this;
-          gc.getLocation(pointqidian, function (rs) {
+          gc.getLocation(pointqidian, function(rs) {
             qidian = rs.address;
             _this.qidian = qidian;
           });
-          gc.getLocation(pointzhongdian, function (rs) {
+          gc.getLocation(pointzhongdian, function(rs) {
             zhongdian = rs.address;
             _this.zhongdian = zhongdian;
           });

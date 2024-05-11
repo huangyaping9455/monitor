@@ -44,12 +44,12 @@
 <template>
   <div class="home-header">
     <p class="time">{{ newtime }}</p>
-    <!-- <h1 class="title">{{ userinfo.mingcheng }}</h1> -->
+    <h1 class="title">{{ userinfo.mingcheng }}</h1>
     <!-- <h1 class="title" style="font-size: 27px">
       柳州市交通运输卫星定位政府监管平台
     </h1> -->
     <!-- <h1 class="title" style="font-size: 27px">宁东基地物流公共信息管理平台</h1> -->
-    <h1 class="title" style="font-size: 27px">宁东道路运输安全管理监测平台</h1>
+    <!-- <h1 class="title" style="font-size: 27px">宁东道路运输安全管理监测平台</h1> -->
     <div class="user">
       <svg-icon slot="prefix" class="icon" icon-class="user" />
       <!-- <p>{{ userinfo.deptName }}</p> -->

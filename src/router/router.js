@@ -480,7 +480,7 @@ export const constantRouterMap = [
           title: "月报",
           requiresAuth: true,
         },
-        component: () => import("@/views/monthReport/index"),
+        component: () => import("@/views/quarterReport/index"),
       },
       {
         path: "/weekReportYYS",
@@ -790,6 +790,15 @@ export const constantRouterMap = [
           requiresAuth: true,
         },
         component: () => import("@/views/infomationRank/index"),
+      },
+      {
+        path: "/yysInspectAll",
+        name: "yysInspectAll",
+        meta: {
+          title: "查岗统计",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/yysInspectAll/index"),
       },
     ],
   },

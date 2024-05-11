@@ -18,24 +18,15 @@ export default {
   },
   // 车辆日运行情况统计
   getZFCLRYXTJ(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getZFCLRYXTJ",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getZFCLRYXTJ", data);
   },
   // 企业日运行情况统计
   getQYRYXTJ(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/zhengFuBaoJingTongJi/GetQYRYXTJ",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/zhengFuBaoJingTongJi/GetQYRYXTJ", data);
   },
   // 运营商日运行情况统计 青岛
   getYYSRYXTJ(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getYYSRYXTJ",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getYYSRYXTJ", data);
   },
   // 运营商日运行情况统计 唐僧
   getTSYYSRYXTJ(data) {
@@ -43,17 +34,11 @@ export default {
   },
   // 运营商 档案
   getYYSZFVehiclePage(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/operatorInfo/getZFVehiclePage",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/operatorInfo/getZFVehiclePage", data);
   },
   // 道路运输企业联网联控考核评分
   getLWLKTJ(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getLWLKTJ",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getLWLKTJ", data);
   },
   // 道路运输企业联网联控考核评分 成都
   getCDDayTJ(data) {
@@ -61,44 +46,26 @@ export default {
   },
   // 道路运输运营商联网联控考核评分
   getFWSLWLKTJ(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getFWSLWLKTJ",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getFWSLWLKTJ", data);
   },
   //政府报警统计-报警统计结算
   getZFDQBJTJJS(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getZFDQBJTJPM",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getZFDQBJTJPM", data);
   },
   //政府报警统计-地区进区域报警排名统计
   getDQIntoAreaPMTJ(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getDQIntoAreaPMTJ",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getDQIntoAreaPMTJ", data);
   },
   //政府报警统计-企业进区域报警排名统计
   getDeptIntoAreaPMTJ(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getDeptIntoAreaPMTJ",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getDeptIntoAreaPMTJ", data);
   },
   //政府报警统计-车辆进区域报警排名统计
   gettDeptCLIntoAreaPMTJ(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/zhengFuBaoJingTongJi/gettDeptCLIntoAreaPMTJ",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/zhengFuBaoJingTongJi/gettDeptCLIntoAreaPMTJ", data);
   },
   getZFCLBJTJPM(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getZFCLBJTJPM",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getZFCLBJTJPM", data);
   },
   // 周报下载
   getZBdown(data) {
@@ -118,24 +85,15 @@ export default {
   },
   // 安全达标统计列表
   getSafetyStandardsQiYeList(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/zhengFuShouYeNew/getSafetyStandardsQiYeList",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/zhengFuShouYeNew/getSafetyStandardsQiYeList", data);
   },
   // 获取学习记录列表
   selectZFPersonLearnInfoAll(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/qiYeShouYe/selectZFPersonLearnCoutAll",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/qiYeShouYe/selectZFPersonLearnCoutAll", data);
   },
   // 获取学习 详情 记录列表
   selectPersonLearnInfoAll(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/qiYeShouYe/selectPersonLearnInfoAll",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/qiYeShouYe/selectPersonLearnInfoAll", data);
   },
   // 获取隐患排查 明细 列表
   getTroubleSetList(data) {
@@ -155,10 +113,7 @@ export default {
   },
   // 获取隐患排查列表
   getTroubleList(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/trouble/buiness/statisticsList",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/trouble/buiness/statisticsList", data);
   },
   // 获取隐患排查列表
   getZFYHFLPageList(data) {
@@ -188,10 +143,7 @@ export default {
   },
   // 风险管控列表
   getRiskList(data) {
-    return $axios.post(
-      `/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getDQRiskPMTJ`,
-      data
-    );
+    return $axios.post(`/blade-anbiao/anbiao/zhengFuBaoJingTongJi/getDQRiskPMTJ`, data);
   },
   // 风险管控详情
   getRiskListByType(params) {
@@ -205,10 +157,7 @@ export default {
   },
   // 政府驾驶员档案信息
   getZFJSYPageList(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/jiashiyuan/getZFJSYPageList",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/jiashiyuan/getZFJSYPageList", data);
   },
   // 车辆详情
   getVehicleDetail(params) {
@@ -224,10 +173,7 @@ export default {
   },
   // 车辆维护
   getZFVehicleWeiHuPage(data) {
-    return $axios.post(
-      `/blade-anbiao/anbiao/cheliangweihu/getZFVehicleWeiHuPage`,
-      data
-    );
+    return $axios.post(`/blade-anbiao/anbiao/cheliangweihu/getZFVehicleWeiHuPage`, data);
   },
   // 车辆维护详情
   getvehicleWHrDetail(params) {
@@ -255,10 +201,7 @@ export default {
   },
   // 法律法规列表
   getlawList(data) {
-    return $axios.post(
-      `/blade-anbiao/anbiao/lawsRegulations/getNoticeAll`,
-      data
-    );
+    return $axios.post(`/blade-anbiao/anbiao/lawsRegulations/getNoticeAll`, data);
   },
   // 法律法规详情
   getlawDetail(params) {
@@ -272,10 +215,7 @@ export default {
   },
   // 合规台账排名
   safetyList(data) {
-    return $axios.post(
-      `/blade-anbiao/anbiao/safetyproductionfileNum/getList`,
-      data
-    );
+    return $axios.post(`/blade-anbiao/anbiao/safetyproductionfileNum/getList`, data);
   },
   // 学习情况统计--课件明细
   getCoursewareList(params) {
@@ -285,40 +225,29 @@ export default {
   },
   // 驾运宝 学习地址前缀
   getLearnRecordUrl(params) {
-    return $axios.get(
-      `/blade-anbiao/anbiao/jiaYunBaoStudyInfo/getLearnRecordUrl`,
-      {
-        params,
-      }
-    );
+    return $axios.get(`/blade-anbiao/anbiao/jiaYunBaoStudyInfo/getLearnRecordUrl`, {
+      params,
+    });
   },
   // 档案信息完整率列表列表
   getDeptFullRateTJ(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/deptFullRate/getDeptFullRateTJ",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/deptFullRate/getDeptFullRateTJ", data);
   },
   // 报警统计分析--列表
   getSafetyDeptScore(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/lwlkSafetyDept/getSafetyDeptScore",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/lwlkSafetyDept/getSafetyDeptScore", data);
   },
   // 下发查岗--列表
   getPlatformQuery(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/platformQuery/getPlatformQuery",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/platformQuery/getPlatformQuery", data);
+  },
+  // 下发查岗--统计
+  getTJHZQuery(data) {
+    return $axios.post("/blade-anbiao/anbiao/platformQuery/getTJHZQuery", data);
   },
   // 自动查岗--列表
   getZDPlatformQuery(data) {
-    return $axios.post(
-      "/blade-anbiao/anbiao/platformQuery/getZDPlatformQuery",
-      data
-    );
+    return $axios.post("/blade-anbiao/anbiao/platformQuery/getZDPlatformQuery", data);
   },
   // 下发查岗--新增
   platformQueryInsert(data) {

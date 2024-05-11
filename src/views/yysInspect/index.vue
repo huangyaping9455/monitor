@@ -198,30 +198,18 @@
       <el-button @click="viewShow" size="mini" class="btn" icon="el-icon-plus">
         新增
       </el-button>
-      <el-button
-        @click="changeSearch"
-        size="mini"
-        class="btn"
-        icon="el-icon-search"
+      <el-button @click="changeSearch" size="mini" class="btn" icon="el-icon-search"
         >查询</el-button
       >
-      <el-button
-        @click="refresh"
-        size="mini"
-        class="btn"
-        icon="el-icon-refresh"
-      >
+      <el-button @click="refresh" size="mini" class="btn" icon="el-icon-refresh">
         刷新
       </el-button>
     </div>
     <!-- 查询 -->
-    <el-form
-      v-show="searchshow"
-      :inline="true"
-      size="mini"
-      :model="form"
-      class="search"
-    >
+    <el-form v-show="searchshow" :inline="true" size="mini" :model="form" class="search">
+      <el-form-item label="运营商">
+        <el-input v-model="form.opName" placeholder="请输入运营商名称" clearable></el-input>
+      </el-form-item>
       <el-form-item label="查岗时间">
         <el-date-picker
           type="date"
@@ -231,6 +219,13 @@
           value-format="yyyy-MM-dd"
           format="yyyy-MM-dd"
         ></el-date-picker>
+      </el-form-item>
+      <el-form-item label="状态">
+        <el-select v-model="form.status" placeholder="请选择状态" clearable>
+          <el-option label="全部" value=""></el-option>
+          <el-option label="已回复" value="已回复"></el-option>
+          <el-option label="未回复" value="未回复"></el-option>
+        </el-select>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" class="sbtn" @click="getDate(1)">
@@ -247,19 +242,9 @@
       border
       :data="enterpriseList"
     >
-      <el-table-column
-        label="运营商"
-        prop="opName"
-        align="center"
-        :show-overflow-tooltip="true"
-      >
+      <el-table-column label="运营商" prop="opName" align="center" :show-overflow-tooltip="true">
       </el-table-column>
-      <el-table-column
-        prop="dept_name"
-        label="企业"
-        align="center"
-        :show-overflow-tooltip="true"
-      >
+      <el-table-column prop="dept_name" label="企业" align="center" :show-overflow-tooltip="true">
       </el-table-column>
       <el-table-column
         prop="send_time"
@@ -285,21 +270,11 @@
         :show-overflow-tooltip="true"
       >
       </el-table-column>
-      <el-table-column
-        prop="status"
-        label="状态"
-        align="center"
-        :show-overflow-tooltip="true"
-      >
+      <el-table-column prop="status" label="状态" align="center" :show-overflow-tooltip="true">
       </el-table-column>
       <el-table-column label="操作" align="center" width="80" fixed="right">
         <template slot-scope="{ row }">
-          <el-button
-            size="mini"
-            style="color: #00c8f5"
-            type="text"
-            @click="detailShow(row)"
-          >
+          <el-button size="mini" style="color: #00c8f5" type="text" @click="detailShow(row)">
             详情
           </el-button>
           <!-- <el-button
@@ -331,41 +306,24 @@
       <div class="page-r">
         <span class="el-icon-d-arrow-left" @click="getDate(1)"></span>
         <span class="el-icon-arrow-left" @click="getDate(current - 1)"></span>
-        <span
-          class="num"
-          v-show="current - 2 > 0"
-          @click="getDate(current - 2)"
-          >{{ current - 2 }}</span
-        >
-        <span
-          class="num"
-          v-show="current - 1 > 0"
-          @click="getDate(current - 1)"
-          >{{ current - 1 }}</span
-        >
+        <span class="num" v-show="current - 2 > 0" @click="getDate(current - 2)">{{
+          current - 2
+        }}</span>
+        <span class="num" v-show="current - 1 > 0" @click="getDate(current - 1)">{{
+          current - 1
+        }}</span>
         <span class="num active">{{ current }}</span>
-        <span
-          class="num"
-          v-show="current + 1 <= pageTotal"
-          @click="getDate(current + 1)"
-          >{{ current + 1 }}</span
-        >
-        <span
-          class="num"
-          v-show="current + 2 <= pageTotal"
-          @click="getDate(current + 2)"
-          >{{ current + 2 }}</span
-        >
+        <span class="num" v-show="current + 1 <= pageTotal" @click="getDate(current + 1)">{{
+          current + 1
+        }}</span>
+        <span class="num" v-show="current + 2 <= pageTotal" @click="getDate(current + 2)">{{
+          current + 2
+        }}</span>
         <span class="el-icon-arrow-right" @click="getDate(current + 1)"></span>
         <span class="el-icon-d-arrow-right" @click="getDate(pageTotal)"></span>
         <div class="pagesize">
           每页显示
-          <el-select
-            class="showselect"
-            size="mini"
-            @change="getDate(1)"
-            v-model="pagesizeactive"
-          >
+          <el-select class="showselect" size="mini" @change="getDate(1)" v-model="pagesizeactive">
             <el-option
               v-for="item in pagesize"
               :key="item"
@@ -400,19 +358,25 @@ export default {
       enterpriseListH: "calc(100vh - 14.6814rem)",
       form: {
         beginTime: format(new Date(), "YYYY-MM-DD"),
+        opName: "",
+        status: "",
       },
       enterpriseList: [],
       zhengfuId: "", //地区id
       vehiclemsgList: {},
-      deptType: [
-        "当前连接的下级平台",
-        "下级平台所属单一业户",
-        "下级平台所属所有业户",
-      ],
+      deptType: ["当前连接的下级平台", "下级平台所属单一业户", "下级平台所属所有业户"],
     };
   },
   created() {
-    this.getPlatformQuery();
+    if (this.$route.query.opName) {
+      this.form.beginTime = this.$route.query.date;
+      this.form.opName = this.$route.query.opName;
+      this.form.status = this.$route.query.status;
+    }
+    let that = this;
+    this.$nextTick(() => {
+      that.getPlatformQuery();
+    });
   },
   computed: {
     ...mapGetters({
@@ -433,7 +397,8 @@ export default {
     refresh() {
       this.form = {
         beginTime: format(new Date(), "YYYY-MM-DD"),
-        cheliangpaizhao: "",
+        opName: "",
+        status: "",
       };
       this.getDate(1);
     },

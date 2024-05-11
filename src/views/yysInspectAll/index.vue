@@ -204,25 +204,15 @@
     </div>
     <!-- 查询 -->
     <el-form v-show="searchshow" :inline="true" size="mini" :model="form" class="search">
-      <el-form-item label="运营商">
-        <el-input v-model="form.opName" placeholder="请输入运营商名称" clearable></el-input>
-      </el-form-item>
       <el-form-item label="查岗时间">
         <el-date-picker
           type="date"
           placeholder="选择日期"
-          v-model="form.beginTime"
+          v-model="form.date"
           class="inputW"
           value-format="yyyy-MM-dd"
           format="yyyy-MM-dd"
         ></el-date-picker>
-      </el-form-item>
-      <el-form-item label="状态">
-        <el-select v-model="form.status" placeholder="请选择状态" clearable>
-          <el-option label="全部" value=""></el-option>
-          <el-option label="已回复" value="已回复"></el-option>
-          <el-option label="未回复" value="未回复"></el-option>
-        </el-select>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" class="sbtn" @click="getDate(1)">
@@ -241,33 +231,67 @@
     >
       <el-table-column label="运营商" prop="opName" align="center" :show-overflow-tooltip="true">
       </el-table-column>
-      <el-table-column prop="dept_name" label="企业" align="center" :show-overflow-tooltip="true">
+      <el-table-column label="手动" align="center">
+        <el-table-column label="发送次数" prop="fsnum" align="center" :show-overflow-tooltip="true">
+          <template slot-scope="{ row }">
+            <span
+              :style="
+                row.fsnum > 0 ? 'color: #01f8ff;text-decoration: underline;cursor: pointer' : ''
+              "
+              @click="goDetails('手动', '', row)"
+            >
+              {{ row.fsnum }}
+            </span>
+          </template>
+        </el-table-column>
+        <el-table-column label="回复次数" prop="hfnum" align="center" :show-overflow-tooltip="true">
+          <template slot-scope="{ row }">
+            <span
+              :style="
+                row.hfnum > 0 ? 'color: #01f8ff;text-decoration: underline;cursor: pointer' : ''
+              "
+              @click="goDetails('手动', '已回复', row)"
+            >
+              {{ row.hfnum }}
+            </span>
+          </template>
+        </el-table-column>
       </el-table-column>
-      <el-table-column
-        prop="send_time"
-        label="查岗时间"
-        align="center"
-        :show-overflow-tooltip="true"
-      >
-      </el-table-column>
-      <el-table-column
-        prop="object_type"
-        label="对象类型"
-        align="center"
-        :show-overflow-tooltip="true"
-      >
-        <template slot-scope="{ row }">
-          <span>{{ deptType[row.object_type - 1] }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column
-        prop="info_content"
-        label="内容"
-        align="center"
-        :show-overflow-tooltip="true"
-      >
-      </el-table-column>
-      <el-table-column prop="status" label="状态" align="center" :show-overflow-tooltip="true">
+      <el-table-column label="自动" align="center">
+        <el-table-column
+          label="发送次数"
+          prop="zdfsnum"
+          align="center"
+          :show-overflow-tooltip="true"
+        >
+          <template slot-scope="{ row }">
+            <span
+              :style="
+                row.zdfsnum > 0 ? 'color: #01f8ff;text-decoration: underline;cursor: pointer' : ''
+              "
+              @click="goDetails('自动', '', row)"
+            >
+              {{ row.zdfsnum }}
+            </span>
+          </template>
+        </el-table-column>
+        <el-table-column
+          label="回复次数"
+          prop="zdhfnum"
+          align="center"
+          :show-overflow-tooltip="true"
+        >
+          <template slot-scope="{ row }">
+            <span
+              :style="
+                row.zdhfnum > 0 ? 'color: #01f8ff;text-decoration: underline;cursor: pointer' : ''
+              "
+              @click="goDetails('自动', '已回复', row)"
+            >
+              {{ row.zdhfnum }}
+            </span>
+          </template>
+        </el-table-column>
       </el-table-column>
     </el-table>
     <div class="page">
@@ -336,9 +360,7 @@ export default {
       pagesizeactive: 20, //当前每页显示
       enterpriseListH: "calc(100vh - 14.6814rem)",
       form: {
-        beginTime: format(new Date(), "YYYY-MM-DD"),
-        opName: "",
-        status: "",
+        date: format(new Date(), "YYYY-MM-DD"),
       },
       enterpriseList: [],
       zhengfuId: "", //地区id
@@ -347,15 +369,7 @@ export default {
     };
   },
   created() {
-    if (this.$route.query.status) {
-      this.form.beginTime = this.$route.query.date;
-      this.form.opName = this.$route.query.opName;
-      this.form.status = this.$route.query.status;
-    }
-    let that = this;
-    setTimeout(() => {
-      that.getPlatformQuery();
-    }, 50);
+    this.getPlatformQuery();
   },
   computed: {
     ...mapGetters({
@@ -375,9 +389,7 @@ export default {
   methods: {
     refresh() {
       this.form = {
-        beginTime: format(new Date(), "YYYY-MM-DD"),
-        opName: "",
-        status: "",
+        date: format(new Date(), "YYYY-MM-DD"),
       };
       this.getDate(1);
     },
@@ -390,8 +402,8 @@ export default {
       current = Number(current);
       this.loading = true;
       let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.getZDPlatformQuery({
-          deptId: 1,
+        dataAnalysisApi.getTJHZQuery({
+          deptId: this.zhuzzhiId,
           current: current,
           size: this.pagesizeactive,
           ...this.form,
@@ -413,6 +425,17 @@ export default {
         ? (this.enterpriseListH = "calc(100vh - 13.5714rem)")
         : (this.enterpriseListH = "calc(100vh - 16.8571rem)");
       this.searchshow = !this.searchshow;
+    },
+    // 详情 钻取
+    goDetails(type, status, row) {
+      this.$router.push({
+        path: type == "自动" ? "/yysInspectRank" : "/yysInspect",
+        query: {
+          status: status,
+          opName: row.opName,
+          date: this.form.date,
+        },
+      });
     },
   },
 };
