@@ -100,6 +100,14 @@ export const constantRouterMap = [
     component: () => import("@/views/mapAnalysis/index"),
   },
   {
+    path: "/overspeed",
+    meta: {
+      title: "超速面板",
+      requiresAuth: true,
+    },
+    component: () => import("@/views/overspeed/index"),
+  },
+  {
     path: "/OBDDataAnalysis",
     meta: {
       title: "OBD数据分析",
