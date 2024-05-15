@@ -49,7 +49,6 @@
 </template>
 
 <script>
-import echarts from "echarts";
 import echartBase from "@/components/EChart/index";
 import china from "@/assets/map/china.json";
 import { mapGetters } from "vuex";
@@ -115,7 +114,7 @@ export default {
     },
     // 地图配置
     getMapDatas() {
-      echarts.registerMap("china", china);
+      this.$echarts.registerMap("china", china);
       this.chartOptionCar = {
         title: {
           text: "车辆分布情况图",

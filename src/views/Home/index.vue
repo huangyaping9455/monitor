@@ -169,7 +169,7 @@
           padding: 0.3rem 0;
           tr {
             th {
-              width: (100% / 7);
+              width: calc(100% / 7);
               // vertical-align: middle;
               padding: 0 1.28rem;
               span {

@@ -169,7 +169,7 @@
           padding: 0.3rem 0;
           tr {
             th {
-              width: (100% / 7);
+              width: calc(100% / 7);
               // vertical-align: middle;
               padding: 0 1.28rem;
               span {
@@ -222,11 +222,7 @@
       </div>
     </div>
     <div class="home-bottom">
-      <div
-        class="map"
-        v-loading="load.load"
-        element-loading-background="rgba(0, 0, 0, 0.4)"
-      >
+      <div class="map" v-loading="load.load" element-loading-background="rgba(0, 0, 0, 0.4)">
         <el-button
           @click="returnMap"
           v-show="cengji > 0 && !load.load"
@@ -272,9 +268,7 @@
             indicator-position="none"
             arrow="always"
           >
-            <el-carousel-item
-              style="display:flex;justify-content: space-between;"
-            >
+            <el-carousel-item style="display:flex;justify-content: space-between;">
               <div
                 class="linebox"
                 v-loading="load.load1"
@@ -282,19 +276,13 @@
               >
                 <span class="title">北斗报警统计</span>
                 <div class="btns">
-                  <span
-                    @click="changeCar('carousel', 'chaosu')"
-                    :class="isbtn == 0 ? 'active' : ''"
+                  <span @click="changeCar('carousel', 'chaosu')" :class="isbtn == 0 ? 'active' : ''"
                     >超速报警</span
                   >
-                  <span
-                    @click="changeCar('carousel', 'pilao')"
-                    :class="isbtn == 1 ? 'active' : ''"
+                  <span @click="changeCar('carousel', 'pilao')" :class="isbtn == 1 ? 'active' : ''"
                     >疲劳驾驶</span
                   >
-                  <span
-                    @click="changeCar('carousel', 'yejian')"
-                    :class="isbtn == 2 ? 'active' : ''"
+                  <span @click="changeCar('carousel', 'yejian')" :class="isbtn == 2 ? 'active' : ''"
                     >夜间行驶</span
                   >
                   <span
@@ -412,9 +400,7 @@
                 </el-carousel>
               </div>
             </el-carousel-item>
-            <el-carousel-item
-              style="display:flex;justify-content: space-between;"
-            >
+            <el-carousel-item style="display:flex;justify-content: space-between;">
               <div class="linebox">
                 <span class="title">隐患月趋势</span>
                 <echart-base
@@ -483,11 +469,7 @@
                   align="center"
                   :show-overflow-tooltip="true"
                 ></el-table-column>
-                <el-table-column
-                  prop="cheliangshu"
-                  label="车辆数"
-                  align="center"
-                ></el-table-column>
+                <el-table-column prop="cheliangshu" label="车辆数" align="center"></el-table-column>
                 <el-table-column
                   prop="bjcheliangshu"
                   label="报警车辆数"
@@ -524,9 +506,7 @@
       v-if="userinfo.copyrighter || userinfo.technicalsupport"
       style="bottom: 3px;position: absolute;left: 50%;transform: translateX(-50%);color:#fff;font-size:16px;z-index:9;"
     >
-      <span style="margin-right:40px;">
-        版权所有：{{ userinfo.copyrighter }}
-      </span>
+      <span style="margin-right:40px;"> 版权所有：{{ userinfo.copyrighter }} </span>
       <span>技术支持：{{ userinfo.technicalsupport }}</span>
     </div>
   </div>
@@ -694,10 +674,7 @@ export default {
                 },
               };
             });
-            _this.chartOption.option9 = geooption.geooption(
-              _this.areaName,
-              _this.mapData
-            );
+            _this.chartOption.option9 = geooption.geooption(_this.areaName, _this.mapData);
             return false;
           }
           let mapData;

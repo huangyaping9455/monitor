@@ -168,7 +168,7 @@
           padding: 0.3rem 0;
           tr {
             th {
-              width: (100% / 7);
+              width: calc(100% / 7);
               // vertical-align: middle;
               padding: 0 1.28rem;
               span {
@@ -225,11 +225,7 @@
       </div> -->
     </div>
     <div class="home-bottom">
-      <div
-        class="map"
-        v-loading="load.load"
-        element-loading-background="rgba(0, 0, 0, 0.4)"
-      >
+      <div class="map" v-loading="load.load" element-loading-background="rgba(0, 0, 0, 0.4)">
         <el-button
           @click="returnMap"
           v-show="cengji > 0 && !load.load"
@@ -276,24 +272,16 @@
           >
             <span class="title">北斗报警统计</span>
             <div class="btns">
-              <span
-                @click="changeCar('carousel', 'chaosu')"
-                :class="isbtn == 0 ? 'active' : ''"
+              <span @click="changeCar('carousel', 'chaosu')" :class="isbtn == 0 ? 'active' : ''"
                 >超速报警</span
               >
-              <span
-                @click="changeCar('carousel', 'pilao')"
-                :class="isbtn == 1 ? 'active' : ''"
+              <span @click="changeCar('carousel', 'pilao')" :class="isbtn == 1 ? 'active' : ''"
                 >疲劳驾驶</span
               >
-              <span
-                @click="changeCar('carousel', 'yejian')"
-                :class="isbtn == 2 ? 'active' : ''"
+              <span @click="changeCar('carousel', 'yejian')" :class="isbtn == 2 ? 'active' : ''"
                 >夜间行驶</span
               >
-              <span
-                @click="changeCar('carousel', 'yichang')"
-                :class="isbtn == 3 ? 'active' : ''"
+              <span @click="changeCar('carousel', 'yichang')" :class="isbtn == 3 ? 'active' : ''"
                 >异常车辆</span
               >
             </div>
@@ -349,14 +337,10 @@
                 :class="isbtn1 == 0 ? 'active' : ''"
                 >接打电话</span
               >
-              <span
-                @click="changeCar('carousel1', 'fenshen')"
-                :class="isbtn1 == 1 ? 'active' : ''"
+              <span @click="changeCar('carousel1', 'fenshen')" :class="isbtn1 == 1 ? 'active' : ''"
                 >分神驾驶</span
               >
-              <span
-                @click="changeCar('carousel1', 'chouyan')"
-                :class="isbtn1 == 2 ? 'active' : ''"
+              <span @click="changeCar('carousel1', 'chouyan')" :class="isbtn1 == 2 ? 'active' : ''"
                 >抽烟报警</span
               >
               <span
@@ -500,11 +484,7 @@
                   align="center"
                   :show-overflow-tooltip="true"
                 ></el-table-column>
-                <el-table-column
-                  prop="cheliangshu"
-                  label="车辆数"
-                  align="center"
-                ></el-table-column>
+                <el-table-column prop="cheliangshu" label="车辆数" align="center"></el-table-column>
                 <el-table-column
                   prop="bjcheliangshu"
                   label="报警车辆数"

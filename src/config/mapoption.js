@@ -1,4 +1,4 @@
-import echarts from "echarts";
+import * as echarts from "echarts";
 import * as maps from "@/assets/map/index";
 
 export const geooption = (name, mapData) => {
@@ -22,13 +22,9 @@ export const geooption = (name, mapData) => {
         let html = `<div>${val.name}</div>
         <div>报警数：${val.value ? val.value : 0}</div>
         <div>车辆数：${
-          val.data.cheliangshu && val.data.cheliangshu != -1
-            ? val.data.cheliangshu
-            : 0
+          val.data.cheliangshu && val.data.cheliangshu != -1 ? val.data.cheliangshu : 0
         }</div>
-        <div>企业数：${
-          val.data.qiyeshu && val.data.qiyeshu != -1 ? val.data.qiyeshu : 0
-        }</div>`;
+        <div>企业数：${val.data.qiyeshu && val.data.qiyeshu != -1 ? val.data.qiyeshu : 0}</div>`;
         return html;
       },
     },

@@ -114,14 +114,14 @@
       <!-- <img src="@/assets/img/youbifei.png" />-->
       <!-- <img src="@/assets/img/nd.png" /> -->
       <!-- <img src="@/assets/img/fuqing.png" /> -->
-      <img src="@/assets/img/fuqing3.png" />
+      <!-- <img src="@/assets/img/fuqing3.png" /> -->
       <!-- <img src="@/assets/img/fuqing2.png" /> -->
       <!-- <img src="@/assets/img/guizhoulogo.png" /> -->
       <!-- <img class="yjlogo" src="@/assets/img/yj-logo.png" /> -->
       <!-- <img src="@/assets/img/logo_changzhou.png" /> -->
       <!-- <img src="@/assets/img/xvzhoulogo.png" /> -->
       <!-- <img src="@/assets/img/liuzhou.png" /> -->
-      <!-- <img src="@/assets/img/cd_logonew.png" /> -->
+      <img src="@/assets/img/cd_logonew.png" />
       <!-- <img src="@/assets/img/logo_yulin.png" /> -->
       <!-- <img src="@/assets/img/logo_ybf.png" /> -->
       <!-- <img src="@/assets/img/logo3.png" /> -->

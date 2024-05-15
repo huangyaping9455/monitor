@@ -2126,7 +2126,7 @@ class-utils@^0.3.5:
 
 claygl@^1.2.1:
   version "1.3.0"
-  resolved "https://registry.npmjs.org/claygl/-/claygl-1.3.0.tgz"
+  resolved "https://registry.npmmirror.com/claygl/-/claygl-1.3.0.tgz#7a6e2903210519ac358848f5d78070ed211685f3"
   integrity sha512-+gGtJjT6SSHD2l2yC3MCubW/sCV40tZuSs5opdtn79vFSGUgp/lH139RNEQ6Jy078/L0aV8odCw8RSrUcMfLaQ==
 
 clean-css@4.2.x:
@@ -3065,20 +3065,21 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
-echarts-gl@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.npmjs.org/echarts-gl/-/echarts-gl-1.1.1.tgz"
-  integrity sha512-cRSTU9H+Ay+qCUFowm+2XcxYqCfi/OLK805NISeJunKgJa5p+7p7tnHZoI0qKebjtHu8VbFSOBk9UvWZ01adng==
+echarts-gl@^2.0.9:
+  version "2.0.9"
+  resolved "https://registry.npmmirror.com/echarts-gl/-/echarts-gl-2.0.9.tgz#ee228a6c7520a6fb7bbb71ea94394f3637ade033"
+  integrity sha512-oKeMdkkkpJGWOzjgZUsF41DOh6cMsyrGGXimbjK2l6Xeq/dBQu4ShG2w2Dzrs/1bD27b2pLTGSaUzouY191gzA==
   dependencies:
     claygl "^1.2.1"
-    zrender "^4.0.4"
+    zrender "^5.1.1"
 
-echarts@^4.9.0:
-  version "4.9.0"
-  resolved "https://registry.npmmirror.com/echarts/-/echarts-4.9.0.tgz"
-  integrity sha512-+ugizgtJ+KmsJyyDPxaw2Br5FqzuBnyOWwcxPKO6y0gc5caYcfnEUIlNStx02necw8jmKmTafmpHhGo4XDtEIA==
+echarts@^5.5.0:
+  version "5.5.0"
+  resolved "https://registry.npmmirror.com/echarts/-/echarts-5.5.0.tgz#c13945a7f3acdd67c134d8a9ac67e917830113ac"
+  integrity sha512-rNYnNCzqDAPCr4m/fqyUFv7fD9qIsd50S6GDFgO1DxZhncCsNsG7IfUlAlvZe5oSEQxtsjnHiUuppzccry93Xw==
   dependencies:
-    zrender "4.3.2"
+    tslib "2.3.0"
+    zrender "5.5.0"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -8151,6 +8152,11 @@ tryer@^1.0.1:
   resolved "http://registry.npm.taobao.org/tryer/download/tryer-1.0.1.tgz"
   integrity sha1-8shUBoALmw90yfdGW4HqrSQSUvg=
 
+tslib@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.npmmirror.com/tslib/-/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
+  integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==
+
 tslib@^1.9.0:
   version "1.13.0"
   resolved "https://registry.npm.taobao.org/tslib/download/tslib-1.13.0.tgz"
@@ -8456,6 +8462,11 @@ vue-baidu-map@^0.21.22:
     bmaplib.lushu "^1.0.7"
     bmaplib.markerclusterer "^1.0.13"
     markdown-it "^8.4.0"
+
+vue-count-to@^1.0.13:
+  version "1.0.13"
+  resolved "https://registry.npmmirror.com/vue-count-to/-/vue-count-to-1.0.13.tgz#3e7573ea6e64c2b2972f64e0a2ab2e23c7590ff3"
+  integrity sha512-6R4OVBVNtQTlcbXu6SJ8ENR35M2/CdWt3Jmv57jOUM+1ojiFmjVGvZPH8DfHpMDSA+ITs+EW5V6qthADxeyYOQ==
 
 vue-drag-resize@^1.5.0-rc3, vue-drag-resize@^1.5.4:
   version "1.5.4"
@@ -8934,7 +8945,9 @@ yorkie@^2.0.0:
     normalize-path "^1.0.0"
     strip-indent "^2.0.0"
 
-zrender@4.3.2, zrender@^4.0.4:
-  version "4.3.2"
-  resolved "https://registry.npmmirror.com/zrender/-/zrender-4.3.2.tgz"
-  integrity sha512-bIusJLS8c4DkIcdiK+s13HiQ/zjQQVgpNohtd8d94Y2DnJqgM1yjh/jpDb8DoL6hd7r8Awagw8e3qK/oLaWr3g==
+zrender@5.5.0, zrender@^5.1.1:
+  version "5.5.0"
+  resolved "https://registry.npmmirror.com/zrender/-/zrender-5.5.0.tgz#54d0d6c4eda81a96d9f60a9cd74dc48ea026bc1e"
+  integrity sha512-O3MilSi/9mwoovx77m6ROZM7sXShR/O/JIanvzTwjN3FORfLSr81PsUGd7jlaYOeds9d8tw82oP44+3YucVo+w==
+  dependencies:
+    tslib "2.3.0"

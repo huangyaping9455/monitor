@@ -74,7 +74,8 @@ module.exports = {
         },
       },
       "/": {
-        target: process.env.VUE_APP_BASE_API,
+        // target: process.env.VUE_APP_BASE_API,
+        target: "https://tscm.aero-zh.cn:8205/api",
         changeOrigin: true,
       },
     },

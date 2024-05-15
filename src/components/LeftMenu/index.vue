@@ -163,7 +163,7 @@
           <el-menu-item index="overspeed" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="map" />
-              <span>超速面板</span>
+              <span>精细化超速看板</span>
             </div>
           </el-menu-item>
           <!-- <el-menu-item index="dataAnalysis_gz" @click="openMenu">
