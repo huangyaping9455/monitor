@@ -138,6 +138,7 @@
       }
       .pick_date {
         width: 120px;
+        margin-right: 5px;
         ::v-deep .el-input__inner {
           height: 25px;
           line-height: 25px;
@@ -168,14 +169,6 @@
           <div class="l_top">
             <div class="card_h">
               <span>超速总统计</span>
-              <el-date-picker
-                class="pick_date"
-                v-model="changeDate"
-                type="month"
-                format="yyyy-MM"
-                placeholder="选择周"
-              >
-              </el-date-picker>
             </div>
             <div
               class="card_chart"
@@ -329,6 +322,15 @@
         <div class="speed_b_l">
           <div class="card_h">
             <span>动态超速事件滚动屏</span>
+            <el-date-picker
+              class="pick_date"
+              v-model="changeDate"
+              type="month"
+              format="yyyy-MM"
+              placeholder="选择周"
+              @change="dateChange"
+            >
+            </el-date-picker>
           </div>
           <el-table
             :data="tableData"
@@ -501,7 +503,6 @@ export default {
   },
   mounted() {
     this.option1 = geooption1();
-    this.option2 = geooption2();
     this.option4 = geooption4();
 
     this.getByAlarm();
@@ -581,13 +582,29 @@ export default {
     },
     //实时报警曲线
     async getByAlarmTendency() {
+      this.loading4 = false;
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getByAlarmTendency({ deptId: this.userinfo.deptId })
       );
       if (data) {
-        this.alarmTendencyData = data;
+        let datas = [];
+        let data1 = [];
+        let data2 = [];
+        let data3 = [];
+        if (data.length > 0) {
+          data.forEach((val) => {
+            datas.push(val.part);
+            data1.push(val.overspeedLevel1Count);
+            data2.push(val.overspeedLevel2Count);
+            data3.push(val.overspeedLevel3Count);
+          });
+        }
+        this.option4 = geooption4(datas, data1, data2, data3);
+        this.loading4 = false;
       } else {
         this.$message.error(err);
+        this.option4 = geooption4([], [], [], []);
+        this.loading4 = false;
       }
     },
     //昨日企业报警前五排名数据
@@ -616,13 +633,36 @@ export default {
     },
     //月度报警柱状数据
     async getByMothWeekAlarm() {
+      this.loading1 = true;
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getByMothWeekAlarm({ deptId: this.userinfo.deptId })
       );
       if (data) {
-        this.alarmMothWeekData = data;
+        let data1 = [
+          data.firstOverOneCount,
+          data.twoOverOneCount,
+          data.threeOverOneCount,
+          data.fourOverOneCount,
+        ];
+        let data2 = [
+          data.firstOverTwoCount,
+          data.twoOverTwoCount,
+          data.threeOverTwoCount,
+          data.fourOverTwoCount,
+        ];
+        let data3 = [
+          data.firstOverThreeCount,
+          data.twoOverThreeCount,
+          data.threeOverThreeOCount,
+          data.fourOverThreeCount,
+        ];
+
+        this.option1 = geooption1(data1, data2, data3);
+        this.loading1 = false;
       } else {
+        this.option1 = geooption1([], [], []);
         this.$message.error(err);
+        this.loading1 = false;
       }
     },
     //近七天报警柱状数据
@@ -681,12 +721,15 @@ export default {
         this.loading3 = false;
       }
     },
+    // 时间选择
+    dateChange() {
+      this.getByAlarm();
+    },
     // 换算时间
     formatTime(seconds) {
       var hours = Math.floor(seconds / 3600);
       var minutes = Math.floor((seconds % 3600) / 60);
       var secs = seconds % 60;
-
       return hours + "时" + minutes + "分" + secs + "秒";
     },
   },

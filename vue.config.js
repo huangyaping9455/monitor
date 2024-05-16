@@ -67,7 +67,8 @@ module.exports = {
       //   },
       // },
       "/previewapi": {
-        target: "http://120.35.12.85:3324",
+        // target: "http://120.35.12.85:3324",
+        target: "https://tscm.aero-zh.cn:8204",
         ws: true,
         pathRewrite: {
           "^/previewapi": "",

@@ -400,12 +400,12 @@
               <span>合规台账排名</span>
             </div>
           </el-menu-item>
-          <el-menu-item index="infomationRank" @click="openMenu">
+          <!-- <el-menu-item index="infomationRank" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="wanzheng" />
               <span>资料完整率统计</span>
             </div>
-          </el-menu-item>
+          </el-menu-item> -->
         </el-submenu>
         <el-submenu index="7">
           <template slot="title">
@@ -573,7 +573,7 @@
             </div>
           </el-menu-item>
         </el-submenu> -->
-        <el-submenu index="12">
+        <!-- <el-submenu index="12">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="fengxian" />
@@ -609,14 +609,14 @@
               <svg-icon class="icon" icon-class="zhenggai" />
               <span slot="title">基础资料管理</span>
             </div>
-          </el-menu-item>
-          <!-- <el-menu-item index="">
+          </el-menu-item> -->
+        <!-- <el-menu-item index="">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="zhenggai" />
               <span slot="title">风控云屏</span>
             </div>
           </el-menu-item>-->
-        </el-submenu>
+        <!-- </el-submenu> -->
         <el-submenu index="13">
           <template slot="title">
             <div class="menu-item">

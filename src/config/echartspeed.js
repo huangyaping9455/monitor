@@ -1,5 +1,5 @@
 import * as echarts from "echarts";
-export const geooption1 = () => {
+export const geooption1 = (data1, data2, data3) => {
   return {
     grid: {
       top: "15%",
@@ -49,7 +49,7 @@ export const geooption1 = () => {
             { offset: 1, color: "#0292FF" },
           ]),
         },
-        data: [110, 120, 124, 118],
+        data: data1,
         type: "bar",
       },
       {
@@ -62,7 +62,7 @@ export const geooption1 = () => {
             { offset: 1, color: "#C29B00" },
           ]),
         },
-        data: [150, 160, 156, 156],
+        data: data2,
         type: "bar",
       },
       {
@@ -74,7 +74,7 @@ export const geooption1 = () => {
             { offset: 1, color: "#BE3F05" },
           ]),
         },
-        data: [230, 230, 224, 218],
+        data: data3,
         type: "bar",
       },
     ],
@@ -236,7 +236,7 @@ export const geooption3 = (time, data) => {
   };
 };
 
-export const geooption4 = () => {
+export const geooption4 = (datas, data1, data2, data3) => {
   return {
     tooltip: {
       trigger: "axis",
@@ -269,9 +269,9 @@ export const geooption4 = () => {
       axisLabel: {
         color: "#fefefe",
       },
-      boundaryGap: false,
-      axisLine: { onZero: true },
-      data: ["8:00", "9:00", "10:00", "11:00", "12:00"],
+      // boundaryGap: false,
+      // axisLine: { onZero: true },
+      data: datas,
     },
     yAxis: {
       type: "value",
@@ -305,7 +305,7 @@ export const geooption4 = () => {
         emphasis: {
           focus: "series",
         },
-        data: [280, 150, 225, 277, 120],
+        data: data1,
       },
       {
         name: "一般超速",
@@ -324,7 +324,7 @@ export const geooption4 = () => {
         emphasis: {
           focus: "series",
         },
-        data: [200, 250, 150, 277, 120],
+        data: data2,
       },
       {
         name: "严重超速",
@@ -343,7 +343,7 @@ export const geooption4 = () => {
         emphasis: {
           focus: "series",
         },
-        data: [100, 120, 150, 277, 120],
+        data: data3,
       },
     ],
   };
