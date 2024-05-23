@@ -15,6 +15,12 @@
     background-position: center;
     background-size: 100% 100%;
     position: relative;
+    .time {
+      position: absolute;
+      top: 16px;
+      left: 25px;
+      color: #fff;
+    }
   }
   .speed_body {
     display: flex;
@@ -65,12 +71,20 @@
               // height: 100%;
               justify-content: space-between;
               align-items: center;
+              position: relative;
               span {
                 color: #fff;
               }
+              .up {
+                position: absolute;
+                top: 7px;
+                right: -21px;
+                width: 16px;
+                height: 14px;
+              }
             }
             .qiri {
-              margin-top: 25px;
+              // margin-top: 25px;
             }
           }
           .item:nth-child(2) {
@@ -99,21 +113,57 @@
         height: 100%;
         .bl_chart {
           display: flex;
-          width: 100%;
-          height: 100%;
+          justify-content: space-around;
+          width: calc(100% - 80px);
+          height: calc(100% - 60px);
+          padding: 0 40px;
           .bl_t {
             position: relative;
-            width: 33.3%;
+            width: 18%;
             height: 100%;
             .bl_txt {
               position: absolute;
-              top: 34%;
+              top: 40%;
               left: 50%;
               transform: translate(-50%);
               color: #fff;
+              display: flex;
+              align-items: end;
               span:first-child {
-                font-size: 4.5vmin;
+                width: 100%;
+                display: block;
+                font-size: 2.9vmin;
+                margin-right: 1px;
               }
+            }
+            .bl_bg {
+              width: 91%;
+              height: 55%;
+              background-image: url("~@/assets/img/speed/border1.png");
+              background-size: 100% 100%;
+              position: absolute;
+              top: 23px;
+              left: 7px;
+            }
+            .bl_bom {
+              width: 59%;
+              height: 28%;
+              background-image: url("~@/assets/img/speed/bottom1.png");
+              background-size: 100% 100%;
+              position: absolute;
+              bottom: 5px;
+              left: 35px;
+            }
+            .bom1 {
+              background-image: url("~@/assets/img/speed/bottom1.png");
+              left: 30px;
+            }
+            .bom2 {
+              background-image: url("~@/assets/img/speed/bottom2.png");
+              left: 31px;
+            }
+            .bom3 {
+              background-image: url("~@/assets/img/speed/bottom3.png");
             }
           }
         }
@@ -162,7 +212,9 @@
 
 <template>
   <div class="dataAnalysis">
-    <div class="dheader"></div>
+    <div class="dheader">
+      <p class="time">{{ newtime }}</p>
+    </div>
     <div class="speed_body">
       <div class="speed_b_t">
         <div class="speed_l">
@@ -206,6 +258,16 @@
                   ></span>
                   台
                 </span>
+                <img
+                  v-if="alarmToDayData.vehicleCount > alarmYesterDayData.vehicleCount"
+                  class="up"
+                  src="@/assets/img/speed/up.png"
+                />
+                <img
+                  v-else-if="alarmToDayData.vehicleCount < alarmYesterDayData.vehicleCount"
+                  class="up"
+                  src="@/assets/img/speed/down.png"
+                />
               </div>
               <div class="item_t">
                 <span>昨日总数</span>
@@ -236,6 +298,16 @@
                   ></span>
                   台
                 </span>
+                <img
+                  v-if="alarmToDayData.vehicleOlCount > alarmYesterDayData.vehicleOlCount"
+                  class="up"
+                  src="@/assets/img/speed/up.png"
+                />
+                <img
+                  v-else-if="alarmToDayData.vehicleOlCount < alarmYesterDayData.vehicleOlCount"
+                  class="up"
+                  src="@/assets/img/speed/down.png"
+                />
               </div>
               <div class="item_t">
                 <span>昨日在线</span>
@@ -260,12 +332,22 @@
                   <span style="font-size: 17px;">
                     <CountTo
                       :startVal="0"
-                      :endVal="alarmToDayData.vehicleOlCount ? alarmToDayData.vehicleOlCount : 0"
+                      :endVal="alarmToDayData.overspeedCount ? alarmToDayData.overspeedCount : 0"
                       :duration="5000"
                     ></CountTo
                   ></span>
                   次
                 </span>
+                <img
+                  v-if="alarmToDayData.overspeedCount > alarmYesterDayData.overspeedCount"
+                  class="up"
+                  src="@/assets/img/speed/up.png"
+                />
+                <img
+                  v-else-if="alarmToDayData.overspeedCount < alarmYesterDayData.overspeedCount"
+                  class="up"
+                  src="@/assets/img/speed/down.png"
+                />
               </div>
               <div class="item_t">
                 <span>昨日报警</span>
@@ -274,7 +356,7 @@
                     ><CountTo
                       :startVal="0"
                       :endVal="
-                        alarmYesterDayData.overspeedCoun ? alarmYesterDayData.overspeedCoun : 0
+                        alarmYesterDayData.overspeedCount ? alarmYesterDayData.overspeedCount : 0
                       "
                       :duration="5000"
                     ></CountTo
@@ -284,11 +366,12 @@
               </div>
             </div>
             <div class="item">
+              <echart-base height="100%" width="100%" :chart-option="option8"></echart-base>
               <span class="qiri">七日趋势变化表</span>
             </div>
           </div>
-          <div class="c_map" v-loading="loading5" element-loading-background="rgba(0, 0, 0, 0.4)">
-            <sp-map :alarmDatas="alarmDatas" />
+          <div class="c_map" v-loading="loading7" element-loading-background="rgba(0, 0, 0, 0.4)">
+            <sp-map :alarmDatas="mapDatas" />
           </div>
         </div>
         <div class="speed_r">
@@ -306,7 +389,7 @@
           </div>
           <div class="l_bot">
             <div class="card_h">
-              <span>实施超速统计和变化趋势</span>
+              <span>实时超速统计和变化趋势</span>
             </div>
             <div
               class="card_chart"
@@ -322,7 +405,7 @@
         <div class="speed_b_l">
           <div class="card_h">
             <span>动态超速事件滚动屏</span>
-            <el-date-picker
+            <!--<el-date-picker
               class="pick_date"
               v-model="changeDate"
               type="month"
@@ -330,7 +413,7 @@
               placeholder="选择周"
               @change="dateChange"
             >
-            </el-date-picker>
+            </el-date-picker>-->
           </div>
           <el-table
             :data="tableData"
@@ -344,11 +427,25 @@
             "
           >
             <el-table-column prop="date" label="车牌号" align="center"> </el-table-column>
-            <el-table-column prop="date" label="所属运输公司" align="center"> </el-table-column>
+            <el-table-column
+              prop="date"
+              label="所属运输公司"
+              align="center"
+              width="200"
+              show-overflow-tooltip
+            >
+            </el-table-column>
             <el-table-column prop="date" label="超速速度" align="center"> </el-table-column>
-            <el-table-column prop="date" label="超速持续速度" align="center"> </el-table-column>
+            <el-table-column prop="date" label="超速持续时间" align="center"> </el-table-column>
             <el-table-column prop="date" label="超速级别" align="center"> </el-table-column>
-            <el-table-column prop="date" label="超速地段详情" align="center"> </el-table-column>
+            <el-table-column
+              prop="date"
+              label="超速地段详情"
+              align="center"
+              width="220"
+              show-overflow-tooltip
+            >
+            </el-table-column>
           </el-table>
           <vueSeamlessScroll
             :data="alarmDatas"
@@ -371,7 +468,13 @@
             >
               <el-table-column prop="cheliangpaizhao" label="车牌号" align="center">
               </el-table-column>
-              <el-table-column prop="deptName" label="所属运输公司" align="center">
+              <el-table-column
+                prop="deptName"
+                label="所属运输公司"
+                align="center"
+                width="200"
+                show-overflow-tooltip
+              >
               </el-table-column>
               <el-table-column prop="velocity" label="超速速度" align="center"> </el-table-column>
               <el-table-column prop="keepTime" label="超速持续时间" align="center">
@@ -384,14 +487,20 @@
                   <span>{{ leveList[row.status] }}</span>
                 </template>
               </el-table-column>
-              <el-table-column prop="roadName" label="超速地段详情" align="center">
+              <el-table-column
+                prop="roadName"
+                label="超速地段详情"
+                align="center"
+                width="220"
+                show-overflow-tooltip
+              >
               </el-table-column>
             </el-table>
           </vueSeamlessScroll>
         </div>
         <div class="speed_b_l">
           <div class="card_h">
-            <span>实施超速状态一览表</span>
+            <span>实时超速状态一览表</span>
           </div>
           <div
             class="bl_chart"
@@ -411,6 +520,8 @@
                 ></span>
                 <span>%</span>
               </div>
+              <div class="bl_bg"></div>
+              <div class="bl_bom bom1"></div>
             </div>
             <div class="bl_t">
               <echart-base height="100%" width="100%" :chart-option="option6"></echart-base>
@@ -425,6 +536,8 @@
                 ></span>
                 <span>%</span>
               </div>
+              <div class="bl_bg"></div>
+              <div class="bl_bom bom2"></div>
             </div>
             <div class="bl_t">
               <echart-base height="100%" width="100%" :chart-option="option7"></echart-base>
@@ -439,6 +552,8 @@
                 ></span>
                 <span>%</span>
               </div>
+              <div class="bl_bg"></div>
+              <div class="bl_bom bom3"></div>
             </div>
           </div>
         </div>
@@ -449,6 +564,7 @@
 </template>
 
 <script>
+import { format } from "@/config/date";
 import dataAnalysisApi from "@/api/modules/speed";
 import echartBase from "@/components/EChart/index";
 import vueSeamlessScroll from "vue-seamless-scroll";
@@ -461,6 +577,7 @@ import {
   geooption5,
   geooption6,
   geooption7,
+  geooption8,
 } from "@/config/echartspeed.js";
 import SpMap from "./map/spMap";
 import dayjs from "dayjs";
@@ -475,15 +592,18 @@ export default {
       option5: {},
       option6: {},
       option7: {},
+      option8: {},
       loading1: false,
       loading2: false,
       loading3: false,
       loading4: false,
       loading5: false,
       loading6: false,
+      loading7: false,
       tableData: [],
       // 数据
       alarmDatas: [],
+      mapDatas: [],
       alarmChartData: [],
       alarmTendencyData: [],
       alarmDeptFifthData: [],
@@ -491,8 +611,9 @@ export default {
       alarmSevenData: [],
       alarmToDayData: [],
       alarmYesterDayData: [],
-      changeDate: dayjs().format("YYYY-MM"),
+      changeDate: dayjs().format("YYYY-MM-DD HH:mm:ss"),
       leveList: { 1: "轻微超速", 2: "一般超速", 3: "严重超速" },
+      newtime: "",
     };
   },
   components: {
@@ -502,10 +623,17 @@ export default {
     CountTo,
   },
   mounted() {
-    this.option1 = geooption1();
-    this.option4 = geooption4();
+    const timer = setInterval(() => {
+      // 某些定时器操作
+      this.setNewTime();
+    }, 1000);
+    // 通过$once来监听定时器，在beforeDestroy钩子可以被清除。
+    this.$once("hook:beforeDestroy", () => {
+      clearInterval(timer);
+    });
 
     this.getByAlarm();
+    this.getByAlarm2();
     this.getByAlarmChart();
     this.getByAlarmTendency();
     this.getByDeptFifth();
@@ -521,7 +649,7 @@ export default {
     }),
     classOption() {
       return {
-        step: 1, //数值越大速度滚动越快
+        step: 0.6, //数值越大速度滚动越快
         limitMoveNum: 5, //开始无缝滚动的数据量  //this.fourDatata.length
         hoverStop: true, //是否开启鼠标悬停stop
         direction: 1, // 0向下 1向上 2向左 3向右
@@ -533,29 +661,51 @@ export default {
     },
   },
   methods: {
+    setNewTime() {
+      this.newtime = format(new Date(), "YYYY-MM-DD HH:mm:ss dddd");
+    },
     //动态超速滚动数据及热力图数据
     async getByAlarm() {
       this.loading5 = true;
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getByAlarm({
-          beginTime: dayjs(this.changeDate).format("YYYY-MM-01"),
-          endTime: dayjs(this.changeDate)
-            .endOf("month")
-            .format("YYYY-MM-DD"),
+          beginTime: dayjs(this.changeDate)
+            .subtract(1, "hours")
+            .format("YYYY-MM-DD HH:mm:ss"),
+          endTime: dayjs(this.changeDate).format("YYYY-MM-DD HH:mm:ss"),
           deptId: this.userinfo.deptId,
         })
       );
       if (data) {
-        this.alarmDatas = data.map((el) => {
-          el.lng = el.longitude;
-          el.lat = el.latitude;
-          return el;
-        });
+        this.alarmDatas = data;
         this.loading5 = false;
       } else {
         this.alarmDatas = [];
         this.$message.error(err);
         this.loading5 = false;
+      }
+    },
+    //动态超速滚动数据及热力图数据
+    async getByAlarm2() {
+      this.loading7 = true;
+      let [err, data] = await dataAnalysisApi.awaitWrap(
+        dataAnalysisApi.getByAlarm({
+          beginTime: dayjs(this.changeDate).format("YYYY-MM-DD 00:00:00"),
+          endTime: dayjs(this.changeDate).format("YYYY-MM-DD HH:mm:ss"),
+          deptId: this.userinfo.deptId,
+        })
+      );
+      if (data) {
+        this.mapDatas = data.map((el) => {
+          el.lng = el.longitude;
+          el.lat = el.latitude;
+          return el;
+        });
+        this.loading7 = false;
+      } else {
+        this.mapDatas = [];
+        this.$message.error(err);
+        this.loading7 = false;
       }
     },
     //超速看板-状态一览表
@@ -638,31 +788,34 @@ export default {
         dataAnalysisApi.getByMothWeekAlarm({ deptId: this.userinfo.deptId })
       );
       if (data) {
-        let data1 = [
-          data.firstOverOneCount,
-          data.twoOverOneCount,
-          data.threeOverOneCount,
-          data.fourOverOneCount,
-        ];
-        let data2 = [
-          data.firstOverTwoCount,
-          data.twoOverTwoCount,
-          data.threeOverTwoCount,
-          data.fourOverTwoCount,
-        ];
-        let data3 = [
-          data.firstOverThreeCount,
-          data.twoOverThreeCount,
-          data.threeOverThreeOCount,
-          data.fourOverThreeCount,
-        ];
+        if (data.length > 0) {
+          let datas = data[0];
+          let data1 = [
+            datas.firstOverOneCount,
+            datas.twoOverOneCount,
+            datas.threeOverOneCount,
+            datas.fourOverOneCount,
+          ];
+          let data2 = [
+            datas.firstOverTwoCount,
+            datas.twoOverTwoCount,
+            datas.threeOverTwoCount,
+            datas.fourOverTwoCount,
+          ];
+          let data3 = [
+            datas.firstOverThreeCount,
+            datas.twoOverThreeCount,
+            datas.threeOverThreeOCount,
+            datas.fourOverThreeCount,
+          ];
 
-        this.option1 = geooption1(data1, data2, data3);
-        this.loading1 = false;
-      } else {
-        this.option1 = geooption1([], [], []);
-        this.$message.error(err);
-        this.loading1 = false;
+          this.option1 = geooption1(data1, data2, data3);
+          this.loading1 = false;
+        } else {
+          this.option1 = geooption1([], [], []);
+          this.$message.error(err);
+          this.loading1 = false;
+        }
       }
     },
     //近七天报警柱状数据
@@ -671,9 +824,18 @@ export default {
         dataAnalysisApi.getBySevenAlarm({ deptId: this.userinfo.deptId })
       );
       if (data) {
-        this.alarmSevenData = data;
+        // this.alarmSevenData = data;
+        let datas = [];
+        if (data.length > 0) {
+          data.forEach((val) => {
+            datas.push(val.overspeedCount);
+          });
+        }
+        console.log(datas);
+        this.option8 = geooption8(datas);
       } else {
         this.$message.error(err);
+        this.option8 = geooption8([]);
       }
     },
     //今日数据
@@ -713,7 +875,8 @@ export default {
             datas.push(val.overspeedCount);
           });
         }
-        this.option3 = geooption3(time, datas);
+        console.log(time, datas);
+        this.option3 = geooption3(time.reverse(), datas.reverse());
         this.loading3 = false;
       } else {
         this.$message.error(err);

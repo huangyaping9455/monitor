@@ -95,11 +95,11 @@ export const geooption2 = (time, data) => {
       },
     },
     legend: {
-      position: "right",
+      position: "top",
       // data: ["安全系数", "变化趋势"],
       textStyle: {
         color: "#fff",
-        position: "right",
+        position: "top",
       },
     },
     xAxis: [
@@ -139,10 +139,10 @@ export const geooption2 = (time, data) => {
     series: [
       {
         type: "bar",
-        barWidth: 15, //柱状图 宽度
+        barWidth: 12, //柱状图 宽度
         label: {
           show: true,
-          position: "right", // 顶部显示
+          position: "top", // 顶部显示
           formatter: "{c}", // 显示数据值
           color: "#fff",
         },
@@ -161,6 +161,16 @@ export const geooption2 = (time, data) => {
   };
 };
 export const geooption3 = (time, data) => {
+  data[4] = {
+    value: data[4],
+    itemStyle: {
+      color: new echarts.graphic.LinearGradient(1, 0, 0, 1, [
+        { offset: 0, color: "#f4c25a" },
+        { offset: 1, color: "#e8a71d" },
+      ]),
+    },
+  };
+  console.log(data);
   return {
     tooltip: {
       trigger: "axis",
@@ -208,13 +218,12 @@ export const geooption3 = (time, data) => {
           color: "#fefefe",
         },
       },
-      // data: ["NO.5", "NO.4", "NO.3", "NO.2", "NO.1"],
       data: time,
     },
     series: [
       {
         type: "bar",
-        barWidth: 15, //柱状图 宽度
+        barWidth: 10, //柱状图 宽度
         label: {
           show: true,
           position: "right", // 顶部显示
@@ -292,6 +301,7 @@ export const geooption4 = (datas, data1, data2, data3) => {
         name: "轻微超速",
         type: "line",
         smooth: true,
+        showSymbol: false,
         lineStyle: {
           width: 2,
         },
@@ -299,8 +309,12 @@ export const geooption4 = (datas, data1, data2, data3) => {
           color: "#06C0FC",
         },
         areaStyle: {
-          opacity: 0.8,
-          color: "#09b0e746",
+          opacity: 0.3,
+          // color: "#09b0e746",
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 1, color: "#69cdf817" },
+            { offset: 0, color: "#69CDF8" },
+          ]),
         },
         emphasis: {
           focus: "series",
@@ -311,6 +325,7 @@ export const geooption4 = (datas, data1, data2, data3) => {
         name: "一般超速",
         type: "line",
         smooth: true,
+        showSymbol: false,
         lineStyle: {
           width: 2,
         },
@@ -318,8 +333,12 @@ export const geooption4 = (datas, data1, data2, data3) => {
           color: "#DBB005",
         },
         areaStyle: {
-          opacity: 0.8,
-          color: "#dbb00556",
+          opacity: 0.3,
+          // color: "#dbb00556",
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 1, color: "#dbb00511" },
+            { offset: 0, color: "#DBB005" },
+          ]),
         },
         emphasis: {
           focus: "series",
@@ -330,6 +349,7 @@ export const geooption4 = (datas, data1, data2, data3) => {
         name: "严重超速",
         type: "line",
         smooth: true,
+        showSymbol: false,
         lineStyle: {
           width: 2,
         },
@@ -337,8 +357,12 @@ export const geooption4 = (datas, data1, data2, data3) => {
           color: "#FF6D03",
         },
         areaStyle: {
-          opacity: 0.8,
-          color: "#ff6c0357",
+          opacity: 0.3,
+          // color: "#ff6c0357",
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 1, color: "#ff6c0311" },
+            { offset: 0, color: "#FF6D03" },
+          ]),
         },
         emphasis: {
           focus: "series",
@@ -352,42 +376,42 @@ export const geooption4 = (datas, data1, data2, data3) => {
 export const geooption5 = (data) => {
   return {
     grid: {
-      top: "15%",
+      top: "10%",
       left: "3%",
       right: "4%",
-      bottom: "20%",
+      bottom: "30%",
     },
     series: [
       {
         type: "gauge",
-        startAngle: 210,
-        endAngle: -30,
+        startAngle: 225,
+        endAngle: -45,
         min: 0,
         max: 100,
         splitNumber: 10,
         itemStyle: {
           // color: "#58D9F9",
-          shadowColor: "rgba(0,138,255,0.45)",
-          shadowBlur: 10,
-          shadowOffsetX: 2,
-          shadowOffsetY: 2,
+          // shadowColor: "rgba(0,138,255,0.45)",
+          // shadowBlur: 10,
+          // shadowOffsetX: 2,
+          // shadowOffsetY: 2,
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: "#06C0FC" },
+            { offset: 0, color: "#8EB9FA" },
             { offset: 1, color: "#0292FF" },
           ]),
         },
         progress: {
           show: true,
-          roundCap: true,
-          width: 12,
+          roundCap: false,
+          width: 11,
         },
         pointer: {
           show: false,
         },
         axisLine: {
-          roundCap: true,
+          roundCap: false,
           lineStyle: {
-            width: 12,
+            width: 11,
             color: [[1, "#142A46"]],
           },
           itemStyle: {
@@ -418,11 +442,11 @@ export const geooption5 = (data) => {
           width: "100%",
           lineHeight: 70,
           height: 40,
-          borderRadius: 5,
+          borderRadius: 0,
           offsetCenter: [0, "35%"],
           valueAnimation: true,
           color: "#B6F9FF",
-          fontSize: 23,
+          fontSize: 14,
           formatter: function(value) {
             return "轻微超速";
           },
@@ -431,15 +455,10 @@ export const geooption5 = (data) => {
           // },
           rich: {
             value: {
-              fontSize: 20,
+              fontSize: 14,
               fontWeight: "inherit",
               color: "#B6F9FF",
             },
-            // unit: {
-            //   fontSize: 20,
-            //   color: "#B6F9FF",
-            //   padding: [0, 0, 0, 10],
-            // },
           },
         },
         data: [
@@ -463,34 +482,34 @@ export const geooption6 = (data) => {
     series: [
       {
         type: "gauge",
-        startAngle: 210,
-        endAngle: -30,
+        startAngle: 225,
+        endAngle: -45,
         min: 0,
         max: 100,
         splitNumber: 10,
         itemStyle: {
           // color: "#58D9F9",
-          shadowColor: "rgba(0,138,255,0.45)",
-          shadowBlur: 10,
-          shadowOffsetX: 2,
-          shadowOffsetY: 2,
+          // shadowColor: "rgba(0,138,255,0.45)",
+          // shadowBlur: 10,
+          // shadowOffsetX: 2,
+          // shadowOffsetY: 2,
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: "#DBB005" },
+            { offset: 0, color: "#DED29D" },
             { offset: 1, color: "#C29B00" },
           ]),
         },
         progress: {
           show: true,
-          roundCap: true,
-          width: 12,
+          roundCap: false,
+          width: 11,
         },
         pointer: {
           show: false,
         },
         axisLine: {
-          roundCap: true,
+          roundCap: false,
           lineStyle: {
-            width: 12,
+            width: 11,
             color: [[1, "#142A46"]],
           },
           itemStyle: {
@@ -520,11 +539,11 @@ export const geooption6 = (data) => {
           width: "100%",
           lineHeight: 70,
           height: 40,
-          borderRadius: 5,
+          // borderRadius: 5,
           offsetCenter: [0, "35%"],
           valueAnimation: true,
           color: "#B6F9FF",
-          fontSize: 23,
+          fontSize: 14,
           formatter: function(value) {
             return "一般超速";
           },
@@ -565,39 +584,38 @@ export const geooption7 = (data) => {
     series: [
       {
         type: "gauge",
-        startAngle: 210,
-        endAngle: -30,
+        startAngle: 225,
+        endAngle: -45,
         min: 0,
         max: 100,
         splitNumber: 10,
         itemStyle: {
           // color: "#58D9F9",
-          shadowColor: "rgba(0,138,255,0.45)",
-          shadowBlur: 10,
-          shadowOffsetX: 2,
-          shadowOffsetY: 2,
+          // shadowColor: "rgba(0,138,255,0.45)",
+          // shadowBlur: 10,
+          // shadowOffsetX: 2,
+          // shadowOffsetY: 2,
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: "#FF6D03" },
+            { offset: 0, color: "#FEAD56" },
             { offset: 1, color: "#BE3F05" },
           ]),
         },
         progress: {
           show: true,
-          roundCap: true,
-          width: 12,
+          roundCap: false,
+          width: 11,
         },
         pointer: {
           show: false,
         },
         axisLine: {
-          roundCap: true,
+          roundCap: false,
           lineStyle: {
-            width: 12,
+            width: 11,
             color: [[1, "#142A46"]],
           },
           itemStyle: {
-            color: "red",
-            shadowColor: "#142A46",
+            // shadowColor: "#142A46",
           },
         },
         axisTick: {
@@ -622,11 +640,11 @@ export const geooption7 = (data) => {
           width: "100%",
           lineHeight: 70,
           height: 40,
-          borderRadius: 5,
+          // borderRadius: 5,
           offsetCenter: [0, "35%"],
           valueAnimation: true,
           color: "#B6F9FF",
-          fontSize: 23,
+          fontSize: 14,
           formatter: function(value) {
             return "严重超速";
           },
@@ -651,6 +669,42 @@ export const geooption7 = (data) => {
             value: data,
           },
         ],
+      },
+    ],
+  };
+};
+
+export const geooption8 = (data) => {
+  return {
+    grid: {
+      top: "50%",
+      left: "-100%",
+      right: "0%",
+      bottom: "0%",
+    },
+    xAxis: {
+      show: false,
+      type: "category",
+    },
+    yAxis: {
+      show: false,
+      type: "value",
+    },
+    series: [
+      {
+        type: "line",
+        smooth: true,
+        showSymbol: false,
+        lineStyle: {
+          width: 2,
+        },
+        itemStyle: {
+          color: "#FF6D03",
+        },
+        emphasis: {
+          focus: "series",
+        },
+        data: data,
       },
     ],
   };

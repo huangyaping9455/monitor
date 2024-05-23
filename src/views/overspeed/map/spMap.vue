@@ -7,22 +7,19 @@
     @ready="handler"
   >
     <!-- //地图类型 -->
-    <bm-map-type
-      :map-types="['BMAP_NORMAL_MAP', 'BMAP_HYBRID_MAP']"
-      anchor="BMAP_ANCHOR_TOP_LEFT"
-    ></bm-map-type>
+    <bm-map-type :map-types="['BMAP_NORMAL_MAP']" anchor="BMAP_ANCHOR_TOP_LEFT"></bm-map-type>
     <bml-heatmap
       :data="alarmDatas"
       :max="100"
       :radius="20"
-      :gradient="{ 0.5: 'rgb(0, 110, 255)', 0.8: 'rgb(15, 255, 31)', 0.9: 'rgb(225, 75, 0)' }"
+      :gradient="{ 0.5: '#FF6D03', 0.8: 'rgb(225, 75, 0)', 0.9: '#ff0000' }"
     ></bml-heatmap>
-    <!-- <bm-point-collection
+    <bm-point-collection
       :points="alarmDatas"
-      shape="BMAP_POINT_SHAPE_STAR"
+      shape="BMAP_POINT_SHAPE_RHOMBUS"
       color="red"
       size="BMAP_POINT_SIZE_SMALL"
-    ></bm-point-collection> -->
+    ></bm-point-collection>
   </baidu-map>
 </template>
 
@@ -50,3 +47,11 @@ export default {
   },
 };
 </script>
+<style>
+.BMap_cpyCtrl {
+  display: none;
+}
+.anchorBL {
+  display: none;
+}
+</style>
