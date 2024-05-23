@@ -755,14 +755,14 @@ export default {
       let passWord = config.Encrypt("ubfyanshi", "abcdefgabcdefg12", "abcdefgabcdefg12");
       console.log(userName, passWord);
       window.open(
-        `http://222.75.204.49:12503/webgis/report/riskhandlePage.action?userName=${userName}&password=${passWord}`
+        `http://222.75.204.49:12503/webgis/tsriskhandlePage.action?userName=${userName}&password=${passWord}`
       );
     },
     openThree4() {
       let userName = config.Encrypt("yanshi", "abcdefgabcdefg12", "abcdefgabcdefg12");
       let passWord = config.Encrypt("ubfyanshi", "abcdefgabcdefg12", "abcdefgabcdefg12");
       window.open(
-        `http://222.75.204.49:12503/webgis/main.action?userName=${userName}&password=${passWord}`
+        `http://222.75.204.49:12503/webgis/tsLogin.action?userName=${userName}&password=${passWord}`
       );
     },
     openThree5() {

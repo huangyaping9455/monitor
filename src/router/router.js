@@ -16,14 +16,14 @@ Router.prototype.replace = function replace(location) {
 export const constantRouterMap = [
   {
     path: "/",
-    redirect: "/home",
-    // redirect: function() {
-    //   if (window.location.search === "") {
-    //     return "/home";
-    //   } else {
-    //     return "wel";
-    //   }
-    // },
+    // redirect: "/home",
+    redirect: function() {
+      if (window.location.search === "") {
+        return "/home";
+      } else {
+        return "wel";
+      }
+    },
   },
   {
     path: "/login",
