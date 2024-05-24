@@ -180,36 +180,36 @@
               <span>企业日运行统计</span>
             </div>
           </el-menu-item>
-          <!-- <el-menu-item index="YYSDayStatistics_qd" @click="openMenu">
+          <el-menu-item index="YYSDayStatistics_qd" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yunyingshang" />
               <span>运营商日运行统计</span>
             </div>
-          </el-menu-item> -->
+          </el-menu-item>
           <!-- <el-menu-item index="YYSDayStatistics_ts" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yunyingshang" />
               <span>运营商日运行统计</span>
             </div>
           </el-menu-item> -->
-          <!-- <el-menu-item index="LWLKStatic" @click="openMenu">
+          <el-menu-item index="LWLKStatic" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="qiyekaohe" />
               <span>企业考核评分</span>
             </div>
-          </el-menu-item> -->
+          </el-menu-item>
           <!-- <el-menu-item index="LWLKStatic" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="qiyekaohe" />
               <span>动态监督考核表</span>
             </div>
           </el-menu-item> -->
-          <!-- <el-menu-item index="YYSStatic" @click="openMenu">
+          <el-menu-item index="YYSStatic" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yunyingshangkaohe" />
               <span>运营商考核评分</span>
             </div>
-          </el-menu-item> -->
+          </el-menu-item>
         </el-submenu>
         <el-submenu index="3">
           <template slot="title">
@@ -333,7 +333,7 @@
             </div>
           </el-menu-item> -->
         </el-submenu>
-        <!-- <el-submenu index="7">
+        <el-submenu index="7">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="jiaoyu" />
@@ -346,8 +346,8 @@
               <span>学习情况统计</span>
             </div>
           </el-menu-item>
-        </el-submenu> -->
-        <!-- <el-submenu index="8">
+        </el-submenu>
+        <el-submenu index="8">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="anquanguanli" />
@@ -359,8 +359,8 @@
               <svg-icon class="icon" icon-class="yinhuanpaicha" />
               <span>隐患排查统计</span>
             </div>
-          </el-menu-item> -->
-        <!-- <el-menu-item index="dayHideDanger" @click="openMenu">
+          </el-menu-item>
+          <!-- <el-menu-item index="dayHideDanger" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="riyinhuan" />
               <span>日隐患排查统计</span>
@@ -402,13 +402,13 @@
               <span>综合排查</span>
             </div>
           </el-menu-item> -->
-        <!-- <el-menu-item index="risk" @click="openMenu">
+          <el-menu-item index="risk" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="fengxianguanli" />
               <span>风险管理</span>
             </div>
           </el-menu-item>
-        </el-submenu> -->
+        </el-submenu>
         <!-- <el-submenu index="9">
           <template slot="title">
             <div class="menu-item">
@@ -499,7 +499,7 @@
             </div>
           </el-menu-item>
         </el-submenu> -->
-        <el-submenu index="12">
+        <!-- <el-submenu index="12">
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="fengxian" />
@@ -518,7 +518,7 @@
               <span slot="title">视频监控</span>
             </div>
           </el-menu-item>
-        </el-submenu>
+        </el-submenu> -->
         <!-- <el-submenu index="13">
           <template slot="title">
             <div class="menu-item">
@@ -641,14 +641,10 @@ export default {
       SET_FASONGDANWEI: "government/SET_FASONGDANWEI",
     }),
     openThree() {
-      window.open(
-        "http://139.155.45.177/dashboard/analysis?username=shaanxi&password=SS@123456"
-      );
+      window.open("http://139.155.45.177/dashboard/analysis?username=shaanxi&password=SS@123456");
     },
     openThree1() {
-      window.open(
-        "http://219.153.12.86:6600/dualMechanismData/safeBrain/SafeBrain?type=sp"
-      );
+      window.open("http://219.153.12.86:6600/dualMechanismData/safeBrain/SafeBrain?type=sp");
     },
     openThree3() {
       let userName = config.Encrypt(
@@ -657,11 +653,7 @@ export default {
         "abcdefgabcdefg12",
         "abcdefgabcdefg12"
       );
-      let passWord = config.Encrypt(
-        "123456",
-        "abcdefgabcdefg12",
-        "abcdefgabcdefg12"
-      );
+      let passWord = config.Encrypt("123456", "abcdefgabcdefg12", "abcdefgabcdefg12");
       window.open(
         `http://aimonitoring.rybsj.cn/webgis/data/tsriskhandlePage.action?userName=${userName}&password=${passWord}`
       );
@@ -673,11 +665,7 @@ export default {
         "abcdefgabcdefg12",
         "abcdefgabcdefg12"
       );
-      let passWord = config.Encrypt(
-        "123456",
-        "abcdefgabcdefg12",
-        "abcdefgabcdefg12"
-      );
+      let passWord = config.Encrypt("123456", "abcdefgabcdefg12", "abcdefgabcdefg12");
       window.open(
         `http://aimonitoring.rybsj.cn/webgis/data/tsredRiskDataScreen.action?userName=${userName}&password=${passWord}`
       );

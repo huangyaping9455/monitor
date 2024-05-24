@@ -109,7 +109,7 @@
   <div class="login">
     <div class="logo">
       <!-- <img src="@/assets/img/zkgt.png" /> -->
-      <!-- <img src="@/assets/img/logo-22.png" /> -->
+      <img src="@/assets/img/logo-22.png" />
       <!-- <img src="@/assets/img/qdlogo.png" /> -->
       <!-- <img src="@/assets/img/shouguang.png" />-->
       <!-- <img src="@/assets/img/youbifei.png" /> -->
@@ -120,7 +120,7 @@
       <!-- <img src="@/assets/img/logo_changzhou.png" /> -->
       <!-- <img src="@/assets/img/xiajin.png" /> -->
       <!-- <img src="@/assets/img/qdcclogo.png" /> -->
-      <img src="@/assets/img/ndlogo.png" />
+      <!-- <img src="@/assets/img/ndlogo.png" /> -->
       <!-- <img src="@/assets/img/xvzhoulogo.png" /> -->
       <!-- <img src="@/assets/img/liuzhou.png" /> -->
       <!-- <img src="@/assets/img/cd_zflogo.png" /> -->
@@ -137,22 +137,12 @@
       <p class="title">登 录</p>
       <el-form ref="ruleForm" :rules="rules" :model="form">
         <el-form-item prop="name">
-          <el-input
-            class="inputbox"
-            type="text"
-            v-model="form.name"
-            placeholder="用户名"
-          >
+          <el-input class="inputbox" type="text" v-model="form.name" placeholder="用户名">
             <svg-icon slot="prefix" class="icon" icon-class="name" />
           </el-input>
         </el-form-item>
         <el-form-item prop="pass">
-          <el-input
-            class="inputbox"
-            type="password"
-            v-model="form.pass"
-            placeholder="密码"
-          >
+          <el-input class="inputbox" type="password" v-model="form.pass" placeholder="密码">
             <svg-icon slot="prefix" class="icon" icon-class="pass" />
           </el-input>
         </el-form-item>
@@ -168,9 +158,7 @@
           </div>
         </el-form-item>
       </el-form>
-      <el-button class="loginbtn" :loading="loading" @click="login"
-        >登 录</el-button
-      >
+      <el-button class="loginbtn" :loading="loading" @click="login">登 录</el-button>
     </div>
   </div>
 </template>

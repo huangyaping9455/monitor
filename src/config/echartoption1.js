@@ -1,4 +1,4 @@
-import echarts from "echarts";
+import * as echarts from "echarts";
 import * as maps from "@/assets/map/index";
 import { Array } from "core-js/es7";
 //柱状图颜色
@@ -519,12 +519,8 @@ export const geooption1 = (name, mapData) => {
         <div><span>月报警数：</span>${val.data.value}</div>
         <div><span>月未处理数：</span>${val.data.yueweichulishu}</div>
         <div><span>月处理率：</span>${val.data.yuechulilv}</div>
-        <div><span>车辆数：</span>${
-          val.data.cheliangshu ? val.data.cheliangshu : 0
-        }</div>
-        <div><span>企业数：</span>${
-          val.data.qiyeshu ? val.data.qiyeshu : 0
-        }</div>`
+        <div><span>车辆数：</span>${val.data.cheliangshu ? val.data.cheliangshu : 0}</div>
+        <div><span>企业数：</span>${val.data.qiyeshu ? val.data.qiyeshu : 0}</div>`
             : `<div>${val.name}</div>`;
         return html;
       },

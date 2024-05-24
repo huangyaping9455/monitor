@@ -10,54 +10,29 @@
     width="70%"
   >
     <div class="cehicleCard">
-      <span
-        :class="['cehicleCard_b', { isChange: ischanged === 0 }]"
-        @click="cardChange(0)"
+      <span :class="['cehicleCard_b', { isChange: ischanged === 0 }]" @click="cardChange(0)"
         >基本信息</span
       >
-      <span
-        :class="['cehicleCard_b', { isChange: ischanged === 1 }]"
-        @click="cardChange(1)"
+      <span :class="['cehicleCard_b', { isChange: ischanged === 1 }]" @click="cardChange(1)"
         >其他信息</span
       >
-      <span
-        :class="['cehicleCard_b', { isChange: ischanged === 2 }]"
-        @click="cardChange(2)"
+      <span :class="['cehicleCard_b', { isChange: ischanged === 2 }]" @click="cardChange(2)"
         >证件信息</span
       >
-      <span
-        :class="['cehicleCard_b', { isChange: ischanged === 3 }]"
-        @click="cardChange(3)"
+      <span :class="['cehicleCard_b', { isChange: ischanged === 3 }]" @click="cardChange(3)"
         >设备信息</span
       >
     </div>
     <div class="cehicleCard_form">
-      <el-form
-        ref="form"
-        :model="vehicleDetailList"
-        label-width="170px"
-        style="overflow:auto;"
-      >
+      <el-form ref="form" :model="vehicleDetailList" label-width="170px" style="overflow:auto;">
         <div
           v-show="ischanged === indexs"
-          v-for="(el, indexs) in [
-            checkList1,
-            checkList2,
-            checkList3,
-            checkList4,
-          ]"
+          v-for="(el, indexs) in [checkList1, checkList2, checkList3, checkList4]"
           :key="indexs"
           style="display:flex;flex-wrap:wrap;"
         >
-          <el-col
-            :span="item.span ? item.span : 8"
-            v-for="(item, index) in el"
-            :key="index"
-          >
-            <el-form-item
-              :label="item.label"
-              :prop="item.required == true ? item.prop : ''"
-            >
+          <el-col :span="item.span ? item.span : 8" v-for="(item, index) in el" :key="index">
+            <el-form-item :label="item.label" :prop="item.required == true ? item.prop : ''">
               <el-input
                 v-if="item.type === 'input'"
                 v-model="vehicleDetailList[item.prop]"
@@ -89,10 +64,7 @@
               <el-upload
                 v-if="item.type === 'upload'"
                 :action="
-                  '/api/blade-upload/upload/upload?fileId=' +
-                    item.prop +
-                    '&table=' +
-                    item.table
+                  '/api/blade-upload/upload/upload?fileId=' + item.prop + '&table=' + item.table
                 "
                 list-type="picture-card"
                 :on-success="
@@ -106,16 +78,30 @@
                   }
                 "
                 :file-list="
-                  !vehicleDetailList[item.prop] ||
-                  vehicleDetailList[item.prop] === ''
+                  !vehicleDetailList[item.prop] || vehicleDetailList[item.prop] === ''
                     ? []
                     : typeof vehicleDetailList[item.prop] !== typeof item.prop
                     ? vehicleDetailList[item.prop]
-                    : JSON.parse(vehicleDetailList[item.prop])
+                    : vehicleDetailList[item.prop].indexOf('[') != -1
+                    ? JSON.parse(vehicleDetailList[item.prop])
+                    : vehicleDetailList[item.prop]
                 "
                 :disabled="item.editDisabled ? item.editDisabled : false"
               >
                 <i class="el-icon-plus"></i>
+                <div
+                  slot="file"
+                  slot-scope="{ file }"
+                  class="el_upload_preview_list"
+                  style="display: inline;"
+                >
+                  <el-image
+                    :id="'image' + file.uid"
+                    class="el-upload-list__item-thumbnail"
+                    :src="file.url"
+                    :preview-src-list="[file.url]"
+                  />
+                </div>
               </el-upload>
               <el-input-number
                 v-if="item.type === 'number'"
@@ -267,9 +253,7 @@ export default {
     },
     // 获取字典
     async getDicData(val) {
-      let [err, data] = await dataApi.awaitWrap(
-        dataApi.getByCode({ code: val })
-      );
+      let [err, data] = await dataApi.awaitWrap(dataApi.getByCode({ code: val }));
       if (data) {
         return data;
       }

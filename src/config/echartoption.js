@@ -1,4 +1,4 @@
-import echarts from "echarts";
+import * as echarts from "echarts";
 import * as maps from "@/assets/map/index";
 /**
  * 折线图配置
