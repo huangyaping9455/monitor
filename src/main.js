@@ -25,6 +25,7 @@ Vue.use(VueAnimateNumber);
 
 Vue.use(BaiduMap, {
   ak: "yM7IUbMIzcPoqRXUsi3h6m9kreZR794W",
+  // ak: "ciO4Q8GUu9JdjoSDf3LzOihdzZzXNwpj",
 });
 // scorll
 Vue.use(vuescroll, {

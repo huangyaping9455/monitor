@@ -74,6 +74,7 @@
               position: relative;
               span {
                 color: #fff;
+                font-size: 1.6vmin;
               }
               .up {
                 position: absolute;
@@ -371,7 +372,7 @@
             </div>
           </div>
           <div class="c_map" v-loading="loading7" element-loading-background="rgba(0, 0, 0, 0.4)">
-            <sp-map :alarmDatas="mapDatas" />
+            <sp-map :alarmDatas="mapDatas" ref="mapss" />
           </div>
         </div>
         <div class="speed_r">
@@ -669,9 +670,7 @@ export default {
       this.loading5 = true;
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getByAlarm({
-          beginTime: dayjs(this.changeDate)
-            .subtract(1, "hours")
-            .format("YYYY-MM-DD HH:mm:ss"),
+          beginTime: dayjs(this.changeDate).format("YYYY-MM-DD 00:00:00"),
           endTime: dayjs(this.changeDate).format("YYYY-MM-DD HH:mm:ss"),
           deptId: this.userinfo.deptId,
         })
@@ -690,7 +689,9 @@ export default {
       this.loading7 = true;
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getByAlarm({
-          beginTime: dayjs(this.changeDate).format("YYYY-MM-DD 00:00:00"),
+          beginTime: dayjs(this.changeDate)
+            .subtract(1, "month")
+            .format("YYYY-MM-DD HH:mm:ss"),
           endTime: dayjs(this.changeDate).format("YYYY-MM-DD HH:mm:ss"),
           deptId: this.userinfo.deptId,
         })
@@ -701,6 +702,7 @@ export default {
           el.lat = el.latitude;
           return el;
         });
+        this.$refs.mapss.init(this.mapDatas);
         this.loading7 = false;
       } else {
         this.mapDatas = [];

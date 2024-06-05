@@ -71,9 +71,7 @@ export default {
     // 获取目录接口方法
     async getTree(deptId) {
       this.loading = true;
-      let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.directoryTree(deptId)
-      );
+      let [err, data] = await dataAnalysisApi.awaitWrap(dataAnalysisApi.directoryTree(deptId));
       this.loading = false;
       if (data) {
         if (data.length == 1) {
@@ -91,23 +89,23 @@ export default {
       this.$emit("on-view", params);
     },
     openDoc({ doc, shelf }) {
-      if (doc.name === "出车三检") {
-        this.$router.push({ path: "/daily/threeInspect" });
-      } else if (doc.name === "隐患台账") {
-        this.$router.push({ path: "/daily/hidDanger" });
-      } else if (doc.name === "隐患整治台帐") {
-        this.$router.push({
-          path: "/daily/hidDanger",
-          query: { zhenggaijd: 1 },
-        });
-      } else if (doc.name === "驾驶员违章") {
-        this.$router.push({ path: "/daily/violation" });
-      } else if (doc.name === "车辆事故") {
-        this.$router.push({ path: "/daily/accident" });
-      } else {
-        this.shelf = shelf;
-        this.doc = doc;
-      }
+      // if (doc.name === "出车三检") {
+      //   this.$router.push({ path: "/daily/threeInspect" });
+      // } else if (doc.name === "隐患台账") {
+      //   this.$router.push({ path: "/daily/hidDanger" });
+      // } else if (doc.name === "隐患整治台帐") {
+      //   this.$router.push({
+      //     path: "/daily/hidDanger",
+      //     query: { zhenggaijd: 1 },
+      //   });
+      // } else if (doc.name === "驾驶员违章") {
+      //   this.$router.push({ path: "/daily/violation" });
+      // } else if (doc.name === "车辆事故") {
+      //   this.$router.push({ path: "/daily/accident" });
+      // } else {
+      this.shelf = shelf;
+      this.doc = doc;
+      // }
     },
     closeDoc() {
       this.shelf = {};

@@ -201,8 +201,8 @@
     <div class="home-top">
       <!--  @click="AllQY" -->
       <div class="car-item" @click="AllQY">
-        <span>企业总数</span>
-        <span>{{ overview.qiyeshu }}</span>
+        <span>企业总数 / 个体总数</span>
+        <span>{{ overview.qiyeshu }} / {{ overview.getishu }}</span>
       </div>
       <div class="car-item" @click="linkto('/vehicle')">
         <span>车辆总数</span>

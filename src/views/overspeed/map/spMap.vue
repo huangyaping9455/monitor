@@ -1,57 +1,85 @@
 <template>
-  <baidu-map
-    :center="{ lng: 104.074, lat: 30.7005 }"
-    :zoom="8"
-    :scroll-wheel-zoom="true"
-    style="width: auto; height: 100%;"
-    @ready="handler"
-  >
-    <!-- //地图类型 -->
-    <bm-map-type :map-types="['BMAP_NORMAL_MAP']" anchor="BMAP_ANCHOR_TOP_LEFT"></bm-map-type>
-    <bml-heatmap
-      :data="alarmDatas"
-      :max="100"
-      :radius="20"
-      :gradient="{ 0.5: '#FF6D03', 0.8: 'rgb(225, 75, 0)', 0.9: '#ff0000' }"
-    ></bml-heatmap>
-    <bm-point-collection
-      :points="alarmDatas"
-      shape="BMAP_POINT_SHAPE_RHOMBUS"
-      color="red"
-      size="BMAP_POINT_SIZE_SMALL"
-    ></bm-point-collection>
-  </baidu-map>
+  <div style="height:100%;justify-content: center;position: relative" id="map" />
 </template>
 
 <script>
-import { BmlHeatmap } from "vue-baidu-map"; //引人
+import { HeatmapLayer, Scene } from "@antv/l7";
+import { BaiduMap } from "@antv/l7-maps";
 export default {
-  components: {
-    //注册
-    BmlHeatmap,
-  },
-  props: {
-    alarmDatas: Array,
-  },
   data() {
     return {
-      mapList: [],
+      scene: null,
     };
   },
-  mounted() {},
+  mounted() {
+    // this.scene = new Scene({
+    //   id: "map",
+    //   map: new BaiduMap({
+    //     center: [110.097892, 33.853662],
+    //     zoom: 5.056,
+    //     style: "344b005fd5b4220a55241c25e7733e81",
+    //     // 百度地图的logo是否可见，默认true
+    //     logoVisible: false,
+    //   }),
+    // });
+  },
   methods: {
-    handler({ BMap, map }) {
-      let mapStyle = { style: "midnight" };
-      map.setMapStyle(mapStyle);
+    init(list) {
+      let scene = new Scene({
+        id: "map",
+        map: new BaiduMap({
+          center: [110.097892, 33.853662],
+          zoom: 5.056,
+          style: "344b005fd5b4220a55241c25e7733e81",
+          // 百度地图的logo是否可见，默认true
+          logoVisible: false,
+        }),
+      });
+      scene.on("loaded", () => {
+        console.log(list);
+        const layer = new HeatmapLayer({
+          // autoFit: true,
+        })
+          .source(list, {
+            parser: {
+              type: "json",
+              x: "longitude",
+              y: "latitude",
+            },
+            transforms: [
+              {
+                type: "grid",
+                size: 10000,
+                field: "v",
+                method: "sum",
+              },
+            ],
+          })
+          .shape("square")
+          .style({
+            coverage: 1,
+            angle: 0,
+          })
+          .color(
+            "count",
+            [
+              "#8C1EB2",
+              "#8C1EB2",
+              "#DA05AA",
+              "#F0051A",
+              "#FF2A3C",
+              "#FF4818",
+              "#FF4818",
+              "#FF8B18",
+              "#F77B00",
+              "#ED9909",
+              "#ECC357",
+              "#EDE59C",
+            ].reverse()
+          );
+        scene.addLayer(layer);
+      });
     },
   },
 };
 </script>
-<style>
-.BMap_cpyCtrl {
-  display: none;
-}
-.anchorBL {
-  display: none;
-}
-</style>
