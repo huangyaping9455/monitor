@@ -86,6 +86,7 @@
             }
             .qiri {
               // margin-top: 25px;
+                font-size: 1.6vmin;
             }
           }
           .item:nth-child(2) {
@@ -197,6 +198,33 @@
           color: #b6f6f6;
         }
       }
+      
+      .btns {
+        margin-top: 14px;
+        display: flex;
+        .isbtn {
+          width: 4.2vmin;
+          height: 2.2vmin;
+          font-size: 1.4vmin;
+          border-radius: 5px;
+          // background-image: url("~@/assets/img/btn_1.png");
+          // background-size: 100% 100%;
+          border:1px solid #fff;
+        color: #fff;
+        font-weight:600;
+          text-align: center;
+          line-height: 1.6;
+          cursor: pointer;
+        }
+        .isbtn:first-of-type{
+          margin-right:10px;
+        }
+        .active {
+          // background-image: url("~@/assets/img/btn_2.png");
+          color: #06C0FC;
+          border:1px solid #06C0FC;
+        }
+      }
     }
   }
 
@@ -222,14 +250,51 @@
           <div class="l_top">
             <div class="card_h">
               <span>超速总统计</span>
+              <div class="btns">
+              <div @click="changeCar('carousel', 'chaosu')" :class="isbtn == 0 ? 'isbtn active' : 'isbtn'"
+                >
+                当月
+                </div
+              >
+              <div
+                @click="changeCar('carousel', 'chaosu2')"
+                :class="isbtn == 1 ? 'isbtn active' : 'isbtn'"
+                >
+                近7日
+                </div
+              >
             </div>
-            <div
-              class="card_chart"
-              v-loading="loading1"
-              element-loading-background="rgba(0, 0, 0, 0.4)"
+            </div>
+
+            <el-carousel
+              class="gpsCarousel"
+              style="height: calc(100%); width: 100%"
+              trigger="click"
+              height="100%"
+              ref="carousel"
+              arrow="always"
+              indicator-position="none"
+              @change="changeGps($event, 'isbtn')"
             >
-              <echart-base height="100%" width="100%" :chart-option="option1"></echart-base>
-            </div>
+              <el-carousel-item name="chaosu">
+                <div
+                  class="card_chart"
+                  v-loading="loading1"
+                  element-loading-background="rgba(0, 0, 0, 0.4)"
+                >
+                  <echart-base height="100%" width="100%" :chart-option="option1"></echart-base>
+                </div>
+              </el-carousel-item>
+              <el-carousel-item name="chaosu2">
+                <div
+                  class="card_chart"
+                  v-loading="loading8"
+                  element-loading-background="rgba(0, 0, 0, 0.4)"
+                >
+                  <echart-base height="100%" width="100%" :chart-option="option9"></echart-base>
+                </div>
+              </el-carousel-item>
+            </el-carousel>
           </div>
           <div class="l_bot">
             <div class="card_h">
@@ -423,7 +488,7 @@
             style="width: 100%"
             :header-cell-style="
               () => {
-                return 'background-color:#0D2037;color:#39BDE5;padding:8px 0';
+                return 'background-color:#0D2037;color:#39BDE5;padding:8px 0;font-size: 1.5vmin';
               }
             "
           >
@@ -463,7 +528,7 @@
               :show-header="false"
               :header-cell-style="
                 () => {
-                  return 'background-color:#0D2037;color:#39BDE5;padding:8px 0';
+                  return 'background-color:#0D2037;color:#39BDE5;padding:8px 0;font-size: 1.6vmin';
                 }
               "
             >
@@ -579,6 +644,7 @@ import {
   geooption6,
   geooption7,
   geooption8,
+  geooption9,
 } from "@/config/echartspeed.js";
 import SpMap from "./map/spMap";
 import dayjs from "dayjs";
@@ -594,6 +660,7 @@ export default {
       option6: {},
       option7: {},
       option8: {},
+      option9: {},
       loading1: false,
       loading2: false,
       loading3: false,
@@ -601,6 +668,7 @@ export default {
       loading5: false,
       loading6: false,
       loading7: false,
+      loading8: false,
       tableData: [],
       // 数据
       alarmDatas: [],
@@ -615,6 +683,7 @@ export default {
       changeDate: dayjs().format("YYYY-MM-DD HH:mm:ss"),
       leveList: { 1: "轻微超速", 2: "一般超速", 3: "严重超速" },
       newtime: "",
+      isbtn: 0,
     };
   },
   components: {
@@ -664,6 +733,12 @@ export default {
   methods: {
     setNewTime() {
       this.newtime = format(new Date(), "YYYY-MM-DD HH:mm:ss dddd");
+    },
+    changeCar(name, carName) {
+      this.$refs[name].setActiveItem(carName);
+    },
+    changeGps(e, type) {
+      this[type] = e;
     },
     //动态超速滚动数据及热力图数据
     async getByAlarm() {
@@ -828,16 +903,25 @@ export default {
       if (data) {
         // this.alarmSevenData = data;
         let datas = [];
+        let data1 = [];
+        let data2 = [];
+        let data3 = [];
+        let dates = [];
         if (data.length > 0) {
           data.forEach((val) => {
             datas.push(val.overspeedCount);
+            data1.push(val.overspeedLevel1Count);
+            data2.push(val.overspeedLevel2Count);
+            data3.push(val.overspeedLevel3Count);
+            dates.push(dayjs(val.calcDate).format("MM-DD"));
           });
         }
-        console.log(datas);
         this.option8 = geooption8(datas);
+        this.option9 = geooption9(data1,data2,data3,dates);
       } else {
         this.$message.error(err);
         this.option8 = geooption8([]);
+        this.option9 = geooption9([],[],[],[]);
       }
     },
     //今日数据
@@ -922,6 +1006,7 @@ export default {
     border-bottom: 1px solid #0a3774;
     color: #ffffff;
     padding: 8px 0;
+    font-size: 1.4vmin;
   }
   th.is-leaf {
     border-bottom: 1px solid #0a3774;

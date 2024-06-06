@@ -80,6 +80,87 @@ export const geooption1 = (data1, data2, data3) => {
     ],
   };
 };
+export const geooption9 = (data1, data2, data3, date) => {
+  return {
+    grid: {
+      top: "15%",
+      left: "3%",
+      right: "4%",
+      bottom: "3%",
+      containLabel: true,
+    },
+    tooltip: {
+      trigger: "axis",
+      axisPointer: {
+        type: "shadow",
+      },
+    },
+    legend: {
+      textStyle: {
+        color: "#fff",
+      },
+    },
+    xAxis: {
+      type: "category",
+      axisLabel: {
+        color: "#fefefe",
+      },
+      data: date,
+    },
+    yAxis: {
+      type: "value",
+      axisLabel: {
+        color: "#fefefe",
+      },
+      splitLine: {
+        show: true,
+        lineStyle: {
+          type: "dashed",
+          color: "#152C4C",
+        },
+      },
+    },
+    series: [
+      {
+        name: "轻微超速",
+        barWidth: 10, //柱状图 宽度
+        itemStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 0, color: "#06C0FC" },
+            { offset: 1, color: "#0292FF" },
+          ]),
+        },
+        data: data1,
+        type: "bar",
+      },
+      {
+        name: "一般超速",
+        barWidth: 10, //柱状图 宽度
+        barGap: 0.6, //柱子之间间距
+        itemStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 0, color: "#DBB005" },
+            { offset: 1, color: "#C29B00" },
+          ]),
+        },
+        data: data2,
+        type: "bar",
+      },
+      {
+        name: "严重超速",
+        barWidth: 10, //柱状图 宽度
+        itemStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 0, color: "#FF6D03" },
+            { offset: 1, color: "#BE3F05" },
+          ]),
+        },
+        data: data3,
+        type: "bar",
+      },
+    ],
+  };
+};
 export const geooption2 = (time, data) => {
   return {
     grid: {
