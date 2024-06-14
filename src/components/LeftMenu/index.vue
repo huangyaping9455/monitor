@@ -277,12 +277,12 @@
               <span>企业报警排名</span>
             </div>
           </el-menu-item>
-          <el-menu-item index="VehicleRank" @click="openMenu">
+          <!-- <el-menu-item index="VehicleRank" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="cheliang" />
               <span>车辆报警排名</span>
             </div>
-          </el-menu-item>
+          </el-menu-item> -->
           <!-- <el-menu-item index="YYSEnterprise" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yunyingshang" />
@@ -696,6 +696,20 @@
               <span>运营商查岗</span>
             </div>
           </el-menu-item> -->
+        </el-submenu>
+        <el-submenu index="14">
+          <template slot="title">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="kaohe" />
+              <span>执法线索</span>
+            </div>
+          </template>
+          <el-menu-item index="VehicleRank" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="cheliang" />
+              <span>车辆违规线索</span>
+            </div>
+          </el-menu-item>
         </el-submenu>
       </el-menu>
     </scroll>

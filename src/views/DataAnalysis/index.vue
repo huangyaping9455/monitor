@@ -246,11 +246,7 @@
           v-loading="loading1"
           element-loading-background="rgba(0, 0, 0, 0.4)"
         >
-          <echart-base
-            height="100%"
-            width="100%"
-            :chart-option="chartOption.option3"
-          ></echart-base>
+          <echart-base height="100%" width="100%" :chart-option="chartOption.option3"></echart-base>
         </div>
         <div
           class="home-l-bottom"
@@ -286,22 +282,14 @@
           </div>
         </div>
       </div>
-      <div
-        class="home-c-c"
-        v-loading="loading"
-        element-loading-background="rgba(0, 0, 0, 0.4)"
-      >
+      <div class="home-c-c" v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.4)">
         <echart-base
           @click="echartclick"
           height="100%"
           width="100%"
           :chart-option="chartOption.option4"
         ></echart-base>
-        <el-button
-          class="ptevbtn"
-          v-show="cengji > 0 && !loading"
-          size="mini"
-          @click="turnBack"
+        <el-button class="ptevbtn" v-show="cengji > 0 && !loading" size="mini" @click="turnBack"
           >返回</el-button
         >
       </div>
@@ -321,11 +309,7 @@
               <span class="tdc">名称</span>
               <span class="tdr">报警数(次)</span>
             </div>
-            <vueSeamlessScroll
-              :data="adressList"
-              :class-option="classOption"
-              class="wrap"
-            >
+            <vueSeamlessScroll :data="adressList" :class-option="classOption" class="wrap">
               <div class="tr" v-for="(item, index) in adressList" :key="index">
                 <p class="tdl">
                   <span>{{ index + 1 }}</span>
@@ -355,16 +339,8 @@
               <span class="tdr">单车报警比</span>
               <span class="tdr">报警数(次)</span>
             </div>
-            <vueSeamlessScroll
-              :data="enterpriseList"
-              :class-option="classOption"
-              class="wrap"
-            >
-              <div
-                class="tr"
-                v-for="(item, index) in enterpriseList"
-                :key="index"
-              >
+            <vueSeamlessScroll :data="enterpriseList" :class-option="classOption" class="wrap">
+              <div class="tr" v-for="(item, index) in enterpriseList" :key="index">
                 <p class="tdl">
                   <span>{{ index + 1 }}</span>
                 </p>
@@ -386,27 +362,11 @@
       </div>
     </div>
     <div class="home-footer">
-      <div
-        class="home-f-l"
-        v-loading="loading4"
-        element-loading-background="rgba(0, 0, 0, 0.4)"
-      >
-        <echart-base
-          height="100%"
-          width="100%"
-          :chart-option="chartOption.option1"
-        ></echart-base>
+      <div class="home-f-l" v-loading="loading4" element-loading-background="rgba(0, 0, 0, 0.4)">
+        <echart-base height="100%" width="100%" :chart-option="chartOption.option1"></echart-base>
       </div>
-      <div
-        class="home-f-r"
-        v-loading="loading4"
-        element-loading-background="rgba(0, 0, 0, 0.4)"
-      >
-        <echart-base
-          height="100%"
-          width="100%"
-          :chart-option="chartOption.option2"
-        ></echart-base>
+      <div class="home-f-r" v-loading="loading4" element-loading-background="rgba(0, 0, 0, 0.4)">
+        <echart-base height="100%" width="100%" :chart-option="chartOption.option2"></echart-base>
       </div>
     </div>
   </div>
@@ -417,12 +377,7 @@ import echartBase from "@/components/EChart/index";
 import allHeader from "@/components/Header/index";
 import dataAnalysisApi from "@/api/modules/dataAnalysis";
 import vueSeamlessScroll from "vue-seamless-scroll";
-import {
-  baroption,
-  pieoption,
-  barcolor,
-  geooption1,
-} from "@/config/echartoption1";
+import { baroption, pieoption, barcolor, geooption1 } from "@/config/echartoption1";
 import { mapGetters } from "vuex";
 export default {
   data() {
@@ -529,16 +484,23 @@ export default {
     // 获取报警处理情况(月)
     async getZFBJMonthList(deptId, type = 0, areaName = "", isxiazhuan = true) {
       this.loading = true;
-      if (type == 0) this.cengji = 0;
+      if (type == 0) {
+        type = type + 1;
+        this.cengji = 0;
+      }
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getZFBJMonthList({
           deptId: deptId,
           type: type,
-          size: this.cengji,
+          size: this.cengji + 1,
         })
       );
       this.loading = false;
       if (data) {
+        if (data && data.level && data.level == 3 && this.cengji < 2) {
+          type = 0;
+          this.cengji--;
+        }
         // 判断下钻有无数据
         if (type > 0 && data.xjlist.length <= 0 && isxiazhuan) {
           this.cengji--;
@@ -606,11 +568,18 @@ export default {
         //   },
         // ];
         this.mapData = mapData;
-        this.areaName = areaName ? areaName : this.userinfo.diqu;
-        this.chartOption.option4 = geooption1(
-          areaName ? areaName : this.userinfo.diqu,
-          mapData
-        );
+        // this.areaName = areaName ? areaName : this.userinfo.diqu;
+        this.areaName = data.areaname;
+        this.areaName = areaName
+          ? areaName === "重庆"
+            ? "重庆市"
+            : areaName
+          : this.userinfo.diqu === "重庆市"
+          ? "China"
+          : data.areaname
+          ? data.areaname
+          : this.userinfo.diqu;
+        this.chartOption.option4 = geooption1(this.areaName, mapData);
         // this.ptevbtnShow = false;
       } else {
         this.$message.error(err);

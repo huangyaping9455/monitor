@@ -184,34 +184,15 @@
       <div class="main-r">
         <!-- 操作按钮 -->
         <div class="btns">
-          <el-button
-            @click="changeSearch"
-            size="mini"
-            class="btn"
-            icon="el-icon-search"
+          <el-button @click="changeSearch" size="mini" class="btn" icon="el-icon-search"
             >查询</el-button
           >
-          <el-button
-            size="mini"
-            :loading="downloading"
-            @click="downtable"
-            class="btn"
-          >
-            <svg-icon
-              class="icon"
-              v-show="!downloading"
-              icon-class="down"
-            />下载
+          <el-button size="mini" :loading="downloading" @click="downtable" class="btn">
+            <svg-icon class="icon" v-show="!downloading" icon-class="down" />下载
           </el-button>
         </div>
         <!-- 查询 -->
-        <el-form
-          v-show="searchshow"
-          :inline="true"
-          size="mini"
-          :model="form"
-          class="search"
-        >
+        <el-form v-show="searchshow" :inline="true" size="mini" :model="form" class="search">
           <el-form-item label="时间">
             <el-col :span="11" class="timetype">
               <el-form-item>
@@ -240,30 +221,16 @@
             </el-col>
           </el-form-item>
           <el-form-item label="企业名称">
-            <el-input
-              v-model="form.deptName"
-              placeholder="请输入企业名称"
-              clearable
-            ></el-input>
+            <el-input v-model="form.deptName" placeholder="请输入企业名称" clearable></el-input>
           </el-form-item>
           <el-form-item label="车牌号">
-            <el-input
-              v-model="form.chepaihao"
-              placeholder="输入车牌号"
-              clearable
-            ></el-input>
+            <el-input v-model="form.chepaihao" placeholder="输入车牌号" clearable></el-input>
           </el-form-item>
           <el-form-item label="营运类型" clearable>
-            <el-input
-              v-model="form.yingyunleixing"
-              placeholder="输入营运类型"
-              clearable
-            ></el-input>
+            <el-input v-model="form.yingyunleixing" placeholder="输入营运类型" clearable></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" class="sbtn" @click="getZFCLBJTJPM(1)"
-              >搜索</el-button
-            >
+            <el-button type="primary" class="sbtn" @click="getZFCLBJTJPM(1)">搜索</el-button>
           </el-form-item>
         </el-form>
         <!-- mainTable -->
@@ -279,9 +246,7 @@
         >
           <el-table-column type="index" label="排名" width="50" align="center">
             <template scope="scope">
-              <span>{{
-                (current - 1) * pagesizeactive + scope.$index + 1
-              }}</span>
+              <span>{{ (current - 1) * pagesizeactive + scope.$index + 1 }}</span>
             </template>
           </el-table-column>
           <el-table-column
@@ -414,22 +379,13 @@
           </div>
           <div class="page-r">
             <span class="el-icon-d-arrow-left" @click="getZFCLBJTJPM(1)"></span>
-            <span
-              class="el-icon-arrow-left"
-              @click="getZFCLBJTJPM(current - 1)"
-            ></span>
-            <span
-              class="num"
-              v-show="current - 2 > 0"
-              @click="getZFCLBJTJPM(current - 2)"
-              >{{ current - 2 }}</span
-            >
-            <span
-              class="num"
-              v-show="current - 1 > 0"
-              @click="getZFCLBJTJPM(current - 1)"
-              >{{ current - 1 }}</span
-            >
+            <span class="el-icon-arrow-left" @click="getZFCLBJTJPM(current - 1)"></span>
+            <span class="num" v-show="current - 2 > 0" @click="getZFCLBJTJPM(current - 2)">{{
+              current - 2
+            }}</span>
+            <span class="num" v-show="current - 1 > 0" @click="getZFCLBJTJPM(current - 1)">{{
+              current - 1
+            }}</span>
             <span class="num active">{{ current }}</span>
             <span
               class="num"
@@ -443,14 +399,8 @@
               @click="getZFCLBJTJPM(current + 2)"
               >{{ current + 2 }}</span
             >
-            <span
-              class="el-icon-arrow-right"
-              @click="getZFCLBJTJPM(current + 1)"
-            ></span>
-            <span
-              class="el-icon-d-arrow-right"
-              @click="getZFCLBJTJPM(pageTotal)"
-            ></span>
+            <span class="el-icon-arrow-right" @click="getZFCLBJTJPM(current + 1)"></span>
+            <span class="el-icon-d-arrow-right" @click="getZFCLBJTJPM(pageTotal)"></span>
             <div class="pagesize">
               每页显示
               <el-select
@@ -500,14 +450,8 @@ export default {
       pagesizeactive: 20, //当前每页显示
       enterpriseListH: "calc(100vh - 13.5714rem)",
       form: {
-        begintime: format(
-          new Date().getTime() - 24 * 60 * 60 * 1000,
-          "YYYY-MM-DD"
-        ),
-        endtime: format(
-          new Date().getTime() - 24 * 60 * 60 * 1000,
-          "YYYY-MM-DD"
-        ),
+        begintime: format(new Date().getTime() - 24 * 60 * 60 * 1000, "YYYY-MM-DD"),
+        endtime: format(new Date().getTime() - 24 * 60 * 60 * 1000, "YYYY-MM-DD"),
         deptName: "",
         chepaihao: "",
         yingyunleixing: "",
@@ -520,8 +464,8 @@ export default {
         //   return time > nowData;
         // },
       },
-      orderColumns: "", //排序字段
-      order: "", //正序/倒序
+      orderColumns: "baojingzongshu", //排序字段
+      order: "1", //正序/倒序
       isorder: "",
     };
   },

@@ -65,7 +65,7 @@ export const geooption = (name, mapData) => {
         },
       },
       viewControl: {
-        distance: name == "China" ? 88 : 120,
+        distance: name == "China" ? 88 : 200,
         // alpha:name=='China'?35:20,
         // beta:name=='China'?-25:0,
         // distance:120,
