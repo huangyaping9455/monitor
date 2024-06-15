@@ -183,53 +183,64 @@
         搜索
       </el-button>
     </div>
-    <baidu-map
-      class="baidumap"
-      :center="center"
-      :zoom="zoom"
-      :scroll-wheel-zoom="true"
-      v-loading="loading"
-      element-loading-background="rgba(0, 0, 0, 0.8)"
-    >
-      <bm-scale anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-scale>
-      <bm-map-type
-        :map-types="['BMAP_NORMAL_MAP', 'BMAP_HYBRID_MAP']"
-        anchor="BMAP_ANCHOR_TOP_LEFT"
-      ></bm-map-type>
-      <bm-polyline
-        :path="path"
-        stroke-color="red"
-        :stroke-opacity="1"
-        :stroke-weight="4"
-      ></bm-polyline>
-      <bm-marker :top="true" :position="startline">
-        <bm-label
-          :content="`起点 ${time.start}` + `<br>` + `地址：${qidian}`"
-          :labelStyle="labelOpt.style"
-          :offset="{ width: 10, height: 30 }"
-        />
-      </bm-marker>
-      <bm-marker :top="true" :position="endline">
-        <bm-label
-          :content="`终点 ${time.end}` + `<br>` + `地址：${zhongdian}`"
-          :labelStyle="{ color: 'red', fontSize: '12px' }"
-          :offset="{ width: 10, height: 30 }"
-        />
-      </bm-marker>
-      <bml-lushu
-        :path="path"
-        :icon="icons"
-        :play="bmllushus.play"
-        :enableRotation="true"
-        :speed="3000"
-        :autoView="true"
-        :rotation="true"
+    <div class="map-box">
+      <!-- <div class="map-style">
+        <span :class="['map-btn', mapType == 1 ? 'act' : '']" @click="mapType = 1">百度</span>
+        <span :class="['map-btn', mapType == 2 ? 'act' : '']" @click="mapType = 2">高德</span>
+      </div> -->
+      <baidu-map
+        class="baidumap"
+        :center="center"
+        :zoom="zoom"
+        :scroll-wheel-zoom="true"
+        v-loading="loading"
+        element-loading-background="rgba(0, 0, 0, 0.8)"
       >
-      </bml-lushu>
-    </baidu-map>
-    <div class="play-box">
+        <bm-scale anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-scale>
+        <bm-map-type
+          :map-types="['BMAP_NORMAL_MAP', 'BMAP_HYBRID_MAP']"
+          anchor="BMAP_ANCHOR_TOP_LEFT"
+        ></bm-map-type>
+        <bm-polyline
+          :path="path"
+          stroke-color="red"
+          :stroke-opacity="1"
+          :stroke-weight="4"
+        ></bm-polyline>
+        <bm-marker :top="true" :position="startline">
+          <bm-label
+            :content="`起点 ${time.start}` + `<br>` + `地址：${qidian}`"
+            :labelStyle="labelOpt.style"
+            :offset="{ width: 10, height: 30 }"
+          />
+        </bm-marker>
+        <bm-marker :top="true" :position="endline">
+          <bm-label
+            :content="`终点 ${time.end}` + `<br>` + `地址：${zhongdian}`"
+            :labelStyle="{ color: 'red', fontSize: '12px' }"
+            :offset="{ width: 10, height: 30 }"
+          />
+        </bm-marker>
+        <bml-lushu
+          :path="path"
+          :icon="icons"
+          :play="bmllushus.play"
+          :enableRotation="true"
+          :speed="3000"
+          :autoView="true"
+          :rotation="true"
+        >
+        </bml-lushu>
+      </baidu-map>
+      <!-- <div id="containerss" style="height: 200px;" /> -->
+    </div>
+    <div class="play-box" v-show="mapType == 1">
       <img v-show="!bmllushus.play" src="@/assets/img/paly.png" @click="bmllushus.play = true" />
       <img v-show="bmllushus.play" src="@/assets/img/pause.png" @click="bmllushus.play = false" />
+    </div>
+    <div class="play-box" v-show="mapType == 2">
+      <img v-show="!amapPlay" src="@/assets/img/paly.png" @click="startAnimation" />
+      <img v-show="amapPlay" src="@/assets/img/pause.png" @click="pauseAnimation" />
     </div>
     <div class="vehdetail">
       <div class="detail_list">
@@ -385,18 +396,9 @@ export default {
     BmlLushu,
     echartBase,
   },
-  props: {
-    visible: {
-      type: Boolean,
-      default: false,
-    },
-    vehicleoption: {
-      type: Object,
-      default: {},
-    },
-  },
   data() {
     return {
+      dialogVisible: false,
       loading: false,
       cheliang: {},
       center: { lng: 116.404, lat: 39.915 },
@@ -431,29 +433,20 @@ export default {
       alarmChartData: [],
       scale: [],
       trackData: [],
+      mapType: 1,
+      lineArr: [],
+      amap: null,
+      amarker: null,
+      amapPlay: false,
+      vehicleoption: {},
     };
   },
   computed: {
-    dialogVisible: {
-      get: function() {
-        return this.visible;
-      },
-      set: function(newValue) {
-        this.$emit("close");
-      },
-    },
     alarmChartNew() {
       return alarmChartNew(this.alarmChartData, this.scale);
     },
   },
   watch: {
-    visible(newvisible) {
-      if (newvisible) {
-        this.loading = true;
-        this.getData();
-        this.getVehTravel();
-      }
-    },
     dateNow(val) {
       this.begintime = dayjs(val).format("YYYY-MM-DD 00:00:00");
       this.endtime = dayjs(val).format("YYYY-MM-DD 23:59:59");
@@ -463,6 +456,20 @@ export default {
     },
   },
   methods: {
+    open(vehicleoption) {
+      this.vehicleoption = vehicleoption;
+      this.loading = true;
+      this.amapPlay = false;
+      this.mapType = 1;
+      this.amap = new AMap.Map("containerss", {
+        resizeEnable: true, // 窗口大小调整
+        center: [87.591802, 43.82712], // 中心 firstArr: [116.478935, 39.997761],
+        zoom: 15,
+      });
+      this.dialogVisible = true;
+      this.getData();
+      this.getVehTravel();
+    },
     closeChange() {
       this.dialogVisible = false;
       this.$emit("changeclose");
@@ -507,7 +514,31 @@ export default {
             // 新的
             this.alarmChartData.push(data[i].Velocity);
             this.scale.push(data[i].gpsTime);
+            this.lineArr.push([data[i].longitude, data[i].latitude]);
           }
+
+          // // 添加maker 高德
+          // this.amap.setCenter(this.lineArr[0]);
+          // this.amarker = new AMap.Marker({
+          //   map: this.amap,
+          //   position: this.lineArr[0],
+          //   icon: "https://webapi.amap.com/images/car.png",
+          //   offset: new AMap.Pixel(-26, -13), // 调整图片偏移
+          //   autoRotation: true, // 自动旋转
+          //   angle: -90, // 图片旋转角度
+          // });
+          // // 绘制还未经过的路线
+          // this.polyline = new AMap.Polyline({
+          //   map: this.amap,
+          //   path: this.lineArr,
+          //   showDir: true,
+          //   strokeColor: "#28F", // 线颜色--蓝色
+          //   // strokeOpacity: 1,     //线透明度
+          //   strokeWeight: 10, // 线宽
+          //   // strokeStyle: "solid"  //线样式
+          //   lineJoin: "round", // 折线拐点的绘制样式
+          // });
+
           this.center = {
             lng: data[0].longitude,
             lat: data[0].latitude,
@@ -589,6 +620,62 @@ export default {
         return data.roadName;
       }
     },
+    // 初始化轨迹
+    initroad() {
+      // 创建一个 icon
+      var startIcon = new AMap.Icon({
+        size: new AMap.Size(25, 34),
+        image: "//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png",
+        imageSize: new AMap.Size(135, 40),
+        imageOffset: new AMap.Pixel(-95, -3),
+      });
+      // 创建一个 icon
+      var endIcon = new AMap.Icon({
+        size: new AMap.Size(25, 34),
+        image: "//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png",
+        imageSize: new AMap.Size(135, 40),
+        imageOffset: new AMap.Pixel(-95, -3),
+      });
+      // 将 icon 传入 marker(起始标记)
+      var startMarker = new AMap.Marker({
+        position: this.lineArr[0],
+        icon: startIcon,
+        offset: new AMap.Pixel(-13, -30),
+      });
+      // 将 icon 传入 marker
+      var endMarker = new AMap.Marker({
+        // position: new AMap.LngLat(116.45, 39.93),
+        position: this.lineArr[this.lineArr.length - 1],
+        icon: endIcon,
+        offset: new AMap.Pixel(-13, -30),
+      });
+      // 将 markers 添加到地图
+      this.amap.add([startMarker, endMarker]);
+
+      // 绘制路过了的轨迹
+      var passedPolyline = new AMap.Polyline({
+        map: this.amap,
+        strokeColor: "#AF5", // 线颜色-绿色
+        // path: lineArr.reverse(),
+        // strokeOpacity: 1,     //线透明度
+        strokeWeight: 6, // 线宽
+        // strokeStyle: "solid"  //线样式
+      });
+      this.amarker.on("moving", (e) => {
+        passedPolyline.setPath(e.passedPath);
+      });
+      this.amap.setFitView(); // 合适的视口
+    },
+    // 高德 播放轨迹
+    startAnimation() {
+      this.amapPlay = true;
+      this.amarker.moveAlong(this.lineArr, 2000);
+    },
+    // 高德 停止轨迹
+    pauseAnimation() {
+      this.amapPlay = false;
+      this.amarker.pauseMove();
+    },
   },
 };
 </script>
@@ -609,9 +696,33 @@ export default {
     }
   }
 }
-.baidumap {
-  .BMap_Marker:nth-of-type(n + 4) {
-    display: none;
+.map-box {
+  position: relative;
+  .map-style {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    span {
+      padding: 2px 6px;
+      border: 1px solid #1f71ff;
+      background-color: #fff;
+      color: #333;
+      border-radius: 5px;
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+    .act {
+      background-color: #1f71ff;
+      color: #fff;
+    }
+  }
+  .baidumap {
+    .BMap_Marker:nth-of-type(n + 4) {
+      display: none;
+    }
   }
 }
 .mainTable th.is-leaf {

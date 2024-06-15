@@ -674,15 +674,12 @@ export default {
     // 政府-超速报警次数、疲劳报警总数、夜间行驶报警次数、异常报警次数
     async getTwo(deptId, type = 0, areaName = "", isxiazhuan = true) {
       this.load.load = true;
-      if (type == 0) {
-        type = type + 1;
-        this.cengji = 0;
-      }
+      if (type == 0) this.cengji = 0;
       let [err, data] = await homeApi.awaitWrap(
         homeApi.getTwo({
           deptId: deptId,
           type: type,
-          size: this.cengji + 1,
+          size: this.cengji,
         })
       );
       let _this = this;
@@ -692,14 +689,10 @@ export default {
           _this.$message.error(err);
         } else {
           let geooption = require("@/config/mapoption");
-          if (data && data.level && data.level == 3 && _this.cengji < 2) {
-            type = 0;
-            _this.cengji--;
-          }
           // 判断下钻有无数据
           if (type > 0 && data.xjlist.length <= 0 && isxiazhuan) {
+            this.showCarMap = true;
             _this.cengji--;
-            _this.showCarMap = true;
             return false;
           }
           // 判断是否下钻  单击
@@ -725,8 +718,6 @@ export default {
                 name: data.areaname === "重庆市" ? "重庆" : data.areaname,
                 value: data.baojingcishu,
                 zhengfuid: data.zhengfuid,
-                cheliangshu: data.cheliangshu,
-                qiyeshu: data.qiyeshu,
               },
             ];
           } else {
@@ -735,23 +726,21 @@ export default {
                 name: el.areaname,
                 value: el.baojingcishu,
                 zhengfuid: el.zhengfuid,
-                cheliangshu: el.cheliangshu,
-                qiyeshu: el.qiyeshu,
               };
             });
           }
           _this.mapData = mapData;
-          _this.areaName = data.areaname;
-          _this.areaName = areaName
-            ? areaName === "重庆"
-              ? "重庆市"
-              : areaName
-            : _this.userinfo.diqu === "重庆市"
-            ? "China"
-            : data.areaname
-            ? data.areaname
-            : _this.userinfo.diqu;
-          _this.chartOption.option9 = geooption.geooption(_this.areaName, mapData);
+          _this.areaName = areaName ? areaName : _this.userinfo.diqu;
+          _this.chartOption.option9 = geooption.geooption(
+            areaName
+              ? areaName === "重庆"
+                ? "重庆市"
+                : areaName
+              : _this.userinfo.diqu === "重庆市"
+              ? "China"
+              : _this.userinfo.diqu,
+            mapData
+          );
         }
       }, 200);
     },

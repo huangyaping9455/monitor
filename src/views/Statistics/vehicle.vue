@@ -173,30 +173,15 @@
     <!-- 操作按钮 -->
     <!-- <operation-group :option="operationOption" @operationclick="operationclick"></operation-group> -->
     <div class="btns">
-      <el-button
-        @click="changeSearch"
-        size="mini"
-        class="btn"
-        icon="el-icon-search"
+      <el-button @click="changeSearch" size="mini" class="btn" icon="el-icon-search"
         >查询</el-button
       >
-      <el-button
-        size="mini"
-        :loading="downloading"
-        @click="getList"
-        class="btn"
-      >
+      <el-button size="mini" :loading="downloading" @click="getList" class="btn">
         <svg-icon class="icon" v-show="!downloading" icon-class="down" />下载
       </el-button>
     </div>
     <!-- 查询 -->
-    <el-form
-      v-show="searchshow"
-      :inline="true"
-      size="mini"
-      :model="from"
-      class="search"
-    >
+    <el-form v-show="searchshow" :inline="true" size="mini" :model="from" class="search">
       <el-form-item label="所属企业:">
         <el-input
           v-model="from.deptname"
@@ -240,10 +225,7 @@
       <el-form-item label="使用性质:">
         <el-select v-model="from.shiyongxingzhi" class="search-input">
           <el-option label="全部" value=""></el-option>
-          <el-option
-            label="道路危险货物运输"
-            value="道路危险货物运输"
-          ></el-option>
+          <el-option label="道路危险货物运输" value="道路危险货物运输"></el-option>
           <el-option label="道路旅客运输" value="道路旅客运输"></el-option>
           <el-option label="道路货物运输" value="道路货物运输"></el-option>
           <el-option label="出租车" value="出租车"></el-option>
@@ -251,12 +233,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="运营商:">
-        <el-select
-          v-model="from.yunyingshang"
-          class="search-input"
-          filterable
-          clearable
-        >
+        <el-select v-model="from.yunyingshang" class="search-input" filterable clearable>
           <el-option
             :label="item.yunyingshangmingcheng"
             :value="item.yunyingshangmingcheng"
@@ -285,24 +262,12 @@
       border
     >
       <el-table-column prop="areaName" label="所属地区"></el-table-column>
-      <el-table-column
-        prop="yunguanmingcheng"
-        label="所属交通局"
-      ></el-table-column>
-      <el-table-column
-        prop="DeptName"
-        label="所属企业"
-        width="270"
-      ></el-table-column>
+      <el-table-column prop="yunguanmingcheng" label="所属交通局"></el-table-column>
+      <el-table-column prop="DeptName" label="所属企业" width="270"></el-table-column>
       <el-table-column label="车辆牌照">
         <template slot-scope="scope">
           <span>{{ scope.row.vehicleNo }}</span>
-          <el-tooltip
-            class="item"
-            content="轨迹"
-            placement="top"
-            effect="light"
-          >
+          <el-tooltip class="item" content="轨迹" placement="top" effect="light">
             <img
               src="@/assets/img/huifang.png"
               @click="getTraject(scope.row)"
@@ -326,50 +291,24 @@
       </div>
       <div class="page-r">
         <span class="el-icon-d-arrow-left" @click="getVehicleList(1)"></span>
-        <span
-          class="el-icon-arrow-left"
-          @click="getVehicleList(current - 1)"
-        ></span>
-        <span
-          class="num"
-          v-show="current - 2 > 0"
-          @click="getVehicleList(current - 2)"
-          >{{ current - 2 }}</span
-        >
-        <span
-          class="num"
-          v-show="current - 1 > 0"
-          @click="getVehicleList(current - 1)"
-          >{{ current - 1 }}</span
-        >
+        <span class="el-icon-arrow-left" @click="getVehicleList(current - 1)"></span>
+        <span class="num" v-show="current - 2 > 0" @click="getVehicleList(current - 2)">{{
+          current - 2
+        }}</span>
+        <span class="num" v-show="current - 1 > 0" @click="getVehicleList(current - 1)">{{
+          current - 1
+        }}</span>
         <span class="num active">{{ current }}</span>
-        <span
-          class="num"
-          v-show="current + 1 <= pageTotal"
-          @click="getVehicleList(current + 1)"
-          >{{ current + 1 }}</span
-        >
-        <span
-          class="num"
-          v-show="current + 2 <= pageTotal"
-          @click="getVehicleList(current + 2)"
-          >{{ current + 2 }}</span
-        >
-        <span
-          class="el-icon-arrow-right"
-          @click="getVehicleList(current + 1)"
-        ></span>
-        <span
-          class="el-icon-d-arrow-right"
-          @click="getVehicleList(pageTotal)"
-        ></span>
+        <span class="num" v-show="current + 1 <= pageTotal" @click="getVehicleList(current + 1)">{{
+          current + 1
+        }}</span>
+        <span class="num" v-show="current + 2 <= pageTotal" @click="getVehicleList(current + 2)">{{
+          current + 2
+        }}</span>
+        <span class="el-icon-arrow-right" @click="getVehicleList(current + 1)"></span>
+        <span class="el-icon-d-arrow-right" @click="getVehicleList(pageTotal)"></span>
         <el-input class="jump" v-model="jumpNum" size="mini">
-          <el-button
-            slot="append"
-            @click="getVehicleList(jumpNum)"
-            class="jumpbtn"
-            >跳转</el-button
-          >
+          <el-button slot="append" @click="getVehicleList(jumpNum)" class="jumpbtn">跳转</el-button>
         </el-input>
         <div class="pagesize">
           每页显示
@@ -389,13 +328,7 @@
         </div>
       </div>
     </div>
-    <trajectory
-      :visible="visible"
-      key="index"
-      :vehicleoption="vehicleoption"
-      @close="visible = false"
-      @changeclose="changeTwo"
-    ></trajectory>
+    <trajectory ref="traje"></trajectory>
   </div>
 </template>
 
@@ -430,9 +363,9 @@ export default {
         yunyingshang: "",
       },
       options: [],
-      visible: false,
       vehicleoption: {},
       yunyingshangList: [],
+      amap: null,
     };
   },
   mounted() {
@@ -576,11 +509,7 @@ export default {
     },
     // 轨迹
     getTraject(row) {
-      this.index++;
-      this.visible = true;
-      this.vehicleoption = {
-        ...row,
-      };
+      this.$refs.traje.open({ ...row });
     },
     //处理下载数据
     formatJson(filterVal, jsonData) {

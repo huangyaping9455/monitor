@@ -71,9 +71,7 @@ export default {
     // 获取目录接口方法
     async getTree(deptId) {
       this.loading = true;
-      let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.directoryTree(deptId)
-      );
+      let [err, data] = await dataAnalysisApi.awaitWrap(dataAnalysisApi.directoryTree(deptId));
       this.loading = false;
       if (data) {
         if (data.length == 1) {
