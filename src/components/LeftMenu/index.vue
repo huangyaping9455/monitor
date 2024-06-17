@@ -710,6 +710,12 @@
               <span>车辆违规线索</span>
             </div>
           </el-menu-item>
+          <el-menu-item index="home">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="cheliang" />
+              <span>自治区通报线索</span>
+            </div>
+          </el-menu-item>
         </el-submenu>
       </el-menu>
     </scroll>
