@@ -184,11 +184,12 @@
       </el-button>
     </div>
     <div class="map-box">
-      <!-- <div class="map-style">
+      <div class="map-style">
         <span :class="['map-btn', mapType == 1 ? 'act' : '']" @click="mapType = 1">百度</span>
         <span :class="['map-btn', mapType == 2 ? 'act' : '']" @click="mapType = 2">高德</span>
-      </div> -->
+      </div>
       <baidu-map
+        v-show="mapType == 1"
         class="baidumap"
         :center="center"
         :zoom="zoom"
@@ -232,7 +233,7 @@
         >
         </bml-lushu>
       </baidu-map>
-      <!-- <div id="containerss" style="height: 200px;" /> -->
+      <div v-show="mapType == 2" id="containerss" class="baidumap" />
     </div>
     <div class="play-box" v-show="mapType == 1">
       <img v-show="!bmllushus.play" src="@/assets/img/paly.png" @click="bmllushus.play = true" />
@@ -401,7 +402,7 @@ export default {
       dialogVisible: false,
       loading: false,
       cheliang: {},
-      center: { lng: 116.404, lat: 39.915 },
+      center: { lng: 106.26666, lat: 38.46667 },
       startline: { lng: 116.404, lat: 39.915 },
       endline: { lng: 116.404, lat: 39.915 },
       kaishiline: { lng: "", lat: "" },
@@ -461,14 +462,18 @@ export default {
       this.loading = true;
       this.amapPlay = false;
       this.mapType = 1;
-      this.amap = new AMap.Map("containerss", {
-        resizeEnable: true, // 窗口大小调整
-        center: [87.591802, 43.82712], // 中心 firstArr: [116.478935, 39.997761],
-        zoom: 15,
-      });
       this.dialogVisible = true;
       this.getData();
       this.getVehTravel();
+      let that = this;
+      this.$nextTick(() => {
+        that.amap = new AMap.Map("containerss", {
+          resizeEnable: true, // 窗口大小调整
+          center: [106.26666, 38.466667], // 中心 firstArr: [116.478935, 39.997761],
+          zoom: 15,
+        });
+        that.initroad();
+      });
     },
     closeChange() {
       this.dialogVisible = false;
@@ -514,31 +519,61 @@ export default {
             // 新的
             this.alarmChartData.push(data[i].Velocity);
             this.scale.push(data[i].gpsTime);
-            this.lineArr.push([data[i].longitude, data[i].latitude]);
+            this.lineArr.push(this.bd_decrypt(data[i].longitude, data[i].latitude));
           }
-
-          // // 添加maker 高德
-          // this.amap.setCenter(this.lineArr[0]);
-          // this.amarker = new AMap.Marker({
-          //   map: this.amap,
-          //   position: this.lineArr[0],
-          //   icon: "https://webapi.amap.com/images/car.png",
-          //   offset: new AMap.Pixel(-26, -13), // 调整图片偏移
-          //   autoRotation: true, // 自动旋转
-          //   angle: -90, // 图片旋转角度
-          // });
-          // // 绘制还未经过的路线
-          // this.polyline = new AMap.Polyline({
-          //   map: this.amap,
-          //   path: this.lineArr,
-          //   showDir: true,
-          //   strokeColor: "#28F", // 线颜色--蓝色
-          //   // strokeOpacity: 1,     //线透明度
-          //   strokeWeight: 10, // 线宽
-          //   // strokeStyle: "solid"  //线样式
-          //   lineJoin: "round", // 折线拐点的绘制样式
-          // });
-
+          // 高德地图操作
+          let that = this;
+          this.$nextTick(() => {
+            // 添加maker 高德
+            that.amap.setCenter(that.lineArr[0]);
+            that.amarker = new AMap.Marker({
+              map: that.amap,
+              position: that.lineArr[0],
+              icon: "https://webapi.amap.com/images/car.png",
+              offset: new AMap.Pixel(-26, -13), // 调整图片偏移
+              autoRotation: true, // 自动旋转
+              angle: -90, // 图片旋转角度
+            }); // 创建一个 icon
+            let startIcon = new AMap.Icon({
+              size: new AMap.Size(25, 34),
+              image: "//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png",
+              imageSize: new AMap.Size(135, 40),
+              imageOffset: new AMap.Pixel(-5, -3),
+            });
+            // 创建一个 icon
+            let endIcon = new AMap.Icon({
+              size: new AMap.Size(25, 34),
+              image: "//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png",
+              imageSize: new AMap.Size(135, 40),
+              imageOffset: new AMap.Pixel(-95, -3),
+            });
+            // 将 icon 传入 marker(起始标记)
+            let startMarker = new AMap.Marker({
+              position: that.lineArr[0],
+              icon: startIcon,
+              offset: new AMap.Pixel(-13, -30),
+            });
+            // 将 icon 传入 marker
+            let endMarker = new AMap.Marker({
+              // position: new AMap.LngLat(116.45, 39.93),
+              position: that.lineArr[that.lineArr.length - 1],
+              icon: endIcon,
+              offset: new AMap.Pixel(-13, -30),
+            });
+            // 将 markers 添加到地图
+            that.amap.add([startMarker, endMarker]);
+            // 绘制还未经过的路线
+            let polyline = new AMap.Polyline({
+              map: that.amap,
+              path: that.lineArr,
+              showDir: true,
+              strokeColor: "#28F", // 线颜色--蓝色
+              // strokeOpacity: 1,     //线透明度
+              strokeWeight: 10, // 线宽
+              // strokeStyle: "solid"  //线样式
+              lineJoin: "round", // 折线拐点的绘制样式
+            });
+          });
           this.center = {
             lng: data[0].longitude,
             lat: data[0].latitude,
@@ -622,36 +657,6 @@ export default {
     },
     // 初始化轨迹
     initroad() {
-      // 创建一个 icon
-      var startIcon = new AMap.Icon({
-        size: new AMap.Size(25, 34),
-        image: "//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png",
-        imageSize: new AMap.Size(135, 40),
-        imageOffset: new AMap.Pixel(-95, -3),
-      });
-      // 创建一个 icon
-      var endIcon = new AMap.Icon({
-        size: new AMap.Size(25, 34),
-        image: "//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png",
-        imageSize: new AMap.Size(135, 40),
-        imageOffset: new AMap.Pixel(-95, -3),
-      });
-      // 将 icon 传入 marker(起始标记)
-      var startMarker = new AMap.Marker({
-        position: this.lineArr[0],
-        icon: startIcon,
-        offset: new AMap.Pixel(-13, -30),
-      });
-      // 将 icon 传入 marker
-      var endMarker = new AMap.Marker({
-        // position: new AMap.LngLat(116.45, 39.93),
-        position: this.lineArr[this.lineArr.length - 1],
-        icon: endIcon,
-        offset: new AMap.Pixel(-13, -30),
-      });
-      // 将 markers 添加到地图
-      this.amap.add([startMarker, endMarker]);
-
       // 绘制路过了的轨迹
       var passedPolyline = new AMap.Polyline({
         map: this.amap,
@@ -675,6 +680,17 @@ export default {
     pauseAnimation() {
       this.amapPlay = false;
       this.amarker.pauseMove();
+    },
+    // 百度转高德
+    bd_decrypt(bd_lng, bd_lat) {
+      var X_PI = (Math.PI * 3000.0) / 180.0;
+      var x = bd_lng - 0.0065;
+      var y = bd_lat - 0.006;
+      var z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * X_PI);
+      var theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * X_PI);
+      var gg_lng = z * Math.cos(theta);
+      var gg_lat = z * Math.sin(theta);
+      return [gg_lng, gg_lat];
     },
   },
 };

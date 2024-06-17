@@ -47,13 +47,14 @@ Vue.use(ElementUI);
 Vue.use(VueAMap);
 VueAMap.initAMapApiLoader({
   // 初始化插件
-  key: "f6a1378fb443b15cf74b3bf77eebbba5", // 高德key
+  key: "503ce2422bbbfe0b4cace326bc68b6d3", // 高德key
   plugin: [
     "AMap.Geocoder",
     "AMap.PlaceSearch",
     "AMap.Geolocation",
     "AMap.CitySearch",
     "AMap.MarkerClusterer",
+    "AMap.GraspRoad",
   ], // 插件集合，根据自己的需求添加
   uiVersion: "1.0.11", // 不加会报错，加上吧
   v: "1.4.15", // 默认高德 sdk 版本为 1.4.4

@@ -32,6 +32,28 @@
       display: flex;
       justify-content: space-between;
       margin-bottom: 10px;
+      position: relative;
+      .map-style {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        span {
+          padding: 2px 6px;
+          border: 1px solid #1f71ff;
+          background-color: #fff;
+          color: #333;
+          border-radius: 5px;
+          margin-bottom: 5px;
+          cursor: pointer;
+        }
+        .act {
+          background-color: #1f71ff;
+          color: #fff;
+        }
+      }
       .baidumap {
         flex: 0 0 58%;
         height: 470px;
@@ -281,13 +303,10 @@
     :visible.sync="dialogVisible"
   >
     <div slot="title">
-      <el-button class="topbtn" size="mini">{{
-        vehicleoption.plate
-      }}</el-button>
+      <el-button class="topbtn" size="mini">{{ vehicleoption.plate }}</el-button>
       <el-button
         :class="
-          vehicleoption.chulizhuangtai == '未处理' ||
-          vehicleoption.chulizhuangtai == '未申述'
+          vehicleoption.chulizhuangtai == '未处理' || vehicleoption.chulizhuangtai == '未申述'
             ? 'noact'
             : 'active'
         "
@@ -296,27 +315,20 @@
         >{{ vehicleoption.chulizhuangtai }}</el-button
       >
     </div>
-    <div
-      class="veh-main"
-      v-loading="loading"
-      element-loading-background="rgba(0, 0, 0, 0.8)"
-    >
+    <div class="veh-main" v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.8)">
       <div class="main-top">
+        <div class="map-style">
+          <span :class="['map-btn', mapType == 1 ? 'act' : '']" @click="mapType = 1">百度</span>
+          <span :class="['map-btn', mapType == 2 ? 'act' : '']" @click="mapType = 2">高德</span>
+        </div>
         <baidu-map
+          v-show="mapType == 1"
           class="baidumap"
           :center="center"
           :zoom="zoom"
           :scroll-wheel-zoom="true"
         >
           <bm-scale anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-scale>
-          <!-- <bm-polyline :path="paths" strokeColor="red"></bm-polyline> -->
-          <!-- <bm-driving
-            Marker="true"
-            :start="startline"
-            :end="endline"
-            :panel="false"
-            :auto-viewport="true"
-          ></bm-driving> -->
           <bm-polyline
             :path="path"
             stroke-color="red"
@@ -329,24 +341,13 @@
             :stroke-opacity="1"
             :stroke-weight="4"
           ></bm-polyline>
-          <!-- <bm-driving
-          v-if="vehicleoption.alarmType =='疲劳驾驶报警'"
-            Marker="false"
-            :start="kaishiline"
-            :end="startline"
-            :panel="false"
-            :auto-viewport="true"
-          ></bm-driving> -->
-          <!-- 开始行驶时间 -->
           <bm-marker
             :top="true"
             :position="kaishiline"
             v-if="vehicleoption.alarmType == '疲劳驾驶报警'"
           >
             <bm-label
-              :content="
-                `开始行驶时间: ${time2.start}` + `<br>` + `地址：${kaishidi}`
-              "
+              :content="`开始行驶时间: ${time2.start}` + `<br>` + `地址：${kaishidi}`"
               :labelStyle="labelOpt.styleks"
               :offset="{ width: 10, height: 30 }"
             />
@@ -366,27 +367,18 @@
             />
           </bm-marker>
         </baidu-map>
+        <div v-show="mapType == 2" id="containerss" class="baidumap" />
         <div class="top-r means">
           <div class="title">
-            <p
-              @click="CarMsg"
-              ref="ziliao"
-              style="background-color: #0080de; border-radius: 10px"
-            >
+            <p @click="CarMsg" ref="ziliao" style="background-color: #0080de; border-radius: 10px">
               车辆资料
             </p>
             <p @click="getImageData" ref="shipin">实时视频</p>
           </div>
           <div class="means-top" v-if="ziliao">
             <div class="img">
-              <img
-                v-show="cheliang.cheliangzhaopian"
-                :src="cheliang.cheliangzhaopian"
-              />
-              <img
-                v-show="!cheliang.cheliangzhaopian"
-                src="@/assets/img/che.png"
-              />
+              <img v-show="cheliang.cheliangzhaopian" :src="cheliang.cheliangzhaopian" />
+              <img v-show="!cheliang.cheliangzhaopian" src="@/assets/img/che.png" />
             </div>
             <div>
               <p class="means-name">{{ vehicleoption.plate }}</p>
@@ -398,9 +390,7 @@
             </div>
           </div>
           <div class="means-bottom" v-if="ziliao">
-            <p>
-              驾&nbsp;&nbsp;驶&nbsp;&nbsp;员：{{ cheliang.jiashiyuanxingming }}
-            </p>
+            <p>驾&nbsp;&nbsp;驶&nbsp;&nbsp;员：{{ cheliang.jiashiyuanxingming }}</p>
             <p>驾驶员电话：{{ cheliang.jiashiyuandianhua }}</p>
             <p>押&nbsp; 运&nbsp; 员：{{ cheliang.yayunyuanxingming }}</p>
             <p>押运员电话：{{ cheliang.yayunyuandianhua }}</p>
@@ -409,11 +399,7 @@
             <p>终端型号：{{ cheliang.zongduanxinghao }}</p>
             <p>车 &nbsp;&nbsp;架 &nbsp;&nbsp;号：{{ cheliang.chejiahao }}</p>
             <p>厂&emsp;&emsp;牌：{{ cheliang.changpai }}</p>
-            <p>
-              运 &nbsp;&nbsp;营 &nbsp;&nbsp;商：{{
-                cheliang.yunyingshangmingcheng
-              }}
-            </p>
+            <p>运 &nbsp;&nbsp;营 &nbsp;&nbsp;商：{{ cheliang.yunyingshangmingcheng }}</p>
           </div>
           <div class="video" v-if="showVideo" v-loading="videoLoading">
             <video :src="video" controls="controls"></video>
@@ -427,15 +413,13 @@
       <div class="main-bottom">
         <div class="bottom-item-head">
           <div>
-            <span @click="QKclick" ref="fenxi" style="background-color: #0080de"
-              >情况分析</span
-            >
+            <span @click="QKclick" ref="fenxi" style="background-color: #0080de">情况分析</span>
             <span @click="TXclick" ref="xiaoxi">提醒消息</span>
             <span
               @click="dealMsg"
               v-if="
                 vehicleoption.chulizhuangtai == '已处理' ||
-                vehicleoption.shensuzhuangtai == '已申诉'
+                  vehicleoption.shensuzhuangtai == '已申诉'
               "
               ref="dealmsg"
               >处理信息</span
@@ -486,19 +470,18 @@
               <span
                 v-if="
                   vehicleoption.alarmType == '抽烟报警' ||
-                  vehicleoption.alarmType == '分神驾驶报警' ||
-                  vehicleoption.alarmType == '接打电话报警' ||
-                  vehicleoption.alarmType == '生理疲劳报警'
+                    vehicleoption.alarmType == '分神驾驶报警' ||
+                    vehicleoption.alarmType == '接打电话报警' ||
+                    vehicleoption.alarmType == '生理疲劳报警'
                 "
-                >{{ vehicleoption.beginTime }}--{{ vehicleoption.endTime }}(
-                3分钟 )</span
+                >{{ vehicleoption.beginTime }}--{{ vehicleoption.endTime }}( 3分钟 )</span
               >
               <span
                 v-else-if="
                   vehicleoption.alarmType != '抽烟报警' ||
-                  vehicleoption.alarmType != '分神驾驶报警' ||
-                  vehicleoption.alarmType != '接打电话报警' ||
-                  vehicleoption.alarmType != '生理疲劳报警'
+                    vehicleoption.alarmType != '分神驾驶报警' ||
+                    vehicleoption.alarmType != '接打电话报警' ||
+                    vehicleoption.alarmType != '生理疲劳报警'
                 "
                 >{{ vehicleoption.beginTime }}--{{ vehicleoption.endTime }}({{
                   vehicleoption.keeptimeShow
@@ -549,12 +532,7 @@
                 position: inherit;
               "
             >
-              <el-table-column
-                align="center"
-                label="序号"
-                type="index"
-                width="50"
-              >
+              <el-table-column align="center" label="序号" type="index" width="50">
               </el-table-column>
               <el-table-column
                 prop="time"
@@ -564,15 +542,9 @@
                 label="时间"
               >
               </el-table-column>
-              <el-table-column
-                prop="lastSpeed"
-                align="center"
-                width="100"
-                label="速度(km/h)"
-              >
+              <el-table-column prop="lastSpeed" align="center" width="100" label="速度(km/h)">
               </el-table-column>
-              <el-table-column prop="messageType" align="center" label="类型">
-              </el-table-column>
+              <el-table-column prop="messageType" align="center" label="类型"> </el-table-column>
               <el-table-column
                 prop="message"
                 align="center"
@@ -603,12 +575,7 @@
               <span>处理凭证：</span>
               <span v-if="vehicleoption.fujian !== ''">
                 <el-popover placement="top-start" trigger="click">
-                  <img
-                    src="../../assets/img/ping.png"
-                    slot="reference"
-                    class="pingzheng"
-                    alt
-                  />
+                  <img src="../../assets/img/ping.png" slot="reference" class="pingzheng" alt />
                   <div class="fujian">
                     <!-- <img :src="vehicleoption.fujian" style="max-height:180px;" alt /> -->
                     <img
@@ -645,12 +612,7 @@
               <span>处理凭证：</span>
               <span v-if="vehicleoption.fujian !== ''">
                 <el-popover placement="top-start" trigger="click">
-                  <img
-                    src="../../assets/img/ping.png"
-                    slot="reference"
-                    class="pingzheng"
-                    alt
-                  />
+                  <img src="../../assets/img/ping.png" slot="reference" class="pingzheng" alt />
                   <div class="fujian">
                     <!-- <img :src="vehicleoption.fujian" style="max-height:180px;" alt /> -->
                     <img
@@ -683,9 +645,7 @@
       </div>
     </div>
     <div slot="footer">
-      <el-button class="topbtn nom" size="mini" @click="dialogVisible = false"
-        >取 消</el-button
-      >
+      <el-button class="topbtn nom" size="mini" @click="dialogVisible = false">取 消</el-button>
     </div>
   </el-dialog>
 </template>
@@ -710,7 +670,7 @@ export default {
       loading: false,
       cheliang: {},
       jiashiyuan: {},
-      center: { lng: 116.404, lat: 39.915 },
+      center: { lng: 106.266, lat: 38.466 },
       startline: { lng: 116.404, lat: 39.915 },
       endline: { lng: 116.404, lat: 39.915 },
       kaishiline: { lng: "", lat: "" },
@@ -720,14 +680,8 @@ export default {
       qidian: "",
       zhongdian: "",
       // labelStyles:{ color: 'red', fontSize: '12px' },
-      begintime: format(
-        new Date().getTime() - 60 * 1000,
-        "YYYY-MM-DD HH:mm:ss"
-      ),
-      endtime: format(
-        new Date().getTime() + 2 * 60 * 1000,
-        "YYYY-MM-DD HH:mm:ss"
-      ),
+      begintime: format(new Date().getTime() - 60 * 1000, "YYYY-MM-DD HH:mm:ss"),
+      endtime: format(new Date().getTime() + 2 * 60 * 1000, "YYYY-MM-DD HH:mm:ss"),
       path: [],
       path2: [],
       labelOpt: {
@@ -749,14 +703,17 @@ export default {
       CLXXX: false,
       arryImg: "",
       zoom: 12,
+      amap: null,
+      mapType: 1,
+      lineArr: [],
     };
   },
   computed: {
     dialogVisible: {
-      get: function () {
+      get: function() {
         return this.visible;
       },
-      set: function (newValue) {
+      set: function(newValue) {
         this.$emit("close");
       },
     },
@@ -774,7 +731,16 @@ export default {
     visible(newvisible) {
       if (newvisible) {
         this.loading = true;
+        this.mapType = 1;
         this.getData();
+        let that = this;
+        this.$nextTick(() => {
+          that.amap = new AMap.Map("containerss", {
+            resizeEnable: true, // 窗口大小调整
+            center: [106.26666, 38.466667], // 中心 firstArr: [116.478935, 39.997761],
+            zoom: 15,
+          });
+        });
       }
     },
   },
@@ -866,14 +832,11 @@ export default {
               end: data2[data2.length - 1].GpsTime,
             };
             // js解析经纬度为地理位置
-            let pointkaishidi = new BMap.Point(
-              this.kaishiline.lng,
-              this.kaishiline.lat
-            );
+            let pointkaishidi = new BMap.Point(this.kaishiline.lng, this.kaishiline.lat);
             let gc = new BMap.Geocoder();
             let kaishidi;
             let _this = this;
-            gc.getLocation(pointkaishidi, function (rs) {
+            gc.getLocation(pointkaishidi, function(rs) {
               kaishidi = rs.address;
               _this.kaishidi = kaishidi;
             });
@@ -907,6 +870,57 @@ export default {
             lng: data[0].longitude,
             lat: data[0].latitude,
           };
+          // 高德地图操作
+          let that = this;
+          this.$nextTick(() => {
+            let rr = [];
+            data.map((i, n) => {
+              rr.push(that.bd_decrypt(i.longitude, i.latitude));
+            });
+            // 添加maker 高德
+            that.amap.setCenter(rr[0]);
+            // 创建一个 icon
+            var startIcon = new AMap.Icon({
+              size: new AMap.Size(25, 34),
+              image: "//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png",
+              imageSize: new AMap.Size(135, 40),
+              imageOffset: new AMap.Pixel(-5, -3),
+            });
+            // 创建一个 icon
+            var endIcon = new AMap.Icon({
+              size: new AMap.Size(25, 34),
+              image: "//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png",
+              imageSize: new AMap.Size(135, 40),
+              imageOffset: new AMap.Pixel(-95, -3),
+            });
+            // 将 icon 传入 marker(起始标记)
+            var startMarker = new AMap.Marker({
+              position: rr[0],
+              icon: startIcon,
+              offset: new AMap.Pixel(-13, -30),
+            });
+            // 将 icon 传入 marker
+            var endMarker = new AMap.Marker({
+              // position: new AMap.LngLat(116.45, 39.93),
+              position: rr[rr.length - 1],
+              icon: endIcon,
+              offset: new AMap.Pixel(-13, -30),
+            });
+            // 将 markers 添加到地图
+            that.amap.add([startMarker, endMarker]);
+            // 绘制还未经过的路线
+            let apolyline = new AMap.Polyline({
+              map: that.amap,
+              path: rr,
+              showDir: true,
+              strokeColor: "#28F", // 线颜色--蓝色
+              // strokeOpacity: 1,     //线透明度
+              strokeWeight: 10, // 线宽
+              // strokeStyle: "solid"  //线样式
+              lineJoin: "round", // 折线拐点的绘制样式
+            });
+          });
+          // 百度地图
           this.path = this.mapPoints(data);
           this.startline = {
             lng: data[0].longitude,
@@ -921,23 +935,17 @@ export default {
             end: data[data.length - 1].GpsTime,
           };
           // js解析经纬度为地理位置
-          let pointqidian = new BMap.Point(
-            this.startline.lng,
-            this.startline.lat
-          );
-          let pointzhongdian = new BMap.Point(
-            this.endline.lng,
-            this.endline.lat
-          );
+          let pointqidian = new BMap.Point(this.startline.lng, this.startline.lat);
+          let pointzhongdian = new BMap.Point(this.endline.lng, this.endline.lat);
           let gc = new BMap.Geocoder();
           let qidian;
           let zhongdian;
           let _this = this;
-          gc.getLocation(pointqidian, function (rs) {
+          gc.getLocation(pointqidian, function(rs) {
             qidian = rs.address;
             _this.qidian = qidian;
           });
-          gc.getLocation(pointzhongdian, function (rs) {
+          gc.getLocation(pointzhongdian, function(rs) {
             zhongdian = rs.address;
             _this.zhongdian = zhongdian;
           });
@@ -945,6 +953,17 @@ export default {
       } else {
         this.$message.error(err);
       }
+    },
+    // 百度转高德
+    bd_decrypt(bd_lng, bd_lat) {
+      var X_PI = (Math.PI * 3000.0) / 180.0;
+      var x = bd_lng - 0.0065;
+      var y = bd_lat - 0.006;
+      var z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * X_PI);
+      var theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * X_PI);
+      var gg_lng = z * Math.cos(theta);
+      var gg_lat = z * Math.sin(theta);
+      return [gg_lng, gg_lat];
     },
     //获取 报警详情
     async getAlarmGuIdList() {

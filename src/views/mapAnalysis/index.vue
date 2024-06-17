@@ -11,6 +11,27 @@
     // height: calc(100% - 5rem);
     height: calc(100%);
     position: relative;
+    .map-style {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      span {
+        padding: 2px 6px;
+        border: 1px solid #1f71ff;
+        background-color: #fff;
+        color: #333;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        cursor: pointer;
+      }
+      .act {
+        background-color: #1f71ff;
+        color: #fff;
+      }
+    }
     .baidumap {
       width: 100%;
       height: 100%;
@@ -53,12 +74,23 @@
   }
 }
 </style>
+<style>
+.amap-icon img {
+  width: 40px !important;
+  height: 40px !important;
+}
+</style>
 
 <template>
   <div class="mapAnalysis">
     <!-- <all-header></all-header> -->
     <div class="home-center">
+      <div class="map-style">
+        <span :class="['map-btn', mapType == 1 ? 'act' : '']" @click="mapType = 1">百度</span>
+        <span :class="['map-btn', mapType == 2 ? 'act' : '']" @click="mapType = 2">高德</span>
+      </div>
       <baidu-map
+        v-show="mapType == 1"
         class="baidumap"
         :center="center"
         :zoom="zoom"
@@ -122,6 +154,25 @@
           </el-button>
         </bm-info-window>
       </baidu-map>
+      <el-amap
+        v-if="mapType == 2"
+        class="baidumap"
+        vid="amapContainer"
+        :zoom="zoom"
+        :center="amapCenter"
+      >
+        <!-- <MarkerClusterer :points="emptrMark" /> -->
+        <el-amap-marker
+          v-for="(marker, index) in vehicleList"
+          :position="[marker.longitude, marker.latitude]"
+          :key="index"
+          :icon="marker.iconAmap"
+          :label="{
+            content: marker.vehicleNo,
+            offset: [-12, -22],
+          }"
+        ></el-amap-marker>
+      </el-amap>
       <div class="mapSearch">
         <div class="searchFor">
           <el-select
@@ -227,7 +278,10 @@ export default {
   },
   data() {
     return {
-      center: { lng: 104.251902, lat: 30.78794 },
+      // center: { lng: 104.251902, lat: 30.78794 },
+      // amapCenter: [120.147076, 30.245426],
+      center: { lng: 106.26666, lat: 38.466667 },
+      amapCenter: [106.26666, 38.466667],
       zoom: 9,
       icon: {
         url: "http://api.map.baidu.com/library/LuShu/1.2/examples/car.png",
@@ -258,10 +312,13 @@ export default {
       visible: false,
       index: 1,
       carList: [],
+      mapType: 1,
+      amap: null,
     };
   },
   created() {
     this.getQiYe();
+    this.mapType = 1;
   },
   mounted() {},
   beforeDestroy() {
@@ -365,7 +422,10 @@ export default {
       );
       this.loading = false;
       if (data) {
-        this.vehicleList = data.records;
+        this.vehicleList = data.records.map((el) => {
+          el.iconAmap = this.getMapCarImgAmap(el.VehState, el.alarm, el.zaixian, el.Angle);
+          return el;
+        });
         if (data.records.length == 1) {
           this.center = {
             lng: data.records[0].longitude,
@@ -384,6 +444,89 @@ export default {
         return el.deptName == val;
       });
       if (label) this.getByIdYWVehicleList(label.deptId);
+    },
+
+    // 根据状态添加车辆图标 高德
+    getMapCarImgAmap(status, alarmStatus, zaixian, angle) {
+      let img = "http://api.map.baidu.com/library/LuShu/1.2/examples/car.png";
+      if (alarmStatus === "报警") {
+        if (angle == 0 || angle == 360) {
+          img = require("@/assets/img/icons/car_w.png");
+        } else if (angle > 0 && angle < 90) {
+          img = require("@/assets/img/icons/car_w_es.png");
+        } else if (angle == 90) {
+          img = require("@/assets/img/icons/car_w_s.png");
+        } else if (angle > 90 && angle < 180) {
+          img = require("@/assets/img/icons/car_w_sw.png");
+        } else if (angle == 180) {
+          img = require("@/assets/img/icons/car_w_w.png");
+        } else if (angle > 180 && angle < 270) {
+          img = require("@/assets/img/icons/car_w_wn.png");
+        } else if (angle == 270) {
+          img = require("@/assets/img/icons/car_w_n.png");
+        } else if (angle > 270 && angle < 360) {
+          img = require("@/assets/img/icons/car_w_ne.png");
+        }
+      } else {
+        if (status == "在用") {
+          if (angle == 0 || angle == 360) {
+            img = require("@/assets/img/icons/car_y.png");
+          } else if (angle > 0 && angle < 90) {
+            img = require("@/assets/img/icons/car_y_es.png");
+          } else if (angle == 90) {
+            img = require("@/assets/img/icons/car_y_s.png");
+          } else if (angle > 90 && angle < 180) {
+            img = require("@/assets/img/icons/car_y_sw.png");
+          } else if (angle == 180) {
+            img = require("@/assets/img/icons/car_y_w.png");
+          } else if (angle > 180 && angle < 270) {
+            img = require("@/assets/img/icons/car_y_wn.png");
+          } else if (angle == 270) {
+            img = require("@/assets/img/icons/car_y_n.png");
+          } else if (angle > 270 && angle < 360) {
+            img = require("@/assets/img/icons/car_y_ne.png");
+          }
+        }
+        if (status == "闲置") {
+          if (angle == 0 || angle == 360) {
+            img = require("@/assets/img/icons/car_x.png");
+          } else if (angle > 0 && angle < 90) {
+            img = require("@/assets/img/icons/car_x_es.png");
+          } else if (angle == 90) {
+            img = require("@/assets/img/icons/car_x_s.png");
+          } else if (angle > 90 && angle < 180) {
+            img = require("@/assets/img/icons/car_x_sw.png");
+          } else if (angle == 180) {
+            img = require("@/assets/img/icons/car_x_w.png");
+          } else if (angle > 180 && angle < 270) {
+            img = require("@/assets/img/icons/car_x_wn.png");
+          } else if (angle == 270) {
+            img = require("@/assets/img/icons/car_x_n.png");
+          } else if (angle > 270 && angle < 360) {
+            img = require("@/assets/img/icons/car_x_ne.png");
+          }
+        }
+      }
+      if (zaixian == "未上线") {
+        if (angle == 0 || angle == 360) {
+          img = require("@/assets/img/icons/car_l.png");
+        } else if (angle > 0 && angle < 90) {
+          img = require("@/assets/img/icons/car_l_es.png");
+        } else if (angle == 90) {
+          img = require("@/assets/img/icons/car_l_s.png");
+        } else if (angle > 90 && angle < 180) {
+          img = require("@/assets/img/icons/car_l_sw.png");
+        } else if (angle == 180) {
+          img = require("@/assets/img/icons/car_l_w.png");
+        } else if (angle > 180 && angle < 270) {
+          img = require("@/assets/img/icons/car_l_wn.png");
+        } else if (angle == 270) {
+          img = require("@/assets/img/icons/car_l_n.png");
+        } else if (angle > 270 && angle < 360) {
+          img = require("@/assets/img/icons/car_l_ne.png");
+        }
+      }
+      return img;
     },
   },
 };
