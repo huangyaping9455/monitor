@@ -317,17 +317,7 @@
     </div>
     <div class="veh-main" v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.8)">
       <div class="main-top">
-        <div class="map-style">
-          <span :class="['map-btn', mapType == 1 ? 'act' : '']" @click="mapType = 1">百度</span>
-          <span :class="['map-btn', mapType == 2 ? 'act' : '']" @click="mapType = 2">高德</span>
-        </div>
-        <baidu-map
-          v-show="mapType == 1"
-          class="baidumap"
-          :center="center"
-          :zoom="zoom"
-          :scroll-wheel-zoom="true"
-        >
+        <baidu-map class="baidumap" :center="center" :zoom="zoom" :scroll-wheel-zoom="true">
           <bm-scale anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-scale>
           <bm-polyline
             :path="path"
@@ -367,7 +357,6 @@
             />
           </bm-marker>
         </baidu-map>
-        <div v-show="mapType == 2" id="containerss" class="baidumap" />
         <div class="top-r means">
           <div class="title">
             <p @click="CarMsg" ref="ziliao" style="background-color: #0080de; border-radius: 10px">
@@ -703,9 +692,6 @@ export default {
       CLXXX: false,
       arryImg: "",
       zoom: 12,
-      amap: null,
-      mapType: 1,
-      lineArr: [],
     };
   },
   computed: {
@@ -731,16 +717,7 @@ export default {
     visible(newvisible) {
       if (newvisible) {
         this.loading = true;
-        this.mapType = 1;
         this.getData();
-        let that = this;
-        this.$nextTick(() => {
-          that.amap = new AMap.Map("containerss", {
-            resizeEnable: true, // 窗口大小调整
-            center: [106.26666, 38.466667], // 中心 firstArr: [116.478935, 39.997761],
-            zoom: 15,
-          });
-        });
       }
     },
   },
@@ -870,56 +847,6 @@ export default {
             lng: data[0].longitude,
             lat: data[0].latitude,
           };
-          // 高德地图操作
-          let that = this;
-          this.$nextTick(() => {
-            let rr = [];
-            data.map((i, n) => {
-              rr.push(that.bd_decrypt(i.longitude, i.latitude));
-            });
-            // 添加maker 高德
-            that.amap.setCenter(rr[0]);
-            // 创建一个 icon
-            var startIcon = new AMap.Icon({
-              size: new AMap.Size(25, 34),
-              image: "//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png",
-              imageSize: new AMap.Size(135, 40),
-              imageOffset: new AMap.Pixel(-5, -3),
-            });
-            // 创建一个 icon
-            var endIcon = new AMap.Icon({
-              size: new AMap.Size(25, 34),
-              image: "//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png",
-              imageSize: new AMap.Size(135, 40),
-              imageOffset: new AMap.Pixel(-95, -3),
-            });
-            // 将 icon 传入 marker(起始标记)
-            var startMarker = new AMap.Marker({
-              position: rr[0],
-              icon: startIcon,
-              offset: new AMap.Pixel(-13, -30),
-            });
-            // 将 icon 传入 marker
-            var endMarker = new AMap.Marker({
-              // position: new AMap.LngLat(116.45, 39.93),
-              position: rr[rr.length - 1],
-              icon: endIcon,
-              offset: new AMap.Pixel(-13, -30),
-            });
-            // 将 markers 添加到地图
-            that.amap.add([startMarker, endMarker]);
-            // 绘制还未经过的路线
-            let apolyline = new AMap.Polyline({
-              map: that.amap,
-              path: rr,
-              showDir: true,
-              strokeColor: "#28F", // 线颜色--蓝色
-              // strokeOpacity: 1,     //线透明度
-              strokeWeight: 10, // 线宽
-              // strokeStyle: "solid"  //线样式
-              lineJoin: "round", // 折线拐点的绘制样式
-            });
-          });
           // 百度地图
           this.path = this.mapPoints(data);
           this.startline = {

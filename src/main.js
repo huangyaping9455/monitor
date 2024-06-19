@@ -14,9 +14,6 @@ import "@/assets/css/theme/index.scss"; //element
 import "./assets/icons"; // icon
 import "./router/index";
 
-// 高德地图配置
-import VueAMap from "vue-amap";
-
 // scorll
 Vue.prototype.$echarts = echarts;
 // Vue.prototype.$echartsGL = echartsGL;
@@ -43,26 +40,6 @@ Vue.use(vuescroll, {
 Vue.config.productionTip = false;
 
 Vue.use(ElementUI);
-
-Vue.use(VueAMap);
-VueAMap.initAMapApiLoader({
-  // 初始化插件
-  key: "503ce2422bbbfe0b4cace326bc68b6d3", // 高德key
-  plugin: [
-    "AMap.Geocoder",
-    "AMap.PlaceSearch",
-    "AMap.Geolocation",
-    "AMap.CitySearch",
-    "AMap.MarkerClusterer",
-    "AMap.GraspRoad",
-  ], // 插件集合，根据自己的需求添加
-  uiVersion: "1.0.11", // 不加会报错，加上吧
-  v: "1.4.15", // 默认高德 sdk 版本为 1.4.4
-});
-// 申请的Web端（JS API）的需要写上下面这段话
-window._AMapSecurityConfig = {
-  securityJsCode: "a4edfd173cf9cc2d2afe151b3a25b5a2 ", // 高德Web端安全密钥
-};
 
 new Vue({
   router,
