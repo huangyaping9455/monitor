@@ -20,13 +20,25 @@ export default {
   mounted() {
     this.redirect = this.$route.query.redirect;
     let _this = this;
-    setTimeout(_this.login(), 5000);
+    let tk = this.GetParameter("token");
+    if (!tk) {
+      this.$message.warning("缺少自动登录参数，即将跳转至登录页手动登录");
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 5000);
+    } else {
+      setTimeout(_this.login(), 5000);
+    }
+    console.log(JSON.parse(decodeURIComponent(escape(window.atob(this.GetParameter("token"))))));
   },
   methods: {
     async login() {
+      let token = JSON.parse(decodeURIComponent(escape(window.atob(this.GetParameter("token")))));
       let formData = {
-        name: this.GetParameter("username"),
-        pass: this.GetParameter("password"),
+        // name: this.GetParameter("username"),
+        // pass: this.GetParameter("password"),
+        name: token.Username,
+        pass: token.Password,
         code: "",
         type: 1,
       };
@@ -49,8 +61,8 @@ export default {
         // });
         window.location.href = "/";
       } else {
-        this.$message.error(err);
-        setTimeout(function() {
+        this.$message.error("自动登录失败，正在跳转至登录页手动登录");
+        setTimeout(() => {
           window.location.href = "/";
         }, 3000);
       }
