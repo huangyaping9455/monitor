@@ -776,10 +776,10 @@
   resolved "https://registry.npm.taobao.org/@types/q/download/@types/q-1.5.4.tgz"
   integrity sha1-FZJUFOCtLNdlv+9YhC9+JqesyyQ=
 
-"@vue-office/pdf@^1.6.0":
-  version "1.6.0"
-  resolved "https://registry.npmmirror.com/@vue-office/pdf/-/pdf-1.6.0.tgz#647aeff8108fb49c2ccb8dad011660c638a53739"
-  integrity sha512-SRv+gOhHlk2J+SdivvVvum93FuI4sU3XIh6u1jFkNr3+cXxRjMT2PTSxQO9b/1NmGB50oc+p+C+DrgNmMW4/vQ==
+"@vue-office/pdf@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.npmmirror.com/@vue-office/pdf/-/pdf-2.0.2.tgz#475010e4279c6dfb368e3dc7df81f56b597bd080"
+  integrity sha512-bQFqGxSOnKbvCS7OoJniYoTz1VIm1XOrRD27Msorxny9NFJ8RsQK1A4uhlnISJRFMaUwp1qlcVE9jMAhsiIyjg==
 
 "@vue/babel-helper-vue-jsx-merge-props@^1.0.0":
   version "1.0.0"

@@ -23,7 +23,7 @@
     </div>
     <div class="body">
       <scroll ref="scroll" :ops="scrollOps">
-        <div class="printConent wh100">
+        <div class="printConent wh100" style="width: 100%">
           <div
             v-if="!active.fType || (active.fType && active.fType == 'img')"
             style="width: 100%; height: 100%"
@@ -36,47 +36,11 @@
               style="padding-top: 2px"
             />
           </div>
-          <doc-preview
-            v-else-if="active.fType && active.fType == 'doc'"
-            :file="files[0]"
-            :key="files"
-          ></doc-preview>
-          <excel-preview
-            v-else-if="active.fType && active.fType == 'xls'"
-            :file="files[0]"
-            :key="files[0]"
-          ></excel-preview>
-          <div
-            v-else-if="active.fType && active.fType == 'pdf'"
-            style="width: 100%; height: 100%; min-height: 200px"
-            v-loading="pdfLoading"
-            element-loading-background="rgba(0, 0, 0, 0.4)"
-          >
-            <!-- <pdf
-              :src="pdfUrl"
-              style="
-                width: 100%;
-                height: 100%;
-                padding: 10px 80px;
-                background-color: gray;
-              "
-              ref="pdf"
-              v-for="i in numPages"
-              :key="i"
-              :page="i"
-              @page-loaded="pdfLoading = false"
-            ></pdf> -->
-            <vue-office-pdf
-              :src="pdfUrl"
-              class="docx-calss"
-              @rendered="pdfLoading = false"
-            />
-          </div>
           <iframe
             v-else
             width="100%"
             style="height: 87vh"
-            :src="files[0]"
+            :src="viewFiles"
             frameborder="0"
           ></iframe>
         </div>
@@ -173,6 +137,12 @@ export default {
   computed: {
     files() {
       return this.active._fileList || [];
+    },
+
+    viewFiles() {
+      return (
+        "http://vw.usdoc.cn/?src=" + this.userinfo.urlPrefix + this.files[0]
+      );
     },
     ...mapGetters({
       userinfo: "userinfo",
