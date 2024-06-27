@@ -808,6 +808,15 @@ export const constantRouterMap = [
         },
         component: () => import("@/views/yysInspectAll/index"),
       },
+      {
+        path: "/autonomous",
+        name: "autonomous",
+        meta: {
+          title: "自治区通报线索",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/autonomous/index"),
+      },
     ],
   },
 ];

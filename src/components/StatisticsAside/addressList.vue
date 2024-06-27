@@ -38,7 +38,6 @@
 }
 </style>
 
-
 <template>
   <div class="addressList">
     <el-tree
@@ -52,10 +51,10 @@
       <!-- //node,data -->
       <span class="custom-tree-node" slot-scope="{ data }">
         <span class="item-tree">
-          <img v-if="data.icontype==0" src="@/assets/img/icon.png" />
-          <img v-if="data.icontype==1" src="@/assets/img/icon1.png" />
-          <img v-if="data.icontype==2" src="@/assets/img/icon2.png" />
-          {{data.deptName}}
+          <img v-if="data.icontype == 0" src="@/assets/img/icon.png" />
+          <img v-if="data.icontype == 1" src="@/assets/img/icon1.png" />
+          <img v-if="data.icontype == 2" src="@/assets/img/icon2.png" />
+          {{ data.deptName }}
         </span>
       </span>
     </el-tree>
@@ -65,10 +64,7 @@
 <script>
 import governmentApi from "@/api/modules/government";
 import { mapGetters, mapMutations } from "vuex";
-import {
-  SET_FASONGDANWEI,
-  SET_XUANZHONGCHENGSHI,
-} from "@/store/mutation-types";
+import { SET_FASONGDANWEI, SET_XUANZHONGCHENGSHI } from "@/store/mutation-types";
 export default {
   data() {
     return {
@@ -122,8 +118,7 @@ export default {
         }
         return {
           id: el.id,
-          city:
-            icontype == 0 ? el.province : icontype == 1 ? el.city : el.country,
+          city: icontype == 0 ? el.province : icontype == 1 ? el.city : el.country,
           parentId: el.parentId,
           deptName: el.deptName,
           icontype: icontype,
