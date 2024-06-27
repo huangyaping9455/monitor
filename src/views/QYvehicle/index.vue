@@ -203,47 +203,24 @@
       <div class="main-r">
         <!-- 操作按钮 -->
         <div class="btns">
-          <el-button
-            @click="changeSearch"
-            size="mini"
-            class="btn"
-            icon="el-icon-search"
+          <el-button @click="changeSearch" size="mini" class="btn" icon="el-icon-search"
             >查询</el-button
           >
-          <el-button
-            size="mini"
-            :loading="downloading"
-            @click="downtable"
-            class="btn"
-          >
-            <svg-icon
-              class="icon"
-              v-show="!downloading"
-              icon-class="down"
-            />下载
+          <el-button size="mini" :loading="downloading" @click="downtable" class="btn">
+            <svg-icon class="icon" v-show="!downloading" icon-class="down" />下载
           </el-button>
-          <el-button
-            @click="refresh"
-            size="mini"
-            class="btn"
-            icon="el-icon-refresh"
+          <el-button @click="refresh" size="mini" class="btn" icon="el-icon-refresh"
             >刷新</el-button
           >
         </div>
         <!-- 查询 -->
-        <el-form
-          v-show="searchshow"
-          :inline="true"
-          size="mini"
-          :model="form"
-          class="search"
-        >
+        <el-form v-show="searchshow" :inline="true" size="mini" :model="form" class="search">
           <el-form-item label="企业名称">
             <el-input
               v-model="form.deptName"
               placeholder="请输入企业名称"
               clearable
-              style="width: 180px"
+              style="width: 130px"
             ></el-input>
           </el-form-item>
           <el-form-item label="机构类型">
@@ -252,7 +229,7 @@
               clearable
               placeholder="请选择机构类型"
               @change="ZFjigou"
-              style="width: 180px"
+              style="width: 130px"
             >
               <el-option
                 v-for="item in jigouleix"
@@ -268,7 +245,7 @@
               v-model="form.farendaibiao"
               placeholder="请输入法人代表"
               clearable
-              style="width: 180px"
+              style="width: 130px"
             ></el-input>
           </el-form-item>
           <el-form-item label="所属交通局">
@@ -276,21 +253,43 @@
               v-model="form.yunguanmingcheng"
               placeholder="请输入所属交通局"
               clearable
-              style="width: 180px"
+              style="width: 130px"
             ></el-input>
+          </el-form-item>
+          <el-form-item label="企业车辆营运类型">
+            <el-select
+              v-model="form.yingyunleixing"
+              clearable
+              placeholder="请选择企业车辆营运类型"
+              style="width: 130px"
+            >
+              <el-option
+                v-for="item in yingyunleixingList"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
           </el-form-item>
           <el-form-item label="经营范围">
-            <el-input
-              v-model="form.jigouzizhi"
-              placeholder="请输入经营范围"
+            <el-select
+              v-model="form.jingyingfanwei"
               clearable
-              style="width: 180px"
-            ></el-input>
+              placeholder="请选择经营范围"
+              style="width: 130px"
+            >
+              <el-option
+                v-for="item in jingyingfanweiList"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" class="sbtn" @click="getDate(1)"
-              >搜索</el-button
-            >
+            <el-button type="primary" class="sbtn" @click="getDate(1)">搜索</el-button>
           </el-form-item>
         </el-form>
         <!-- mainTable -->
@@ -305,9 +304,7 @@
         >
           <el-table-column type="index" label="排名" width="50" align="center">
             <template scope="scope">
-              <span>{{
-                (current - 1) * pagesizeactive + scope.$index + 1
-              }}</span>
+              <span>{{ (current - 1) * pagesizeactive + scope.$index + 1 }}</span>
             </template>
           </el-table-column>
           <!-- <el-table-column label="企业名称" align="center"> -->
@@ -401,11 +398,7 @@
           ></el-table-column>
           <el-table-column label="操作" align="center" width="80" fixed="right">
             <template slot-scope="{ row }">
-              <el-button
-                size="mini"
-                style="color: #00c8f5"
-                type="text"
-                @click="viewShow(row)"
+              <el-button size="mini" style="color: #00c8f5" type="text" @click="viewShow(row)"
                 >详情</el-button
               >
             </template>
@@ -429,43 +422,22 @@
           </div>
           <div class="page-r">
             <span class="el-icon-d-arrow-left" @click="getDate(1)"></span>
-            <span
-              class="el-icon-arrow-left"
-              @click="getDate(current - 1)"
-            ></span>
-            <span
-              class="num"
-              v-show="current - 2 > 0"
-              @click="getDate(current - 2)"
-              >{{ current - 2 }}</span
-            >
-            <span
-              class="num"
-              v-show="current - 1 > 0"
-              @click="getDate(current - 1)"
-              >{{ current - 1 }}</span
-            >
+            <span class="el-icon-arrow-left" @click="getDate(current - 1)"></span>
+            <span class="num" v-show="current - 2 > 0" @click="getDate(current - 2)">{{
+              current - 2
+            }}</span>
+            <span class="num" v-show="current - 1 > 0" @click="getDate(current - 1)">{{
+              current - 1
+            }}</span>
             <span class="num active">{{ current }}</span>
-            <span
-              class="num"
-              v-show="current + 1 <= pageTotal"
-              @click="getDate(current + 1)"
-              >{{ current + 1 }}</span
-            >
-            <span
-              class="num"
-              v-show="current + 2 <= pageTotal"
-              @click="getDate(current + 2)"
-              >{{ current + 2 }}</span
-            >
-            <span
-              class="el-icon-arrow-right"
-              @click="getDate(current + 1)"
-            ></span>
-            <span
-              class="el-icon-d-arrow-right"
-              @click="getDate(pageTotal)"
-            ></span>
+            <span class="num" v-show="current + 1 <= pageTotal" @click="getDate(current + 1)">{{
+              current + 1
+            }}</span>
+            <span class="num" v-show="current + 2 <= pageTotal" @click="getDate(current + 2)">{{
+              current + 2
+            }}</span>
+            <span class="el-icon-arrow-right" @click="getDate(current + 1)"></span>
+            <span class="el-icon-d-arrow-right" @click="getDate(pageTotal)"></span>
             <div class="pagesize">
               每页显示
               <el-select
@@ -494,6 +466,7 @@
 import allHeader from "@/components/Header/index";
 import statisticsAside from "@/components/StatisticsAside/index";
 import dataAnalysisApi from "@/api/modules/report";
+import dataApi from "@/api/modules/government";
 import { mapGetters } from "vuex";
 // import { format } from "@/config/date";
 import { export_json_to_excel } from "@/config/Export2Excel";
@@ -515,13 +488,7 @@ export default {
       pagesize: [10, 20, 30, 50, 100], //每页显示列表
       pagesizeactive: 20, //当前每页显示
       enterpriseListH: "calc(100vh - 14.6814rem)",
-      form: {
-        deptName: "",
-        farendaibiao: "",
-        yunguanmingcheng: "",
-        jigouzizhi: "",
-        jigouleixing: this.$route.params.jigouleixing,
-      },
+      form: {},
       enterpriseList: [],
       zhengfuId: "", //地区id
       // jigouleixing: "",
@@ -540,6 +507,8 @@ export default {
         },
       ],
       vehiclemsgList: {},
+      yingyunleixingList: [],
+      jingyingfanweiList: [],
     };
   },
   mounted() {
@@ -547,6 +516,13 @@ export default {
       this.form.deptName = this.$route.query.deptName;
     }
     this.getZFDQBJCLLVTJ();
+
+    this.getDicData("yingyunleixing").then((res) => {
+      this.yingyunleixingList = res;
+    });
+    this.getDicData("jingyingfanwei").then((res) => {
+      this.jingyingfanweiList = res;
+    });
   },
   computed: {
     ...mapGetters({
@@ -565,13 +541,7 @@ export default {
   },
   methods: {
     refresh() {
-      this.form = {
-        deptName: "",
-        farendaibiao: "",
-        yunguanmingcheng: "",
-        jigouzizhi: "",
-        jigouleixing: "",
-      };
+      this.form = {};
       this.$route.params.jigouleixing = "";
       this.getDate(1);
     },
@@ -593,11 +563,7 @@ export default {
           deptId: this.zhuzzhiId,
           current: current,
           size: this.pagesizeactive,
-          deptName: this.form.deptName,
-          farendaibiao: this.form.farendaibiao,
-          yunguanmingcheng: this.form.yunguanmingcheng,
-          jigouzizhi: this.form.jigouzizhi,
-          jigouleixing: this.form.jigouleixing,
+          ...this.form,
         })
       );
       this.loading = false;
@@ -612,6 +578,13 @@ export default {
       }
     },
 
+    // 获取字典
+    async getDicData(val) {
+      let [err, data] = await dataApi.awaitWrap(dataApi.getByCode({ code: val }));
+      if (data) {
+        return data;
+      }
+    },
     // 查看详情
     viewShow(item) {
       this.vehiclemsgList = item;
@@ -637,11 +610,7 @@ export default {
           ...req,
           current: 0,
           size: 0,
-          deptName: this.form.deptName,
-          farendaibiao: this.form.farendaibiao,
-          yunguanmingcheng: this.form.yunguanmingcheng,
-          jigouzizhi: this.form.jigouzizhi,
-          jigouleixing: this.form.jigouleixing,
+          ...this.form,
         })
       );
       this.downloading = false;
