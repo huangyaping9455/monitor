@@ -5,10 +5,7 @@ import Router from "vue-router";
 Vue.use(Router);
 
 //解决点击同一个路由报错
-const [originalPush, routerReplace] = [
-  Router.prototype.push,
-  Router.prototype.replace,
-];
+const [originalPush, routerReplace] = [Router.prototype.push, Router.prototype.replace];
 Router.prototype.push = function push(location) {
   return originalPush.call(this, location).catch((err) => err);
 };
@@ -758,6 +755,15 @@ export const constantRouterMap = [
           requiresAuth: true,
         },
         component: () => import("@/views/infomationRank/index"),
+      },
+      {
+        path: "/safeEducation",
+        name: "safeEducation",
+        meta: {
+          title: "线上教育",
+          requiresAuth: true,
+        },
+        component: () => import("@/views/safeEducation/index"),
       },
     ],
   },

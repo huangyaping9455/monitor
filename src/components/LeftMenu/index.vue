@@ -400,6 +400,12 @@
               <span>学习情况统计</span>
             </div>
           </el-menu-item>
+          <el-menu-item index="safeEducation" @click="openMenu">
+            <div class="menu-item">
+              <svg-icon class="icon" icon-class="wenjian" />
+              <span>线上教育</span>
+            </div>
+          </el-menu-item>
         </el-submenu>
         <el-submenu index="8">
           <template slot="title">
