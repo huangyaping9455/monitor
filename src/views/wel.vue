@@ -27,7 +27,7 @@ export default {
         window.location.href = "/";
       }, 5000);
     } else {
-      // setTimeout(_this.login(), 5000);
+      setTimeout(_this.login(), 5000);
     }
     console.log(JSON.parse(decodeURIComponent(escape(window.atob(this.GetParameter("token"))))));
   },
