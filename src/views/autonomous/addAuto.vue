@@ -19,11 +19,11 @@
       >
         <el-col :span="24">
           <el-form-item
-            label="运营商："
+            label="运输局："
             prop="rcDeptId"
             :rules="{
               required: true,
-              message: '运营商不能为空',
+              message: '运输局不能为空',
               trigger: 'blur',
             }"
           >
@@ -43,7 +43,7 @@
         <el-col :span="24">
           <el-form-item label="文件：">
             <el-upload
-              action="/blade-upload/upload/upload?fileId=zizhiqu&table=zizhiqutongbao"
+              action="/api/blade-upload/upload/upload?fileId=zizhiqu&table=zizhiqutongbao"
               multiple
               :headers="headers"
               :on-success="handlesuccessPrope"
@@ -121,11 +121,13 @@ export default {
               return { name: this.strhandle(el, "/"), savename: this.strhandle(el, "/"), url: el };
             });
           } else {
-            this.fujianForm = {
-              name: this.strhandle(dataForm.rcUrl, "/"),
-              savename: this.strhandle(dataForm.rcUrl, "/"),
-              url: this.dataForm.rcUrl,
-            };
+            this.fujianForm = [
+              {
+                name: this.strhandle(this.dataForm.rcUrl, "/"),
+                savename: this.strhandle(this.dataForm.rcUrl, "/"),
+                url: this.dataForm.rcUrl,
+              },
+            ];
           }
         }
       }

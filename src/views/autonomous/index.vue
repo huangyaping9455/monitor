@@ -236,7 +236,7 @@
         </template>
       </el-table-column>
       <el-table-column
-        label="政府运管名称"
+        label="运输局名称"
         prop="zhengfuname"
         align="center"
         :show-overflow-tooltip="true"
