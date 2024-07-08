@@ -222,6 +222,15 @@
           clearable
         ></el-input>
       </el-form-item>
+      <el-form-item label="学习月份">
+        <el-date-picker
+          v-model="monthNow"
+          type="month"
+          value="yyyy-MM"
+          value-format="yyyy-MM"
+          placeholder="选择学习月份"
+        ></el-date-picker>
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" class="sbtn" @click="getDate(1)">
           搜索
@@ -236,6 +245,7 @@
       :height="enterpriseListH"
       border
       :data="enterpriseList"
+      @sort-change="changeSort"
     >
       <el-table-column type="index" label="序号" width="50" align="center">
         <template scope="scope">
@@ -262,9 +272,17 @@
         prop="studyMonth"
         label="学习月份"
         align="center"
-        width="90"
+        width="120"
         show-overflow-tooltip
+        sortable
       >
+      </el-table-column>
+      <el-table-column prop="score" label="完成率" align="center">
+        <template slot-scope="{ row }">
+          <span>{{
+            (Number(row.finishStudyCount / row.shouldLearnNumber) * 100).toFixed(2) + "%"
+          }}</span>
+        </template>
       </el-table-column>
       <el-table-column
         prop="duration"
@@ -358,9 +376,9 @@
 <script>
 import dataAnalysisApi from "@/api/modules/examine";
 import { mapGetters } from "vuex";
-import { format } from "@/config/date";
 import { export_json_to_excel } from "@/config/Export2Excel";
 import student from "./student.vue";
+import dayjs from "dayjs";
 export default {
   components: { student },
   data() {
@@ -377,6 +395,9 @@ export default {
       enterpriseList: [],
       zhengfuId: "", //地区id
       vehiclemsgList: {},
+      monthNow: "",
+      orderColumns: "studyMonth", //排序字段
+      order: "1", //正序/倒序
     };
   },
   created() {
@@ -415,6 +436,11 @@ export default {
           deptId: this.zhuzzhiId,
           current: current,
           size: this.pagesizeactive,
+          lmonth: this.monthNow ? dayjs(this.monthNow).format("MM") : "",
+          lyear: this.monthNow ? dayjs(this.monthNow).format("YYYY") : "",
+          orderColumn: this.orderColumns,
+          orderColumns: this.orderColumns,
+          order: this.order,
           ...this.form,
         })
       );
@@ -428,6 +454,13 @@ export default {
       } else {
         this.$message.error(err);
       }
+    },
+
+    //排序
+    changeSort(val) {
+      this.order = val.order == "descending" ? 1 : 0;
+      this.orderColumns = val.prop;
+      this.getDeptDayTJ(1);
     },
     changeSearch() {
       this.searchshow

@@ -554,7 +554,7 @@ export const vehicleList = () => {
       addDisplay: true,
       multiple: false,
       editDisabled: false,
-      label: "使用性质",
+      label: "经营范围",
       sort: 4,
       trigger: "submit",
       type: "select",

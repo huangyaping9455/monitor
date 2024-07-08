@@ -394,12 +394,12 @@
               <span>安全教育学习</span>
             </div>
           </template>
-          <el-menu-item index="learningPlatform" @click="openMenu">
+          <!-- <el-menu-item index="learningPlatform" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="wenjian" />
               <span>学习情况统计</span>
             </div>
-          </el-menu-item>
+          </el-menu-item> -->
           <el-menu-item index="safeEducation" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="wenjian" />
@@ -462,12 +462,12 @@
               <span>综合排查</span>
             </div>
           </el-menu-item> -->
-          <el-menu-item index="risk" @click="openMenu">
+          <!-- <el-menu-item index="risk" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="fengxianguanli" />
               <span>风险管理</span>
             </div>
-          </el-menu-item>
+          </el-menu-item> -->
         </el-submenu>
         <!-- <el-submenu index="9">
           <template slot="title">

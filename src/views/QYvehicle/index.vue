@@ -262,6 +262,8 @@
               clearable
               placeholder="请选择企业车辆营运类型"
               style="width: 130px"
+              multiple
+              collapse-tags
             >
               <el-option
                 v-for="item in yingyunleixingList"
@@ -278,6 +280,8 @@
               clearable
               placeholder="请选择经营范围"
               style="width: 130px"
+              multiple
+              collapse-tags
             >
               <el-option
                 v-for="item in jingyingfanweiList"
@@ -347,6 +351,13 @@
             label="经营范围"
             align="center"
             min-width="300"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            prop="yingyunleixing"
+            label="营运类型"
+            align="center"
+            min-width="150"
             show-overflow-tooltip
           ></el-table-column>
           <!-- </el-table-column> -->
@@ -488,7 +499,7 @@ export default {
       pagesize: [10, 20, 30, 50, 100], //每页显示列表
       pagesizeactive: 20, //当前每页显示
       enterpriseListH: "calc(100vh - 14.6814rem)",
-      form: {},
+      form: { jingyingfanwei: [], yingyunleixing: [] },
       enterpriseList: [],
       zhengfuId: "", //地区id
       // jigouleixing: "",
@@ -541,7 +552,7 @@ export default {
   },
   methods: {
     refresh() {
-      this.form = {};
+      this.form = { jingyingfanwei: [], yingyunleixing: [] };
       this.$route.params.jigouleixing = "";
       this.getDate(1);
     },
@@ -564,6 +575,8 @@ export default {
           current: current,
           size: this.pagesizeactive,
           ...this.form,
+          jingyingfanwei: this.form.jingyingfanwei.toString(),
+          yingyunleixing: this.form.yingyunleixing.toString(),
         })
       );
       this.loading = false;

@@ -249,6 +249,22 @@
               class="inputW"
             ></el-input>
           </el-form-item>
+          <el-form-item label="经营范围">
+            <el-select
+              v-model="form.jingyingfanwei"
+              clearable
+              placeholder="请选择经营范围"
+              style="width: 130px"
+            >
+              <el-option
+                v-for="item in jingyingfanweiList"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
           <el-form-item>
             <el-button type="primary" class="sbtn" @click="getDate(1)">
               搜索
@@ -369,6 +385,7 @@
 
 <script>
 import dataAnalysisApi from "@/api/modules/report";
+import dataApi from "@/api/modules/government";
 import { mapGetters } from "vuex";
 import { format } from "@/config/date";
 import { driverList } from "@/config/vehicleList";
@@ -394,6 +411,7 @@ export default {
       zhengfuId: "", //地区id
       vehiclemsgList: {},
       downloading: false,
+      jingyingfanweiList:[]
     };
   },
   created() {
@@ -401,6 +419,10 @@ export default {
       this.form.deptName = this.$route.query.deptName;
     }
     this.selectZFPersonLearnInfoAll();
+    
+    this.getDicData("jingyingfanwei").then((res) => {
+      this.jingyingfanweiList = res;
+    });
   },
   computed: {
     ...mapGetters({
@@ -512,6 +534,13 @@ export default {
     viewShow(item) {
       this.vehiclemsgList = item;
       this.$refs.viewShow.vehicleVisible = true;
+    },
+    // 获取字典
+    async getDicData(val) {
+      let [err, data] = await dataApi.awaitWrap(dataApi.getByCode({ code: val }));
+      if (data) {
+        return data;
+      }
     },
     // 下载
     async downLoadList() {

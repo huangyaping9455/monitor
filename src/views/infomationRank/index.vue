@@ -191,52 +191,23 @@
       <div class="main-r">
         <!-- 操作按钮 -->
         <div class="btns">
-          <el-button
-            @click="changeSearch"
-            size="mini"
-            class="btn"
-            icon="el-icon-search"
+          <el-button @click="changeSearch" size="mini" class="btn" icon="el-icon-search"
             >查询</el-button
           >
-          <el-button
-            @click="refresh"
-            size="mini"
-            class="btn"
-            icon="el-icon-refresh"
+          <el-button @click="refresh" size="mini" class="btn" icon="el-icon-refresh"
             >刷新</el-button
           >
-          <el-button
-            size="mini"
-            :loading="downloading"
-            @click="downtable"
-            class="btn"
-          >
-            <svg-icon
-              class="icon"
-              v-show="!downloading"
-              icon-class="down"
-            />下载
+          <el-button size="mini" :loading="downloading" @click="downtable" class="btn">
+            <svg-icon class="icon" v-show="!downloading" icon-class="down" />下载
           </el-button>
         </div>
         <!-- 查询 -->
-        <el-form
-          v-show="searchshow"
-          :inline="true"
-          size="mini"
-          :model="form"
-          class="search"
-        >
+        <el-form v-show="searchshow" :inline="true" size="mini" :model="form" class="search">
           <el-form-item label="企业名称">
-            <el-input
-              v-model="form.deptName"
-              placeholder="请输入企业名称"
-              clearable
-            ></el-input>
+            <el-input v-model="form.deptName" placeholder="请输入企业名称" clearable></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" class="sbtn" @click="getDate(1)"
-              >搜索</el-button
-            >
+            <el-button type="primary" class="sbtn" @click="getDate(1)">搜索</el-button>
           </el-form-item>
         </el-form>
         <el-table
@@ -247,13 +218,9 @@
           :height="enterpriseListH"
           border
           :data="enterpriseList"
+          @sort-change="changeSort"
         >
-          <el-table-column
-            label="序号"
-            type="index"
-            width="50"
-            align="center"
-          ></el-table-column>
+          <el-table-column label="序号" type="index" width="50" align="center"></el-table-column>
           <el-table-column
             label="企业名称"
             prop="deptName"
@@ -261,12 +228,7 @@
             align="center"
             show-overflow-tooltip
           ></el-table-column>
-          <el-table-column
-            prop="vehFullRate"
-            label="车辆信息完整率"
-            align="center"
-            sortable
-          >
+          <el-table-column prop="vehFullRate" label="车辆信息完整率" align="center" sortable>
             <template scope="scope">
               <span
                 style="
@@ -286,12 +248,7 @@
               >
             </template>
           </el-table-column>
-          <el-table-column
-            prop="jsyFullRate"
-            label="驾驶员信息完整率"
-            align="center"
-            sortable
-          >
+          <el-table-column prop="jsyFullRate" label="驾驶员信息完整率" align="center" sortable>
             <template scope="scope">
               <span
                 style="
@@ -311,12 +268,7 @@
               >
             </template>
           </el-table-column>
-          <el-table-column
-            prop="deptFullRate"
-            label="业户信息完整率"
-            align="center"
-            sortable
-          >
+          <el-table-column prop="deptFullRate" label="业户信息完整率" align="center" sortable>
             <template scope="scope">
               <span
                 style="
@@ -361,43 +313,22 @@
           </div>
           <div class="page-r">
             <span class="el-icon-d-arrow-left" @click="getDate(1)"></span>
-            <span
-              class="el-icon-arrow-left"
-              @click="getDate(current - 1)"
-            ></span>
-            <span
-              class="num"
-              v-show="current - 2 > 0"
-              @click="getDate(current - 2)"
-              >{{ current - 2 }}</span
-            >
-            <span
-              class="num"
-              v-show="current - 1 > 0"
-              @click="getDate(current - 1)"
-              >{{ current - 1 }}</span
-            >
+            <span class="el-icon-arrow-left" @click="getDate(current - 1)"></span>
+            <span class="num" v-show="current - 2 > 0" @click="getDate(current - 2)">{{
+              current - 2
+            }}</span>
+            <span class="num" v-show="current - 1 > 0" @click="getDate(current - 1)">{{
+              current - 1
+            }}</span>
             <span class="num active">{{ current }}</span>
-            <span
-              class="num"
-              v-show="current + 1 <= pageTotal"
-              @click="getDate(current + 1)"
-              >{{ current + 1 }}</span
-            >
-            <span
-              class="num"
-              v-show="current + 2 <= pageTotal"
-              @click="getDate(current + 2)"
-              >{{ current + 2 }}</span
-            >
-            <span
-              class="el-icon-arrow-right"
-              @click="getDate(current + 1)"
-            ></span>
-            <span
-              class="el-icon-d-arrow-right"
-              @click="getDate(pageTotal)"
-            ></span>
+            <span class="num" v-show="current + 1 <= pageTotal" @click="getDate(current + 1)">{{
+              current + 1
+            }}</span>
+            <span class="num" v-show="current + 2 <= pageTotal" @click="getDate(current + 2)">{{
+              current + 2
+            }}</span>
+            <span class="el-icon-arrow-right" @click="getDate(current + 1)"></span>
+            <span class="el-icon-d-arrow-right" @click="getDate(pageTotal)"></span>
             <div class="pagesize">
               每页显示
               <el-select
@@ -442,6 +373,8 @@ export default {
       enterpriseList: [],
       zhengfuId: "", //地区id
       downloading: false,
+      orderColumns: "", //排序字段
+      order: "", //正序/倒序
     };
   },
   mounted() {
@@ -486,6 +419,9 @@ export default {
           deptId: this.zhuzzhiId,
           current: current,
           size: this.pagesizeactive,
+          orderColumn: this.orderColumns,
+          orderColumns: this.orderColumns,
+          order: this.order,
           ...this.form,
         })
       );
@@ -499,6 +435,13 @@ export default {
       } else {
         this.$message.error(err);
       }
+    },
+
+    //排序
+    changeSort(val) {
+      this.order = val.order == "descending" ? 1 : 0;
+      this.orderColumns = val.prop;
+      this.getDeptFullRateTJ(1);
     },
     changeSearch() {
       this.searchshow

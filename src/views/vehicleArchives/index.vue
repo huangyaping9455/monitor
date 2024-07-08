@@ -197,40 +197,19 @@
       <div class="main-r">
         <!-- 操作按钮 -->
         <div class="btns">
-          <el-button
-            @click="changeSearch"
-            size="mini"
-            class="btn"
-            icon="el-icon-search"
-          >
+          <el-button @click="changeSearch" size="mini" class="btn" icon="el-icon-search">
             查询
           </el-button>
-          <el-button
-            size="mini"
-            :loading="downloading"
-            @click="downLoadList"
-            class="btn"
-          >
+          <el-button size="mini" :loading="downloading" @click="downLoadList" class="btn">
             <svg-icon class="icon" v-show="!downloading" icon-class="down" />
             下载
           </el-button>
-          <el-button
-            @click="refresh"
-            size="mini"
-            class="btn"
-            icon="el-icon-refresh"
-          >
+          <el-button @click="refresh" size="mini" class="btn" icon="el-icon-refresh">
             刷新
           </el-button>
         </div>
         <!-- 查询 -->
-        <el-form
-          v-show="searchshow"
-          :inline="true"
-          size="mini"
-          :model="form"
-          class="search"
-        >
+        <el-form v-show="searchshow" :inline="true" size="mini" :model="form" class="search">
           <el-form-item label="企业名称">
             <el-input
               v-model="form.deptName"
@@ -255,25 +234,24 @@
               class="inputW"
             ></el-input>
           </el-form-item>
-          <el-form-item label="运营类型">
+          <el-form-item label="经验范围">
             <el-select
               v-model="form.shiyongxingzhi"
               clearable
-              class="inputW"
-              placeholder="请选择运营类型"
+              placeholder="请选择经营范围"
+              style="width: 130px"
             >
-              <el-option label="道路危险货物运输" value="道路危险货物运输">
+              <el-option
+                v-for="item in jingyingfanweiList"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
               </el-option>
-              <el-option label="道路旅客运输" value="道路旅客运输"> </el-option>
-              <el-option label="道路货物运输" value="道路货物运输"> </el-option>
-              <el-option label="出租车" value="出租车"> </el-option>
-              <el-option label="其他" value="其他"> </el-option>
             </el-select>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" class="sbtn" @click="getDate(1)"
-              >搜索</el-button
-            >
+            <el-button type="primary" class="sbtn" @click="getDate(1)">搜索</el-button>
           </el-form-item>
         </el-form>
         <el-table
@@ -297,11 +275,7 @@
           </el-table-column>
           <el-table-column label="操作" align="center" width="80" fixed="right">
             <template slot-scope="{ row }">
-              <el-button
-                size="mini"
-                style="color: #00c8f5"
-                type="text"
-                @click="ViewClick(row)"
+              <el-button size="mini" style="color: #00c8f5" type="text" @click="ViewClick(row)"
                 >查看</el-button
               >
             </template>
@@ -324,43 +298,22 @@
           </div>
           <div class="page-r">
             <span class="el-icon-d-arrow-left" @click="getDate(1)"></span>
-            <span
-              class="el-icon-arrow-left"
-              @click="getDate(current - 1)"
-            ></span>
-            <span
-              class="num"
-              v-show="current - 2 > 0"
-              @click="getDate(current - 2)"
-              >{{ current - 2 }}</span
-            >
-            <span
-              class="num"
-              v-show="current - 1 > 0"
-              @click="getDate(current - 1)"
-              >{{ current - 1 }}</span
-            >
+            <span class="el-icon-arrow-left" @click="getDate(current - 1)"></span>
+            <span class="num" v-show="current - 2 > 0" @click="getDate(current - 2)">{{
+              current - 2
+            }}</span>
+            <span class="num" v-show="current - 1 > 0" @click="getDate(current - 1)">{{
+              current - 1
+            }}</span>
             <span class="num active">{{ current }}</span>
-            <span
-              class="num"
-              v-show="current + 1 <= pageTotal"
-              @click="getDate(current + 1)"
-              >{{ current + 1 }}</span
-            >
-            <span
-              class="num"
-              v-show="current + 2 <= pageTotal"
-              @click="getDate(current + 2)"
-              >{{ current + 2 }}</span
-            >
-            <span
-              class="el-icon-arrow-right"
-              @click="getDate(current + 1)"
-            ></span>
-            <span
-              class="el-icon-d-arrow-right"
-              @click="getDate(pageTotal)"
-            ></span>
+            <span class="num" v-show="current + 1 <= pageTotal" @click="getDate(current + 1)">{{
+              current + 1
+            }}</span>
+            <span class="num" v-show="current + 2 <= pageTotal" @click="getDate(current + 2)">{{
+              current + 2
+            }}</span>
+            <span class="el-icon-arrow-right" @click="getDate(current + 1)"></span>
+            <span class="el-icon-d-arrow-right" @click="getDate(pageTotal)"></span>
             <div class="pagesize">
               每页显示
               <el-select
@@ -379,10 +332,7 @@
             </div>
           </div>
         </div>
-        <view-detail
-          ref="viewShow"
-          :vehiclemsgList="vehiclemsgList"
-        ></view-detail>
+        <view-detail ref="viewShow" :vehiclemsgList="vehiclemsgList"></view-detail>
       </div>
     </div>
   </div>
@@ -390,6 +340,7 @@
 
 <script>
 import dataAnalysisApi from "@/api/modules/report";
+import dataApi from "@/api/modules/government";
 import { mapGetters } from "vuex";
 import { format } from "@/config/date";
 import { vehicleList } from "@/config/vehicleList";
@@ -417,6 +368,7 @@ export default {
       zhengfuId: "", //地区id
       vehiclemsgList: {},
       downloading: false,
+      jingyingfanweiList: [],
     };
   },
   created() {
@@ -424,6 +376,9 @@ export default {
       this.form.deptName = this.$route.query.deptName;
     }
     this.getZFVehiclePage();
+    this.getDicData("shiyongxingzhi").then((res) => {
+      this.jingyingfanweiList = res;
+    });
   },
   computed: {
     ...mapGetters({
@@ -522,9 +477,7 @@ export default {
             el.jiashiyuandianhua2 = el.jiashiyuandianhua.split(",")[1];
             el.jiashiyuandianhua = el.jiashiyuandianhua.split(",")[0];
           }
-          el.videochannelnum = el.videochannelnum
-            ? el.videochannelnum + "路"
-            : "";
+          el.videochannelnum = el.videochannelnum ? el.videochannelnum + "路" : "";
           return el;
         });
         //分页处理
@@ -544,6 +497,13 @@ export default {
     ViewClick(item) {
       this.vehiclemsgList = item;
       this.$refs.viewShow.vehicleVisible = true;
+    },
+    // 获取字典
+    async getDicData(val) {
+      let [err, data] = await dataApi.awaitWrap(dataApi.getByCode({ code: val }));
+      if (data) {
+        return data;
+      }
     },
     // 下载
     async downLoadList() {
@@ -591,9 +551,7 @@ export default {
             el.jiashiyuandianhua2 = el.jiashiyuandianhua.split(",")[1];
             el.jiashiyuandianhua = el.jiashiyuandianhua.split(",")[0];
           }
-          el.videochannelnum = el.videochannelnum
-            ? el.videochannelnum + "路"
-            : "";
+          el.videochannelnum = el.videochannelnum ? el.videochannelnum + "路" : "";
           return {
             ...el,
           };

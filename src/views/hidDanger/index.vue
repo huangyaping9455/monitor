@@ -1,50 +1,35 @@
 <template>
   <div class="hide">
     <div class="hide-top">
-      <div
-        :class="['car-item', { boxsd1: hideType == 0 }]"
-        @click="hideTypeClick('')"
-      >
+      <div :class="['car-item', { boxsd1: hideType == 0 }]" @click="hideTypeClick('')">
         <img src="@/assets/img/hide/icon1.png" alt="" srcset="" />
         <div>
           <span>隐患分值</span>
           <span>{{ listCount.num }}</span>
         </div>
       </div>
-      <div
-        :class="['car-item', { boxsd2: hideType == 1 }]"
-        @click="hideTypeClick(1)"
-      >
+      <div :class="['car-item', { boxsd2: hideType == 1 }]" @click="hideTypeClick(1)">
         <img src="@/assets/img/hide/icon2.png" alt="" srcset="" />
         <div>
           <span>人的不安全行为</span>
           <span>{{ listCount.num1 }}</span>
         </div>
       </div>
-      <div
-        :class="['car-item', { boxsd3: hideType == 2 }]"
-        @click="hideTypeClick(2)"
-      >
+      <div :class="['car-item', { boxsd3: hideType == 2 }]" @click="hideTypeClick(2)">
         <img src="@/assets/img/hide/icon3.png" alt="" srcset="" />
         <div>
           <span>物的不安全状态</span>
           <span>{{ listCount.num2 }}</span>
         </div>
       </div>
-      <div
-        :class="['car-item', { boxsd5: hideType == 5 }]"
-        @click="hideTypeClick(5)"
-      >
+      <div :class="['car-item', { boxsd5: hideType == 5 }]" @click="hideTypeClick(5)">
         <img src="@/assets/img/hide/icon5.png" alt="" srcset="" />
         <div>
           <span>环境的不安全因素</span>
           <span>{{ listCount.num3 }}</span>
         </div>
       </div>
-      <div
-        :class="['car-item', { boxsd4: hideType == 3 }]"
-        @click="hideTypeClick(3)"
-      >
+      <div :class="['car-item', { boxsd4: hideType == 3 }]" @click="hideTypeClick(3)">
         <img src="@/assets/img/hide/icon4.png" alt="" srcset="" />
         <div>
           <span>管理缺陷</span>
@@ -54,12 +39,7 @@
     </div>
     <el-form :inline="true" size="mini" class="hide-search">
       <el-form-item label="公司名称">
-        <el-input
-          size="small"
-          v-model="deptName"
-          placeholder="请输入公司名称"
-          clearable
-        ></el-input>
+        <el-input size="small" v-model="deptName" placeholder="请输入公司名称" clearable></el-input>
       </el-form-item>
       <!-- <el-form-item label="时间">
         <div style="display: flex; align-items: center">
@@ -81,9 +61,7 @@
         </div>
       </el-form-item> -->
       <el-form-item>
-        <el-button type="primary" class="sbtn" @click="getDate(1)"
-          >搜索</el-button
-        >
+        <el-button type="primary" class="sbtn" @click="getDate(1)">搜索</el-button>
       </el-form-item>
     </el-form>
     <el-table
@@ -93,13 +71,9 @@
       v-loading="msgloading"
       element-loading-background="rgba(0, 0, 0, 0.4)"
       :height="tableListH"
+      @sort-change="changeSort"
     >
-      <el-table-column
-        prop="deptName"
-        label="公司名称"
-        show-overflow-tooltip
-        align="center"
-      >
+      <el-table-column prop="deptName" label="公司名称" show-overflow-tooltip align="center">
       </el-table-column>
       <!-- <el-table-column
         label="行管名称"
@@ -108,12 +82,7 @@
         align="center"
       >
       </el-table-column> -->
-      <el-table-column
-        label="隐患分类"
-        prop="typeShow"
-        show-overflow-tooltip
-        align="center"
-      >
+      <el-table-column label="隐患分类" prop="typeShow" show-overflow-tooltip align="center">
       </el-table-column>
       <!-- <el-table-column
         label="隐患类型"
@@ -163,6 +132,7 @@
       >
       </el-table-column>
       <el-table-column
+        prop="counts"
         label="剩余隐患数量"
         show-overflow-tooltip
         align="center"
@@ -209,41 +179,24 @@
       <div class="page-r">
         <span class="el-icon-d-arrow-left" @click="getDate(1)"></span>
         <span class="el-icon-arrow-left" @click="getDate(current - 1)"></span>
-        <span
-          class="num"
-          v-show="current - 2 > 0"
-          @click="getDate(current - 2)"
-          >{{ current - 2 }}</span
-        >
-        <span
-          class="num"
-          v-show="current - 1 > 0"
-          @click="getDate(current - 1)"
-          >{{ current - 1 }}</span
-        >
+        <span class="num" v-show="current - 2 > 0" @click="getDate(current - 2)">{{
+          current - 2
+        }}</span>
+        <span class="num" v-show="current - 1 > 0" @click="getDate(current - 1)">{{
+          current - 1
+        }}</span>
         <span class="num active">{{ current }}</span>
-        <span
-          class="num"
-          v-show="current + 1 <= pageTotal"
-          @click="getDate(current + 1)"
-          >{{ current + 1 }}</span
-        >
-        <span
-          class="num"
-          v-show="current + 2 <= pageTotal"
-          @click="getDate(current + 2)"
-          >{{ current + 2 }}</span
-        >
+        <span class="num" v-show="current + 1 <= pageTotal" @click="getDate(current + 1)">{{
+          current + 1
+        }}</span>
+        <span class="num" v-show="current + 2 <= pageTotal" @click="getDate(current + 2)">{{
+          current + 2
+        }}</span>
         <span class="el-icon-arrow-right" @click="getDate(current + 1)"></span>
         <span class="el-icon-d-arrow-right" @click="getDate(pageTotal)"></span>
         <div class="pagesize">
           每页显示
-          <el-select
-            class="showselect"
-            size="mini"
-            @change="getDate(1)"
-            v-model="pagesizeactive"
-          >
+          <el-select class="showselect" size="mini" @change="getDate(1)" v-model="pagesizeactive">
             <el-option
               v-for="item in pagesize"
               :key="item"
@@ -284,6 +237,8 @@ export default {
       endtime: "",
       hideDangerTypeList: [],
       hideType: "",
+      orderColumns: "", //排序字段
+      order: "", //正序/倒序
     };
   },
   created() {
@@ -323,11 +278,13 @@ export default {
           deptId: this.zhengfuId,
           deptName: this.deptName,
           type: this.hideType,
+          orderColumn: this.orderColumns,
+          orderColumns: this.orderColumns,
+          order: this.order,
         })
       );
       this.msgloading = false;
       if (data) {
-        console.log(this.hideDangerTypeList);
         this.tableData = data.records.map((el) => {
           if (this.hideDangerTypeList.length > 0) {
             el.typeShow = this.hideDangerTypeList[el.type - 1].label;
@@ -341,6 +298,12 @@ export default {
       } else {
         this.$message.error(err);
       }
+    },
+    //排序
+    changeSort(val) {
+      this.order = val.order == "descending" ? 1 : 0;
+      this.orderColumns = val.prop;
+      this.getTroubleList(1);
     },
     //获取整改数
     async getTroublelistCount() {
@@ -394,9 +357,7 @@ export default {
     },
     // 隐患类别
     async getHideDangerType() {
-      let [err, data] = await standardApi.awaitWrap(
-        standardApi.getDicData("hideDangerType")
-      );
+      let [err, data] = await standardApi.awaitWrap(standardApi.getDicData("hideDangerType"));
       if (data) {
         this.hideDangerTypeList = data;
       }
