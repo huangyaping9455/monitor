@@ -44,14 +44,14 @@
 <template>
   <div class="home-header">
     <p class="time">{{ newtime }}</p>
-    <h1 class="title">{{ userinfo.mingcheng }}</h1>
+    <h1 class="title">{{ headTitle }}</h1>
     <!-- <h1 class="title" style="font-size: 27px">
       柳州市交通运输卫星定位政府监管平台
     </h1> -->
     <!-- <h1 class="title" style="font-size: 27px">宁东基地物流公共信息管理平台</h1> -->
     <div class="user">
       <svg-icon slot="prefix" class="icon" icon-class="user" />
-      <p>{{ userinfo.deptName }}</p>
+      <p>{{ $store.getters.userinfo.deptName }}</p>
       <svg-icon slot="prefix" @click="loginout" class="icon" icon-class="out" />
     </div>
   </div>
@@ -73,6 +73,24 @@ export default {
     return {
       newtime: "",
     };
+  },
+  computed: {
+    headTitle() {
+      let txt = "";
+      if (this.$store.getters.userinfo.mingcheng && this.$store.getters.userinfo.diqu) {
+        if (this.$store.getters.userinfo.mingcheng.indexOf("·") != -1) {
+          txt =
+            this.$store.getters.userinfo.diqu +
+            " · " +
+            this.$store.getters.userinfo.mingcheng.split("·")[1];
+        } else {
+          txt = this.$store.getters.userinfo.diqu;
+        }
+      } else {
+        txt = this.$store.getters.userinfo.mingcheng;
+      }
+      return txt;
+    },
   },
   mounted() {
     const timer = setInterval(() => {
