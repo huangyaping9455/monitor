@@ -37,9 +37,50 @@
         </div>
       </div>
     </div>
-    <el-form :inline="true" size="mini" class="hide-search">
+    <el-form :inline="true" size="mini" class="hide-search" :model="form">
       <el-form-item label="公司名称">
-        <el-input size="small" v-model="deptName" placeholder="请输入公司名称" clearable></el-input>
+        <el-input
+          v-model="form.deptName"
+          placeholder="请输入公司名称"
+          style="width: 180px"
+          clearable
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="营运类型">
+        <el-select
+          v-model="form.yingyunleixing"
+          clearable
+          placeholder="请选择营运类型"
+          style="width: 180px"
+          multiple
+          collapse-tags
+        >
+          <el-option
+            v-for="item in yingyunleixingList"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="经营范围">
+        <el-select
+          v-model="form.jingyingfanwei"
+          clearable
+          placeholder="请选择经营范围"
+          style="width: 180px"
+          multiple
+          collapse-tags
+        >
+          <el-option
+            v-for="item in jingyingfanweiList"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
       </el-form-item>
       <!-- <el-form-item label="时间">
         <div style="display: flex; align-items: center">
@@ -83,6 +124,10 @@
       >
       </el-table-column> -->
       <el-table-column label="隐患分类" prop="typeShow" show-overflow-tooltip align="center">
+      </el-table-column>
+      <el-table-column label="经营范围" prop="jingyingfanwei" show-overflow-tooltip align="center">
+      </el-table-column>
+      <el-table-column label="营运类型" prop="yunyingleixing" show-overflow-tooltip align="center">
       </el-table-column>
       <!-- <el-table-column
         label="隐患类型"
@@ -216,6 +261,7 @@ import dataAnalysisApi from "@/api/modules/report";
 import { mapGetters } from "vuex";
 import hideview from "./view";
 import standardApi from "@/api/modules/standard";
+import dataApi from "@/api/modules/government";
 export default {
   components: {
     hideview,
@@ -232,17 +278,28 @@ export default {
       tableData: [],
       listCount: [],
       zhengfuId: this.$store.state.userinfo.deptId,
-      deptName: "",
+      form: { deptName: "", jingyingfanwei: [], yingyunleixing: [] },
       begintime: "",
       endtime: "",
       hideDangerTypeList: [],
       hideType: "",
       orderColumns: "", //排序字段
       order: "", //正序/倒序
+      yingyunleixingList: [],
+      jingyingfanweiList: [],
     };
   },
   created() {
-    this.getHideDangerType();
+    this.getDicData("hideDangerType").then((res) => {
+      this.hideDangerTypeList = res;
+    });
+    this.getDicData("yingyunleixing").then((res) => {
+      this.yingyunleixingList = res;
+    });
+    this.getDicData("jingyingfanwei").then((res) => {
+      this.jingyingfanweiList = res;
+    });
+
     this.getTroublelistCount();
     this.getTroubleList();
   },
@@ -276,11 +333,13 @@ export default {
           current: current,
           size: this.pagesizeactive,
           deptId: this.zhengfuId,
-          deptName: this.deptName,
+          deptName: this.form.deptName,
           type: this.hideType,
           orderColumn: this.orderColumns,
           orderColumns: this.orderColumns,
           order: this.order,
+          jingyingfanwei: this.form.jingyingfanwei.toString(),
+          yingyunleixing: this.form.yingyunleixing.toString(),
         })
       );
       this.msgloading = false;
@@ -355,13 +414,6 @@ export default {
       this.$refs.hidev.getTroubleSetList();
       this.$refs.hidev.hidVisible = true;
     },
-    // 隐患类别
-    async getHideDangerType() {
-      let [err, data] = await standardApi.awaitWrap(standardApi.getDicData("hideDangerType"));
-      if (data) {
-        this.hideDangerTypeList = data;
-      }
-    },
     // 下发整改
     sendZG(row) {
       this.$router.push({
@@ -377,6 +429,13 @@ export default {
     hideTypeClick(index) {
       this.hideType = index;
       this.getDate(1);
+    },
+    // 获取字典
+    async getDicData(val) {
+      let [err, data] = await dataApi.awaitWrap(dataApi.getByCode({ code: val }));
+      if (data) {
+        return data;
+      }
     },
   },
 };

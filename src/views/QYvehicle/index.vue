@@ -624,6 +624,8 @@ export default {
           current: 0,
           size: 0,
           ...this.form,
+          jingyingfanwei: this.form.jingyingfanwei.toString(),
+          yingyunleixing: this.form.yingyunleixing.toString(),
         })
       );
       this.downloading = false;

@@ -234,12 +234,14 @@
               class="inputW"
             ></el-input>
           </el-form-item>
-          <el-form-item label="经验范围">
+          <el-form-item label="营运类型">
             <el-select
               v-model="form.shiyongxingzhi"
               clearable
-              placeholder="请选择经营范围"
-              style="width: 130px"
+              placeholder="请选择营运类型"
+              style="width: 180px"
+              multiple
+              collapse-tags
             >
               <el-option
                 v-for="item in jingyingfanweiList"
@@ -362,7 +364,7 @@ export default {
         deptName: "",
         cheliangpaizhao: "",
         zongduanid: "",
-        shiyongxingzhi: "",
+        shiyongxingzhi: [],
       },
       enterpriseList: [],
       zhengfuId: "", //地区id
@@ -423,7 +425,7 @@ export default {
         deptName: "",
         cheliangpaizhao: "",
         zongduanid: "",
-        shiyongxingzhi: "",
+        shiyongxingzhi: [],
       };
       this.getDate(1);
     },
@@ -441,6 +443,7 @@ export default {
           current: current,
           size: this.pagesizeactive,
           ...this.form,
+          shiyongxingzhi: this.form.shiyongxingzhi.toString(),
         })
       );
       this.loading = false;
@@ -514,6 +517,7 @@ export default {
           current: 0,
           size: 0,
           ...this.form,
+          shiyongxingzhi: this.form.shiyongxingzhi.toString(),
         })
       );
       this.downloading = false;

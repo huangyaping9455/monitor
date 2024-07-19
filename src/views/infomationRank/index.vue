@@ -204,7 +204,48 @@
         <!-- 查询 -->
         <el-form v-show="searchshow" :inline="true" size="mini" :model="form" class="search">
           <el-form-item label="企业名称">
-            <el-input v-model="form.deptName" placeholder="请输入企业名称" clearable></el-input>
+            <el-input
+              v-model="form.deptName"
+              placeholder="请输入企业名称"
+              style="width: 150px"
+              clearable
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="营运类型">
+            <el-select
+              v-model="form.yingyunleixing"
+              clearable
+              placeholder="请选择营运类型"
+              style="width: 180px"
+              multiple
+              collapse-tags
+            >
+              <el-option
+                v-for="item in yingyunleixingList"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="经营范围">
+            <el-select
+              v-model="form.jingyingfanwei"
+              clearable
+              placeholder="请选择经营范围"
+              style="width: 180px"
+              multiple
+              collapse-tags
+            >
+              <el-option
+                v-for="item in jingyingfanweiList"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" class="sbtn" @click="getDate(1)">搜索</el-button>
@@ -227,6 +268,18 @@
             width="240"
             align="center"
             show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="经营范围"
+            prop="jingyingfanwei"
+            align="center"
+            width="140"
+          ></el-table-column>
+          <el-table-column
+            label="营运类型"
+            prop="yingyunleixing"
+            align="center"
+            width="140"
           ></el-table-column>
           <el-table-column prop="vehFullRate" label="车辆信息完整率" align="center" sortable>
             <template scope="scope">
@@ -354,6 +407,7 @@
 
 <script>
 import dataAnalysisApi from "@/api/modules/report";
+import dataApi from "@/api/modules/government";
 import { mapGetters } from "vuex";
 import { export_json_to_excel } from "@/config/Export2Excel";
 export default {
@@ -369,15 +423,25 @@ export default {
       enterpriseListH: "calc(100vh - 14.6814rem)",
       form: {
         deptName: "",
+        jingyingfanwei: [],
+        yingyunleixing: [],
       },
       enterpriseList: [],
       zhengfuId: "", //地区id
       downloading: false,
       orderColumns: "", //排序字段
       order: "", //正序/倒序
+      yingyunleixingList: [],
+      jingyingfanweiList: [],
     };
   },
   mounted() {
+    this.getDicData("yingyunleixing").then((res) => {
+      this.yingyunleixingList = res;
+    });
+    this.getDicData("jingyingfanwei").then((res) => {
+      this.jingyingfanweiList = res;
+    });
     this.getDeptFullRateTJ();
   },
   computed: {
@@ -399,6 +463,8 @@ export default {
     refresh() {
       this.form = {
         deptName: "",
+        jingyingfanwei: [],
+        yingyunleixing: [],
       };
       this.getDate(1);
     },
@@ -423,6 +489,8 @@ export default {
           orderColumns: this.orderColumns,
           order: this.order,
           ...this.form,
+          jingyingfanwei: this.form.jingyingfanwei.toString(),
+          yingyunleixing: this.form.yingyunleixing.toString(),
         })
       );
       this.loading = false;
@@ -449,7 +517,13 @@ export default {
         : (this.enterpriseListH = "calc(100vh - 16.8571rem)");
       this.searchshow = !this.searchshow;
     },
-
+    // 获取字典
+    async getDicData(val) {
+      let [err, data] = await dataApi.awaitWrap(dataApi.getByCode({ code: val }));
+      if (data) {
+        return data;
+      }
+    },
     // 统计下载
     async downtable() {
       this.downloading = true;
@@ -465,6 +539,8 @@ export default {
           current: 0,
           size: 0,
           ...this.form,
+          jingyingfanwei: this.form.jingyingfanwei.toString(),
+          yingyunleixing: this.form.yingyunleixing.toString(),
         })
       );
       this.downloading = false;

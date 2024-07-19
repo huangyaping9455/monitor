@@ -191,35 +191,22 @@
       <div class="main-r">
         <!-- 操作按钮 -->
         <div class="btns">
-          <el-button
-            @click="changeSearch"
-            size="mini"
-            class="btn"
-            icon="el-icon-search"
+          <el-button @click="changeSearch" size="mini" class="btn" icon="el-icon-search"
             >查询</el-button
           >
-          <el-button
-            @click="refresh"
-            size="mini"
-            class="btn"
-            icon="el-icon-refresh"
+          <el-button @click="refresh" size="mini" class="btn" icon="el-icon-refresh"
             >刷新</el-button
           >
         </div>
         <!-- 查询 -->
-        <el-form
-          v-show="searchshow"
-          :inline="true"
-          size="mini"
-          :model="form"
-          class="search"
-        >
+        <el-form v-show="searchshow" :inline="true" size="mini" :model="form" class="search">
           <el-form-item label="开始时间">
             <el-date-picker
               v-model="form.begintime"
               type="date"
               value-format="yyyy-MM-dd"
               placeholder="选择开始日期"
+              style="width: 160px"
             ></el-date-picker>
           </el-form-item>
           <el-form-item label="结束时间">
@@ -228,12 +215,47 @@
               type="date"
               value-format="yyyy-MM-dd"
               placeholder="选择结束日期"
+              style="width: 160px"
             ></el-date-picker>
           </el-form-item>
-          <el-form-item>
-            <el-button type="primary" class="sbtn" @click="getDate(1)"
-              >搜索</el-button
+          <el-form-item label="营运类型">
+            <el-select
+              v-model="form.yingyunleixing"
+              clearable
+              placeholder="请选择营运类型"
+              style="width: 180px"
+              multiple
+              collapse-tags
             >
+              <el-option
+                v-for="item in yingyunleixingList"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="经营范围">
+            <el-select
+              v-model="form.jingyingfanwei"
+              clearable
+              placeholder="请选择经营范围"
+              style="width: 180px"
+              multiple
+              collapse-tags
+            >
+              <el-option
+                v-for="item in jingyingfanweiList"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" class="sbtn" @click="getDate(1)">搜索</el-button>
           </el-form-item>
         </el-form>
         <el-table
@@ -245,12 +267,7 @@
           border
           :data="enterpriseList"
         >
-          <el-table-column
-            label="序号"
-            type="index"
-            width="50"
-            align="center"
-          ></el-table-column>
+          <el-table-column label="序号" type="index" width="50" align="center"></el-table-column>
           <el-table-column
             label="企业名称"
             prop="deptName"
@@ -258,21 +275,11 @@
             align="center"
             show-overflow-tooltip
           ></el-table-column>
-          <el-table-column
-            label="应传文件数"
-            prop="uploadedNum"
-            align="center"
-          ></el-table-column>
-          <el-table-column
-            prop="finshNum"
-            label="完成数"
-            align="center"
-          ></el-table-column>
-          <el-table-column
-            prop="finshRatio"
-            label="完成比例"
-            align="center"
-          ></el-table-column>
+          <el-table-column label="经营范围" prop="jingyingfanwei" align="center"></el-table-column>
+          <el-table-column label="营运类型" prop="yingyunleixing" align="center"></el-table-column>
+          <el-table-column label="应传文件数" prop="uploadedNum" align="center"></el-table-column>
+          <el-table-column prop="finshNum" label="完成数" align="center"></el-table-column>
+          <el-table-column prop="finshRatio" label="完成比例" align="center"></el-table-column>
           <el-table-column label="操作" align="center" width="160">
             <template slot-scope="{ row }">
               <el-button
@@ -326,43 +333,22 @@
           </div>
           <div class="page-r">
             <span class="el-icon-d-arrow-left" @click="getDate(1)"></span>
-            <span
-              class="el-icon-arrow-left"
-              @click="getDate(current - 1)"
-            ></span>
-            <span
-              class="num"
-              v-show="current - 2 > 0"
-              @click="getDate(current - 2)"
-              >{{ current - 2 }}</span
-            >
-            <span
-              class="num"
-              v-show="current - 1 > 0"
-              @click="getDate(current - 1)"
-              >{{ current - 1 }}</span
-            >
+            <span class="el-icon-arrow-left" @click="getDate(current - 1)"></span>
+            <span class="num" v-show="current - 2 > 0" @click="getDate(current - 2)">{{
+              current - 2
+            }}</span>
+            <span class="num" v-show="current - 1 > 0" @click="getDate(current - 1)">{{
+              current - 1
+            }}</span>
             <span class="num active">{{ current }}</span>
-            <span
-              class="num"
-              v-show="current + 1 <= pageTotal"
-              @click="getDate(current + 1)"
-              >{{ current + 1 }}</span
-            >
-            <span
-              class="num"
-              v-show="current + 2 <= pageTotal"
-              @click="getDate(current + 2)"
-              >{{ current + 2 }}</span
-            >
-            <span
-              class="el-icon-arrow-right"
-              @click="getDate(current + 1)"
-            ></span>
-            <span
-              class="el-icon-d-arrow-right"
-              @click="getDate(pageTotal)"
-            ></span>
+            <span class="num" v-show="current + 1 <= pageTotal" @click="getDate(current + 1)">{{
+              current + 1
+            }}</span>
+            <span class="num" v-show="current + 2 <= pageTotal" @click="getDate(current + 2)">{{
+              current + 2
+            }}</span>
+            <span class="el-icon-arrow-right" @click="getDate(current + 1)"></span>
+            <span class="el-icon-d-arrow-right" @click="getDate(pageTotal)"></span>
             <div class="pagesize">
               每页显示
               <el-select
@@ -390,6 +376,7 @@
 import dataAnalysisApi from "@/api/modules/report";
 import { mapGetters } from "vuex";
 import { format } from "@/config/date";
+import dataApi from "@/api/modules/government";
 export default {
   data() {
     return {
@@ -402,18 +389,25 @@ export default {
       pagesizeactive: 20, //当前每页显示
       enterpriseListH: "calc(100vh - 14.6814rem)",
       form: {
-        begintime: format(
-          new Date().getTime() - 3600 * 1000 * 24 * 30,
-          "YYYY-MM-DD"
-        ),
+        begintime: format(new Date().getTime() - 3600 * 1000 * 24 * 30, "YYYY-MM-DD"),
         endtime: format(new Date().getTime(), "YYYY-MM-DD"),
+        jingyingfanwei: [],
+        yingyunleixing: [],
       },
       enterpriseList: [],
       zhengfuId: "", //地区id
+      yingyunleixingList: [],
+      jingyingfanweiList: [],
     };
   },
   mounted() {
     this.safetyList();
+    this.getDicData("yingyunleixing").then((res) => {
+      this.yingyunleixingList = res;
+    });
+    this.getDicData("jingyingfanwei").then((res) => {
+      this.jingyingfanweiList = res;
+    });
   },
   computed: {
     ...mapGetters({
@@ -435,6 +429,8 @@ export default {
       this.form = {
         begintime: format(new Date().getTime(), "YYYY-MM-01"),
         endtime: format(new Date().getTime(), "YYYY-MM-DD"),
+        jingyingfanwei: [],
+        yingyunleixing: [],
       };
       this.getDate(1);
     },
@@ -457,6 +453,8 @@ export default {
           size: this.pagesizeactive,
           beginTime: this.form.begintime,
           endTime: this.form.endtime,
+          jingyingfanwei: this.form.jingyingfanwei.toString(),
+          yingyunleixing: this.form.yingyunleixing.toString(),
         })
       );
       this.loading = false;
@@ -468,6 +466,13 @@ export default {
         this.pageTotal = data.data.pageTotal;
       } else {
         this.$message.error(err);
+      }
+    },
+    // 获取字典
+    async getDicData(val) {
+      let [err, data] = await dataApi.awaitWrap(dataApi.getByCode({ code: val }));
+      if (data) {
+        return data;
       }
     },
     changeSearch() {

@@ -201,38 +201,19 @@
       <div class="main-r">
         <!-- 操作按钮 -->
         <div class="btns">
-          <el-button
-            @click="changeSearch"
-            size="mini"
-            class="btn"
-            icon="el-icon-search"
+          <el-button @click="changeSearch" size="mini" class="btn" icon="el-icon-search"
             >查询</el-button
           >
-          <el-button
-            size="mini"
-            :loading="downloading"
-            @click="downLoadList"
-            class="btn"
-          >
+          <el-button size="mini" :loading="downloading" @click="downLoadList" class="btn">
             <svg-icon class="icon" v-show="!downloading" icon-class="down" />
             下载
           </el-button>
-          <el-button
-            @click="refresh"
-            size="mini"
-            class="btn"
-            icon="el-icon-refresh"
+          <el-button @click="refresh" size="mini" class="btn" icon="el-icon-refresh"
             >刷新</el-button
           >
         </div>
         <!-- 查询 -->
-        <el-form
-          v-show="searchshow"
-          :inline="true"
-          size="mini"
-          :model="form"
-          class="search"
-        >
+        <el-form v-show="searchshow" :inline="true" size="mini" :model="form" class="search">
           <el-form-item label="企业名称">
             <el-input
               v-model="form.deptName"
@@ -254,7 +235,9 @@
               v-model="form.jingyingfanwei"
               clearable
               placeholder="请选择经营范围"
-              style="width: 130px"
+              style="width: 180px"
+              multiple
+              collapse-tags
             >
               <el-option
                 v-for="item in jingyingfanweiList"
@@ -292,11 +275,7 @@
           </el-table-column>
           <el-table-column label="操作" align="center" width="80" fixed="right">
             <template slot-scope="{ row }">
-              <el-button
-                size="mini"
-                style="color: #00c8f5"
-                type="text"
-                @click="viewShow(row)"
+              <el-button size="mini" style="color: #00c8f5" type="text" @click="viewShow(row)"
                 >详情</el-button
               >
             </template>
@@ -319,43 +298,22 @@
           </div>
           <div class="page-r">
             <span class="el-icon-d-arrow-left" @click="getDate(1)"></span>
-            <span
-              class="el-icon-arrow-left"
-              @click="getDate(current - 1)"
-            ></span>
-            <span
-              class="num"
-              v-show="current - 2 > 0"
-              @click="getDate(current - 2)"
-              >{{ current - 2 }}</span
-            >
-            <span
-              class="num"
-              v-show="current - 1 > 0"
-              @click="getDate(current - 1)"
-              >{{ current - 1 }}</span
-            >
+            <span class="el-icon-arrow-left" @click="getDate(current - 1)"></span>
+            <span class="num" v-show="current - 2 > 0" @click="getDate(current - 2)">{{
+              current - 2
+            }}</span>
+            <span class="num" v-show="current - 1 > 0" @click="getDate(current - 1)">{{
+              current - 1
+            }}</span>
             <span class="num active">{{ current }}</span>
-            <span
-              class="num"
-              v-show="current + 1 <= pageTotal"
-              @click="getDate(current + 1)"
-              >{{ current + 1 }}</span
-            >
-            <span
-              class="num"
-              v-show="current + 2 <= pageTotal"
-              @click="getDate(current + 2)"
-              >{{ current + 2 }}</span
-            >
-            <span
-              class="el-icon-arrow-right"
-              @click="getDate(current + 1)"
-            ></span>
-            <span
-              class="el-icon-d-arrow-right"
-              @click="getDate(pageTotal)"
-            ></span>
+            <span class="num" v-show="current + 1 <= pageTotal" @click="getDate(current + 1)">{{
+              current + 1
+            }}</span>
+            <span class="num" v-show="current + 2 <= pageTotal" @click="getDate(current + 2)">{{
+              current + 2
+            }}</span>
+            <span class="el-icon-arrow-right" @click="getDate(current + 1)"></span>
+            <span class="el-icon-d-arrow-right" @click="getDate(pageTotal)"></span>
             <div class="pagesize">
               每页显示
               <el-select
@@ -374,10 +332,7 @@
             </div>
           </div>
         </div>
-        <view-detail
-          ref="viewShow"
-          :vehiclemsgList="vehiclemsgList"
-        ></view-detail>
+        <view-detail ref="viewShow" :vehiclemsgList="vehiclemsgList"></view-detail>
       </div>
     </div>
   </div>
@@ -406,12 +361,13 @@ export default {
       form: {
         deptName: "",
         jiashiyuanxingming: "",
+        jingyingfanwei: [],
       },
       enterpriseList: [],
       zhengfuId: "", //地区id
       vehiclemsgList: {},
       downloading: false,
-      jingyingfanweiList:[]
+      jingyingfanweiList: [],
     };
   },
   created() {
@@ -419,7 +375,7 @@ export default {
       this.form.deptName = this.$route.query.deptName;
     }
     this.selectZFPersonLearnInfoAll();
-    
+
     this.getDicData("jingyingfanwei").then((res) => {
       this.jingyingfanweiList = res;
     });
@@ -466,6 +422,7 @@ export default {
       this.form = {
         deptName: "",
         jiashiyuanxingming: "",
+        jingyingfanwei: [],
       };
       this.getDate(1);
     },
@@ -483,6 +440,7 @@ export default {
           current: current,
           size: this.pagesizeactive,
           ...this.form,
+          jingyingfanwei: this.form.jingyingfanwei.toString(),
         })
       );
       this.loading = false;
@@ -509,10 +467,7 @@ export default {
             i.congyeleibie = i.congyeleibie;
           }
           if (i.shenfenzhenghao) {
-            i.shenfenzhenghao = i.shenfenzhenghao.replace(
-              /^(.{6})(?:\d+)(.{4})$/,
-              "$1****$2"
-            );
+            i.shenfenzhenghao = i.shenfenzhenghao.replace(/^(.{6})(?:\d+)(.{4})$/, "$1****$2");
           }
           return i;
         });
@@ -551,6 +506,7 @@ export default {
           current: 0,
           size: 0,
           ...this.form,
+          jingyingfanwei: this.form.jingyingfanwei.toString(),
         })
       );
       this.downloading = false;
@@ -577,10 +533,7 @@ export default {
             el.congyeleibie = el.congyeleibie;
           }
           if (el.shenfenzhenghao) {
-            el.shenfenzhenghao = el.shenfenzhenghao.replace(
-              /^(.{6})(?:\d+)(.{4})$/,
-              "$1****$2"
-            );
+            el.shenfenzhenghao = el.shenfenzhenghao.replace(/^(.{6})(?:\d+)(.{4})$/, "$1****$2");
           }
           return {
             ...el,

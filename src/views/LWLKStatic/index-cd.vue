@@ -193,45 +193,23 @@
       <div class="main-r">
         <!-- 操作按钮 -->
         <div class="btns">
-          <el-button
-            @click="changeSearch"
-            size="mini"
-            class="btn"
-            icon="el-icon-search"
+          <el-button @click="changeSearch" size="mini" class="btn" icon="el-icon-search"
             >查询</el-button
           >
-          <el-button
-            size="mini"
-            :loading="downloading"
-            @click="downtable"
-            class="btn"
-          >
-            <svg-icon
-              class="icon"
-              v-show="!downloading"
-              icon-class="down"
-            />下载
+          <el-button size="mini" :loading="downloading" @click="downtable" class="btn">
+            <svg-icon class="icon" v-show="!downloading" icon-class="down" />下载
           </el-button>
-          <el-button
-            @click="refresh"
-            size="mini"
-            class="btn"
-            icon="el-icon-refresh"
+          <el-button @click="refresh" size="mini" class="btn" icon="el-icon-refresh"
             >刷新</el-button
           >
         </div>
         <!-- 查询 -->
-        <el-form
-          v-show="searchshow"
-          :inline="true"
-          size="mini"
-          :model="form"
-          class="search"
-        >
+        <el-form v-show="searchshow" :inline="true" size="mini" :model="form" class="search">
           <el-form-item label="企业名称">
             <el-input
               v-model="form.deptName"
               placeholder="请输入企业名称"
+              style="width: 150px"
               clearable
             ></el-input>
           </el-form-item>
@@ -239,6 +217,7 @@
             <el-date-picker
               v-model="form.beginTime"
               type="date"
+              style="width: 150px"
               value-format="yyyy-MM-dd"
               placeholder="选择结束日期"
             ></el-date-picker>
@@ -247,14 +226,49 @@
             <el-date-picker
               v-model="form.endTime"
               type="date"
+              style="width: 150px"
               value-format="yyyy-MM-dd"
               placeholder="选择结束日期"
             ></el-date-picker>
           </el-form-item>
-          <el-form-item>
-            <el-button type="primary" class="sbtn" @click="getDate(1)"
-              >搜索</el-button
+          <el-form-item label="营运类型">
+            <el-select
+              v-model="form.yingyunleixing"
+              clearable
+              placeholder="请选择营运类型"
+              style="width: 180px"
+              multiple
+              collapse-tags
             >
+              <el-option
+                v-for="item in yingyunleixingList"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="经营范围">
+            <el-select
+              v-model="form.jingyingfanwei"
+              clearable
+              placeholder="请选择经营范围"
+              style="width: 180px"
+              multiple
+              collapse-tags
+            >
+              <el-option
+                v-for="item in jingyingfanweiList"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" class="sbtn" @click="getDate(1)">搜索</el-button>
           </el-form-item>
         </el-form>
         <!-- mainTable -->
@@ -269,9 +283,7 @@
         >
           <el-table-column type="index" label="排名" width="50" align="center">
             <template scope="scope">
-              <span>{{
-                (current - 1) * pagesizeactive + scope.$index + 1
-              }}</span>
+              <span>{{ (current - 1) * pagesizeactive + scope.$index + 1 }}</span>
             </template>
           </el-table-column>
           <el-table-column
@@ -282,6 +294,18 @@
             align="center"
           >
           </el-table-column>
+          <el-table-column
+            label="经营范围"
+            prop="jingyingfanwei"
+            align="center"
+            width="140"
+          ></el-table-column>
+          <el-table-column
+            label="营运类型"
+            prop="yingyunleixing"
+            align="center"
+            width="140"
+          ></el-table-column>
           <el-table-column
             label="考核得分"
             prop="totalScore"
@@ -413,43 +437,22 @@
           </div>
           <div class="page-r">
             <span class="el-icon-d-arrow-left" @click="getDate(1)"></span>
-            <span
-              class="el-icon-arrow-left"
-              @click="getDate(current - 1)"
-            ></span>
-            <span
-              class="num"
-              v-show="current - 2 > 0"
-              @click="getDate(current - 2)"
-              >{{ current - 2 }}</span
-            >
-            <span
-              class="num"
-              v-show="current - 1 > 0"
-              @click="getDate(current - 1)"
-              >{{ current - 1 }}</span
-            >
+            <span class="el-icon-arrow-left" @click="getDate(current - 1)"></span>
+            <span class="num" v-show="current - 2 > 0" @click="getDate(current - 2)">{{
+              current - 2
+            }}</span>
+            <span class="num" v-show="current - 1 > 0" @click="getDate(current - 1)">{{
+              current - 1
+            }}</span>
             <span class="num active">{{ current }}</span>
-            <span
-              class="num"
-              v-show="current + 1 <= pageTotal"
-              @click="getDate(current + 1)"
-              >{{ current + 1 }}</span
-            >
-            <span
-              class="num"
-              v-show="current + 2 <= pageTotal"
-              @click="getDate(current + 2)"
-              >{{ current + 2 }}</span
-            >
-            <span
-              class="el-icon-arrow-right"
-              @click="getDate(current + 1)"
-            ></span>
-            <span
-              class="el-icon-d-arrow-right"
-              @click="getDate(pageTotal)"
-            ></span>
+            <span class="num" v-show="current + 1 <= pageTotal" @click="getDate(current + 1)">{{
+              current + 1
+            }}</span>
+            <span class="num" v-show="current + 2 <= pageTotal" @click="getDate(current + 2)">{{
+              current + 2
+            }}</span>
+            <span class="el-icon-arrow-right" @click="getDate(current + 1)"></span>
+            <span class="el-icon-d-arrow-right" @click="getDate(pageTotal)"></span>
             <div class="pagesize">
               每页显示
               <el-select
@@ -477,6 +480,7 @@
 import allHeader from "@/components/Header/index";
 import statisticsAside from "@/components/StatisticsAside/index";
 import dataAnalysisApi from "@/api/modules/report";
+import dataApi from "@/api/modules/government";
 import { mapGetters } from "vuex";
 import { format } from "@/config/date";
 import { export_json_to_excel } from "@/config/Export2Excel";
@@ -497,18 +501,25 @@ export default {
       pagesizeactive: 20, //当前每页显示
       enterpriseListH: "calc(100vh - 14.6814rem)",
       form: {
-        beginTime: format(
-          new Date().getTime() - 3600 * 1000 * 24,
-          "YYYY-MM-DD"
-        ),
+        beginTime: format(new Date().getTime() - 3600 * 1000 * 24, "YYYY-MM-DD"),
         endTime: format(new Date(), "YYYY-MM-DD"),
         deptName: "",
+        jingyingfanwei: [],
+        yingyunleixing: [],
       },
       enterpriseList: [],
       zhengfuId: "", //地区id
+      yingyunleixingList: [],
+      jingyingfanweiList: [],
     };
   },
   mounted() {
+    this.getDicData("yingyunleixing").then((res) => {
+      this.yingyunleixingList = res;
+    });
+    this.getDicData("jingyingfanwei").then((res) => {
+      this.jingyingfanweiList = res;
+    });
     this.getCDDayTJ();
   },
   computed: {
@@ -529,12 +540,11 @@ export default {
   methods: {
     refresh() {
       this.form = {
-        beginTime: format(
-          new Date().getTime() - 3600 * 1000 * 24,
-          "YYYY-MM-DD"
-        ),
+        beginTime: format(new Date().getTime() - 3600 * 1000 * 24, "YYYY-MM-DD"),
         endTime: format(new Date(), "YYYY-MM-DD"),
         deptName: "",
+        jingyingfanwei: [],
+        yingyunleixing: [],
       };
       this.getDate(1);
     },
@@ -552,6 +562,8 @@ export default {
           current: current,
           size: this.pagesizeactive,
           ...this.form,
+          jingyingfanwei: this.form.jingyingfanwei.toString(),
+          yingyunleixing: this.form.yingyunleixing.toString(),
         })
       );
       this.loading = false;
@@ -571,6 +583,13 @@ export default {
         : (this.enterpriseListH = "calc(100vh - 16.8571rem)");
       this.searchshow = !this.searchshow;
     },
+    // 获取字典
+    async getDicData(val) {
+      let [err, data] = await dataApi.awaitWrap(dataApi.getByCode({ code: val }));
+      if (data) {
+        return data;
+      }
+    },
     // 统计下载
     async downtable() {
       this.downloading = true;
@@ -586,6 +605,8 @@ export default {
           current: 0,
           size: 0,
           ...this.form,
+          jingyingfanwei: this.form.jingyingfanwei.toString(),
+          yingyunleixing: this.form.yingyunleixing.toString(),
         })
       );
       this.downloading = false;

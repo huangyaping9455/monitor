@@ -226,11 +226,7 @@
       </div>
     </div>
     <div class="home-bottom">
-      <div
-        class="map"
-        v-loading="load.load"
-        element-loading-background="rgba(0, 0, 0, 0.4)"
-      >
+      <div class="map" v-loading="load.load" element-loading-background="rgba(0, 0, 0, 0.4)">
         <el-button
           @click="returnMap"
           v-show="cengji > 0 && !load.load"
@@ -271,14 +267,12 @@
         </div>
         <div class="content-center">
           <el-carousel
-            style="height: calc(100%); width: 100%"
+            style="height: calc(100%); width: 100%;"
             trigger="click"
             indicator-position="none"
             arrow="always"
           >
-            <el-carousel-item
-              style="display: flex; justify-content: space-between"
-            >
+            <div style="display: flex; justify-content: space-between;height: 100%;">
               <div
                 class="linebox"
                 v-loading="load.load1"
@@ -286,19 +280,13 @@
               >
                 <span class="title">北斗报警统计</span>
                 <div class="btns">
-                  <span
-                    @click="changeCar('carousel', 'chaosu')"
-                    :class="isbtn == 0 ? 'active' : ''"
+                  <span @click="changeCar('carousel', 'chaosu')" :class="isbtn == 0 ? 'active' : ''"
                     >超速报警</span
                   >
-                  <span
-                    @click="changeCar('carousel', 'pilao')"
-                    :class="isbtn == 1 ? 'active' : ''"
+                  <span @click="changeCar('carousel', 'pilao')" :class="isbtn == 1 ? 'active' : ''"
                     >疲劳驾驶</span
                   >
-                  <span
-                    @click="changeCar('carousel', 'yejian')"
-                    :class="isbtn == 2 ? 'active' : ''"
+                  <span @click="changeCar('carousel', 'yejian')" :class="isbtn == 2 ? 'active' : ''"
                     >夜间行驶</span
                   >
                   <span
@@ -415,8 +403,8 @@
                   </el-carousel-item>
                 </el-carousel>
               </div>
-            </el-carousel-item>
-            <el-carousel-item
+            </div>
+            <!--<el-carousel-item
               style="display: flex; justify-content: space-between"
             >
               <div class="linebox">
@@ -435,7 +423,7 @@
                   :chart-option="chartOption.option11"
                 ></echart-base>
               </div>
-            </el-carousel-item>
+            </el-carousel-item>-->
           </el-carousel>
         </div>
         <div class="content-bottom">
@@ -492,11 +480,7 @@
                   align="center"
                   :show-overflow-tooltip="true"
                 ></el-table-column>
-                <el-table-column
-                  prop="cheliangshu"
-                  label="车辆数"
-                  align="center"
-                ></el-table-column>
+                <el-table-column prop="cheliangshu" label="车辆数" align="center"></el-table-column>
                 <el-table-column
                   prop="bjcheliangshu"
                   label="报警车辆数"
@@ -536,9 +520,7 @@
         z-index: 9;
       "
     >
-      <span style="margin-right: 40px">
-        版权所有：{{ userinfo.copyrighter }}
-      </span>
+      <span style="margin-right: 40px"> 版权所有：{{ userinfo.copyrighter }} </span>
       <span>技术支持：{{ userinfo.technicalsupport }}</span>
     </div>
   </div>
@@ -655,8 +637,8 @@ export default {
       this.getThree(this.userinfo.deptId, 0);
       //政府-各地区详细报警数据表
       this.getFour(this.userinfo.deptId);
-      this.getRiskTendency(this.userinfo.deptId, 0);
-      this.getDangerTroubleTendency(this.userinfo.deptId, 0);
+      // this.getRiskTendency(this.userinfo.deptId, 0);
+      // this.getDangerTroubleTendency(this.userinfo.deptId, 0);
     },
     // 政府-企业总数、个体总数、车辆总数、在线车辆数
     async getOne(deptId) {
@@ -683,7 +665,7 @@ export default {
         })
       );
       let _this = this;
-      setTimeout(function () {
+      setTimeout(function() {
         _this.load.load = false;
         if (err) {
           _this.$message.error(err);
@@ -706,10 +688,7 @@ export default {
                 },
               };
             });
-            _this.chartOption.option9 = geooption.geooption(
-              _this.areaName,
-              _this.mapData
-            );
+            _this.chartOption.option9 = geooption.geooption(_this.areaName, _this.mapData);
             return false;
           }
           let mapData;
