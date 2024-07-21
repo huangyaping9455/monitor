@@ -66,6 +66,14 @@ module.exports = {
       //     "^/prod-api": "/prod-api",
       //   },
       // },
+      "/previewapi": {
+        // target: "http://125.64.5.2:8204",
+        target: "https://safe.sdghzt.com:8204",
+        ws: true,
+        pathRewrite: {
+          "^/previewapi": "",
+        },
+      },
       "/": {
         target: process.env.VUE_APP_BASE_API,
         changeOrigin: true,
