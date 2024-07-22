@@ -202,29 +202,13 @@
       <div class="main-r">
         <!-- 操作按钮 -->
         <div class="btns">
-          <el-button
-            @click="changeSearch"
-            size="mini"
-            class="btn"
-            icon="el-icon-search"
+          <el-button @click="changeSearch" size="mini" class="btn" icon="el-icon-search"
             >查询</el-button
           >
-          <el-button
-            size="mini"
-            :loading="downloading"
-            @click="downtable"
-            class="btn"
-            ><svg-icon
-              class="icon"
-              v-show="!downloading"
-              icon-class="down"
-            />下载</el-button
+          <el-button size="mini" :loading="downloading" @click="downtable" class="btn"
+            ><svg-icon class="icon" v-show="!downloading" icon-class="down" />下载</el-button
           >
-          <el-button
-            @click="refresh"
-            size="mini"
-            class="btn"
-            icon="el-icon-refresh"
+          <el-button @click="refresh" size="mini" class="btn" icon="el-icon-refresh"
             >重置</el-button
           >
           <el-button
@@ -237,13 +221,7 @@
           >
         </div>
         <!-- 查询 -->
-        <el-form
-          v-show="searchshow"
-          :inline="true"
-          size="mini"
-          :model="form"
-          class="search"
-        >
+        <el-form v-show="searchshow" :inline="true" size="mini" :model="form" class="search">
           <el-form-item label="时间">
             <el-col :span="11" class="timetype">
               <el-form-item>
@@ -272,16 +250,10 @@
             </el-col>
           </el-form-item>
           <el-form-item label="企业名称" v-show="hierarchy == 2">
-            <el-input
-              v-model="form.deptName"
-              placeholder="请输入企业名称"
-              clearable
-            ></el-input>
+            <el-input v-model="form.deptName" placeholder="请输入企业名称" clearable></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" class="sbtn" @click="getDate(1)"
-              >搜索</el-button
-            >
+            <el-button type="primary" class="sbtn" @click="getDate(1)">搜索</el-button>
           </el-form-item>
         </el-form>
         <!-- mainTable -->
@@ -294,8 +266,7 @@
           border
           :data="enterpriseList"
         >
-          <el-table-column type="index" label="排名" width="50" align="center">
-          </el-table-column>
+          <el-table-column type="index" label="排名" width="50" align="center"> </el-table-column>
           <el-table-column label="地区名称" min-width="100" align="center">
             <template slot-scope="{ row }">
               <span
@@ -307,22 +278,12 @@
               <span v-else class="businessName">{{ row.areaname }}</span>
             </template>
           </el-table-column>
-          <el-table-column
-            v-if="hierarchy == 2"
-            label="企业名称"
-            min-width="200"
-            align="center"
-          >
+          <el-table-column v-if="hierarchy == 2" label="企业名称" min-width="200" align="center">
             <template slot-scope="{ row }">
               <span class="businessName">{{ row.deptName }}</span>
             </template>
           </el-table-column>
-          <el-table-column
-            prop="cheliangshu"
-            label="报警车辆数"
-            align="center"
-            min-width="86"
-          >
+          <el-table-column prop="cheliangshu" label="报警车辆数" align="center" min-width="86">
             <template slot-scope="{ row }">
               <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
                 <span @click="goCheliang(1, '超速报警', '', '已处理', row)">{{
@@ -331,21 +292,15 @@
               </p>
             </template>
           </el-table-column>
-          <el-table-column
-            prop="date"
-            label="统计时间"
-            align="center"
-            min-width="170"
-          >
+          <el-table-column prop="date" label="统计时间" align="center" min-width="170">
           </el-table-column>
           <el-table-column label="北斗设备报警" align="center">
             <el-table-column label="处理/超速" align="center" min-width="140">
               <template slot-scope="{ row }">
                 <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
-                  <span
-                    @click="goinfo(1, '超速报警', '北斗报警', '已处理', row)"
-                    >{{ row.chaosucl }}</span
-                  >
+                  <span @click="goinfo(1, '超速报警', '北斗报警', '已处理', row)">{{
+                    row.chaosucl
+                  }}</span>
                   /
                   <span @click="goinfo(1, '超速报警', '北斗报警', '', row)">{{
                     row.gpschaosu
@@ -354,28 +309,20 @@
                 </p>
               </template>
             </el-table-column>
-            <!-- <el-table-column
-              label="处理/疲劳驾驶"
-              align="center"
-              min-width="140"
-            >
+            <el-table-column label="处理/疲劳驾驶" align="center" min-width="140">
               <template slot-scope="{ row }">
                 <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
-                  <span
-                    @click="
-                      goinfo(1, '疲劳驾驶报警', '北斗报警', '已处理', row)
-                    "
-                    >{{ row.pilaocl }}</span
-                  >
+                  <span @click="goinfo(1, '疲劳驾驶报警', '北斗报警', '已处理', row)">{{
+                    row.pilaocl
+                  }}</span>
                   /
-                  <span
-                    @click="goinfo(1, '疲劳驾驶报警', '北斗报警', '', row)"
-                    >{{ row.gpspilao }}</span
-                  >
+                  <span @click="goinfo(1, '疲劳驾驶报警', '北斗报警', '', row)">{{
+                    row.gpspilao
+                  }}</span>
                   / {{ row.gpspilaocllv }}
                 </p>
               </template>
-            </el-table-column> -->
+            </el-table-column>
             <!-- <el-table-column
               label="处理/夜间行驶"
               align="center"
@@ -422,24 +369,16 @@
             </el-table-column> -->
           </el-table-column>
           <el-table-column label="DMS设备报警" align="center">
-            <el-table-column
-              label="处理/接打电话"
-              align="center"
-              min-width="140"
-            >
+            <el-table-column label="处理/接打电话" align="center" min-width="140">
               <template slot-scope="{ row }">
                 <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
-                  <span
-                    @click="
-                      goinfo(2, '接打电话报警', '主动安全报警', '已处理', row)
-                    "
-                    >{{ row.dadianhuacl }}</span
-                  >
+                  <span @click="goinfo(2, '接打电话报警', '主动安全报警', '已处理', row)">{{
+                    row.dadianhuacl
+                  }}</span>
                   /
-                  <span
-                    @click="goinfo(2, '接打电话报警', '北斗报警', '', row)"
-                    >{{ row.dmsjiedadianhua }}</span
-                  >
+                  <span @click="goinfo(2, '接打电话报警', '北斗报警', '', row)">{{
+                    row.dmsjiedadianhua
+                  }}</span>
                   / {{ row.dmsjiedadianhuacllv }}
                 </p>
               </template>
@@ -462,70 +401,44 @@
                 </p>
               </template>
             </el-table-column> -->
-            <el-table-column
-              label="处理/分神驾驶"
-              align="center"
-              min-width="140"
-            >
+            <el-table-column label="处理/分神驾驶" align="center" min-width="140">
               <template slot-scope="{ row }">
                 <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
-                  <span
-                    @click="
-                      goinfo(2, '分神驾驶报警', '主动安全报警', '已处理', row)
-                    "
-                    >{{ row.fenshencl }}</span
-                  >
+                  <span @click="goinfo(2, '分神驾驶报警', '主动安全报警', '已处理', row)">{{
+                    row.fenshencl
+                  }}</span>
                   /
-                  <span
-                    @click="goinfo(2, '分神驾驶报警', '主动安全报警', '', row)"
-                    >{{ row.dmsfenshen }}</span
-                  >
+                  <span @click="goinfo(2, '分神驾驶报警', '主动安全报警', '', row)">{{
+                    row.dmsfenshen
+                  }}</span>
                   / {{ row.dmsfenshencllv }}
                 </p>
               </template>
             </el-table-column>
-            <el-table-column
-              label="处理/生理疲劳"
-              align="center"
-              min-width="140"
-            >
+            <el-table-column label="处理/生理疲劳" align="center" min-width="140">
               <template slot-scope="{ row }">
                 <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
-                  <span
-                    @click="
-                      goinfo(2, '生理疲劳报警', '主动安全报警', '已处理', row)
-                    "
-                    >{{ row.pilaoshipincl }}</span
-                  >
+                  <span @click="goinfo(2, '生理疲劳报警', '主动安全报警', '已处理', row)">{{
+                    row.pilaoshipincl
+                  }}</span>
                   /
-                  <span
-                    @click="goinfo(2, '生理疲劳报警', '主动安全报警', '', row)"
-                    >{{ row.dmspilao }}</span
-                  >
+                  <span @click="goinfo(2, '生理疲劳报警', '主动安全报警', '', row)">{{
+                    row.dmspilao
+                  }}</span>
                   / {{ row.dmspilaocllv }}
                 </p>
               </template>
             </el-table-column>
-            <el-table-column
-              label="处理/驾驶员异常"
-              align="center"
-              min-width="140"
-            >
+            <el-table-column label="处理/驾驶员异常" align="center" min-width="140">
               <template slot-scope="{ row }">
                 <p class="numerical" :class="hierarchy == 2 ? 'ccur' : ''">
-                  <span
-                    @click="
-                      goinfo(2, '驾驶员异常报警', '主动安全报警', '已处理', row)
-                    "
-                    >{{ row.driveryichangcl }}</span
-                  >
+                  <span @click="goinfo(2, '驾驶员异常报警', '主动安全报警', '已处理', row)">{{
+                    row.driveryichangcl
+                  }}</span>
                   /
-                  <span
-                    @click="
-                      goinfo(2, '驾驶员异常报警', '主动安全报警', '', row)
-                    "
-                    >{{ row.driveryichang }}</span
-                  >
+                  <span @click="goinfo(2, '驾驶员异常报警', '主动安全报警', '', row)">{{
+                    row.driveryichang
+                  }}</span>
                   / {{ row.driveryichangcllv }}
                 </p>
               </template>
@@ -539,8 +452,7 @@
           >
             <template slot-scope="{ row }">
               <p class="numerical">
-                <span>{{ row.baojingclcishu }}</span> /
-                <span>{{ row.baojingzongshu }}</span> /
+                <span>{{ row.baojingclcishu }}</span> / <span>{{ row.baojingzongshu }}</span> /
                 {{ row.baojingzongcllv }}
               </p>
             </template>
@@ -561,43 +473,22 @@
           </div>
           <div class="page-r">
             <span class="el-icon-d-arrow-left" @click="getDate(1)"></span>
-            <span
-              class="el-icon-arrow-left"
-              @click="getDate(current - 1)"
-            ></span>
-            <span
-              class="num"
-              v-show="current - 2 > 0"
-              @click="getDate(current - 2)"
-              >{{ current - 2 }}</span
-            >
-            <span
-              class="num"
-              v-show="current - 1 > 0"
-              @click="getDate(current - 1)"
-              >{{ current - 1 }}</span
-            >
+            <span class="el-icon-arrow-left" @click="getDate(current - 1)"></span>
+            <span class="num" v-show="current - 2 > 0" @click="getDate(current - 2)">{{
+              current - 2
+            }}</span>
+            <span class="num" v-show="current - 1 > 0" @click="getDate(current - 1)">{{
+              current - 1
+            }}</span>
             <span class="num active">{{ current }}</span>
-            <span
-              class="num"
-              v-show="current + 1 <= pageTotal"
-              @click="getDate(current + 1)"
-              >{{ current + 1 }}</span
-            >
-            <span
-              class="num"
-              v-show="current + 2 <= pageTotal"
-              @click="getDate(current + 2)"
-              >{{ current + 2 }}</span
-            >
-            <span
-              class="el-icon-arrow-right"
-              @click="getDate(current + 1)"
-            ></span>
-            <span
-              class="el-icon-d-arrow-right"
-              @click="getDate(pageTotal)"
-            ></span>
+            <span class="num" v-show="current + 1 <= pageTotal" @click="getDate(current + 1)">{{
+              current + 1
+            }}</span>
+            <span class="num" v-show="current + 2 <= pageTotal" @click="getDate(current + 2)">{{
+              current + 2
+            }}</span>
+            <span class="el-icon-arrow-right" @click="getDate(current + 1)"></span>
+            <span class="el-icon-d-arrow-right" @click="getDate(pageTotal)"></span>
             <div class="pagesize">
               每页显示
               <el-select
@@ -606,12 +497,7 @@
                 @change="getDate(1)"
                 v-model="pagesizeactive"
               >
-                <el-option
-                  v-for="item in pagesize"
-                  :key="item"
-                  :label="item"
-                  :value="item"
-                >
+                <el-option v-for="item in pagesize" :key="item" :label="item" :value="item">
                 </el-option>
               </el-select>
               条信息
@@ -647,10 +533,7 @@ export default {
       pagesizeactive: 20, //当前每页显示
       enterpriseListH: "calc(100vh - 13.5714rem)",
       form: {
-        begintime: format(
-          new Date().getTime() - 3600 * 1000 * 24,
-          "YYYY-MM-DD"
-        ),
+        begintime: format(new Date().getTime() - 3600 * 1000 * 24, "YYYY-MM-DD"),
         endtime: format(new Date().getTime() - 3600 * 1000 * 24, "YYYY-MM-DD"),
         deptName: "",
       },
@@ -701,29 +584,22 @@ export default {
       }
     },
     "form.begintime"(val) {
-      this.pickerEnd.disabledDate = function (time) {
+      this.pickerEnd.disabledDate = function(time) {
         let over = new Date(val).getTime() + 1000 * 60 * 60 * 24 * 5;
-        return (
-          time.getTime() > over || time.getTime() < new Date(val).getTime()
-        );
+        return time.getTime() > over || time.getTime() < new Date(val).getTime();
       };
     },
     "form.endtime"(val) {
-      this.pickerBegin.disabledDate = function (time) {
+      this.pickerBegin.disabledDate = function(time) {
         let over = new Date(val).getTime() - 1000 * 60 * 60 * 24 * 5;
-        return (
-          time.getTime() < over || time.getTime() > new Date(val).getTime()
-        );
+        return time.getTime() < over || time.getTime() > new Date(val).getTime();
       };
     },
   },
   methods: {
     returnpage() {
       this.form = {
-        begintime: format(
-          new Date().getTime() - 3600 * 1000 * 24,
-          "YYYY-MM-DD"
-        ),
+        begintime: format(new Date().getTime() - 3600 * 1000 * 24, "YYYY-MM-DD"),
         endtime: format(new Date().getTime() - 3600 * 1000 * 24, "YYYY-MM-DD"),
         deptName: "",
       };
@@ -732,10 +608,7 @@ export default {
     },
     refresh() {
       this.form = {
-        begintime: format(
-          new Date().getTime() - 3600 * 1000 * 24,
-          "YYYY-MM-DD"
-        ),
+        begintime: format(new Date().getTime() - 3600 * 1000 * 24, "YYYY-MM-DD"),
         endtime: format(new Date().getTime() - 3600 * 1000 * 24, "YYYY-MM-DD"),
         deptName: "",
       };
@@ -943,16 +816,7 @@ export default {
             "dmspilao",
             "baojingzongshu",
           ];
-          merges = [
-            "A1:A2",
-            "B1:B2",
-            "C1:C2",
-            "D1:D2",
-            "E1:E2",
-            "F1:I1",
-            "J1:M1",
-            "N1:N2",
-          ];
+          merges = ["A1:A2", "B1:B2", "C1:C2", "D1:D2", "E1:E2", "F1:I1", "J1:M1", "N1:N2"];
           filename = "企业处理率统计";
         } else {
           multiHeader = [
@@ -1000,15 +864,7 @@ export default {
             "dmspilao",
             "baojingzongshu",
           ];
-          merges = [
-            "A1:A2",
-            "B1:B2",
-            "C1:C2",
-            "D1:D2",
-            "E1:H1",
-            "I1:L1",
-            "M1:M2",
-          ];
+          merges = ["A1:A2", "B1:B2", "C1:C2", "D1:D2", "E1:H1", "I1:L1", "M1:M2"];
           filename = "地区处理率统计";
         }
         const data = this.formatJson(filterVal, list);

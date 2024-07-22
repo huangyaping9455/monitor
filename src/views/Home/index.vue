@@ -258,6 +258,10 @@
             <span>超速次数</span>
           </div>
           <div class="chaosufocu" @click="gochaosu">
+            <span>{{ statistics.pilao }}</span>
+            <span>疲劳次数</span>
+          </div>
+          <div class="chaosufocu" @click="gochaosu">
             <span>{{ statistics.dadianhua }}</span>
             <span>接打电话次数</span>
           </div>
@@ -266,8 +270,8 @@
             <span>分神次数</span>
           </div>
           <div class="chaosufocu" @click="gochaosu">
-            <span>{{ statistics.pilao }}</span>
-            <span>疲劳次数</span>
+            <span>{{ statistics.pilaoshipin }}</span>
+            <span>生理疲劳</span>
           </div>
           <div class="chaosufocu" @click="gochaosu">
             <span>{{ statistics.yichang }}</span>
@@ -294,16 +298,14 @@
             element-loading-background="rgba(0, 0, 0, 0.4)"
           >
             <span class="title">北斗报警统计</span>
-            <div class="btns">
+            <div class="btns" style="justify-content: space-around;">
               <span @click="changeCar('carousel', 'chaosu')" :class="isbtn == 0 ? 'active' : ''"
                 >超速报警</span
               >
-              <!-- <span
-                @click="changeCar('carousel', 'pilao')"
-                :class="isbtn == 1 ? 'active' : ''"
+              <span @click="changeCar('carousel', 'pilao')" :class="isbtn == 1 ? 'active' : ''"
                 >疲劳驾驶</span
               >
-              <span
+              <!-- <span
                 @click="changeCar('carousel', 'yejian')"
                 :class="isbtn == 2 ? 'active' : ''"
                 >夜间行驶</span
@@ -331,14 +333,14 @@
                   :chart-option="chartOption.option1"
                 ></echart-base>
               </el-carousel-item>
-              <!-- <el-carousel-item name="pilao">
+              <el-carousel-item name="pilao">
                 <echart-base
                   height="100%"
                   width="100%"
                   :chart-option="chartOption.option2"
                 ></echart-base>
               </el-carousel-item>
-              <el-carousel-item name="yejian">
+              <!-- <el-carousel-item name="yejian">
                 <echart-base
                   height="100%"
                   width="100%"
