@@ -256,11 +256,11 @@
               style="width: 130px"
             ></el-input>
           </el-form-item>
-          <el-form-item label="企业车辆营运类型">
+          <el-form-item label="营运类型">
             <el-select
               v-model="form.yingyunleixing"
               clearable
-              placeholder="请选择企业车辆营运类型"
+              placeholder="请选择营运类型"
               style="width: 130px"
               multiple
               collapse-tags
