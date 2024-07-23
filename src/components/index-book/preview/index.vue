@@ -1,16 +1,9 @@
 <template>
   <div class="wh100 preview-doc">
     <div class="head">
-      <div
-        @click="download"
-        style="display: flex; align-items: center; cursor: pointer"
-      >
+      <div @click="download" style="display: flex; align-items: center; cursor: pointer">
         <p>{{ active.name }}</p>
-        <div
-          v-if="active.path && !active.down"
-          style="display: flex"
-          title="下载"
-        >
+        <div v-if="active.path && !active.down" style="display: flex" title="下载">
           <i class="el-icon-download" />
         </div>
       </div>
@@ -72,13 +65,7 @@
               @rendered="pdfLoading = false"
             /> -->
           </div>
-          <iframe
-            v-else
-            width="100%"
-            style="height: 87vh"
-            :src="files[0]"
-            frameborder="0"
-          ></iframe>
+          <iframe v-else width="100%" style="height: 87vh" :src="files[0]" frameborder="0"></iframe>
         </div>
       </scroll>
     </div>
@@ -111,11 +98,11 @@ import axios from "axios";
 import DocPreview from "./docPreview.vue";
 import ExcelPreview from "./excelPreview.vue";
 import pdf from "vue-pdf";
-import VueOfficePdf from "@vue-office/pdf";
+// import VueOfficePdf from "@vue-office/pdf";
 import PreviewModal from "./previewModal.vue";
 export default {
   name: "preview-doc",
-  components: { DocPreview, ExcelPreview, pdf, PreviewModal, VueOfficePdf },
+  components: { DocPreview, ExcelPreview, pdf, PreviewModal },
   props: {
     active: {
       type: Object,
@@ -193,10 +180,7 @@ export default {
         if (this.active.mubanPath != "") {
           // let str = this.active.mubanPath.indexOf(".doc");
           window.open(
-            this.userinfo.urlPrefix +
-              this.active.mubanPath +
-              "/" +
-              this.active.name,
+            this.userinfo.urlPrefix + this.active.mubanPath + "/" + this.active.name,
             "_blank"
           );
         } else {
