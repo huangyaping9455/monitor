@@ -258,302 +258,13 @@
           :data="enterpriseList"
         >
           <el-table-column
-            prop="deptName"
-            label="所属企业"
-            align="center"
-            width="220"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="cheliangpaizhao"
-            label="车牌号码"
-            width="110"
-            align="center"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="chepaiyanse"
-            label="车牌颜色"
-            width="110"
-            align="center"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="chezhu"
-            label="车主"
-            width="90"
-            align="center"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="chezhudianhua"
-            label="车主电话"
-            width="120"
-            align="center"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="jiashiyuanxingming"
-            label="驾驶员"
-            width="90"
-            align="center"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="shoujihaoma"
-            label="驾驶员电话"
-            width="120"
-            align="center"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="xingshizhengzhuceriqi"
-            label="行驶证注册日期"
-            align="center"
-            width="120"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="xingshizhengfazhengriqi"
-            label="行驶证发证日期"
-            align="center"
-            width="120"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="xingshizhengjieshuriqi"
-            label="行驶证检验有效期"
-            align="center"
-            width="140"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="xingshizhengshengyuyouxiaoqi"
-            label="行驶证检验剩余有效期"
-            align="center"
-            width="170"
-            show-overflow-tooltip
-          >
-            <template slot-scope="{ row }">
-              <span
-                :style="row.xingshizhengshengyuyouxiaoqi <= 0 ? 'color:red;font-weight:600' : ''"
-              >
-                {{ row.xingshizhengshengyuyouxiaoqi }}
-              </span>
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="cheliangxinghao"
-            label="车辆型号"
-            width="120"
-            align="center"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="address"
-            label="地址"
-            width="120"
-            show-overflow-tooltip
-            align="center"
-          >
-          </el-table-column>
-          <el-table-column
-            prop="shiyongxingzhi"
-            label="使用性质"
-            width="100"
-            align="center"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="danganbianhao"
-            label="档案编号"
-            width="110"
-            align="center"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="pinpaixinghao"
-            label="品牌型号"
-            width="100"
-            align="center"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="cheliangshibiedaima"
-            label="车辆识别代号/车架号"
-            align="center"
-            width="150"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="cheshenyanse"
-            label="车身颜色"
-            width="100"
-            align="center"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="jingyingxukezhengbianma"
-            label="经营许可证号"
-            align="center"
-            width="110"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="avdEconomicType"
-            label="经济类型"
-            align="center"
-            width="100"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="avdNatureBusiness"
-            label="经营范围"
-            align="center"
-            width="100"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="teamno"
-            label="经营路线"
-            align="center"
-            width="100"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="chelianghuoqufangshi"
-            label="车辆获得方式"
-            align="center"
-            width="110"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="ranliaoleibie"
-            label="燃料种类"
-            align="center"
-            width="100"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="fadongjipailianggonglv"
-            label="排量/功率"
-            align="center"
-            width="100"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="zhuanxiangfangshi"
-            label="转向形式"
-            align="center"
-            width="100"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="zhizhaochangshang"
-            label="制造厂名称"
-            align="center"
-            width="110"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column prop="lunju" label="轮距(前)" align="center" width="90">
-          </el-table-column>
-          <el-table-column prop="frontlunju" label="轮距(后)" align="center" width="90">
-          </el-table-column>
-          <el-table-column prop="luntaishu" label="轮胎数" align="center" width="80">
-          </el-table-column>
-          <el-table-column prop="luntaiguige" label="轮胎规格" align="center" width="100">
-          </el-table-column>
-          <el-table-column
-            prop="gangbantanhuangpianshu"
-            label="钢板弹簧片数"
-            align="center"
-            width="110"
-          >
-          </el-table-column>
-          <el-table-column prop="zhouju" label="轴距" align="center" width="80"> </el-table-column>
-          <el-table-column prop="chezhoushu" label="轴数" align="center" width="80">
-          </el-table-column>
-          <el-table-column
-            prop="huoxiangneibuchicun"
-            label="货箱内部尺寸"
-            align="center"
-            width="110"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="hedingzaike"
-            label="核定载人数"
-            align="center"
-            width="110"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column prop="jiashishizaike" label="驾驶室载客" align="center" width="110">
-          </el-table-column>
-          <el-table-column
-            prop="zongzhiliang"
-            label="总质量"
-            align="center"
-            width="90"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="hedingzaizhiliang"
-            label="核定载质量"
-            align="center"
-            width="110"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="zhunqianyinzongzhiliang"
-            label="准牵引总质量"
-            align="center"
-            width="110"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="cheliangwaikuochicun"
-            label="外廓尺寸"
-            align="center"
-            width="120"
-            show-overflow-tooltip
-          >
-          </el-table-column>
-          <el-table-column
-            prop="chuchangriqi"
-            label="车辆出厂日期"
-            align="center"
-            width="110"
-            show-overflow-tooltip
+            :prop="item.prop"
+            :label="item.label"
+            :align="item.align"
+            :show-overflow-tooltip="true"
+            :width="item.width"
+            v-for="(item, index) in formItemList"
+            :key="index"
           >
           </el-table-column>
           <el-table-column label="操作" align="center" width="80" fixed="right">
@@ -624,6 +335,8 @@
 <script>
 import dataAnalysisApi from "@/api/modules/report";
 import { mapGetters } from "vuex";
+import { format } from "@/config/date";
+import { vehicleList } from "@/config/vehicleList";
 import viewDetail from "./viewDetail.vue";
 export default {
   components: { viewDetail },
@@ -656,6 +369,28 @@ export default {
       zhuzzhiId: "government/fasongdanwei",
       xuanzhongchengshi: "government/xuanzhongchengshi",
     }),
+    formItemList() {
+      let List = [];
+      vehicleList().map((el) => {
+        if (el.hide == undefined || el.hide == false) {
+          List.push(el);
+        }
+      });
+      let b = 0; //设置用来调换位置的值
+      let a = List; //冒泡排序
+      for (let i = 0; i < a.length; i++) {
+        for (let j = 0; j < a.length - i; j++) {
+          if (a[j + 1] != undefined) {
+            if (a[j].sort > a[j + 1].sort) {
+              b = a[j];
+              a[j] = a[j + 1];
+              a[j + 1] = b;
+            }
+          }
+        }
+      }
+      return a;
+    },
   },
   watch: {
     zhuzzhiId(newid) {
@@ -695,6 +430,18 @@ export default {
       this.loading = false;
       if (data) {
         this.enterpriseList = data.records.map((el) => {
+          if (el.zhongduanleixing == "0") {
+            el.zhongduanleixing = "主动安全设备";
+          } else if (el.zhongduanleixing == "1") {
+            el.zhongduanleixing = "2G设备";
+          } else {
+            el.zhongduanleixing = "";
+          }
+          if (el.platformconnectiontype == "1") {
+            el.platformconnectiontype = "直连";
+          } else if (el.platformconnectiontype == "2") {
+            el.platformconnectiontype = "转发";
+          }
           if (el.cheliangzhuangtai == 0) {
             el.cheliangzhuangtai = "营运";
           } else if (el.cheliangzhuangtai == 1) {
@@ -702,6 +449,15 @@ export default {
           } else if (el.cheliangzhuangtai == 2) {
             el.cheliangzhuangtai = "报废";
           }
+          if (el.jiashiyuanxingming.indexOf(",") != -1) {
+            el.jiashiyuanxingming2 = el.jiashiyuanxingming.split(",")[1];
+            el.jiashiyuanxingming = el.jiashiyuanxingming.split(",")[0];
+          }
+          if (el.jiashiyuandianhua.indexOf(",") != -1) {
+            el.jiashiyuandianhua2 = el.jiashiyuandianhua.split(",")[1];
+            el.jiashiyuandianhua = el.jiashiyuandianhua.split(",")[0];
+          }
+          el.videochannelnum = el.videochannelnum ? el.videochannelnum + "路" : "";
           return el;
         });
         //分页处理

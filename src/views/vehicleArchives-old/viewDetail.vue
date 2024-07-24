@@ -10,14 +10,18 @@
     width="70%"
   >
     <div class="cehicleCard">
-      <span
-        v-for="(item, index) in btnList"
-        :key="index"
-        :class="['cehicleCard_b', { isChange: ischanged === index }]"
-        @click="cardChange(index)"
+      <span :class="['cehicleCard_b', { isChange: ischanged === 0 }]" @click="cardChange(0)"
+        >基本信息</span
       >
-        {{ item.label }}
-      </span>
+      <span :class="['cehicleCard_b', { isChange: ischanged === 1 }]" @click="cardChange(1)"
+        >其他信息</span
+      >
+      <span :class="['cehicleCard_b', { isChange: ischanged === 2 }]" @click="cardChange(2)"
+        >证件信息</span
+      >
+      <span :class="['cehicleCard_b', { isChange: ischanged === 3 }]" @click="cardChange(3)"
+        >设备信息</span
+      >
     </div>
     <div class="cehicleCard_form">
       <el-form ref="form" :model="vehicleDetailList" label-width="170px" style="overflow:auto;">
@@ -146,18 +150,7 @@ export default {
       vehicleDetailList: {},
     };
   },
-  computed: {
-    btnList() {
-      return [
-        { label: "车辆行驶证" },
-        { label: "道路运输证" },
-        { label: "车辆综合性能检测报告" },
-        { label: "车辆技术档案/技术等级评定信息" },
-        { label: "车辆登记证书" },
-        { label: "终端信息" },
-      ];
-    },
-  },
+  computed: {},
   watch: {
     vehicleVisible: {
       handler(val) {

@@ -1,20 +1,12 @@
 <template>
   <div class="docxx">
-    <VueDragResize
-      :w="0"
-      :h="0"
-      :z="0"
-      :x="450"
-      :y="0"
-      :isResizable="false"
-      v-if="isModal"
-    >
+    <VueDragResize :w="0" :h="0" :z="0" :x="450" :y="0" :isResizable="false" v-if="isModal">
       <div ref="file" class="doc_pp" @mousewheel="bbimg"></div>
     </VueDragResize>
     <div v-else ref="file" class="doc_p"></div>
   </div>
 </template>
-  <script>
+<script>
 import axios from "axios";
 let docx = require("docx-preview");
 import VueDragResize from "vue-drag-resize";
@@ -55,17 +47,15 @@ export default {
     // 滚轮缩放
     bbimg() {
       if (!this.isModal) return;
-      var zoom =
-        parseInt(this.$refs.file.children[3].children[0].style.zoom, 10) || 100;
+      var zoom = parseInt(this.$refs.file.children[3].children[0].style.zoom, 10) || 100;
       zoom += event.wheelDelta / 12;
-      if (zoom > 0)
-        this.$refs.file.children[3].children[0].style.zoom = zoom + "%";
+      if (zoom > 0) this.$refs.file.children[3].children[0].style.zoom = zoom + "%";
       return false;
     },
   },
 };
 </script>
-  <style lang="scss" scoped>
+<style lang="scss" scoped>
 .docxx {
   width: 100%;
   height: 100%;
@@ -75,7 +65,7 @@ export default {
     width: 100%;
     height: 100%;
     position: relative;
-    :deep(.docx-wrapper) {
+    ::v-deep .docx-wrapper {
       padding: 0;
       padding-bottom: 10pt;
       .docx {
@@ -87,7 +77,7 @@ export default {
   }
 }
 </style>
-  <style lang="scss">
+<style lang="scss">
 .doc_pp .docx-wrapper {
   background: none !important;
 }

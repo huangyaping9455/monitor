@@ -201,29 +201,15 @@
       <div class="main-r">
         <!-- 操作按钮 -->
         <div class="btns">
-          <el-button
-            @click="changeSearch"
-            size="mini"
-            class="btn"
-            icon="el-icon-search"
+          <el-button @click="changeSearch" size="mini" class="btn" icon="el-icon-search"
             >查询</el-button
           >
-          <el-button
-            @click="refresh"
-            size="mini"
-            class="btn"
-            icon="el-icon-refresh"
+          <el-button @click="refresh" size="mini" class="btn" icon="el-icon-refresh"
             >刷新</el-button
           >
         </div>
         <!-- 查询 -->
-        <el-form
-          v-show="searchshow"
-          :inline="true"
-          size="mini"
-          :model="form"
-          class="search"
-        >
+        <el-form v-show="searchshow" :inline="true" size="mini" :model="form" class="search">
           <el-form-item label="企业名称">
             <el-input
               v-model="form.deptName"
@@ -267,11 +253,7 @@
           </el-table-column>
           <el-table-column label="操作" align="center" width="80" fixed="right">
             <template slot-scope="{ row }">
-              <el-button
-                size="mini"
-                style="color:#00c8f5;"
-                type="text"
-                @click="viewShow(row)"
+              <el-button size="mini" style="color:#00c8f5;" type="text" @click="viewShow(row)"
                 >详情</el-button
               >
             </template>
@@ -294,43 +276,22 @@
           </div>
           <div class="page-r">
             <span class="el-icon-d-arrow-left" @click="getDate(1)"></span>
-            <span
-              class="el-icon-arrow-left"
-              @click="getDate(current - 1)"
-            ></span>
-            <span
-              class="num"
-              v-show="current - 2 > 0"
-              @click="getDate(current - 2)"
-              >{{ current - 2 }}</span
-            >
-            <span
-              class="num"
-              v-show="current - 1 > 0"
-              @click="getDate(current - 1)"
-              >{{ current - 1 }}</span
-            >
+            <span class="el-icon-arrow-left" @click="getDate(current - 1)"></span>
+            <span class="num" v-show="current - 2 > 0" @click="getDate(current - 2)">{{
+              current - 2
+            }}</span>
+            <span class="num" v-show="current - 1 > 0" @click="getDate(current - 1)">{{
+              current - 1
+            }}</span>
             <span class="num active">{{ current }}</span>
-            <span
-              class="num"
-              v-show="current + 1 <= pageTotal"
-              @click="getDate(current + 1)"
-              >{{ current + 1 }}</span
-            >
-            <span
-              class="num"
-              v-show="current + 2 <= pageTotal"
-              @click="getDate(current + 2)"
-              >{{ current + 2 }}</span
-            >
-            <span
-              class="el-icon-arrow-right"
-              @click="getDate(current + 1)"
-            ></span>
-            <span
-              class="el-icon-d-arrow-right"
-              @click="getDate(pageTotal)"
-            ></span>
+            <span class="num" v-show="current + 1 <= pageTotal" @click="getDate(current + 1)">{{
+              current + 1
+            }}</span>
+            <span class="num" v-show="current + 2 <= pageTotal" @click="getDate(current + 2)">{{
+              current + 2
+            }}</span>
+            <span class="el-icon-arrow-right" @click="getDate(current + 1)"></span>
+            <span class="el-icon-d-arrow-right" @click="getDate(pageTotal)"></span>
             <div class="pagesize">
               每页显示
               <el-select
@@ -349,10 +310,7 @@
             </div>
           </div>
         </div>
-        <view-detail
-          ref="viewShow"
-          :vehiclemsgList="vehiclemsgList"
-        ></view-detail>
+        <view-detail ref="viewShow" :vehiclemsgList="vehiclemsgList"></view-detail>
       </div>
     </div>
   </div>
@@ -361,9 +319,8 @@
 <script>
 import dataAnalysisApi from "@/api/modules/report";
 import { mapGetters } from "vuex";
-import { format } from "@/config/date";
-import { driverList } from "@/config/vehicleList";
 import viewDetail from "./viewDetail.vue";
+import { driverList } from "@/config/vehicleList";
 export default {
   components: { viewDetail },
   data() {
@@ -473,10 +430,7 @@ export default {
             i.congyeleibie = i.congyeleibie;
           }
           if (i.shenfenzhenghao) {
-            i.shenfenzhenghao = i.shenfenzhenghao.replace(
-              /^(.{6})(?:\d+)(.{4})$/,
-              "\$1****\$2"
-            );
+            i.shenfenzhenghao = i.shenfenzhenghao.replace(/^(.{6})(?:\d+)(.{4})$/, "\$1****\$2");
           }
           return i;
         });

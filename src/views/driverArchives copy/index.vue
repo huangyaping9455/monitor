@@ -122,7 +122,7 @@
     color: #01f8ff;
   }
   .inputW {
-    width: 10.7143rem;
+    width: 11.7143rem;
   }
   input {
     background: #112e4d;
@@ -180,7 +180,11 @@
   .el-table__fixed-right {
     background: #0f1f40;
     border-left: 1px solid #0a3774;
-    height: calc(100% - 9px) !important;
+    height: calc(100%) !important;
+  }
+  .el-table__fixed::before,
+  .el-table__fixed-right::before {
+    height: 0;
   }
 }
 .pagesize {
@@ -197,15 +201,29 @@
       <div class="main-r">
         <!-- 操作按钮 -->
         <div class="btns">
-          <el-button @click="changeSearch" size="mini" class="btn" icon="el-icon-search"
+          <el-button
+            @click="changeSearch"
+            size="mini"
+            class="btn"
+            icon="el-icon-search"
             >查询</el-button
           >
-          <el-button @click="refresh" size="mini" class="btn" icon="el-icon-refresh"
+          <el-button
+            @click="refresh"
+            size="mini"
+            class="btn"
+            icon="el-icon-refresh"
             >刷新</el-button
           >
         </div>
         <!-- 查询 -->
-        <el-form v-show="searchshow" :inline="true" size="mini" :model="form" class="search">
+        <el-form
+          v-show="searchshow"
+          :inline="true"
+          size="mini"
+          :model="form"
+          class="search"
+        >
           <el-form-item label="企业名称">
             <el-input
               v-model="form.deptName"
@@ -214,38 +232,18 @@
               class="inputW"
             ></el-input>
           </el-form-item>
-          <el-form-item label="车辆牌照">
+          <el-form-item label="驾驶员姓名">
             <el-input
-              v-model="form.cheliangpaizhao"
-              placeholder="请输入车辆牌照"
+              v-model="form.jiashiyuanxingming"
+              placeholder="请输入驾驶员姓名"
               clearable
               class="inputW"
             ></el-input>
-          </el-form-item>
-          <el-form-item label="终端ID">
-            <el-input
-              v-model="form.zongduanid"
-              placeholder="请输入终端ID"
-              clearable
-              class="inputW"
-            ></el-input>
-          </el-form-item>
-          <el-form-item label="运营类型">
-            <el-select
-              v-model="form.shiyongxingzhi"
-              clearable
-              class="inputW"
-              placeholder="请选择运营类型"
-            >
-              <el-option label="道路危险货物运输" value="道路危险货物运输"> </el-option>
-              <el-option label="道路旅客运输" value="道路旅客运输"> </el-option>
-              <el-option label="道路货物运输" value="道路货物运输"> </el-option>
-              <el-option label="出租车" value="出租车"> </el-option>
-              <el-option label="其他" value="其他"> </el-option>
-            </el-select>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" class="sbtn" @click="getDate(1)">搜索</el-button>
+            <el-button type="primary" class="sbtn" @click="getDate(1)">
+              搜索
+            </el-button>
           </el-form-item>
         </el-form>
         <el-table
@@ -269,7 +267,11 @@
           </el-table-column>
           <el-table-column label="操作" align="center" width="80" fixed="right">
             <template slot-scope="{ row }">
-              <el-button size="mini" style="color:#00c8f5;" type="text" @click="ViewClick(row)"
+              <el-button
+                size="mini"
+                style="color:#00c8f5;"
+                type="text"
+                @click="viewShow(row)"
                 >详情</el-button
               >
             </template>
@@ -292,22 +294,43 @@
           </div>
           <div class="page-r">
             <span class="el-icon-d-arrow-left" @click="getDate(1)"></span>
-            <span class="el-icon-arrow-left" @click="getDate(current - 1)"></span>
-            <span class="num" v-show="current - 2 > 0" @click="getDate(current - 2)">{{
-              current - 2
-            }}</span>
-            <span class="num" v-show="current - 1 > 0" @click="getDate(current - 1)">{{
-              current - 1
-            }}</span>
+            <span
+              class="el-icon-arrow-left"
+              @click="getDate(current - 1)"
+            ></span>
+            <span
+              class="num"
+              v-show="current - 2 > 0"
+              @click="getDate(current - 2)"
+              >{{ current - 2 }}</span
+            >
+            <span
+              class="num"
+              v-show="current - 1 > 0"
+              @click="getDate(current - 1)"
+              >{{ current - 1 }}</span
+            >
             <span class="num active">{{ current }}</span>
-            <span class="num" v-show="current + 1 <= pageTotal" @click="getDate(current + 1)">{{
-              current + 1
-            }}</span>
-            <span class="num" v-show="current + 2 <= pageTotal" @click="getDate(current + 2)">{{
-              current + 2
-            }}</span>
-            <span class="el-icon-arrow-right" @click="getDate(current + 1)"></span>
-            <span class="el-icon-d-arrow-right" @click="getDate(pageTotal)"></span>
+            <span
+              class="num"
+              v-show="current + 1 <= pageTotal"
+              @click="getDate(current + 1)"
+              >{{ current + 1 }}</span
+            >
+            <span
+              class="num"
+              v-show="current + 2 <= pageTotal"
+              @click="getDate(current + 2)"
+              >{{ current + 2 }}</span
+            >
+            <span
+              class="el-icon-arrow-right"
+              @click="getDate(current + 1)"
+            ></span>
+            <span
+              class="el-icon-d-arrow-right"
+              @click="getDate(pageTotal)"
+            ></span>
             <div class="pagesize">
               每页显示
               <el-select
@@ -326,7 +349,10 @@
             </div>
           </div>
         </div>
-        <view-detail ref="viewShow" :vehiclemsgList="vehiclemsgList"></view-detail>
+        <view-detail
+          ref="viewShow"
+          :vehiclemsgList="vehiclemsgList"
+        ></view-detail>
       </div>
     </div>
   </div>
@@ -335,8 +361,9 @@
 <script>
 import dataAnalysisApi from "@/api/modules/report";
 import { mapGetters } from "vuex";
+import { format } from "@/config/date";
+import { driverList } from "@/config/vehicleList";
 import viewDetail from "./viewDetail.vue";
-import { vehicleList } from "@/config/vehicleList";
 export default {
   components: { viewDetail },
   data() {
@@ -351,9 +378,7 @@ export default {
       enterpriseListH: "calc(100vh - 14.6814rem)",
       form: {
         deptName: "",
-        cheliangpaizhao: "",
-        zongduanid: "",
-        shiyongxingzhi: "",
+        jiashiyuanxingming: "",
       },
       enterpriseList: [],
       zhengfuId: "", //地区id
@@ -361,7 +386,7 @@ export default {
     };
   },
   created() {
-    this.getZFVehiclePage();
+    this.selectZFPersonLearnInfoAll();
   },
   computed: {
     ...mapGetters({
@@ -370,7 +395,7 @@ export default {
     }),
     formItemList() {
       let List = [];
-      vehicleList().map((el) => {
+      driverList().map((el) => {
         if (el.hide == undefined || el.hide == false) {
           List.push(el);
         }
@@ -404,22 +429,20 @@ export default {
     refresh() {
       this.form = {
         deptName: "",
-        cheliangpaizhao: "",
-        zongduanid: "",
-        shiyongxingzhi: "",
+        jiashiyuanxingming: "",
       };
       this.getDate(1);
     },
     // 请求数据判断
     getDate(page) {
-      this.getZFVehiclePage(page);
+      this.selectZFPersonLearnInfoAll(page);
     },
     //地区报警处理率
-    async getZFVehiclePage(current = 1) {
+    async selectZFPersonLearnInfoAll(current = 1) {
       current = Number(current);
       this.loading = true;
       let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.getZFVehiclePage({
+        dataAnalysisApi.getZFJSYPageList({
           deptId: this.zhuzzhiId,
           current: current,
           size: this.pagesizeactive,
@@ -428,27 +451,34 @@ export default {
       );
       this.loading = false;
       if (data) {
-        this.enterpriseList = data.records.map((el) => {
-          if (el.zhongduanleixing == "0") {
-            el.zhongduanleixing = "主动安全设备";
-          } else if (el.zhongduanleixing == "1") {
-            el.zhongduanleixing = "2G设备";
+        this.enterpriseList = data.records.map((i, index) => {
+          if (i.xingbie == "2") {
+            i.xingbie = "女";
+          } else if (i.xingbie == "1") {
+            i.xingbie = "男";
           } else {
-            el.zhongduanleixing = "";
+            i.xingbie = i.xingbie;
           }
-          if (el.platformconnectiontype == "1") {
-            el.platformconnectiontype = "直连";
-          } else if (el.platformconnectiontype == "2") {
-            el.platformconnectiontype = "转发";
+          if (i.congyeleibie == "0") {
+            i.congyeleibie = "经营性道路旅客运输驾驶员";
+          } else if (i.congyeleibie == "1") {
+            i.congyeleibie = "经营性道路货物运输驾驶员";
+          } else if (i.congyeleibie == "2") {
+            i.congyeleibie = "危险货物运输驾驶员";
+          } else if (i.congyeleibie == "3") {
+            i.congyeleibie = "道路危险货物运输押运员";
+          } else if (i.congyeleibie == "4") {
+            i.congyeleibie = "道路危险货物运输装卸管理人员";
+          } else {
+            i.congyeleibie = i.congyeleibie;
           }
-          if (el.cheliangzhuangtai == 0) {
-            el.cheliangzhuangtai = "营运";
-          } else if (el.cheliangzhuangtai == 1) {
-            el.cheliangzhuangtai = "停用";
-          } else if (el.cheliangzhuangtai == 2) {
-            el.cheliangzhuangtai = "报废";
+          if (i.shenfenzhenghao) {
+            i.shenfenzhenghao = i.shenfenzhenghao.replace(
+              /^(.{6})(?:\d+)(.{4})$/,
+              "\$1****\$2"
+            );
           }
-          return el;
+          return i;
         });
         //分页处理
         this.current = data.current;
@@ -464,7 +494,8 @@ export default {
         : (this.enterpriseListH = "calc(100vh - 16.8571rem)");
       this.searchshow = !this.searchshow;
     },
-    ViewClick(item) {
+    // 查看详情
+    viewShow(item) {
       this.vehiclemsgList = item;
       this.$refs.viewShow.vehicleVisible = true;
     },
