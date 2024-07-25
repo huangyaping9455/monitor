@@ -1,6 +1,6 @@
 <style lang="scss" scoped>
 .leftMenu {
-  width: 200px;
+  width: 270px;
   height: 100vh;
   background-image: url("~@/assets/img/bg_12.png");
   background-size: 100% 100%;
@@ -16,7 +16,7 @@
   .leftMenu-menu {
     // height: 69%;
     height: 100%;
-    width: 170px;
+    width: 240px;
     overflow: hidden;
     border-right: 0px;
     .menu-item {
@@ -85,7 +85,7 @@
   }
   .el-menu-item,
   .el-submenu__title {
-    padding: 0 0 0 10px !important;
+    // padding: 0 0 0 10px !important;
   }
   .el-submenu__icon-arrow {
     right: 10px;
@@ -93,7 +93,7 @@
   }
   .el-submenu .el-menu-item {
     width: 100%;
-    padding: 0 0 0 32px !important;
+    // padding: 0 0 0 32px !important;
   }
   .el-menu-item.is-active .menu-item .icon {
     fill: #ffffff;
@@ -103,7 +103,7 @@
 
 <template>
   <aside class="leftMenu" :class="ismenuShow ? 'show' : 'noshow'">
-    <scroll style="height: 69%; width: 170px">
+    <scroll style="height: 69%; width: 240px">
       <el-menu
         :default-active="urlName"
         class="leftMenu-menu"
@@ -132,24 +132,6 @@
               <span>数据分析</span>
             </div>
           </el-menu-item>
-          <!-- <el-menu-item index="home" @click="openMap">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="map" />
-              <span>地图监控</span>
-            </div>
-          </el-menu-item> -->
-          <!-- <el-menu-item index="dataAnalysis_gz" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="shujvfenxi" />
-              <span>数据分析</span>
-            </div>
-          </el-menu-item> -->
-          <!-- <el-menu-item index="OBDDataAnalysis" @click="openMenu">
-          <div class="menu-item">
-            <svg-icon class="icon" icon-class="shuju" />
-            <span>OBD数据分析</span>
-          </div>
-        </el-menu-item> -->
           <el-menu-item index="treatmentRate" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="chulilv" />
@@ -162,12 +144,6 @@
               <span>车辆统计</span>
             </div>
           </el-menu-item>
-          <!-- <el-menu-item index="QYvehicle" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="zhengqi" />
-              <span>企业统计</span>
-            </div>
-          </el-menu-item> -->
           <el-menu-item index="DayStatistics" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="cheliangyunxing" />
@@ -186,62 +162,52 @@
               <span>运营商日运行统计</span>
             </div>
           </el-menu-item>
-          <!-- <el-menu-item index="YYSDayStatistics_ts" @click="openMenu">
+        </el-submenu>
+        <el-submenu index="3">
+          <template slot="title">
             <div class="menu-item">
-              <svg-icon class="icon" icon-class="yunyingshang" />
-              <span>运营商日运行统计</span>
+              <svg-icon class="icon" icon-class="chulilv" />
+              <span>考核&排名</span>
             </div>
-          </el-menu-item> -->
+          </template>
           <el-menu-item index="LWLKStatic" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="qiyekaohe" />
               <span>企业考核评分</span>
             </div>
           </el-menu-item>
-          <!-- <el-menu-item index="LWLKStatic" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="qiyekaohe" />
-              <span>动态监督考核表</span>
-            </div>
-          </el-menu-item> -->
           <el-menu-item index="YYSStatic" @click="openMenu">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="yunyingshangkaohe" />
               <span>运营商考核评分</span>
             </div>
           </el-menu-item>
-        </el-submenu>
-        <el-submenu index="3">
-          <template slot="title">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="chulilv" />
-              <span>报警排名</span>
-            </div>
-          </template>
-          <el-menu-item index="ZFDQ" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="zhenggai" />
-              <span>地区报警排名</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="enterprise" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="shuju" />
-              <span>企业报警排名</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="VehicleRank" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="cheliang" />
-              <span>车辆报警排名</span>
-            </div>
-          </el-menu-item>
-          <!-- <el-menu-item index="YYSEnterprise" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="yunyingshang" />
-              <span>运营商报警排名</span>
-            </div>
-          </el-menu-item> -->
+          <el-submenu index="3-1">
+            <template slot="title">
+              <div class="menu-item">
+                <svg-icon class="icon" icon-class="chulilv" />
+                <span>报警排名</span>
+              </div>
+            </template>
+            <el-menu-item index="ZFDQ" @click="openMenu">
+              <div class="menu-item">
+                <svg-icon class="icon" icon-class="zhenggai" />
+                <span>地区报警排名</span>
+              </div>
+            </el-menu-item>
+            <el-menu-item index="enterprise" @click="openMenu">
+              <div class="menu-item">
+                <svg-icon class="icon" icon-class="shuju" />
+                <span>企业报警排名</span>
+              </div>
+            </el-menu-item>
+            <el-menu-item index="VehicleRank" @click="openMenu">
+              <div class="menu-item">
+                <svg-icon class="icon" icon-class="cheliang" />
+                <span>车辆报警排名</span>
+              </div>
+            </el-menu-item>
+          </el-submenu>
         </el-submenu>
         <el-submenu index="4">
           <template slot="title">
@@ -305,7 +271,7 @@
           <template slot="title">
             <div class="menu-item">
               <svg-icon class="icon" icon-class="tongzhi" />
-              <span>安全达标</span>
+              <span>安全管理</span>
             </div>
           </template>
           <el-menu-item index="safeStandard" @click="openMenu">
@@ -320,18 +286,6 @@
               <span>安全台账明细</span>
             </div>
           </el-menu-item>
-          <!-- <el-menu-item index="safeStandardRank" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="shuju" />
-              <span>合规台账排名</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="infomationRank" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="wanzheng" />
-              <span>资料完整率统计</span>
-            </div>
-          </el-menu-item> -->
         </el-submenu>
         <el-submenu index="7">
           <template slot="title">
@@ -347,94 +301,6 @@
             </div>
           </el-menu-item>
         </el-submenu>
-        <el-submenu index="8">
-          <template slot="title">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="anquanguanli" />
-              <span>安全管理</span>
-            </div>
-          </template>
-          <el-menu-item index="hidDanger" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="yinhuanpaicha" />
-              <span>隐患排查统计</span>
-            </div>
-          </el-menu-item>
-          <!-- <el-menu-item index="dayHideDanger" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="riyinhuan" />
-              <span>日隐患排查统计</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="weekHideDanger" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="zhouyinhuan" />
-              <span>周隐患排查统计</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="monthHideDanger" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="yueyinhuan" />
-              <span>月隐患排查统计</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="seasonHideDanger" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="jijie" />
-              <span>季节性排查</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="holidayHideDanger" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="jiejiari" />
-              <span>重大节假日排查</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="specialHideDanger" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="zhuanxiang" />
-              <span>专项排查</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="compreHideDanger" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="zonghe" />
-              <span>综合排查</span>
-            </div>
-          </el-menu-item> -->
-          <el-menu-item index="risk" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="fengxianguanli" />
-              <span>风险管理</span>
-            </div>
-          </el-menu-item>
-        </el-submenu>
-        <!-- <el-submenu index="9">
-          <template slot="title">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="yiqing" />
-              <span>跨境检查</span>
-            </div>
-          </template>
-          <el-menu-item index="ZFDQ_yq" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="zhenggai" />
-              <span>地区出/入区统计</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="enterprise_yq" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="zhenggai" />
-              <span>企业出/入区统计</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="vehicleRank_yq" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="zhenggai" />
-              <span>车辆出/入区统计</span>
-            </div>
-          </el-menu-item>
-        </el-submenu> -->
         <el-submenu index="10">
           <template slot="title">
             <div class="menu-item">
@@ -460,139 +326,7 @@
               <span>驾驶员档案</span>
             </div>
           </el-menu-item>
-          <!-- <el-menu-item index="YYSArchives" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="yunyingshangkaohe" />
-              <span>运营商档案</span>
-            </div>
-          </el-menu-item> -->
-          <el-menu-item index="vehicleMaintain" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="weihu" />
-              <span>车辆维护</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="accident" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="shigu" />
-              <span>车辆事故</span>
-            </div>
-          </el-menu-item>
-          <!-- <el-menu-item index="law" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="falv" />
-              <span>法律法规</span>
-            </div>
-          </el-menu-item> -->
         </el-submenu>
-        <!-- <el-submenu index="11">
-          <template slot="title">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="fengxian" />
-              <span>风险管控</span>
-            </div>
-          </template>
-          <el-menu-item index="home" @click="openThree1">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="zhenggai" />
-              <span slot="title">广东</span>
-            </div>
-          </el-menu-item>
-        </el-submenu> -->
-        <!-- <el-submenu index="12">
-          <template slot="title">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="fengxian" />
-              <span>风控服务</span>
-            </div>
-          </template>
-          <el-menu-item index="home" @click="openThree3">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="zhenggai" />
-              <span slot="title">智能坐席</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="home" @click="openThree4">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="zhenggai" />
-              <span slot="title">视频监控</span>
-            </div>
-          </el-menu-item>
-        </el-submenu> -->
-        <!-- <el-submenu index="13">
-          <template slot="title">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="kaohe" />
-              <span>动态考核</span>
-            </div>
-          </template>
-          <el-menu-item index="dayExamine" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="rikaohe" />
-              <span slot="title">业户日考核查询</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="weekExamine" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="zhoukaohe" />
-              <span slot="title">业户周考核查询</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="monthExamine" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="yuekaohe" />
-              <span slot="title">业户月考核查询</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="dayExamineOper" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="rikaoheoper" />
-              <span slot="title">服务商日考核查询</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="weekExamineOper" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="rikaoheoper" />
-              <span slot="title">服务商周考核查询</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="monthExamineOper" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="rikaoheoper" />
-              <span slot="title">服务商月考核查询</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="vehicleMultiple" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="vehicle" />
-              <span slot="title">车辆综合查询</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="dataQualified" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="hege" />
-              <span slot="title">数据合格率</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="completeTrack" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="wanzheng" />
-              <span slot="title">轨迹完整率</span>
-            </div>
-          </el-menu-item>
-          <el-menu-item index="trackDrift" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="piaoyi" />
-              <span slot="title">轨迹漂移率</span>
-            </div>
-          </el-menu-item> -->
-        <!-- <el-menu-item index="YYSSafetyInspection" @click="openMenu">
-            <div class="menu-item">
-              <svg-icon class="icon" icon-class="anquan" />
-              <span>运营商查岗</span>
-            </div>
-          </el-menu-item> -->
-        <!-- </el-submenu> -->
       </el-menu>
     </scroll>
     <div

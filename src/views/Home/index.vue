@@ -11,8 +11,8 @@
   padding-left: 20px;
   padding-right: 20px;
   .car-item {
-    width: 19%;
-    // width: 11.6%;
+    // width: 19%;
+    width: 32.5%;
     height: 10.7143rem;
     border-radius: 0.7143rem;
     box-sizing: border-box;
@@ -207,25 +207,21 @@
         <span>车辆总数</span>
         <span>{{ overview.zcvehnumb }}</span>
       </div>
-      <div class="car-item" @click="linkto('/hidDanger')">
+      <!-- <div class="car-item" @click="linkto('/hidDanger')">
         <span>隐患因子</span>
         <span>{{ troubleNum.zhenggai }}</span>
-      </div>
-      <div class="car-item" @click="linkto('/risk')">
+      </div> -->
+      <!-- <div class="car-item" @click="linkto('/risk')">
         <span>风险值</span>
         <span>{{ overview.riskCount }}</span>
-      </div>
+      </div> -->
       <div class="car-item" @click="linkto('/QYDayStatistics')">
         <span>考核指标分数</span>
         <span>{{ overview.assessmentScore }}</span>
       </div>
     </div>
     <div class="home-bottom">
-      <div
-        class="map"
-        v-loading="load.load"
-        element-loading-background="rgba(0, 0, 0, 0.4)"
-      >
+      <div class="map" v-loading="load.load" element-loading-background="rgba(0, 0, 0, 0.4)">
         <el-button
           @click="returnMap"
           v-show="cengji > 0 && !load.load"
@@ -269,11 +265,9 @@
             style="height: calc(100%); width: 100%"
             trigger="click"
             indicator-position="none"
-            arrow="always"
+            arrow="never"
           >
-            <el-carousel-item
-              style="display: flex; justify-content: space-between"
-            >
+            <el-carousel-item style="display: flex; justify-content: space-between">
               <div
                 class="linebox"
                 v-loading="load.load1"
@@ -281,19 +275,13 @@
               >
                 <span class="title">北斗报警统计</span>
                 <div class="btns">
-                  <span
-                    @click="changeCar('carousel', 'chaosu')"
-                    :class="isbtn == 0 ? 'active' : ''"
+                  <span @click="changeCar('carousel', 'chaosu')" :class="isbtn == 0 ? 'active' : ''"
                     >超速报警</span
                   >
-                  <span
-                    @click="changeCar('carousel', 'pilao')"
-                    :class="isbtn == 1 ? 'active' : ''"
+                  <span @click="changeCar('carousel', 'pilao')" :class="isbtn == 1 ? 'active' : ''"
                     >疲劳驾驶</span
                   >
-                  <span
-                    @click="changeCar('carousel', 'yejian')"
-                    :class="isbtn == 2 ? 'active' : ''"
+                  <span @click="changeCar('carousel', 'yejian')" :class="isbtn == 2 ? 'active' : ''"
                     >夜间行驶</span
                   >
                   <span
@@ -411,9 +399,7 @@
                 </el-carousel>
               </div>
             </el-carousel-item>
-            <el-carousel-item
-              style="display: flex; justify-content: space-between"
-            >
+            <!-- <el-carousel-item style="display: flex; justify-content: space-between">
               <div class="linebox">
                 <span class="title">隐患月趋势</span>
                 <echart-base
@@ -430,7 +416,7 @@
                   :chart-option="chartOption.option11"
                 ></echart-base>
               </div>
-            </el-carousel-item>
+            </el-carousel-item> -->
           </el-carousel>
         </div>
         <div class="content-bottom">
@@ -487,11 +473,7 @@
                   align="center"
                   :show-overflow-tooltip="true"
                 ></el-table-column>
-                <el-table-column
-                  prop="cheliangshu"
-                  label="车辆数"
-                  align="center"
-                ></el-table-column>
+                <el-table-column prop="cheliangshu" label="车辆数" align="center"></el-table-column>
                 <el-table-column
                   prop="bjcheliangshu"
                   label="报警车辆数"
@@ -531,9 +513,7 @@
         z-index: 9;
       "
     >
-      <span style="margin-right: 40px">
-        版权所有：{{ userinfo.copyrighter }}
-      </span>
+      <span style="margin-right: 40px"> 版权所有：{{ userinfo.copyrighter }} </span>
       <span>技术支持：{{ userinfo.technicalsupport }}</span>
     </div>
   </div>
@@ -600,20 +580,20 @@ export default {
         this.getTwo(this.zhengfuindex, 1, this.areaName);
         this.getThree(this.zhengfuindex, 1);
         this.getFour(this.zhengfuindex);
-        this.getRiskTendency(this.zhengfuindex, 1);
-        this.getDangerTroubleTendency(this.zhengfuindex, 1);
+        // this.getRiskTendency(this.zhengfuindex, 1);
+        // this.getDangerTroubleTendency(this.zhengfuindex, 1);
       } else {
         this.getOne(this.userinfo.deptId);
         this.getTwo(this.userinfo.deptId, 0);
         this.getThree(this.userinfo.deptId, 0);
         this.getFour(this.userinfo.deptId);
-        this.getRiskTendency(this.userinfo.deptId, 0);
-        this.getDangerTroubleTendency(this.userinfo.deptId, 0);
+        // this.getRiskTendency(this.userinfo.deptId, 0);
+        // this.getDangerTroubleTendency(this.userinfo.deptId, 0);
       }
     }, 180000);
 
     // 隐患因子
-    this.getTroubleCountNum();
+    // this.getTroubleCountNum();
 
     // 通过$once来监听定时器，在beforeDestroy钩子可以被清除。
     this.$once("hook:beforeDestroy", () => {
@@ -650,8 +630,8 @@ export default {
       this.getThree(this.userinfo.deptId, 0);
       //政府-各地区详细报警数据表
       this.getFour(this.userinfo.deptId);
-      this.getRiskTendency(this.userinfo.deptId, 0);
-      this.getDangerTroubleTendency(this.userinfo.deptId, 0);
+      // this.getRiskTendency(this.userinfo.deptId, 0);
+      // this.getDangerTroubleTendency(this.userinfo.deptId, 0);
     },
     // 政府-企业总数、个体总数、车辆总数、在线车辆数
     async getOne(deptId) {
@@ -678,7 +658,7 @@ export default {
         })
       );
       let _this = this;
-      setTimeout(function () {
+      setTimeout(function() {
         _this.load.load = false;
         if (err) {
           _this.$message.error(err);
@@ -701,10 +681,7 @@ export default {
                 },
               };
             });
-            _this.chartOption.option9 = geooption.geooption(
-              _this.areaName,
-              _this.mapData
-            );
+            _this.chartOption.option9 = geooption.geooption(_this.areaName, _this.mapData);
             return false;
           }
           let mapData;
@@ -833,8 +810,8 @@ export default {
       this.getThree(this.userinfo.deptId, 0);
       this.getOne(this.userinfo.deptId);
       this.getFour(this.userinfo.deptId);
-      this.getRiskTendency(this.userinfo.deptId, 0);
-      this.getDangerTroubleTendency(this.userinfo.deptId, 0);
+      // this.getRiskTendency(this.userinfo.deptId, 0);
+      // this.getDangerTroubleTendency(this.userinfo.deptId, 0);
     },
     linkto(url, req = {}) {
       this.$router.push({
@@ -850,8 +827,8 @@ export default {
       this.getThree(el.data.zhengfuid, 1);
       this.getOne(el.data.zhengfuid);
       this.getFour(el.data.zhengfuid);
-      this.getRiskTendency(el.data.zhengfuid, 1);
-      this.getDangerTroubleTendency(el.data.zhengfuid, 1);
+      // this.getRiskTendency(el.data.zhengfuid, 1);
+      // this.getDangerTroubleTendency(el.data.zhengfuid, 1);
     },
     echartclick(el) {
       if (!el.value) return false;
