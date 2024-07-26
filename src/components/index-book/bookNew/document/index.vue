@@ -3,19 +3,27 @@
     <div class="book-head book-head-2X">
       <div class="title">企业基本信息</div>
       <div class="book-head-search">
-        <el-input
-          clearable
-          search
-          size="small"
-          class="search"
-          placeholder="请输入关键字"
-        ></el-input>
-        <el-button
-          v-if="rootNode.id"
-          size="small"
-          type="primary"
-          @click="emitBack"
-        >
+        <div>
+          <el-input
+            clearable
+            search
+            size="small"
+            class="search"
+            placeholder="请输入关键字"
+            v-model="searchValue"
+          ></el-input>
+          <el-button
+            v-if="rootNode.id"
+            size="small"
+            icon="ios-search"
+            type="primary"
+            @click="searchT"
+            style="margin-left: 10px"
+          >
+            检索
+          </el-button>
+        </div>
+        <el-button v-if="rootNode.id" size="small" type="primary" @click="emitBack">
           返回
         </el-button>
       </div>
@@ -35,13 +43,9 @@
         :parentNodes="parentNodes"
         @load="loadNode"
       ></tree-form>
-      <tree-menu
-        :state="menuState"
-        :menu="treeMenu"
-        @on-click="treeMenuClick"
-      ></tree-menu>
+      <tree-menu :state="menuState" :menu="treeMenu" @on-click="treeMenuClick"></tree-menu>
       <scroll>
-        <div class="tree" v-loading="loading">
+        <div class="tree" v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.4)">
           <p v-show="!loading && treeData.length == 0" class="empty">
             <img src="@/assets/img/empty.png" alt="" srcset="" />
           </p>
@@ -89,6 +93,7 @@ export default {
   data() {
     return {
       treeFormIndex: 0,
+      searchValue: "",
     };
   },
   computed: {
@@ -189,6 +194,7 @@ export default {
         documentApi.getTree({
           deptId: data.deptId,
           parentId: id,
+          name: this.searchValue,
         })
       );
     },
@@ -202,6 +208,14 @@ export default {
     },
     emitBack() {
       this.$emit("back");
+    },
+    // 模糊查询
+    searchT() {
+      this.loading = true;
+      this.getNode(this.$parent.doc).then((res) => {
+        this.treeData = res[1];
+        this.loading = false;
+      });
     },
   },
 };

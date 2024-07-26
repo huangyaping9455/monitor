@@ -89,7 +89,7 @@ export default {
       },
     },
     pdfUrl: {
-      type: String,
+      type: Object,
       default: () => {
         return "";
       },
