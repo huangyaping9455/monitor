@@ -10,44 +10,26 @@
     width="70%"
   >
     <div class="cehicleCard">
-      <span
-        :class="['cehicleCard_b', { isChange: ischanged === 0 }]"
-        @click="cardChange(0)"
+      <span :class="['cehicleCard_b', { isChange: ischanged === 0 }]" @click="cardChange(0)"
         >基本信息</span
       >
-      <span
-        :class="['cehicleCard_b', { isChange: ischanged === 1 }]"
-        @click="cardChange(1)"
+      <span :class="['cehicleCard_b', { isChange: ischanged === 1 }]" @click="cardChange(1)"
         >其他信息</span
       >
-      <span
-        :class="['cehicleCard_b', { isChange: ischanged === 2 }]"
-        @click="cardChange(2)"
+      <span :class="['cehicleCard_b', { isChange: ischanged === 2 }]" @click="cardChange(2)"
         >证件信息</span
       >
     </div>
     <div class="cehicleCard_form">
-      <el-form
-        ref="form"
-        :model="driverDetailList"
-        label-width="170px"
-        style="overflow: auto"
-      >
+      <el-form ref="form" :model="driverDetailList" label-width="170px" style="overflow: auto">
         <div
           v-show="ischanged === indexs"
           v-for="(el, indexs) in [checkList1, checkList2, checkList3]"
           :key="indexs"
           style="display: flex; flex-wrap: wrap"
         >
-          <el-col
-            :span="item.span ? item.span : 8"
-            v-for="(item, index) in el"
-            :key="index"
-          >
-            <el-form-item
-              :label="item.label"
-              :prop="item.required == true ? item.prop : ''"
-            >
+          <el-col :span="item.span ? item.span : 8" v-for="(item, index) in el" :key="index">
+            <el-form-item :label="item.label" :prop="item.required == true ? item.prop : ''">
               <!-- :disabled="item.editDisabled ? item.editDisabled : false" -->
               <el-input
                 v-if="item.type === 'input'"
@@ -80,10 +62,7 @@
               <el-upload
                 v-if="item.type === 'upload'"
                 :action="
-                  '/api/blade-upload/upload/upload?fileId=' +
-                  item.prop +
-                  '&table=' +
-                  item.table
+                  '/api/blade-upload/upload/upload?fileId=' + item.prop + '&table=' + item.table
                 "
                 list-type="picture-card"
                 :on-success="
@@ -97,8 +76,7 @@
                   }
                 "
                 :file-list="
-                  !driverDetailList[item.prop] ||
-                  driverDetailList[item.prop] === ''
+                  !driverDetailList[item.prop] || driverDetailList[item.prop] === ''
                     ? []
                     : typeof driverDetailList[item.prop] !== typeof item.prop
                     ? driverDetailList[item.prop]
@@ -185,15 +163,13 @@ export default {
       let [err, data] = await dataAnalysisApi.awaitWrap(
         dataAnalysisApi.getDriverDetail({
           id: this.vehiclemsgList.id,
+          // type: 1,
         })
       );
       this.msgloading = false;
       if (data) {
         if (data.shenfenzhenghao) {
-          data.shenfenzhenghao = data.shenfenzhenghao.replace(
-            /^(.{6})(?:\d+)(.{4})$/,
-            "$1****$2"
-          );
+          data.shenfenzhenghao = data.shenfenzhenghao.replace(/^(.{6})(?:\d+)(.{4})$/, "$1****$2");
         }
         this.driverDetailList = data;
       } else {
@@ -244,9 +220,7 @@ export default {
     },
     // 获取字典
     async getDicData(val) {
-      let [err, data] = await dataApi.awaitWrap(
-        dataApi.getByCode({ code: val })
-      );
+      let [err, data] = await dataApi.awaitWrap(dataApi.getByCode({ code: val }));
       if (data) {
         return data;
       }

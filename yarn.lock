@@ -25,14 +25,14 @@
     gl-matrix "^3.4.3"
     tslib "^2.5.3"
 
-"@antv/l7-component@2.21.10":
-  version "2.21.10"
-  resolved "https://registry.npmmirror.com/@antv/l7-component/-/l7-component-2.21.10.tgz#d3fd99ea498d83f2f3d66654e7aac7194b68447e"
-  integrity sha512-AetST0dRnvMM2r/wzMDB0seatSSZuF1KkPEM/b4iH/ug/BFNTAuXcuAqIOfIE/BVjjjp+WSEIL4JXYCag/G/+Q==
+"@antv/l7-component@2.22.0":
+  version "2.22.0"
+  resolved "https://registry.npmmirror.com/@antv/l7-component/-/l7-component-2.22.0.tgz#9124f7be241f49b72aab13a60deb6cc3d05443b2"
+  integrity sha512-xJsgxg707A65dsBGucDqDKPyYNF0kHPLqWeNTpqKdOxboOw5zhUXdVzOVj9QN/e3ITTTpCvTeQJc6rmche7Q7Q==
   dependencies:
-    "@antv/l7-core" "2.21.10"
-    "@antv/l7-layers" "2.21.10"
-    "@antv/l7-utils" "2.21.10"
+    "@antv/l7-core" "2.22.0"
+    "@antv/l7-layers" "2.22.0"
+    "@antv/l7-utils" "2.22.0"
     "@babel/runtime" "^7.7.7"
     eventemitter3 "^4.0.0"
     supercluster "^7.0.0"
@@ -54,16 +54,33 @@
     hammerjs "^2.0.8"
     viewport-mercator-project "^6.2.1"
 
-"@antv/l7-layers@2.21.10":
-  version "2.21.10"
-  resolved "https://registry.npmmirror.com/@antv/l7-layers/-/l7-layers-2.21.10.tgz#9cc96bf0dc0a08cac19dd1dd7bd5a42cc4731667"
-  integrity sha512-mstPaWw7gCTB9R37slSQ5jrUIx3ChuHh5yUCe0KX3hsbweZhxPAJLx36blm+BvUoJBGzz8K/5Fp7aSly5KKBPg==
+"@antv/l7-core@2.22.0":
+  version "2.22.0"
+  resolved "https://registry.npmmirror.com/@antv/l7-core/-/l7-core-2.22.0.tgz#291f8cbb0f60192d6050e5e57b472ffaf2b03dbf"
+  integrity sha512-hzFBIWHsYJqYzGPFebynybHh70Qc6eG2KBUCTLS4ZlQPUkIF0NUSADYb4vt1qqjH4H3U2mGbs8ICdf7b12omuw==
   dependencies:
     "@antv/async-hook" "^2.2.9"
-    "@antv/l7-core" "2.21.10"
-    "@antv/l7-maps" "2.21.10"
-    "@antv/l7-source" "2.21.10"
-    "@antv/l7-utils" "2.21.10"
+    "@antv/l7-utils" "2.22.0"
+    "@babel/runtime" "^7.7.7"
+    "@mapbox/tiny-sdf" "^1.2.5"
+    "@turf/helpers" "^6.1.4"
+    ajv "^6.10.2"
+    element-resize-detector "^1.2.4"
+    eventemitter3 "^4.0.0"
+    gl-matrix "^3.1.0"
+    hammerjs "^2.0.8"
+    viewport-mercator-project "^6.2.1"
+
+"@antv/l7-layers@2.22.0":
+  version "2.22.0"
+  resolved "https://registry.npmmirror.com/@antv/l7-layers/-/l7-layers-2.22.0.tgz#f71ea23f0a060aa963884afc26f0ebcffba4d8e0"
+  integrity sha512-QdkvzLKrsJOTT8uIBQzZ77pN9/B4AbvXWRcP/gsL7QXd81HQp0mUDDKUzi+SkmM6qUm80V/Z6/OE1wo1ScLduA==
+  dependencies:
+    "@antv/async-hook" "^2.2.9"
+    "@antv/l7-core" "2.22.0"
+    "@antv/l7-maps" "2.22.0"
+    "@antv/l7-source" "2.22.0"
+    "@antv/l7-utils" "2.22.0"
     "@babel/runtime" "^7.7.7"
     "@mapbox/martini" "^0.2.0"
     "@turf/clone" "^6.5.0"
@@ -94,7 +111,35 @@
     eventemitter3 "^4.0.4"
     gl-matrix "^3.1.0"
 
-"@antv/l7-maps@2.21.10", "@antv/l7-maps@^2.21.10":
+"@antv/l7-map@2.22.0":
+  version "2.22.0"
+  resolved "https://registry.npmmirror.com/@antv/l7-map/-/l7-map-2.22.0.tgz#3cfffd70ddbb8c395c348498493944b0f773b2e7"
+  integrity sha512-RqBmm4nLqGcSgf7PaqUIcd0BwRqw9G5sk/OAVfJJHwPg2QLyzGTMrYdkuH5PbHjWLjKZ4P5AuQ4jTq3bE/NUJA==
+  dependencies:
+    "@antv/l7-utils" "2.22.0"
+    "@babel/runtime" "^7.7.7"
+    "@mapbox/point-geometry" "^0.1.0"
+    "@mapbox/unitbezier" "^0.0.1"
+    eventemitter3 "^4.0.4"
+    gl-matrix "^3.1.0"
+
+"@antv/l7-maps@2.22.0":
+  version "2.22.0"
+  resolved "https://registry.npmmirror.com/@antv/l7-maps/-/l7-maps-2.22.0.tgz#b27c8d74a6eee577c42edafb3848c2c3175bdc7c"
+  integrity sha512-FHuZjn+adGpVb9sRSyMdD5iByoBed8y/p99v/r7Pct8RRGgG0gtFtAT6lVPTlp335cD+AnjGInFNUXHKzv8t0A==
+  dependencies:
+    "@amap/amap-jsapi-loader" "^1.0.1"
+    "@antv/l7-core" "2.22.0"
+    "@antv/l7-map" "2.22.0"
+    "@antv/l7-utils" "2.22.0"
+    "@babel/runtime" "^7.7.7"
+    eventemitter3 "^4.0.0"
+    gl-matrix "^3.1.0"
+    mapbox-gl "^1.2.1"
+    maplibre-gl "^3.5.2"
+    viewport-mercator-project "^6.2.1"
+
+"@antv/l7-maps@^2.21.10":
   version "2.21.10"
   resolved "https://registry.npmmirror.com/@antv/l7-maps/-/l7-maps-2.21.10.tgz#bb3e182e82cd343a69ba68e6ac9cad7d046bccf9"
   integrity sha512-NBl/G+o6bPYDN+lv+FUHrG3Cfz24cBr5eIDCrR47Ae+WYTGg/jHS/8RshEhrLuGMNDb1h7n0xqMDH3oka8tkYw==
@@ -110,39 +155,39 @@
     maplibre-gl "^3.5.2"
     viewport-mercator-project "^6.2.1"
 
-"@antv/l7-renderer@2.21.10":
-  version "2.21.10"
-  resolved "https://registry.npmmirror.com/@antv/l7-renderer/-/l7-renderer-2.21.10.tgz#26d646079660003de471454c5dac14d069020985"
-  integrity sha512-cJvE+AMrFyfE4n6qnCYcpNfF93HZRGsDlpSCfc55c6b7rh6d4LHzlzDUIX1gvRJJpfWeV2V85Wva2BuKOnKNWA==
+"@antv/l7-renderer@2.22.0":
+  version "2.22.0"
+  resolved "https://registry.npmmirror.com/@antv/l7-renderer/-/l7-renderer-2.22.0.tgz#c7134e639f454a40cbf3990b4250939e16a21357"
+  integrity sha512-tFwqO9ElVe4X+k9NdOzzDBZ8oLIEFxEjHaIMCV2R10KLjQh0B4XBFeJ8OUBKA+ndKmhflKE4oVJAu1l4I9cG0A==
   dependencies:
     "@antv/g-device-api" "^1.6.4"
-    "@antv/l7-core" "2.21.10"
-    "@antv/l7-utils" "2.21.10"
+    "@antv/l7-core" "2.22.0"
+    "@antv/l7-utils" "2.22.0"
     "@babel/runtime" "^7.7.7"
     regl "1.6.1"
 
-"@antv/l7-scene@2.21.10":
-  version "2.21.10"
-  resolved "https://registry.npmmirror.com/@antv/l7-scene/-/l7-scene-2.21.10.tgz#5d198fc8411824d5b985095409c10f90a53b41e6"
-  integrity sha512-/9F9+vEXTY2r+6k8XATd+bs1/xvIxRf8jMlQ+3P1mieI0UYdw5wfxD/THkjhyXnvK0++VH8aaTtBFB1jSxqmhg==
+"@antv/l7-scene@2.22.0":
+  version "2.22.0"
+  resolved "https://registry.npmmirror.com/@antv/l7-scene/-/l7-scene-2.22.0.tgz#9c14e9f8d8fe32047ba56db31a3fc209a38ef31a"
+  integrity sha512-aW6iRi7CvZ8ctSLSUkFoF+qFKQb/7vUjWYm6/zQ2KYs5KhASEg/bnLaPoPL+D+a7ON3FeUYDhP8NW/MH3J/T2Q==
   dependencies:
-    "@antv/l7-component" "2.21.10"
-    "@antv/l7-core" "2.21.10"
-    "@antv/l7-layers" "2.21.10"
-    "@antv/l7-maps" "2.21.10"
-    "@antv/l7-renderer" "2.21.10"
-    "@antv/l7-utils" "2.21.10"
+    "@antv/l7-component" "2.22.0"
+    "@antv/l7-core" "2.22.0"
+    "@antv/l7-layers" "2.22.0"
+    "@antv/l7-maps" "2.22.0"
+    "@antv/l7-renderer" "2.22.0"
+    "@antv/l7-utils" "2.22.0"
     "@babel/runtime" "^7.7.7"
     eventemitter3 "^4.0.7"
 
-"@antv/l7-source@2.21.10":
-  version "2.21.10"
-  resolved "https://registry.npmmirror.com/@antv/l7-source/-/l7-source-2.21.10.tgz#54ac23baeb17c83a0b06cc34fd5ee23b70f8f9d6"
-  integrity sha512-TAy1loL1P2yRcDDAqGabBY/EXhhR54pvEvrszZyfWd2jv805/rUsH72QBA2txfId44OFH9E+7jWhOx1pyu2Evw==
+"@antv/l7-source@2.22.0":
+  version "2.22.0"
+  resolved "https://registry.npmmirror.com/@antv/l7-source/-/l7-source-2.22.0.tgz#60db2546785dae250fb2a677fc4f0f28ff0c91a4"
+  integrity sha512-e+Kq5IRI4TkPVJANkKnSZlELqLHQw+j9XxasnWbHnvGaWYFPweByLtCisUxnN+QXOjezwa9DedyNHEgfgOmKbQ==
   dependencies:
     "@antv/async-hook" "^2.2.9"
-    "@antv/l7-core" "2.21.10"
-    "@antv/l7-utils" "2.21.10"
+    "@antv/l7-core" "2.22.0"
+    "@antv/l7-utils" "2.22.0"
     "@babel/runtime" "^7.7.7"
     "@mapbox/geojson-rewind" "^0.5.2"
     "@mapbox/vector-tile" "^1.3.1"
@@ -172,18 +217,34 @@
     lodash "^4.17.15"
     web-worker-helper "^0.0.3"
 
-"@antv/l7@^2.21.10":
-  version "2.21.10"
-  resolved "https://registry.npmmirror.com/@antv/l7/-/l7-2.21.10.tgz#def0e0a78991bb4ae1a187793daabdd6cbd0d9c2"
-  integrity sha512-SkY6YCoFvg2RQy19BnwCXa+Dl+pIOCx55BDajUIGI7siqEyqD2N2ttcEA2couLUwuLiaGFnEK6QvPi3R4aMIKA==
+"@antv/l7-utils@2.22.0":
+  version "2.22.0"
+  resolved "https://registry.npmmirror.com/@antv/l7-utils/-/l7-utils-2.22.0.tgz#db86f853622c8419848462b8e1807f81707b3dca"
+  integrity sha512-uB8X87nGHy+LgoKtTY/6lm67K+Igq4qtBo9e09sTxGmfVcFESdl+N5Kug1YqxQoJA4ERTuTS2NqMqTD14edtZw==
   dependencies:
-    "@antv/l7-component" "2.21.10"
-    "@antv/l7-core" "2.21.10"
-    "@antv/l7-layers" "2.21.10"
-    "@antv/l7-maps" "2.21.10"
-    "@antv/l7-scene" "2.21.10"
-    "@antv/l7-source" "2.21.10"
-    "@antv/l7-utils" "2.21.10"
+    "@babel/runtime" "^7.7.7"
+    "@turf/bbox" "^6.5.0"
+    "@turf/bbox-polygon" "^6.5.0"
+    "@turf/helpers" "^6.1.4"
+    d3-color "^1.4.0"
+    earcut "^2.1.0"
+    eventemitter3 "^4.0.0"
+    gl-matrix "^3.1.0"
+    lodash "^4.17.15"
+    web-worker-helper "^0.0.3"
+
+"@antv/l7@^2.22.0":
+  version "2.22.0"
+  resolved "https://registry.npmmirror.com/@antv/l7/-/l7-2.22.0.tgz#cbfedfde562373f380a2778a671b32f64fb5e5d4"
+  integrity sha512-9ZvrDC4HjE0DrY3zx/HlOQwp2enVt1ckgUz5Il9/K0axpHdQJlZIu+KJto4Y91krJgrw/Uam5aJFIudoUItGeg==
+  dependencies:
+    "@antv/l7-component" "2.22.0"
+    "@antv/l7-core" "2.22.0"
+    "@antv/l7-layers" "2.22.0"
+    "@antv/l7-maps" "2.22.0"
+    "@antv/l7-scene" "2.22.0"
+    "@antv/l7-source" "2.22.0"
+    "@antv/l7-utils" "2.22.0"
     "@babel/runtime" "^7.7.7"
 
 "@antv/util@^3.3.4":
