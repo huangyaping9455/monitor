@@ -10,12 +10,7 @@
           class="search"
           placeholder="请输入关键字"
         ></el-input>
-        <el-button
-          v-if="rootNode.id"
-          size="small"
-          type="primary"
-          @click="emitBack"
-        >
+        <el-button v-if="rootNode.id" size="small" type="primary" @click="emitBack">
           返回
         </el-button>
       </div>
@@ -35,13 +30,9 @@
         :parentNodes="parentNodes"
         @load="loadNode"
       ></tree-form>
-      <tree-menu
-        :state="menuState"
-        :menu="treeMenu"
-        @on-click="treeMenuClick"
-      ></tree-menu>
+      <tree-menu :state="menuState" :menu="treeMenu" @on-click="treeMenuClick"></tree-menu>
       <scroll>
-        <div class="tree" v-loading="loading">
+        <div class="tree" v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.4)">
           <p v-show="!loading && treeData.length == 0" class="empty">
             <img src="@/assets/img/empty.png" alt="" srcset="" />
           </p>

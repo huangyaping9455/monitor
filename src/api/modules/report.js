@@ -159,18 +159,6 @@ export default {
   getZFJSYPageList(data) {
     return $axios.post("/blade-anbiao/anbiao/jiashiyuan/getZFJSYPageList", data);
   },
-  // 车辆详情
-  getVehicleDetail(params) {
-    return $axios.get(`/blade-anbiao/anbiao/vehicle/detail`, {
-      params: params,
-    });
-  },
-  // 驾驶员详情
-  getDriverDetail(params) {
-    return $axios.get(`/blade-anbiao/anbiao/jiashiyuan/detail`, {
-      params: params,
-    });
-  },
   // 车辆维护
   getZFVehicleWeiHuPage(data) {
     return $axios.post(`/blade-anbiao/anbiao/cheliangweihu/getZFVehicleWeiHuPage`, data);
@@ -261,6 +249,110 @@ export default {
   getOperatorInfo(params) {
     return $axios.get("/blade-anbiao/anbiao/operatorInfo/getOperatorInfo", {
       params,
+    });
+  },
+  // 车辆详情
+  getVehicleDetail(params) {
+    return $axios.get(`/blade-anbiao/anbiao/vehicle/detail`, {
+      params: params,
+    });
+  },
+  // 行驶证
+  vehiclexingshizhengDetail(params) {
+    return $axios.get(`/blade-anbiao/vehiclexingshizheng/queryByVehicle`, {
+      params: params,
+    });
+  },
+  // 道路运输证
+  vehicledaoluyunshuzhengDetail(params) {
+    return $axios.get(`/blade-anbiao/vehicledaoluyunshuzheng/queryByVehicle`, {
+      params: params,
+    });
+  },
+  // 性能报告
+  vehiclexingnengbaogaoDetail(params) {
+    return $axios.get(`/blade-anbiao/vehiclexingnengbaogao/queryByVehicle`, {
+      params: params,
+    });
+  },
+  // 登记证书
+  vehicledengjizhengshuDetail(params) {
+    return $axios.get(`/blade-anbiao/vehicledengjizhengshu/queryByVehicle`, {
+      params: params,
+    });
+  },
+  // 驾驶员列表
+  getJiaShiYuanByDept(params) {
+    return $axios.get(`/blade-anbiao/anbiao/jiashiyuan/getJiaShiYuanByDept`, {
+      params: params,
+    });
+  },
+  // 车辆列表
+  getByIdVehicleList(params) {
+    return $axios.get(`/blade-anbiao/anbiao/vehicle/getByIdVehicleList`, {
+      params: params,
+    });
+  },
+  // 驾驶员详情
+  getDriverDetail(params) {
+    return $axios.get(`/blade-anbiao/anbiao/jiashiyuan/detail`, {
+      params: params,
+    });
+  },
+  // 家庭成员 详情
+  jtcydetail(params) {
+    return $axios.get(`/blade-anbiao/anbiao/jiashiyuan/principalFamilyMember/detail`, {
+      params: params,
+    });
+  },
+  // 驾驶员责任书信息管理
+  liabilityStatementList(data) {
+    return $axios.post("/blade-anbiao/anbiao/liabilityStatement/list", data);
+  },
+  // 交通违法专项整治责任书信息 详情
+  zxzzDetail(params) {
+    return $axios.get(`/blade-anbiao/anbiao/jiashiyuan/zhuanxiangzhengzhizerenshu/detail`, {
+      params: params,
+    });
+  },
+  // 反恐维稳安全责任书信息 详情
+  fkfkDetail(params) {
+    return $axios.get(`/blade-anbiao/anbiao/jiashiyuan/fankongweiwenanquanzerenshu/detail`, {
+      params: params,
+    });
+  },
+  // 客运车辆清洁消毒承诺书信息 详情
+  qjxdDetail(params) {
+    return $axios.get(`/blade-anbiao/anbiao/jiashiyuan/qingjiexiaoduchengnuoshu/detail`, {
+      params: params,
+    });
+  },
+  // 职业病 详情
+  zhiyeweihaiDetail(params) {
+    return $axios.get(`/blade-anbiao/anbiao/jiashiyuan/zhiyeweihai/detail`, {
+      params: params,
+    });
+  },
+  // 服务质量承诺书信息 详情
+  fwzlDetail(params) {
+    return $axios.get(`/blade-anbiao/anbiao/jiashiyuan/fuwuzhiliangchengnuoshu/detail`, {
+      params: params,
+    });
+  },
+  // 无犯罪证明 详情
+  wfzdetail(params) {
+    return $axios.get(`/blade-anbiao/anbiao/jiashiyuan/wufanzuizhengming/detail`, {
+      params: params,
+    });
+  },
+  // 省 市 县
+  getDeptById(deptId, type, remark) {
+    return $axios.get(`/blade-system/dept/getDeptById`, {
+      params: {
+        deptId,
+        type,
+        remark,
+      },
     });
   },
   awaitWrap,

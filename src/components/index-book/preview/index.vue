@@ -1,16 +1,9 @@
 <template>
   <div class="wh100 preview-doc">
     <div class="head">
-      <div
-        @click="download"
-        style="display: flex; align-items: center; cursor: pointer"
-      >
+      <div @click="download" style="display: flex; align-items: center; cursor: pointer">
         <p>{{ active.name }}</p>
-        <div
-          v-if="active.path && !active.down"
-          style="display: flex"
-          title="下载"
-        >
+        <div v-if="active.path && !active.down" style="display: flex" title="下载">
           <i class="el-icon-download" />
         </div>
       </div>
@@ -44,10 +37,7 @@
             v-else-if="active.fType && active.fType == 'xls'"
             :file="files[0]"
           ></excel-preview>
-          <div
-            v-else-if="active.fType && active.fType == 'pdf'"
-            style="width: 100%; height: 100%"
-          >
+          <div v-else-if="active.fType && active.fType == 'pdf'" style="width: 100%; height: 100%">
             <pdf
               :src="pdfUrl"
               style="
@@ -62,13 +52,7 @@
               :page="i"
             ></pdf>
           </div>
-          <iframe
-            v-else
-            width="100%"
-            style="height: 87vh"
-            :src="files[0]"
-            frameborder="0"
-          ></iframe>
+          <iframe v-else width="100%" style="height: 87vh" :src="files[0]" frameborder="0"></iframe>
         </div>
       </scroll>
     </div>
@@ -97,7 +81,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-import axios from "axios";
 import DocPreview from "./docPreview.vue";
 import ExcelPreview from "./excelPreview.vue";
 import pdf from "vue-pdf";
@@ -179,53 +162,15 @@ export default {
     download() {
       if (this.active.mubanPath) {
         if (this.active.mubanPath != "") {
-          // let str = this.active.mubanPath.indexOf(".doc");
-          window.location.href =
-            // "http://59.36.239.170:8204/" +
-            // "http://61.136.101.78:8894/" +
-            // "http://sztoosun.com:8204/" +
-            // "http://222.82.236.242:8204/" +
-            // "http://58.144.142.198:8204/" +
-            // "http://47.112.100.126:8204/" +
-            // "http://125.64.5.2:8204/" +
-            // "http://103.47.83.154:8204/" +
-            // "http://www.zkgt-safety.com:8204/" +
-            // "http://183.57.73.73:8204/" +
-            // "http://150.138.133.178:8204/" +
-            this.userinfo.urlPrefix +
-            this.active.mubanPath +
-            "/" +
-            this.active.name;
+          window.open(
+            this.userinfo.urlPrefix + this.active.mubanPath + "/" + this.active.name,
+            "_blank"
+          );
         } else {
           this.$message.warning("暂不支持下载");
         }
       } else {
-        axios({
-          url: "/api/blade-anbiao/anbiao/baobiaowenjian/preview",
-          method: "post",
-          params: {
-            fileType: 4,
-            id: this.active.id,
-          },
-        }).then((res) => {
-          if (!res.data.data.path) {
-            this.$message.warning("暂不支持下载");
-            return;
-          }
-          window.location.href =
-            // "http://59.36.239.170:8204/" + res.data.data.path;
-            // "http://61.136.101.78:8894/" + res.data.data.path;
-            // "http://sztoosun.com:8204/" + res.data.data.path;
-            // "http://222.82.236.242:8204/" + res.data.data.path;
-            // "http://58.144.142.198:8204/" + res.data.data.path;
-            // "http://47.112.100.126:8204/" + res.data.data.path;
-            // "http://125.64.5.2:8204/" + res.data.data.path;
-            // "http://103.47.83.154:8204/" + res.data.data.path;
-            // "http://www.zkgt-safety.com:8204/" + res.data.data.path;
-            // "http://183.57.73.73:8204/" + res.data.data.path;
-            // "http://150.138.133.178:8204/" + res.data.data.path;
-            this.userinfo.urlPrefix + res.data.data.path;
-        });
+        window.open(this.userinfo.urlPrefix + this.active.path, "_blank");
       }
     },
 
@@ -268,7 +213,6 @@ export default {
       if (this.action) {
         this.action()
           .then((res) => {
-            console.log(res);
             let data = res[1];
             this.imgData = data;
             this.active.path = res[1].path;
@@ -285,9 +229,7 @@ export default {
               data.name.indexOf(".bmp") != -1
             ) {
               this.$set(this.active, "fType", "img");
-              this.$set(this.active, "_fileList", [
-                this.$store.getters.userInfo.urlPrefix + data.path,
-              ]);
+              this.$set(this.active, "_fileList", [this.userinfo.urlPrefix + data.path]);
             } else if (data.name.indexOf(".doc") != -1) {
               this.$set(this.active, "fType", "doc");
               this.$set(this.active, "_fileList", [
@@ -321,9 +263,7 @@ export default {
               });
             } else {
               this.$set(this.active, "fType", "qita");
-              this.$set(this.active, "_fileList", [
-                this.$store.getters.userInfo.urlPrefix + data.path,
-              ]);
+              this.$set(this.active, "_fileList", [this.userinfo.urlPrefix + data.path]);
             }
             this.loading = false;
           })

@@ -1,0 +1,535 @@
+<template>
+  <el-form class="organform" ref="rowDetail" :model="dataForm" :disabled="state">
+    <div class="form_detail">
+      <div class="v_type">
+        <div class="line"></div>
+        <span>基本信息</span>
+      </div>
+      <el-col :span="8">
+        <el-form-item label="姓名" prop="ajrName">
+          <el-input
+            v-model="dataForm.ajrName"
+            placeholder="请输入姓名"
+            :disabled="true"
+            style="width: 100%"
+          ></el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="姓别" prop="ajrSex">
+          <el-radio-group v-model="dataForm.ajrSex">
+            <el-radio :label="'1'">男</el-radio>
+            <el-radio :label="'0'">女</el-radio>
+          </el-radio-group>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="出生年月" prop="ajrBirth">
+          <el-date-picker
+            v-model="dataForm.ajrBirth"
+            type="date"
+            style="width: 100%"
+            value-format="yyyy-MM-dd"
+            format="yyyy-MM-dd"
+            placeholder="选择日期"
+          >
+          </el-date-picker>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="民族" prop="ajrNation">
+          <el-input
+            style="width: 100%"
+            v-model="dataForm.ajrNation"
+            placeholder="请输入民族"
+            clearable
+          ></el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="文化程度" prop="ajrEducation">
+          <el-select
+            placeholder="请选择文化程度"
+            v-model="dataForm.ajrEducation"
+            style="width: 100%"
+          >
+            <el-option label="初中" value="初中"> </el-option>
+            <el-option label="高中" value="高中"> </el-option>
+            <el-option label="大专" value="大专"> </el-option>
+            <el-option label="本科" value="本科"> </el-option>
+          </el-select>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="政治面貌" prop="ajrPoliticalOutlook">
+          <el-select
+            placeholder="请选择政治面貌"
+            v-model="dataForm.ajrPoliticalOutlook"
+            style="width: 100%"
+          >
+            <el-option label="群众" value="群众"> </el-option>
+            <el-option label="团员" value="团员"> </el-option>
+            <el-option label="党员" value="党员"> </el-option>
+          </el-select>
+        </el-form-item>
+      </el-col>
+      <el-col :span="24">
+        <el-form-item label="原来何地何单位任何职" prop="ajrEmployer">
+          <el-input
+            style="width: 100%"
+            v-model="dataForm.ajrEmployer"
+            placeholder="请输入原来何地何单位任何职"
+            clearable
+          ></el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="24">
+        <el-form-item label="原居住地详细地址" prop="ajrOldAddress">
+          <el-input
+            style="width: 100%"
+            v-model="dataForm.ajrOldAddress"
+            placeholder="请输入原居住地详细地址"
+            clearable
+          ></el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="户口所在地" prop="ajrAddress">
+          <el-input
+            style="width: 100%"
+            v-model="dataForm.ajrAddress"
+            placeholder="请输入户口所在地"
+            clearable
+          ></el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="户口性质" prop="ajrHouseholdRegistrationType">
+          <el-radio-group v-model="dataForm.ajrHouseholdRegistrationType">
+            <el-radio :label="1">农业</el-radio>
+            <el-radio :label="2">非农业</el-radio>
+          </el-radio-group>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="身份证号码" prop="ajrIdNumber">
+          <el-input
+            style="width: 100%"
+            v-model="dataForm.ajrIdNumber"
+            placeholder="请输入身份证号码"
+          ></el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="驾照等级" prop="ajrClass">
+          <el-select placeholder="请选择驾照等级" v-model="dataForm.ajrClass" style="width: 100%">
+            <el-option
+              v-for="(item, index) in jiazhaoList"
+              :key="index"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="初次领证日期" prop="ajrStartTime">
+          <el-date-picker
+            v-model="dataForm.ajrStartTime"
+            type="date"
+            style="width: 100%"
+            value-format="yyyy-MM-dd"
+            format="yyyy-MM-dd"
+            placeholder="选择日期"
+          >
+          </el-date-picker>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="持证单位" prop="ajrStartCompany">
+          <el-input
+            style="width: 100%"
+            v-model="dataForm.ajrStartCompany"
+            placeholder="请输入持证单位"
+            clearable
+          ></el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="籍贯" prop="ajrNativePlace">
+          <el-input
+            style="width: 100%"
+            v-model="dataForm.ajrNativePlace"
+            placeholder="请输入籍贯"
+            clearable
+          ></el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="入职日期" prop="ajrEntryTime">
+          <div class="datem">
+            <el-date-picker
+              type="date"
+              style="width: 100%"
+              value-format="yyyy-MM-dd"
+              format="yyyy-MM-dd"
+              v-model="dataForm.ajrEntryTime"
+              placeholder="选择日期"
+            >
+            </el-date-picker>
+          </div>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="当前年龄" prop="ajrAge">
+          <el-input-number
+            style="width: 100%"
+            v-model="dataForm.ajrAge"
+            placeholder="请输入当前年龄"
+            controls-position="right"
+          ></el-input-number>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="毕业院校" prop="ajrGraduationSchool">
+          <el-input
+            style="width: 100%"
+            v-model="dataForm.ajrGraduationSchool"
+            placeholder="请输入毕业院校"
+            clearable
+          ></el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="毕业时间" prop="ajrGraduationDate">
+          <el-date-picker
+            v-model="dataForm.ajrGraduationDate"
+            type="date"
+            style="width: 100%"
+            value-format="yyyy-MM-dd"
+            format="yyyy-MM-dd"
+            placeholder="选择日期"
+          >
+          </el-date-picker>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="从事驾驶年龄" prop="ajrDrivingExperience">
+          <el-input
+            type="number"
+            style="width: 100%"
+            v-model="dataForm.ajrDrivingExperience"
+            placeholder="请输入从事驾驶年龄"
+            clearable
+          ></el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="8">
+        <el-form-item label="健康状况" prop="ajrHealthStatus">
+          <el-input
+            style="width: 100%"
+            v-model="dataForm.ajrHealthStatus"
+            placeholder="请输入健康状况"
+            clearable
+          ></el-input>
+        </el-form-item>
+      </el-col>
+      <div class="v_type">
+        <div class="line"></div>
+        <span><i style="color: red">*</i> 本人照片(只能上传jpg/png格式)</span>
+      </div>
+      <el-col :span="24">
+        <el-form-item label="" prop="ajrHeadPortrait">
+          <div class="datem">
+            <el-upload
+              style="display: flex; width: 274px"
+              action="api/blade-upload/upload/upload?fileId=driver&table=anbiao_driver"
+              list-type="picture-card"
+              ref="uploadComp"
+              :on-preview="handlePictureCardPreview"
+              :file-list="fileList1"
+            >
+              <i class="el-icon-plus"></i>
+            </el-upload>
+          </div>
+        </el-form-item>
+      </el-col>
+      <div class="v_type">
+        <div class="line"></div>
+        <span>工作经历</span>
+      </div>
+      <el-col :span="24">
+        <el-form-item label="" prop="ajrWorkExperience">
+          <el-input
+            type="textarea"
+            v-model="dataForm.ajrWorkExperience"
+            placeholder="请输入工作经历"
+            clearable
+          ></el-input>
+        </el-form-item>
+      </el-col>
+      <div class="v_type">
+        <div class="line"></div>
+        <span>安全驾驶记录</span>
+      </div>
+      <div class="jiashijilu">
+        <div class="jilu_list">
+          <span>前三年内是否未发生道路交通事故致人死亡且同等以上责任</span>
+          <el-radio-group v-model="dataForm.ajrSafeDrivingRecord1">
+            <el-radio :label="'1'">是</el-radio>
+            <el-radio :label="'0'">否</el-radio>
+          </el-radio-group>
+        </div>
+        <div class="jilu_list">
+          <span>是否无交通违法记录满分记录</span>
+          <el-radio-group v-model="dataForm.ajrSafeDrivingRecord2">
+            <el-radio :label="'1'">是</el-radio>
+            <el-radio :label="'0'">否</el-radio>
+          </el-radio-group>
+        </div>
+        <div class="jilu_list">
+          <span>是否无酒后驾驶记录、超员20%、三次以上超速记录</span>
+          <el-radio-group v-model="dataForm.ajrSafeDrivingRecord3">
+            <el-radio :label="'1'">是</el-radio>
+            <el-radio :label="'0'">否</el-radio>
+          </el-radio-group>
+        </div>
+      </div>
+      <div class="v_type">
+        <div class="line"></div>
+        <span>体检结果</span>
+      </div>
+      <el-col :span="24">
+        <el-form-item label="" prop="ajrPhysicalExaminationResults">
+          <el-input
+            type="textarea"
+            v-model="dataForm.ajrPhysicalExaminationResults"
+            placeholder="请输入体检结果"
+            clearable
+          ></el-input>
+        </el-form-item>
+      </el-col>
+      <div class="v_type">
+        <div class="line"></div>
+        <span>诚信考核结果</span>
+      </div>
+      <div class="text_t">本人承诺以上内容均属实</div>
+      <div class="v_type">
+        <div class="line"></div>
+        <span>家庭主要成员</span>
+      </div>
+      <el-col :span="24">
+        <el-form-item label="">
+          <el-table
+            :data="childFormData"
+            border
+            :height="200"
+            :header-cell-style="
+              () => {
+                return 'padding:0';
+              }
+            "
+          >
+            <el-table-column prop="pfmTitle" label="称谓" align="center" show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column prop="pfmName" label="姓名" align="center" show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column prop="pfmSex" label="性别" align="center" show-overflow-tooltip>
+              <template slot-scope="{ row }">
+                <span>{{ row.pfmSex == 2 ? "女" : "男" }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column prop="pfmAge" label="年龄" align="center" show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column
+              prop="pfmJob"
+              label="在何单位任何职"
+              align="center"
+              show-overflow-tooltip
+            >
+            </el-table-column>
+          </el-table>
+        </el-form-item>
+      </el-col>
+    </div>
+  </el-form>
+</template>
+
+<script>
+import governmentApi from "@/api/modules/government";
+import dataAnalysisApi from "@/api/modules/report";
+export default {
+  props: {
+    rowDetail: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
+    state: {
+      type: Boolean,
+      default: () => {
+        return false;
+      },
+    },
+  },
+  data() {
+    return {
+      fileList1: [],
+      jiazhaoList: [],
+      dataForm: {},
+      childFormData: [],
+    };
+  },
+  watch: {
+    rowDetail: {
+      handler(item) {
+        this.dataForm = JSON.parse(JSON.stringify(item));
+        this.fileList1 = [];
+        this.childFormData = [];
+        if (item.ajrHeadPortrait && item.ajrHeadPortrait.indexOf("[") != -1) {
+          this.fileList1 = [
+            JSON.parse(item.ajrHeadPortrait)[0] ? JSON.parse(item.ajrHeadPortrait)[0] : "",
+          ];
+        } else if (item.ajrHeadPortrait && item.ajrHeadPortrait.indexOf("http") != -1) {
+          if (item.ajrHeadPortrait.indexOf(",") != -1) {
+            this.fileList1 = [
+              {
+                url: item.ajrHeadPortrait.split(",")[0] ? item.ajrHeadPortrait.split(",")[0] : "",
+              },
+            ];
+          } else {
+            this.fileList1 = [{ url: item.ajrHeadPortrait == "" ? "" : item.ajrHeadPortrait }];
+          }
+        }
+        this.getJtcyDetail(item.ajrAjIds);
+        this.getDicData("zhunjiachexing").then((res) => {
+          this.jiazhaoList = res;
+        });
+      },
+      immediate: false,
+    },
+  },
+  methods: {
+    async getJtcyDetail(ajrAjIds) {
+      let [err, data] = await dataAnalysisApi.awaitWrap(
+        dataAnalysisApi.jtcydetail({
+          id: ajrAjIds,
+        })
+      );
+      if (data) {
+        this.childFormData = data;
+      }
+    },
+    handlePictureCardPreview(file) {
+      window.open(file.url, "_blank");
+    },
+    // 获取字典
+    async getDicData(val) {
+      let [err, data] = await governmentApi.awaitWrap(governmentApi.getByCode({ code: val }));
+      if (data) {
+        return data;
+      }
+    },
+  },
+};
+</script>
+<style lang="scss" scoped>
+.organform {
+  width: 100%;
+  height: calc(100% - 120px);
+  .form_detail {
+    width: 100%;
+    height: calc(100%);
+    overflow: auto;
+    .v_type {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 10px;
+      .line {
+        width: 5px;
+        height: 15px;
+        margin-right: 5px;
+        background-color: #4ab3f8;
+        border-radius: 3px;
+      }
+      span {
+        color: #a6a6a6;
+      }
+    }
+    .text_t {
+      margin-left: 10px;
+      margin-bottom: 10px;
+    }
+    .photo_m {
+      width: 100px;
+      height: 130px;
+      margin-bottom: 10px;
+    }
+    .shenpi {
+      background-color: #f5f5f5;
+      width: 100%;
+      padding: 15px;
+      border-radius: 5px;
+      .sign {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding-right: 40px;
+        margin-top: 20px;
+
+        span {
+          text-align: end;
+        }
+        .sign_t {
+          width: 100px;
+          height: 40px;
+        }
+      }
+    }
+    .jiashijilu {
+      width: calc(100% - 40px);
+      display: flex;
+      flex-direction: column;
+      line-height: 40px;
+      padding: 0px 20px 10px 20px;
+      .jilu_list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+    .el-col {
+      padding-right: 40px;
+      ::v-deep .el-form-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        .el-form-item__content {
+          width: 100%;
+          .datem {
+            display: flex;
+            .el-upload--picture-card {
+              background-color: #f7f6ff;
+              width: 117px;
+              height: 105px;
+              line-height: 105px;
+              margin-bottom: 10px;
+            }
+            .el-upload-list--picture-card .el-upload-list__item {
+              width: 117px;
+              height: 105px;
+            }
+            .zhi {
+              color: #121212;
+              margin: 0 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</style>

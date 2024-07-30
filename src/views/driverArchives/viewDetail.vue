@@ -7,106 +7,48 @@
     :show-close="false"
     :close-on-click-modal="false"
     :visible.sync="vehicleVisible"
-    width="70%"
+    width="90%"
   >
     <div class="cehicleCard">
-      <span :class="['cehicleCard_b', { isChange: ischanged === 0 }]" @click="cardChange(0)"
-        >基本信息</span
+      <span
+        v-for="(item, index) in btnList"
+        :key="index"
+        :class="['cehicleCard_b', { isChange: ischanged === index + 1 }]"
+        @click="cardChange(index)"
       >
-      <span :class="['cehicleCard_b', { isChange: ischanged === 1 }]" @click="cardChange(1)"
-        >其他信息</span
-      >
-      <span :class="['cehicleCard_b', { isChange: ischanged === 2 }]" @click="cardChange(2)"
-        >证件信息</span
-      >
+        {{ item.label }}
+      </span>
     </div>
     <div class="cehicleCard_form">
-      <el-form ref="form" :model="driverDetailList" label-width="170px" style="overflow: auto">
-        <div
-          v-show="ischanged === indexs"
-          v-for="(el, indexs) in [checkList1, checkList2, checkList3]"
-          :key="indexs"
-          style="display: flex; flex-wrap: wrap"
-        >
-          <el-col :span="item.span ? item.span : 8" v-for="(item, index) in el" :key="index">
-            <el-form-item :label="item.label" :prop="item.required == true ? item.prop : ''">
-              <!-- :disabled="item.editDisabled ? item.editDisabled : false" -->
-              <el-input
-                v-if="item.type === 'input'"
-                v-model="driverDetailList[item.prop]"
-                disabled
-              />
-              <el-select
-                v-model="driverDetailList[item.prop]"
-                style="width: 100%"
-                v-if="item.type === 'select'"
-                disabled
-              >
-                <el-option
-                  :label="vall.label"
-                  :value="vall.value"
-                  v-for="(vall, indexcc) in item.dicData"
-                  :key="indexcc"
-                ></el-option>
-              </el-select>
-              <el-date-picker
-                v-if="item.type === 'date'"
-                type="date"
-                placeholder="选择日期"
-                v-model="driverDetailList[item.prop]"
-                style="width: 100%"
-                value-format="yyyy-MM-dd"
-                format="yyyy-MM-dd"
-                disabled
-              ></el-date-picker>
-              <el-upload
-                v-if="item.type === 'upload'"
-                :action="
-                  '/api/blade-upload/upload/upload?fileId=' + item.prop + '&table=' + item.table
-                "
-                list-type="picture-card"
-                :on-success="
-                  (res) => {
-                    return handlesuccess(res, item);
-                  }
-                "
-                :on-remove="
-                  (file, fileList, fileIndex) => {
-                    return handleremove(file, fileList, fileIndex, item);
-                  }
-                "
-                :file-list="
-                  !driverDetailList[item.prop] || driverDetailList[item.prop] === ''
-                    ? []
-                    : typeof driverDetailList[item.prop] !== typeof item.prop
-                    ? driverDetailList[item.prop]
-                    : driverDetailList[item.prop].indexOf('[') != -1
-                    ? JSON.parse(driverDetailList[item.prop])
-                    : driverDetailList[item.prop]
-                "
-                disabled
-              >
-                <i class="el-icon-plus"></i>
-              </el-upload>
-              <el-input-number
-                v-if="item.type === 'number'"
-                v-model="driverDetailList[item.prop]"
-                controls-position="right"
-                :min="0"
-                style="width: 100%"
-                disabled
-              ></el-input-number>
-              <el-input
-                v-if="item.type === 'textarea'"
-                v-model="driverDetailList[item.prop]"
-                style="width: 100%"
-                type="textarea"
-                disabled
-              ></el-input>
-            </el-form-item>
-          </el-col>
-        </div>
-      </el-form>
+      <ruzhi-form v-if="ischanged == 1" :rowDetail="driverDetailList" :state="true"></ruzhi-form>
+      <card-form v-if="ischanged == 2" :rowDetail="driverDetailList" :state="true"></card-form>
+      <jscard-form v-if="ischanged == 3" :rowDetail="driverDetailList" :state="true"></jscard-form>
+      <cycard-form v-if="ischanged == 4" :rowDetail="driverDetailList" :state="true"></cycard-form>
+      <tjcard-form v-if="ischanged == 5" :rowDetail="driverDetailList" :state="true"></tjcard-form>
+      <pxcard-form v-if="ischanged == 6" :rowDetail="driverDetailList" :state="true"></pxcard-form>
+      <wzcard-form v-if="ischanged == 7" :rowDetail="driverDetailList" :state="true"></wzcard-form>
+      <zrscard-form
+        v-if="ischanged == 8"
+        :rowDetail="driverDetailList"
+        :rows="vehiclemsgList"
+      ></zrscard-form>
+      <gzscard-form
+        v-if="ischanged == 9"
+        :rowDetail="driverDetailList"
+        :rows="vehiclemsgList"
+      ></gzscard-form>
+      <htcard-form
+        v-if="ischanged == 10"
+        :rowDetail="driverDetailList"
+        :rows="vehiclemsgList"
+      ></htcard-form>
+      <qtcard-form v-if="ischanged == 17" :rowDetail="driverDetailList" :state="true"></qtcard-form>
+      <zxzzcard-form v-if="ischanged == 11" :rowDetail="driverDetailList"></zxzzcard-form>
+      <fkfkcard-form v-if="ischanged == 12" :rowDetail="driverDetailList"></fkfkcard-form>
+      <qjxdcard-form v-if="ischanged == 13" :rowDetail="driverDetailList"></qjxdcard-form>
+      <fuzlcard-form v-if="ischanged == 14" :rowDetail="driverDetailList"></fuzlcard-form>
+      <wfzcard-form v-if="ischanged == 15" :rowDetail="driverDetailList"></wfzcard-form>
+      <zybcard-form v-if="ischanged == 16" :rowDetail="driverDetailList"></zybcard-form>
     </div>
     <div slot="footer">
       <el-button class="topbtn" size="mini" @click="vehicleVisible = false">
@@ -119,9 +61,43 @@
 <script>
 import dataAnalysisApi from "@/api/modules/report";
 import dataApi from "@/api/modules/government";
-import { format } from "@/config/date";
-import { driverList } from "@/config/vehicleList";
+import cardForm from "./child/cardForm.vue";
+import RuzhiForm from "./child/ruzhiForm.vue";
+import JscardForm from "./child/jscardForm.vue";
+import CycardForm from "./child/cycardForm.vue";
+import TjcardForm from "./child/tjcardForm.vue";
+import PxcardForm from "./child/pxcardForm.vue";
+import WzcardForm from "./child/wzcardForm.vue";
+import ZrscardForm from "./child/zrscardForm.vue";
+import HtcardForm from "./child/htcardForm.vue";
+import QtcardForm from "./child/qtcardForm.vue";
+import GzscardForm from "./child/gzscardForm.vue";
+import ZxzzcardForm from "./child/zxzzcardForm.vue";
+import FkfkcardForm from "./child/fkfkcardForm.vue";
+import QjxdcardForm from "./child/qjxdcardForm.vue";
+import FuzlcardForm from "./child/fuzlcardForm.vue";
+import WfzcardForm from "./child/wfzcardForm.vue";
+import ZybcardForm from "./child/zybcardForm.vue";
 export default {
+  components: {
+    cardForm,
+    RuzhiForm,
+    JscardForm,
+    CycardForm,
+    TjcardForm,
+    PxcardForm,
+    WzcardForm,
+    ZrscardForm,
+    HtcardForm,
+    QtcardForm,
+    GzscardForm,
+    ZxzzcardForm,
+    FkfkcardForm,
+    QjxdcardForm,
+    FuzlcardForm,
+    WfzcardForm,
+    ZybcardForm,
+  },
   props: {
     vehiclemsgList: {
       type: Object,
@@ -134,91 +110,91 @@ export default {
     return {
       vehicleVisible: false,
       msgloading: false,
-      ischanged: 0,
-      checkList1: "",
-      checkList2: "",
-      checkList3: "",
+      ischanged: 1,
       driverDetailList: {},
     };
   },
-  computed: {},
+  computed: {
+    btnList() {
+      return [
+        { label: "入职登记表" },
+        { label: "身份证" },
+        { label: "驾驶证" },
+        { label: "从业资格证" },
+        { label: "体检表" },
+        { label: "岗前培训三级教育卡" },
+        { label: "三年无重大责任证明" },
+        { label: "安全生产目标责任书" },
+        { label: "安全工作承诺书" },
+        { label: "劳动合同" },
+        { label: "交通违法专项整治责任书" }, //11
+        { label: "反恐防恐安全责任承诺书" }, //12
+        { label: "客运车辆疫情防控、清洁消毒承诺书" }, //13
+        { label: "服务质量承诺书" }, //14
+        { label: "无犯罪记录证明" }, //15
+        { label: "职业病危害因素告知书" }, //16
+        { label: "其他" }, //17
+      ];
+    },
+  },
   watch: {
     vehicleVisible: {
       handler(val) {
         if (val === true) {
-          this.updatedisable = false;
-          this.updateLoading = false;
-          this.ischanged = 0;
-          this.fileList = [];
+          if (this.ischanged !== 1) {
+            this.ischanged = 1;
+          }
           this.driverDetailList = {};
-          this.getModules("editDisplay");
-          this.getDriverDetail();
+          this.getDriverDetail(this.ischanged);
         }
+      },
+    },
+    ischanged: {
+      handler(val) {
+        this.getDriverDetail(val);
       },
     },
   },
   methods: {
     //地区报警处理率
-    async getDriverDetail() {
+    async getDriverDetail(index) {
+      this.msgloading = true;
+      let apiUrl;
+      if (index == 12) {
+        apiUrl = "fkfkDetail";
+      } else if (index == 13) {
+        apiUrl = "qjxdDetail";
+      } else if (index == 14) {
+        apiUrl = "fwzlDetail";
+      } else if (index == 15) {
+        apiUrl = "wfzdetail";
+      } else if (index == 16) {
+        apiUrl = "zhiyeweihaiDetail";
+      } else if (index == 11) {
+        apiUrl = "zxzzDetail";
+      } else {
+        apiUrl = "getDriverDetail";
+      }
+      apiUrl;
       let [err, data] = await dataAnalysisApi.awaitWrap(
-        dataAnalysisApi.getDriverDetail({
+        dataAnalysisApi[apiUrl]({
           id: this.vehiclemsgList.id,
-          // type: 1,
+          type: index,
         })
       );
       this.msgloading = false;
       if (data) {
         if (data.shenfenzhenghao) {
-          data.shenfenzhenghao = data.shenfenzhenghao.replace(/^(.{6})(?:\d+)(.{4})$/, "$1****$2");
+          data.shenfenzhenghao = data.shenfenzhenghao.replace(
+            /^(.{6})(?:\d+)(.{4})$/,
+            "\$1****\$2"
+          );
         }
         this.driverDetailList = data;
       } else {
         this.$message.error(err);
       }
-    },
-    // modules
-    getModules(displayNow) {
-      let module1 = [];
-      let module2 = [];
-      let module3 = [];
-      driverList().map((el) => {
-        if (el[displayNow] == undefined || el[displayNow] == true) {
-          if (el.driverModules === "基本信息" && el.label !== "企业名称") {
-            module1.push(el);
-          } else if (el.driverModules === "其他信息") {
-            module2.push(el);
-          } else if (el.driverModules === "证件信息") {
-            module3.push(el);
-          }
-        }
-        if (el.type === "select" && el.mockKey === "dic") {
-          this.getDicData(el.dicKey).then((res) => {
-            el.dicData = res;
-          });
-        }
-      });
-      this.checkList1 = this.getSort(module1);
-      this.checkList2 = this.getSort(module2);
-      this.checkList3 = this.getSort(module3);
-    },
-    // 排序
-    getSort(arr) {
-      let b = 0; //设置用来调换位置的值
-      let a = arr; //冒泡排序
-      for (let i = 0; i < a.length; i++) {
-        for (let j = 0; j < a.length - i; j++) {
-          if (a[j + 1] != undefined) {
-            if (a[j].sort > a[j + 1].sort) {
-              b = a[j];
-              a[j] = a[j + 1];
-              a[j + 1] = b;
-            }
-          }
-        }
-      }
-      return a;
-    },
-    // 获取字典
+    }, // 获取字典
     async getDicData(val) {
       let [err, data] = await dataApi.awaitWrap(dataApi.getByCode({ code: val }));
       if (data) {
@@ -227,7 +203,7 @@ export default {
     },
     // 标签卡切换
     cardChange(index) {
-      this.ischanged = index;
+      this.ischanged = index + 1;
     },
   },
 };
@@ -247,11 +223,9 @@ export default {
       padding: 10px 20px;
       .cehicleCard {
         display: flex;
-        margin-left: 5px;
         .cehicleCard_b {
-          padding: 10px 30px;
+          padding: 7px 8px;
           margin-right: 2px;
-          // color: #409eff;
           color: #fff;
           font-weight: bold;
           cursor: pointer;
@@ -262,13 +236,14 @@ export default {
         }
       }
       .cehicleCard_form {
-        height: 500px;
+        height: 600px;
         background-color: #0a3774;
         padding: 5px;
         color: #fff;
         .el-form {
           background-color: #0f1f40;
           padding: 10px;
+          width: calc(100% - 20px);
           height: calc(100% - 20px);
           overflow: auto;
           .el-form-item__label {

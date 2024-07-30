@@ -7,8 +7,7 @@ const CancelToken = axios.CancelToken;
 const source = CancelToken.source();
 
 export const $axios = axios.create({
-  baseURL:
-    process.env.NODE_ENV === "production" ? process.env.VUE_APP_BASE_API : "/",
+  baseURL: process.env.NODE_ENV === "production" ? process.env.VUE_APP_BASE_API : "/",
   timeout: 60000,
 });
 // 请求拦截
@@ -27,6 +26,9 @@ $axios.interceptors.response.use((response) => {
     const { code, msg } = data;
     switch (code) {
       case 200:
+        msg && console.log(msg);
+        return data.rows ? Promise.resolve(data) : Promise.resolve(data.data);
+      case 0:
         msg && console.log(msg);
         return data.rows ? Promise.resolve(data) : Promise.resolve(data.data);
       case 304:
