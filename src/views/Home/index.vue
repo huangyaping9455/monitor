@@ -718,6 +718,8 @@ export default {
                 name: data.areaname === "重庆市" ? "重庆" : data.areaname,
                 value: data.baojingcishu,
                 zhengfuid: data.zhengfuid,
+                cheliangshu: data.cheliangshu,
+                qiyeshu: data.qiyeshu,
               },
             ];
           } else {
@@ -726,6 +728,8 @@ export default {
                 name: el.areaname,
                 value: el.baojingcishu,
                 zhengfuid: el.zhengfuid,
+                cheliangshu: el.cheliangshu,
+                qiyeshu: el.qiyeshu,
               };
             });
           }

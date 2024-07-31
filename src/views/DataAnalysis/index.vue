@@ -528,6 +528,8 @@ export default {
               yueweichulishu: data.weichulishu,
               yuechulilv: data.chulilv,
               zhengfuid: data.zhengfuid,
+              cheliangshu: data.cheliangshu,
+              qiyeshu: data.qiyeshu,
             },
           ];
         } else {
@@ -538,6 +540,8 @@ export default {
               yueweichulishu: el.weichulishu,
               yuechulilv: el.chulilv,
               zhengfuid: el.zhengfuid,
+              cheliangshu: el.cheliangshu,
+              qiyeshu: el.qiyeshu,
             };
           });
         }
