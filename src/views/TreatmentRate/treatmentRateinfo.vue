@@ -137,48 +137,21 @@
       <div class="main-r">
         <!-- 操作按钮 -->
         <div class="btns">
-          <el-button
-            @click="changeSearch"
-            size="mini"
-            class="btn"
-            icon="el-icon-search"
+          <el-button @click="changeSearch" size="mini" class="btn" icon="el-icon-search"
             >查询</el-button
           >
-          <el-button
-            size="mini"
-            :loading="downloading"
-            @click="downtable"
-            class="btn"
-          >
-            <svg-icon
-              class="icon"
-              v-show="!downloading"
-              icon-class="down"
-            />下载
+          <el-button size="mini" :loading="downloading" @click="downtable" class="btn">
+            <svg-icon class="icon" v-show="!downloading" icon-class="down" />下载
           </el-button>
-          <el-button
-            @click="refresh"
-            size="mini"
-            class="btn"
-            icon="el-icon-refresh"
+          <el-button @click="refresh" size="mini" class="btn" icon="el-icon-refresh"
             >刷新</el-button
           >
-          <el-button
-            @click="returnGo"
-            size="mini"
-            class="btn"
-            icon="el-icon-refresh-left"
+          <el-button @click="returnGo" size="mini" class="btn" icon="el-icon-refresh-left"
             >返回</el-button
           >
         </div>
         <!-- 查询 -->
-        <el-form
-          v-show="searchshow"
-          :inline="true"
-          size="mini"
-          :model="form"
-          class="search"
-        >
+        <el-form v-show="searchshow" :inline="true" size="mini" :model="form" class="search">
           <el-form-item label="时间 :">
             <el-col :span="11" class="timetype">
               <el-form-item>
@@ -225,23 +198,10 @@
             </el-select>
             <!-- </el-form-item> -->
             <!-- <el-form-item label="主动安全报警类型 :" style="margin-left:1rem;"> -->
-            <el-select
-              v-model="form.alarmtype"
-              placeholder="请选择"
-              style="width: 10rem"
-              clearable
-            >
+            <el-select v-model="form.alarmtype" placeholder="请选择" style="width: 10rem" clearable>
               <!-- <el-option label="全部" value></el-option> -->
-              <el-option
-                label="超速报警"
-                value="超速报警"
-                v-if="GPS"
-              ></el-option>
-              <!-- <el-option
-                v-if="GPS"
-                label="疲劳驾驶报警"
-                value="疲劳驾驶报警"
-              ></el-option> -->
+              <el-option label="超速报警" value="超速报警" v-if="GPS"></el-option>
+              <el-option v-if="GPS" label="疲劳驾驶报警" value="疲劳驾驶报警"></el-option>
               <!-- <el-option
                 label="夜间行驶报警"
                 value="夜间行驶报警"
@@ -252,59 +212,33 @@
                 value="异常车辆报警"
                 v-if="GPS"
               ></el-option> -->
-              <el-option
-                label="接打电话报警"
-                value="接打电话报警"
-                v-if="zhudong"
-              ></el-option>
+              <el-option label="接打电话报警" value="接打电话报警" v-if="zhudong"></el-option>
               <!-- <el-option
                 label="抽烟报警"
                 value="抽烟报警"
                 v-if="zhudong"
               ></el-option> -->
-              <el-option
-                label="分神驾驶报警"
-                value="分神驾驶报警"
-                v-if="zhudong"
-              ></el-option>
-              <el-option
-                v-if="zhudong"
-                label="生理疲劳报警"
-                value="生理疲劳报警"
-              ></el-option>
-              <el-option
-                v-if="zhudong"
-                label="驾驶员异常报警"
-                value="驾驶员异常报警"
-              ></el-option>
+              <el-option label="分神驾驶报警" value="分神驾驶报警" v-if="zhudong"></el-option>
+              <el-option v-if="zhudong" label="生理疲劳报警" value="生理疲劳报警"></el-option>
+              <el-option v-if="zhudong" label="驾驶员异常报警" value="驾驶员异常报警"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="处理状态 :" style="margin-left: 1rem">
-            <el-select
-              v-model="form.shifouchuli"
-              placeholder="请选择"
-              style="width: 10rem"
-            >
+            <el-select v-model="form.shifouchuli" placeholder="请选择" style="width: 10rem">
               <el-option label="全部" value></el-option>
               <el-option label="未处理" value="未处理"></el-option>
               <el-option label="已处理" value="已处理"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="申述状态 :" style="margin-left: 1rem">
-            <el-select
-              v-model="form.shifoushenshu"
-              placeholder="请选择"
-              style="width: 10rem"
-            >
+            <el-select v-model="form.shifoushenshu" placeholder="请选择" style="width: 10rem">
               <el-option label="全部" value></el-option>
               <el-option label="未申诉" value="未申诉"></el-option>
               <el-option label="已申诉" value="已申诉"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" class="sbtn" @click="getData(1)"
-              >搜索</el-button
-            >
+            <el-button type="primary" class="sbtn" @click="getData(1)">搜索</el-button>
           </el-form-item>
         </el-form>
         <!-- mainTable -->
@@ -331,9 +265,7 @@
             <template slot-scope="{ row }">
               <p
                 class="spanlabel"
-                :class="
-                  row.chulizhuangtai == '未处理' ? 'redspan' : 'greenspan'
-                "
+                :class="row.chulizhuangtai == '未处理' ? 'redspan' : 'greenspan'"
               >
                 <span>{{ row.chulizhuangtai }}</span>
               </p>
@@ -343,9 +275,7 @@
             <template slot-scope="{ row }">
               <p
                 class="spanlabel"
-                :class="
-                  row.shensuzhuangtai == '未申诉' ? 'redspan' : 'bluespan'
-                "
+                :class="row.shensuzhuangtai == '未申诉' ? 'redspan' : 'bluespan'"
               >
                 <span>{{ row.shensuzhuangtai }}</span>
               </p>
@@ -358,12 +288,7 @@
             align="center"
             :show-overflow-tooltip="true"
           ></el-table-column>
-          <el-table-column
-            prop="plate"
-            label="车牌"
-            width="90"
-            align="center"
-          ></el-table-column>
+          <el-table-column prop="plate" label="车牌" width="90" align="center"></el-table-column>
           <el-table-column
             prop="color"
             label="车牌颜色"
@@ -418,12 +343,7 @@
             width="90"
             align="center"
           ></el-table-column>
-          <el-table-column
-            prop="latitude"
-            label="纬度"
-            width="90"
-            align="center"
-          ></el-table-column>
+          <el-table-column prop="latitude" label="纬度" width="90" align="center"></el-table-column>
           <el-table-column
             prop="roadName"
             label="报警位置"
@@ -516,43 +436,22 @@
           </div>
           <div class="page-r">
             <span class="el-icon-d-arrow-left" @click="getData(1)"></span>
-            <span
-              class="el-icon-arrow-left"
-              @click="getData(current - 1)"
-            ></span>
-            <span
-              class="num"
-              v-show="current - 2 > 0"
-              @click="getData(current - 2)"
-              >{{ current - 2 }}</span
-            >
-            <span
-              class="num"
-              v-show="current - 1 > 0"
-              @click="getData(current - 1)"
-              >{{ current - 1 }}</span
-            >
+            <span class="el-icon-arrow-left" @click="getData(current - 1)"></span>
+            <span class="num" v-show="current - 2 > 0" @click="getData(current - 2)">{{
+              current - 2
+            }}</span>
+            <span class="num" v-show="current - 1 > 0" @click="getData(current - 1)">{{
+              current - 1
+            }}</span>
             <span class="num active">{{ current }}</span>
-            <span
-              class="num"
-              v-show="current + 1 <= pageTotal"
-              @click="getData(current + 1)"
-              >{{ current + 1 }}</span
-            >
-            <span
-              class="num"
-              v-show="current + 2 <= pageTotal"
-              @click="getData(current + 2)"
-              >{{ current + 2 }}</span
-            >
-            <span
-              class="el-icon-arrow-right"
-              @click="getData(current + 1)"
-            ></span>
-            <span
-              class="el-icon-d-arrow-right"
-              @click="getData(pageTotal)"
-            ></span>
+            <span class="num" v-show="current + 1 <= pageTotal" @click="getData(current + 1)">{{
+              current + 1
+            }}</span>
+            <span class="num" v-show="current + 2 <= pageTotal" @click="getData(current + 2)">{{
+              current + 2
+            }}</span>
+            <span class="el-icon-arrow-right" @click="getData(current + 1)"></span>
+            <span class="el-icon-d-arrow-right" @click="getData(pageTotal)"></span>
             <div class="pagesize">
               每页显示
               <el-select
@@ -605,10 +504,7 @@ export default {
       pagesizeactive: 20, //当前每页显示
       enterpriseListH: "calc(100vh - 13.5714rem)",
       form: {
-        begintime: format(
-          new Date().getTime() - 3600 * 1000 * 24,
-          "YYYY-MM-DD"
-        ),
+        begintime: format(new Date().getTime() - 3600 * 1000 * 24, "YYYY-MM-DD"),
         endtime: format(new Date().getTime() - 3600 * 1000 * 24, "YYYY-MM-DD"),
         cheliangpaizhao: "",
         alarmtype: "",
