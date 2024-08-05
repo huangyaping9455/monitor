@@ -1,22 +1,17 @@
-import {
-  $axios,
-  awaitWrap
-} from '../api';
-import qs from 'qs';
+import { $axios, awaitWrap } from "../api";
 /** 登录模块 */
 export default {
   // 获取验证码
   getcode() {
-    return $axios.get('/blade-auth/auth/getVerificationCode');
+    return $axios.get("/blade-auth/auth/getVerificationCode");
   },
   // 登录授权
   ZFtoken(data) {
-    data = qs.stringify(data)
-    return $axios.post('/blade-auth/auth/ZFSignIn', data);
+    return $axios.post("/blade-auth/auth/ZFSignIn", data);
   },
   // 退出登录
   logout() {
-    return $axios.get('/blade-auth/auth/signOut');
+    return $axios.get("/blade-auth/auth/signOut");
   },
-  awaitWrap
+  awaitWrap,
 };
