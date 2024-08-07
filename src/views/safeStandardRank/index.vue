@@ -220,7 +220,7 @@
           </el-form-item>
           <el-form-item label="营运类型">
             <el-select
-              v-model="form.yingyunleixing"
+              v-model="form.yunyingleixing"
               clearable
               placeholder="请选择营运类型"
               style="width: 180px"
@@ -276,7 +276,7 @@
             show-overflow-tooltip
           ></el-table-column>
           <el-table-column label="经营范围" prop="jingyingfanwei" align="center"></el-table-column>
-          <el-table-column label="营运类型" prop="yingyunleixing" align="center"></el-table-column>
+          <el-table-column label="营运类型" prop="yunyingleixing" align="center"></el-table-column>
           <el-table-column label="应传文件数" prop="uploadedNum" align="center"></el-table-column>
           <el-table-column prop="finshNum" label="完成数" align="center"></el-table-column>
           <el-table-column prop="finshRatio" label="完成比例" align="center"></el-table-column>
@@ -392,7 +392,7 @@ export default {
         begintime: format(new Date().getTime() - 3600 * 1000 * 24 * 30, "YYYY-MM-DD"),
         endtime: format(new Date().getTime(), "YYYY-MM-DD"),
         jingyingfanwei: [],
-        yingyunleixing: [],
+        yunyingleixing: [],
       },
       enterpriseList: [],
       zhengfuId: "", //地区id
@@ -430,7 +430,7 @@ export default {
         begintime: format(new Date().getTime(), "YYYY-MM-01"),
         endtime: format(new Date().getTime(), "YYYY-MM-DD"),
         jingyingfanwei: [],
-        yingyunleixing: [],
+        yunyingleixing: [],
       };
       this.getDate(1);
     },
@@ -454,7 +454,7 @@ export default {
           beginTime: this.form.begintime,
           endTime: this.form.endtime,
           jingyingfanwei: this.form.jingyingfanwei.toString(),
-          yingyunleixing: this.form.yingyunleixing.toString(),
+          yunyingleixing: this.form.yunyingleixing.toString(),
         })
       );
       this.loading = false;

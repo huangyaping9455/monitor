@@ -339,7 +339,7 @@ export default {
           orderColumns: this.orderColumns,
           order: this.order,
           jingyingfanwei: this.form.jingyingfanwei.toString(),
-          yingyunleixing: this.form.yingyunleixing.toString(),
+          yunyingleixing: this.form.yingyunleixing.toString(),
         })
       );
       this.msgloading = false;

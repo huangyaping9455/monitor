@@ -233,7 +233,7 @@
           </el-form-item>
           <el-form-item label="营运类型">
             <el-select
-              v-model="form.yingyunleixing"
+              v-model="form.yunyingleixing"
               clearable
               placeholder="请选择营运类型"
               style="width: 180px"
@@ -302,7 +302,7 @@
           ></el-table-column>
           <el-table-column
             label="营运类型"
-            prop="yingyunleixing"
+            prop="yunyingleixing"
             align="center"
             width="140"
           ></el-table-column>
@@ -505,7 +505,7 @@ export default {
         endTime: format(new Date(), "YYYY-MM-DD"),
         deptName: "",
         jingyingfanwei: [],
-        yingyunleixing: [],
+        yunyingleixing: [],
       },
       enterpriseList: [],
       zhengfuId: "", //地区id
@@ -544,7 +544,7 @@ export default {
         endTime: format(new Date(), "YYYY-MM-DD"),
         deptName: "",
         jingyingfanwei: [],
-        yingyunleixing: [],
+        yunyingleixing: [],
       };
       this.getDate(1);
     },
@@ -563,7 +563,7 @@ export default {
           size: this.pagesizeactive,
           ...this.form,
           jingyingfanwei: this.form.jingyingfanwei.toString(),
-          yingyunleixing: this.form.yingyunleixing.toString(),
+          yunyingleixing: this.form.yunyingleixing.toString(),
         })
       );
       this.loading = false;
@@ -606,7 +606,7 @@ export default {
           size: 0,
           ...this.form,
           jingyingfanwei: this.form.jingyingfanwei.toString(),
-          yingyunleixing: this.form.yingyunleixing.toString(),
+          yunyingleixing: this.form.yunyingleixing.toString(),
         })
       );
       this.downloading = false;

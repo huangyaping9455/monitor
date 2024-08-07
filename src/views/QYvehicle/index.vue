@@ -319,13 +319,13 @@
             align="center"
             show-overflow-tooltip
           ></el-table-column>
-          <el-table-column
+          <!-- <el-table-column
             label="企业简称"
             prop="fullName"
             width="240"
             align="center"
             show-overflow-tooltip
-          ></el-table-column>
+          ></el-table-column> -->
           <el-table-column
             label="地市"
             prop="areaname"
@@ -651,7 +651,7 @@ export default {
         multiHeader = [
           "排名",
           "企业名称",
-          "企业简称",
+          // "企业简称",
           "地市",
           "所属交通局",
           "经营范围",
@@ -683,7 +683,7 @@ export default {
         filterVal = [
           "index",
           "deptName",
-          "fullName",
+          // "fullName",
           "areaname",
           "yunguanmingcheng",
           "jigouzizhi",
@@ -710,7 +710,7 @@ export default {
           "K1:K2",
           "L1:L2",
           "M1:M2",
-          "N1:N2",
+          // "N1:N2",
         ];
         filename = "企业统计";
         const data = this.formatJson(filterVal, list);

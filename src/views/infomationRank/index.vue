@@ -277,7 +277,7 @@
           ></el-table-column>
           <el-table-column
             label="营运类型"
-            prop="yingyunleixing"
+            prop="yunyingleixing"
             align="center"
             width="140"
           ></el-table-column>
@@ -490,7 +490,7 @@ export default {
           order: this.order,
           ...this.form,
           jingyingfanwei: this.form.jingyingfanwei.toString(),
-          yingyunleixing: this.form.yingyunleixing.toString(),
+          yunyingleixing: this.form.yingyunleixing.toString(),
         })
       );
       this.loading = false;
